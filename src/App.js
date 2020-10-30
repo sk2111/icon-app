@@ -1,10 +1,15 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+import SignInAndSignUpPage from './pages/sign-in-sign-up/sign-in-and-sign-up.component';
 
 
-class App extends React.Component{
-  render(){
-    return(
-      <div>Hello App component</div>
+class App extends React.Component {
+  render() {
+    return (
+      <Switch>
+        <Route exact path='/signin' component={SignInAndSignUpPage}></Route>
+      </Switch>
     )
   }
 }
