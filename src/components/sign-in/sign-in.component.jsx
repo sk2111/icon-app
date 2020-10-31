@@ -26,7 +26,7 @@ const SignIn = ({ changeViewToForgotPassword, changeViewToUserLogin, forgotPassw
     const renderUserLoginView = (forgotPasswordViewHidden) => {
         if (!forgotPasswordViewHidden) return null;
         return (
-            <form onSubmit={handleUserLoginSubmit}>
+            <form autoComplete="on" onSubmit={handleUserLoginSubmit}>
                 <FormInput label="Soliton mail address" type="email" required autoComplete="on" />
                 <FormInput label="Password" type="password" required autoComplete="on" />
                 <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToForgotPassword}>Forgot Password?</div>
@@ -40,11 +40,11 @@ const SignIn = ({ changeViewToForgotPassword, changeViewToUserLogin, forgotPassw
     const renderForgotPasswordView = (forgotPasswordViewHidden) => {
         if (forgotPasswordViewHidden) return null;
         return (
-            <form onSubmit={handleForgotPasswordSubmit}>
+            <form autoComplete="on" onSubmit={handleForgotPasswordSubmit}>
                 <FormInput label="Soliton mail address" type="email" required autoComplete="on" />
                 <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToUserLogin}>Go Back to Sign In?</div>
                 <div className={`${styles.buttonCon} perfect-cen`}>
-                    <CustomButton label="Send Reset Link"></CustomButton>
+                    <CustomButton label="Send Reset Link" type="submit"></CustomButton>
                 </div>
             </form>
         )
