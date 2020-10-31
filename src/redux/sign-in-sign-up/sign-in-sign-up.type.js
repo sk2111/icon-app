@@ -1,0 +1,4 @@
+export const signInSignUpActionTypes = {
+    'SIGN_IN_VIEW_SELECTED': 'SIGN_IN_VIEW_SELECTED',
+    'SIGN_UP_VIEW_SELECTED': 'SIGN_UP_VIEW_SELECTED',
+} 
