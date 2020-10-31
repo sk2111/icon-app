@@ -1,6 +1,10 @@
-.formInput{
-    height:30px;
+.formInput {
+  height: 30px;
+  width: 300px;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
-.formLabel{
-    font-size:18px;
+.formLabel {
+  font-size: 18px;
+  display: block;
 }
