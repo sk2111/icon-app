@@ -1,12 +1,12 @@
-import signInSignUpActionTypes from './sign-in-sign-up.type';
+import { signInSignUpActionTypes } from './sign-in-sign-up.type';
 
 export const changeViewToSignIn = () => {
     return {
-        type: signInSignUpActionTypes.signInViewSelected
+        type: signInSignUpActionTypes.SIGN_IN_VIEW_SELECTED
     }
 }
-export const ChangeViewToSignUp = () => {
+export const changeViewToSignUp = () => {
     return {
-        type: signInSignUpActionTypes.signUpViewSelected
+        type: signInSignUpActionTypes.SIGN_UP_VIEW_SELECTED
     }
 }

@@ -1,21 +1,40 @@
+//libs
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+//css
 import styles from './login-header.module.css';
-
-
+//components
 import CustomButton from '../custom-button/custom-button.component';
+//actions
+import { changeViewToSignIn, changeViewToSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+//reselect
+import { selectSignInViewHidden, selectSignUpViewHidden } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 
-const LoginHeader = () => {
+const LoginHeader = ({ changeViewToSignIn, changeViewToSignUp }) => {
     return (
         <div className={styles.loginContainer}>
             <img className={styles.logo} alt="icon" src="../../../logo192.png" />
             <h1>Soliton Icon App</h1>
             <div className="flex-row">
-                <CustomButton label="Login" />
+                <CustomButton label="Login" onClick={changeViewToSignIn} />
                 <p>or</p>
-                <CustomButton label="Signup" />
+                <CustomButton label="Signup" onClick={changeViewToSignUp} />
             </div>
         </div>
     );
-}
+};
 
-export default LoginHeader;
+const mapStateToProps = createStructuredSelector({
+    isSignInViewHidden: selectSignInViewHidden,
+    isSignUpViewHidden: selectSignUpViewHidden
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeViewToSignIn: () => dispatch(changeViewToSignIn()),
+        changeViewToSignUp: () => dispatch(changeViewToSignUp()),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginHeader);

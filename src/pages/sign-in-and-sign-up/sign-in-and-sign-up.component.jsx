@@ -1,9 +1,12 @@
+//libs
 import React from 'react';
+// css
 import styles from './sign-in-and-sign-up.module.css';
-
+//components
 import LoginHeader from '../../components/login-header/login-header.component';
 import SignIn from '../../components/sign-in/sign-in.component';
 import SignUp from '../../components/sign-up/sign-up.component';
+
 
 const SignInAndSignUpPage = (props) => {
     console.log("signIn Component props", props);
@@ -23,4 +26,4 @@ const SignInAndSignUpPage = (props) => {
     );
 };
 
-export default SignInAndSignUpPage;
+export default (SignInAndSignUpPage);
