@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './sign-in-and-sign-up.module.css';
 
-
+import LoginHeader from '../../components/login-header/login-header.component';
 import SignIn from '../../components/sign-in/sign-in.component';
 
 const SignInAndSignUpPage = (props) => {
@@ -13,10 +13,8 @@ const SignInAndSignUpPage = (props) => {
             </section>
             <section className={`${styles.rightContainer} perfect-cen`}>
                 <div className={styles.rightContent}>
-                    <div>
-                        <img alt="icon" src="" />
-                        <h1>Soliton Icon App</h1>
-                    </div>
+                    <LoginHeader />
+                    <SignIn />
                 </div>
             </section>
         </div>
