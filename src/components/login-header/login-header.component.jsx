@@ -1,15 +1,12 @@
 //libs
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 //css
 import styles from './login-header.module.css';
 //components
 import CustomButton from '../custom-button/custom-button.component';
 //actions
 import { changeViewToSignIn, changeViewToSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
-//reselect
-import { selectSignInViewHidden, selectSignUpViewHidden } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 
 const LoginHeader = ({ changeViewToSignIn, changeViewToSignUp }) => {
     return (
@@ -25,11 +22,6 @@ const LoginHeader = ({ changeViewToSignIn, changeViewToSignUp }) => {
     );
 };
 
-const mapStateToProps = createStructuredSelector({
-    isSignInViewHidden: selectSignInViewHidden,
-    isSignUpViewHidden: selectSignUpViewHidden
-});
-
 const mapDispatchToProps = (dispatch) => {
     return {
         changeViewToSignIn: () => dispatch(changeViewToSignIn()),
@@ -37,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginHeader);
+export default connect(null, mapDispatchToProps)(LoginHeader);
