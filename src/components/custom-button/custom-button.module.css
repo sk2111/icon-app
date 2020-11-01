@@ -14,7 +14,7 @@
   transition: top 0.1s;
 }
 .button:hover {
-  top: -3px;
+  top: -2px;
 }
 .button:active {
   top: 0px;

@@ -13,7 +13,9 @@ import successImage from '../../assests/flat-tick.png';
 import failureImage from '../../assests/flat-cross.png';
 
 const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToastMessageState }) => {
+
     const toastContainerRef = useRef(null);
+
     useEffect(() => {
         if (showToast) {
             setTimeout(() => {
@@ -23,7 +25,14 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
         }
     }, [showToast, timeInSeconds, resetToastMessageState])
     return (
-        <div ref={toastContainerRef} className={`${styles.toastbar} ${showToast ? styles.showToastbar : ''}`}>
+
+        <div ref={toastContainerRef}
+            style={{
+                visibility: `${showToast ? 'visible' : 'hidden'}`,
+                'WebkitAnimation': `${showToast ? `fadein 0.5s, fadeout 0.5s ${timeInSeconds - 0.5}s` : ''}`,
+                animation: `${showToast ? `fadein 0.5s, fadeout 0.5s ${timeInSeconds - 0.5}s` : ''}`,
+            }}
+            className={`${styles.toastbar}`}>
             <div className="flex-row align-cen">
                 <div className={`${styles.round} perfect-cen`}>
                     {isSuccess ?
