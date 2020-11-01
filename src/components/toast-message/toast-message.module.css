@@ -1,0 +1,27 @@
+.toastbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+}
+/* animatins class persent in index.css */
+.showToastbar {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+.round {
+  margin-right: 15px;
+}
+.icon {
+  height: 35px;
+  width: 35px;
+}
