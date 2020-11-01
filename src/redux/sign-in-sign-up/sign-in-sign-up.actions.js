@@ -23,3 +23,10 @@ export const changeViewToForgotPassword = () => {
         type: signInSignUpActionTypes.FORGOT_PASSWORD_VIEW_SELECTED
     }
 }
+
+export const userSignUpStart = (userSignUpInfo) => {
+    return {
+        type: signInSignUpActionTypes.SIGN_UP_START,
+        payload: userSignUpInfo
+    }
+}
