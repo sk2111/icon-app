@@ -4,7 +4,8 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { auth, createUserProfileInFirestore } from '../../firebase/firebase.utils';
 //actions types
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
-
+import { changeViewToSignIn } from './sign-in-sign-up.actions';
+import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 
 
 export function* signUpUser({ payload: { email, password, name } }) {
@@ -13,18 +14,16 @@ export function* signUpUser({ payload: { email, password, name } }) {
         const { additionalUserInfo, user } = authData;
         const { uid } = user;
         if (additionalUserInfo.isNewUser) {
-            yield user.sendEmailVerification()
-
-            // TODO :  and show a toast message like verify mail address and sign in
-
-            //TODO: Create a user document in fireStore 
+            yield user.sendEmailVerification();
+            yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In' }));
+            yield put(changeViewToSignIn());
             createUserProfileInFirestore({ uid, email, name })
         }
         console.log(authData, additionalUserInfo, user);
     }
     catch (e) {
         console.log(e);
-        // TODO: Capture e. message and display in toast
+        yield put(showFailureToastMessage({ message: `Sign up failed ${e.message}` }));
     }
 }
 
