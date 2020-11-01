@@ -15,15 +15,15 @@ export function* signUpUser({ payload: { email, password, name } }) {
         const { uid } = user;
         if (additionalUserInfo.isNewUser) {
             yield user.sendEmailVerification();
-            yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In' }));
+            yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In', timeInSeconds: '5' }));
             yield put(changeViewToSignIn());
-            createUserProfileInFirestore({ uid, email, name })
+            yield call(createUserProfileInFirestore, { uid, email, name })
         }
         console.log(authData, additionalUserInfo, user);
     }
     catch (e) {
         console.log(e);
-        yield put(showFailureToastMessage({ message: `Sign up failed ${e.message}` }));
+        yield put(showFailureToastMessage({ message: `Sign up failed ${e.message}`, timeInSeconds: '5' }));
     }
 }
 
