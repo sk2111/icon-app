@@ -10,6 +10,8 @@ const INITIAL_STATE = {
 
 const toastMessageReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case toastMessageActionTypes.RESET_TOAST_MESSAGE_STATE:
+            return { ...INITIAL_STATE };
         case toastMessageActionTypes.SHOW_SUCCESS_TOAST_MESSAGE:
             return {
                 ...state,

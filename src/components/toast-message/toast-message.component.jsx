@@ -1,8 +1,10 @@
 //libs
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 //css
 import styles from './toast-message.module.css';
+//actions
+import { resetToastMessageState } from '../../redux/toast-message/toast-message.actions';
 //reselect
 import { createStructuredSelector } from 'reselect';
 import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSeconds } from '../../redux/toast-message/toast-message.selectors';
@@ -10,9 +12,18 @@ import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSec
 import successImage from '../../assests/flat-tick.png';
 import failureImage from '../../assests/flat-cross.png';
 
-const ToastMessage = ({ showToast, message, isSuccess }) => {
+const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToastMessageState }) => {
+    const toastContainerRef = useRef(null);
+    useEffect(() => {
+        if (showToast) {
+            setTimeout(() => {
+                toastContainerRef.current.classList.remove(styles.showToastbar);
+                resetToastMessageState();
+            }, timeInSeconds * 1000);
+        }
+    }, [showToast, timeInSeconds, resetToastMessageState])
     return (
-        <div className={`${styles.toastbar} ${showToast ? styles.showToastbar : ''}`}>
+        <div ref={toastContainerRef} className={`${styles.toastbar} ${showToast ? styles.showToastbar : ''}`}>
             <div className="flex-row align-cen">
                 <div className={`${styles.round} perfect-cen`}>
                     {isSuccess ?
@@ -33,4 +44,10 @@ const mapStateToProps = createStructuredSelector({
     timeInSeconds: selectTimeInSeconds
 });
 
-export default connect(mapStateToProps)(ToastMessage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        resetToastMessageState: () => dispatch(resetToastMessageState())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToastMessage);

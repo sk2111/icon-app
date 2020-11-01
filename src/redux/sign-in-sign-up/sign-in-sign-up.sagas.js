@@ -15,7 +15,7 @@ export function* signUpUser({ payload: { email, password, name } }) {
         const { uid } = user;
         if (additionalUserInfo.isNewUser) {
             yield user.sendEmailVerification();
-            yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In', timeInSeconds: '5' }));
+            yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In', timeInSeconds: '6' }));
             yield put(changeViewToSignIn());
             yield call(createUserProfileInFirestore, { uid, email, name })
         }
@@ -23,7 +23,7 @@ export function* signUpUser({ payload: { email, password, name } }) {
     }
     catch (e) {
         console.log(e);
-        yield put(showFailureToastMessage({ message: `Sign up failed ${e.message}`, timeInSeconds: '5' }));
+        yield put(showFailureToastMessage({ message: `Sign up failed ${e.message}`, timeInSeconds: '6' }));
     }
 }
 
