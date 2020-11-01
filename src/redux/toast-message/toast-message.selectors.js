@@ -13,3 +13,7 @@ export const selectIsSuccess = createSelector([selectToastMessage], (state) => {
 export const selectMessage = createSelector([selectToastMessage], (state) => {
     return state.message;
 });
+
+export const selectTimeInSeconds = createSelector([selectToastMessage],(state)=>{
+    return state.timeInSeconds;
+})

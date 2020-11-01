@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import styles from './toast-message.module.css';
 //reselect
 import { createStructuredSelector } from 'reselect';
-import { selectShowToastMessage, selectIsSuccess, selectMessage } from '../../redux/toast-message/toast-message.selectors';
+import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSeconds } from '../../redux/toast-message/toast-message.selectors';
 //static Image
 import successImage from '../../assests/flat-tick.png';
 import failureImage from '../../assests/flat-cross.png';
@@ -29,7 +29,8 @@ const ToastMessage = ({ showToast, message, isSuccess }) => {
 const mapStateToProps = createStructuredSelector({
     showToast: selectShowToastMessage,
     message: selectMessage,
-    isSuccess: selectIsSuccess
+    isSuccess: selectIsSuccess,
+    timeInSeconds: selectTimeInSeconds
 });
 
 export default connect(mapStateToProps)(ToastMessage);
