@@ -3,14 +3,14 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAabx8f6c4lBbHuUoaffVwHwhd3Neo4ihg",
-    authDomain: "soliton-icon-app.firebaseapp.com",
-    databaseURL: "https://soliton-icon-app.firebaseio.com",
-    projectId: "soliton-icon-app",
-    storageBucket: "soliton-icon-app.appspot.com",
-    messagingSenderId: "149047831841",
-    appId: "1:149047831841:web:cf97d944d12e5253a66260",
-    measurementId: "G-R49FP8QLF3"
+  apiKey: "AIzaSyAu9ZJCJFg3Rlzs7qIxCd_7jDCZ3vkDeX4",
+  authDomain: "solitoniconrepo.firebaseapp.com",
+  databaseURL: "https://solitoniconrepo.firebaseio.com",
+  projectId: "solitoniconrepo",
+  storageBucket: "solitoniconrepo.appspot.com",
+  messagingSenderId: "1057477667759",
+  appId: "1:1057477667759:web:8b05db60c4b7609fb49d5a",
+  measurementId: "G-HEHLN20L8P"
 };
 
 firebase.initializeApp(firebaseConfig);
