@@ -34,7 +34,22 @@ export function* onUserSignUpStart() {
 }
 
 export function* loginInUser({ payload: { email, password } }) {
-    yield console.log("I am saga", email, password);
+    try {
+        const authData = yield auth.signInWithEmailAndPassword(email, password);
+        const { user } = authData;
+        if (user.emailVerified) {
+            //TODO:Read doc from firestore and store in root user reducer uid and data
+            console.log("SignIn success");
+            return;
+        }
+        yield put(showFailureToastMessage({ message: `Signin failed.Please verify your Email before login`, timeInSeconds: '6' }));
+        yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
+    }
+    catch (e) {
+        console.log(e);
+        yield put(showFailureToastMessage({ message: `Signin failed ${e.message}`, timeInSeconds: '6' }));
+        yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
+    }
 }
 
 export function* onUserLoginStart() {

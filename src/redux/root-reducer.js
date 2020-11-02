@@ -3,7 +3,7 @@ import signInSignUpReducer from './sign-in-sign-up/sign-in-sign-up.reducer';
 import toastMessageReducer from './toast-message/toast-message.reducer';
 
 const rootReducer = combineReducers({
-    auth: () => 'replace-me',
+    user: () => 'replace-me',
     signInSignUp: signInSignUpReducer,
     toastMessage: toastMessageReducer
 });
