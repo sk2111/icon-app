@@ -23,7 +23,7 @@ export function* signUpUser({ payload: { email, password, name } }) {
     }
     catch (e) {
         console.log(e);
-        yield put(showFailureToastMessage({ message: `Sign up failed ${e.message}`, timeInSeconds: '6' }));
+        yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
         yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
     }
 }
@@ -47,7 +47,7 @@ export function* loginInUser({ payload: { email, password } }) {
     }
     catch (e) {
         console.log(e);
-        yield put(showFailureToastMessage({ message: `Signin failed ${e.message}`, timeInSeconds: '6' }));
+        yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
         yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
     }
 }
