@@ -11,6 +11,7 @@
   z-index: 1;
   left: 50%;
   bottom: 30px;
+  user-select: none;
 }
 
 .showToastbar {

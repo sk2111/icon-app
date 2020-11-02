@@ -9,10 +9,11 @@ import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 //actions
 import { userSignUpStart, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { showFailureToastMessage } from '../../redux/toast-message/toast-message.actions';
 //reselect
 import { selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 
-const SignUp = ({ userSignUpStart, waitingForData, setLoadingStatusForSignInSignUp }) => {
+const SignUp = ({ userSignUpStart, waitingForData, showFailureToastMessage, setLoadingStatusForSignInSignUp }) => {
     const [userDetails, setUserDetails] = useState({ name: '', email: '', password: '', confirmPassword: '' });
     const { name, email, password, confirmPassword } = userDetails;
 
@@ -24,7 +25,11 @@ const SignUp = ({ userSignUpStart, waitingForData, setLoadingStatusForSignInSign
             userSignUpStart({ name, email, password });
             return;
         }
-        //TODO : Fire an action which inturen displays a toast message 
+        if (password !== confirmPassword) {
+            showFailureToastMessage({ message: 'Password and Confirm password doesnt match', timeInSeconds: 6 });
+            return;
+        }
+        showFailureToastMessage({ message: 'Please enter a valid Soliton mailId', timeInSeconds: 6 });
     }
     const handleInputChange = (e) => {
         const { value, name } = e.target;
@@ -53,7 +58,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => {
     return {
         userSignUpStart: (data) => dispatch(userSignUpStart(data)),
-        setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data))
+        setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
+        showFailureToastMessage: (data) => dispatch(showFailureToastMessage(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
