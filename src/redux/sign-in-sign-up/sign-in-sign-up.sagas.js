@@ -4,7 +4,7 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { auth, createUserProfileInFirestore } from '../../firebase/firebase.utils';
 //actions types
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
-import { changeViewToSignIn } from './sign-in-sign-up.actions';
+import { changeViewToSignIn, setLoadingStatusForSignInSignUp } from './sign-in-sign-up.actions';
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 
 
@@ -16,14 +16,15 @@ export function* signUpUser({ payload: { email, password, name } }) {
         if (additionalUserInfo.isNewUser) {
             yield user.sendEmailVerification();
             yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In', timeInSeconds: '6' }));
+            yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
             yield put(changeViewToSignIn());
-            yield call(createUserProfileInFirestore, { uid, email, name })
+            yield call(createUserProfileInFirestore, { uid, email, name });
         }
-        console.log(authData, additionalUserInfo, user);
     }
     catch (e) {
         console.log(e);
         yield put(showFailureToastMessage({ message: `Sign up failed ${e.message}`, timeInSeconds: '6' }));
+        yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
     }
 }
 

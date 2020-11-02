@@ -13,3 +13,7 @@ export const selectSignUpViewHidden = createSelector([selectSignInSignUp], (sign
 export const selectForgotPasswordViewHidden = createSelector([selectSignInSignUp], (signInSignUp) => {
     return signInSignUp.forgotPasswordViewHidden
 });
+
+export const selectWaitingForData = createSelector([selectSignInSignUp], (signInSignUp) => {
+    return signInSignUp.waitingForData
+});

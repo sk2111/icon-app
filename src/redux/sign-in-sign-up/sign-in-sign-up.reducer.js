@@ -4,7 +4,8 @@ import { signInSignUpActionTypes } from './sign-in-sign-up.type';
 const INITIALSTATE = {
     signInViewHidden: false,
     signUpViewHidden: true,
-    forgotPasswordViewHidden: true
+    forgotPasswordViewHidden: true,
+    waitingForData:false
 };
 
 
@@ -18,6 +19,8 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
             return { ...state, forgotPasswordViewHidden: true }
         case signInSignUpActionTypes.FORGOT_PASSWORD_VIEW_SELECTED:
             return { ...state, forgotPasswordViewHidden: false }
+        case signInSignUpActionTypes.SET_LOADING_STATUS_FOR_SIGNIN_SIGNUP:
+            return {...state,waitingForData:action.payload.fetching}
         default:
             return state;
     }
