@@ -43,7 +43,10 @@ code {
 .m-pointer {
   cursor: pointer;
 }
-
+.disable-btn {
+  pointer-events: none;
+  opacity: 0.65;
+}
 /* animations */
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {

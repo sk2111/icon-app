@@ -1,5 +1,6 @@
 //libs
 import React, { useState } from 'react';
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 //css
 import styles from './sign-up.module.css';
@@ -7,9 +8,11 @@ import styles from './sign-up.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 //actions
-import { userSignUpStart } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userSignUpStart, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
-const SignUp = ({ userSignUpStart }) => {
+import { selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+
+const SignUp = ({ userSignUpStart, waitingForData, setLoadingStatusForSignInSignUp }) => {
     const [userDetails, setUserDetails] = useState({ name: '', email: '', password: '', confirmPassword: '' });
     const { name, email, password, confirmPassword } = userDetails;
 
@@ -17,6 +20,7 @@ const SignUp = ({ userSignUpStart }) => {
         event.preventDefault();
         const validMail = email.match(/@/g) || [];
         if ((password === confirmPassword) && email.includes('@solitontech.com') && validMail.length === 1) {
+            setLoadingStatusForSignInSignUp({ fetching: true });
             userSignUpStart({ name, email, password });
             return;
         }
@@ -33,7 +37,7 @@ const SignUp = ({ userSignUpStart }) => {
                 <FormInput name="email" value={email} label="Soliton mail address" type="email" required autoComplete="on" handleInputChange={handleInputChange} />
                 <FormInput name="password" value={password} label="Password" type="password" required autoComplete="on" handleInputChange={handleInputChange} />
                 <FormInput name="confirmPassword" value={confirmPassword} label="Confirm Password" type="password" required autoComplete="on" handleInputChange={handleInputChange} />
-                <div className={`${styles.buttonCon} perfect-cen`}>
+                <div className={`${styles.buttonCon} ${waitingForData ? 'disable-btn' : ''} perfect-cen`}>
                     <CustomButton label="sign Up" type="submit"></CustomButton>
                 </div>
             </form>
@@ -42,9 +46,14 @@ const SignUp = ({ userSignUpStart }) => {
     );
 };
 
+const mapStateToProps = createStructuredSelector({
+    waitingForData: selectWaitingForData
+});
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        userSignUpStart: (data) => dispatch(userSignUpStart(data))
+        userSignUpStart: (data) => dispatch(userSignUpStart(data)),
+        setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data))
     }
 }
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

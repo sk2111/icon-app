@@ -30,3 +30,10 @@ export const userSignUpStart = (userSignUpInfo) => {
         payload: userSignUpInfo
     }
 }
+
+export const setLoadingStatusForSignInSignUp = (payload) => {
+    return {
+        type: signInSignUpActionTypes.SET_LOADING_STATUS_FOR_SIGNIN_SIGNUP,
+        payload
+    }
+}
