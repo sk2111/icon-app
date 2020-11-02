@@ -37,3 +37,10 @@ export const setLoadingStatusForSignInSignUp = (payload) => {
         payload
     }
 }
+
+export const userLoginStart = (payload) => {
+    return {
+        type: signInSignUpActionTypes.USER_LOGIN_START,
+        payload
+    }
+}

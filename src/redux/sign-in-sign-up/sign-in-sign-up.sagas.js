@@ -30,11 +30,19 @@ export function* signUpUser({ payload: { email, password, name } }) {
 
 
 export function* onUserSignUpStart() {
-    yield takeLatest(signInSignUpActionTypes.SIGN_UP_START, signUpUser)
+    yield takeLatest(signInSignUpActionTypes.SIGN_UP_START, signUpUser);
 }
 
+export function* loginInUser({ payload: { email, password } }) {
+    yield console.log("I am saga", email, password);
+}
+
+export function* onUserLoginStart() {
+    yield takeLatest(signInSignUpActionTypes.USER_LOGIN_START, loginInUser);
+}
 export function* signInSignUpSagas() {
     yield all([
-        call(onUserSignUpStart)
+        call(onUserSignUpStart),
+        call(onUserLoginStart)
     ])
 }
