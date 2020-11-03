@@ -1,11 +1,12 @@
 //libs
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 //firebase
-import { auth, createUserProfileInFirestore } from '../../firebase/firebase.utils';
+import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 //actions types
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
 import { changeViewToSignIn, setLoadingStatusForSignInSignUp } from './sign-in-sign-up.actions';
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
+import { signInSuccess } from '../user/user.actions';
 
 
 export function* signUpUser({ payload: { email, password, name } }) {
@@ -38,8 +39,14 @@ export function* loginInUser({ payload: { email, password } }) {
         const authData = yield auth.signInWithEmailAndPassword(email, password);
         const { user } = authData;
         if (user.emailVerified) {
-            //TODO:Read doc from firestore and store in root user reducer uid and data
-            console.log("SignIn success");
+            try {
+                const returnData = yield call(readUserProfileFromFireStore, user.uid);
+                yield put(signInSuccess(returnData));
+            }
+            catch (e) {
+                yield put(showFailureToastMessage({ message: `Signin failed ${e}`, timeInSeconds: '6' }));
+            }
+            yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
             return;
         }
         yield put(showFailureToastMessage({ message: `Signin failed.Please verify your Email before login`, timeInSeconds: '6' }));
