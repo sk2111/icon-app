@@ -8,13 +8,16 @@ import styles from "./sign-in.module.css";
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 //actions 
-import { changeViewToUserLogin, changeViewToForgotPassword, userLoginStart, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { changeViewToUserLogin, changeViewToForgotPassword, userLoginStart, sendResetLink, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectForgotPasswordViewHidden, selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 
-const SignIn = ({ waitingForData, changeViewToForgotPassword, changeViewToUserLogin, forgotPasswordViewHidden, userLoginStart, setLoadingStatusForSignInSignUp }) => {
+const SignIn = ({ waitingForData, changeViewToForgotPassword,
+    changeViewToUserLogin, forgotPasswordViewHidden,
+    userLoginStart, setLoadingStatusForSignInSignUp, sendResetLink }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
+    const [resetDetails, setResetDetails] = useState({ email: '' });
     const { email, password } = userDetails;
     const btnClass = waitingForData ? 'disable-btn' : '';
 
@@ -29,9 +32,15 @@ const SignIn = ({ waitingForData, changeViewToForgotPassword, changeViewToUserLo
         setUserDetails({ ...userDetails, [name]: value });
     };
 
+    const handleForgotPassEmailChange = (e) => {
+        const { name, value } = e.target;
+        setResetDetails({ ...resetDetails, [name]: value });
+    };
+
     const handleForgotPasswordSubmit = (e) => {
         e.preventDefault();
         setLoadingStatusForSignInSignUp({ fetching: true });
+        sendResetLink({ email: resetDetails.email });
     };
 
     const renderUserLoginView = (forgotPasswordViewHidden) => {
@@ -52,7 +61,7 @@ const SignIn = ({ waitingForData, changeViewToForgotPassword, changeViewToUserLo
         if (forgotPasswordViewHidden) return null;
         return (
             <form autoComplete="on" onSubmit={handleForgotPasswordSubmit}>
-                <FormInput label="Soliton mail address" type="email" required autoComplete="on" />
+                <FormInput name="email" label="Soliton mail address" type="email" value={resetDetails.email} required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
                 <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToUserLogin}>Go Back to Sign In?</div>
                 <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
                     <CustomButton label="Send Reset Link" type="submit"></CustomButton>
@@ -79,7 +88,8 @@ const mapDispatchToProps = (dispatch) => {
         changeViewToUserLogin: () => dispatch(changeViewToUserLogin()),
         changeViewToForgotPassword: () => dispatch(changeViewToForgotPassword()),
         userLoginStart: (data) => dispatch(userLoginStart(data)),
-        setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data))
+        setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
+        sendResetLink: (data) => dispatch(sendResetLink(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

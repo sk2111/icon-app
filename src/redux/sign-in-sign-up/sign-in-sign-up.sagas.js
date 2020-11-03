@@ -33,6 +33,7 @@ export function* signUpUser({ payload: { email, password, name } }) {
 export function* onUserSignUpStart() {
     yield takeLatest(signInSignUpActionTypes.SIGN_UP_START, signUpUser);
 }
+// Login user
 
 export function* loginInUser({ payload: { email, password } }) {
     try {
@@ -50,21 +51,38 @@ export function* loginInUser({ payload: { email, password } }) {
             return;
         }
         yield put(showFailureToastMessage({ message: `Signin failed.Please verify your Email before login`, timeInSeconds: '6' }));
-        yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
     }
     catch (e) {
         console.log(e);
         yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
-        yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
     }
+    yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
 }
 
 export function* onUserLoginStart() {
     yield takeLatest(signInSignUpActionTypes.USER_LOGIN_START, loginInUser);
 }
+
+// send reset Link
+export function* sendResetLink({ payload: { email } }) {
+    try {
+        yield auth.sendPasswordResetEmail(email)
+        yield put(showSuccessToastMessage({ message: `Reset Password link sent to your soliton mail`, timeInSeconds: '6' }));
+    }
+    catch (e) {
+        console.log(e);
+        yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
+    }
+    yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
+}
+
+export function* sendRestLinkStart() {
+    yield takeLatest(signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK, sendResetLink);
+}
 export function* signInSignUpSagas() {
     yield all([
         call(onUserSignUpStart),
-        call(onUserLoginStart)
+        call(onUserLoginStart),
+        call(sendRestLinkStart)
     ])
 }

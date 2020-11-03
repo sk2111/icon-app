@@ -44,3 +44,10 @@ export const userLoginStart = (payload) => {
         payload
     }
 }
+
+export const sendResetLink = (payload) => {
+    return {
+        type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK,
+        payload
+    }
+}
