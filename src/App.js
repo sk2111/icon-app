@@ -1,12 +1,17 @@
 //libs
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 //component
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import ToastMessage from './components/toast-message/toast-message.component';
+//Reselect
+import { selectCurrentUser } from './redux/user/user.selectors';
 
 class App extends React.Component {
   render() {
+    console.log("I am App component", this.props);
     return (
       <React.Fragment>
         <ToastMessage />
@@ -18,5 +23,8 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
 
-export default App;
+export default connect(mapStateToProps)(App);
