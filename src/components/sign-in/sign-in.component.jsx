@@ -8,17 +8,19 @@ import styles from "./sign-in.module.css";
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 //actions 
-import { changeViewToUserLogin, changeViewToForgotPassword, userLoginStart } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { changeViewToUserLogin, changeViewToForgotPassword, userLoginStart, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
-import { selectForgotPasswordViewHidden } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+import { selectForgotPasswordViewHidden, selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 
-const SignIn = ({ changeViewToForgotPassword, changeViewToUserLogin, forgotPasswordViewHidden, userLoginStart }) => {
+const SignIn = ({ waitingForData, changeViewToForgotPassword, changeViewToUserLogin, forgotPasswordViewHidden, userLoginStart, setLoadingStatusForSignInSignUp }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
     const { email, password } = userDetails;
+    const btnClass = waitingForData ? 'disable-btn' : '';
 
     const handleUserLoginSubmit = (e) => {
         e.preventDefault();
+        setLoadingStatusForSignInSignUp({ fetching: true });
         userLoginStart({ email, password });
     };
 
@@ -29,6 +31,7 @@ const SignIn = ({ changeViewToForgotPassword, changeViewToUserLogin, forgotPassw
 
     const handleForgotPasswordSubmit = (e) => {
         e.preventDefault();
+        setLoadingStatusForSignInSignUp({ fetching: true });
     };
 
     const renderUserLoginView = (forgotPasswordViewHidden) => {
@@ -38,7 +41,7 @@ const SignIn = ({ changeViewToForgotPassword, changeViewToUserLogin, forgotPassw
                 <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
                 <FormInput name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
                 <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToForgotPassword}>Forgot Password?</div>
-                <div className={`${styles.buttonCon} perfect-cen`}>
+                <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
                     <CustomButton label="Log In" type="submit"></CustomButton>
                 </div>
             </form>
@@ -51,7 +54,7 @@ const SignIn = ({ changeViewToForgotPassword, changeViewToUserLogin, forgotPassw
             <form autoComplete="on" onSubmit={handleForgotPasswordSubmit}>
                 <FormInput label="Soliton mail address" type="email" required autoComplete="on" />
                 <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToUserLogin}>Go Back to Sign In?</div>
-                <div className={`${styles.buttonCon} perfect-cen`}>
+                <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
                     <CustomButton label="Send Reset Link" type="submit"></CustomButton>
                 </div>
             </form>
@@ -67,14 +70,16 @@ const SignIn = ({ changeViewToForgotPassword, changeViewToUserLogin, forgotPassw
 };
 
 const mapStateToProps = createStructuredSelector({
-    forgotPasswordViewHidden: selectForgotPasswordViewHidden
+    forgotPasswordViewHidden: selectForgotPasswordViewHidden,
+    waitingForData: selectWaitingForData
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         changeViewToUserLogin: () => dispatch(changeViewToUserLogin()),
         changeViewToForgotPassword: () => dispatch(changeViewToForgotPassword()),
-        userLoginStart: (data) => dispatch(userLoginStart(data))
+        userLoginStart: (data) => dispatch(userLoginStart(data)),
+        setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
