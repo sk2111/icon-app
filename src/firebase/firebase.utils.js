@@ -29,7 +29,7 @@ export const createUserProfileInFirestore = async (userData) => {
                 email,
                 createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
                 favouriteIconsDocId: {},
-                userMessageDocId: {}
+                userMessagesDocId: {}
             }
             await userRef.set(userDocToWrite);
         }
