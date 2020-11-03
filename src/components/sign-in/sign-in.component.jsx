@@ -11,9 +11,10 @@ import CustomButton from '../../components/custom-button/custom-button.component
 import { changeViewToUserLogin, changeViewToForgotPassword, userLoginStart, sendResetLink, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectForgotPasswordViewHidden, selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+import { showFailureToastMessage } from "../../redux/toast-message/toast-message.actions";
 
 const SignIn = ({ waitingForData, changeViewToForgotPassword,
-    changeViewToUserLogin, forgotPasswordViewHidden,
+    changeViewToUserLogin, forgotPasswordViewHidden, showFailureToastMessage,
     userLoginStart, setLoadingStatusForSignInSignUp, sendResetLink }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
@@ -21,8 +22,17 @@ const SignIn = ({ waitingForData, changeViewToForgotPassword,
     const { email, password } = userDetails;
     const btnClass = waitingForData ? 'disable-btn' : '';
 
+    const validateEmail = (email) => {
+        const validMail = email.match(/@/g) || [];
+        return email.includes('@solitontech.com') && validMail.length === 1;
+    }
+
     const handleUserLoginSubmit = (e) => {
         e.preventDefault();
+        if (!validateEmail(email)) {
+            showFailureToastMessage({ message: 'Please enter a valid Soliton mail ID', timeInSeconds: '6' });
+            return;
+        }
         setLoadingStatusForSignInSignUp({ fetching: true });
         userLoginStart({ email, password });
     };
@@ -39,6 +49,10 @@ const SignIn = ({ waitingForData, changeViewToForgotPassword,
 
     const handleForgotPasswordSubmit = (e) => {
         e.preventDefault();
+        if (!validateEmail(resetDetails.email)) {
+            showFailureToastMessage({ message: 'Please enter a valid soliton mail ID', timeInSeconds: '6' });
+            return;
+        }
         setLoadingStatusForSignInSignUp({ fetching: true });
         sendResetLink({ email: resetDetails.email });
     };
@@ -89,7 +103,8 @@ const mapDispatchToProps = (dispatch) => {
         changeViewToForgotPassword: () => dispatch(changeViewToForgotPassword()),
         userLoginStart: (data) => dispatch(userLoginStart(data)),
         setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
-        sendResetLink: (data) => dispatch(sendResetLink(data))
+        sendResetLink: (data) => dispatch(sendResetLink(data)),
+        showFailureToastMessage: (data) => dispatch(showFailureToastMessage(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

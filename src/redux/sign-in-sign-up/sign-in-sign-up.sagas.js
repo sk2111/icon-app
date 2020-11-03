@@ -4,7 +4,7 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 //actions types
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
-import { changeViewToSignIn, setLoadingStatusForSignInSignUp } from './sign-in-sign-up.actions';
+import { changeViewToSignIn, changeViewToUserLogin, setLoadingStatusForSignInSignUp } from './sign-in-sign-up.actions';
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 import { signInSuccess } from '../user/user.actions';
 
@@ -17,7 +17,6 @@ export function* signUpUser({ payload: { email, password, name } }) {
         if (additionalUserInfo.isNewUser) {
             yield user.sendEmailVerification();
             yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In', timeInSeconds: '6' }));
-            yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
             yield put(changeViewToSignIn());
             yield call(createUserProfileInFirestore, { uid, email, name });
         }
@@ -25,8 +24,8 @@ export function* signUpUser({ payload: { email, password, name } }) {
     catch (e) {
         console.log(e);
         yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
-        yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
     }
+    yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
 }
 
 
@@ -68,6 +67,7 @@ export function* sendResetLink({ payload: { email } }) {
     try {
         yield auth.sendPasswordResetEmail(email)
         yield put(showSuccessToastMessage({ message: `Reset Password link sent to your soliton mail`, timeInSeconds: '6' }));
+        yield put(changeViewToUserLogin());
     }
     catch (e) {
         console.log(e);
