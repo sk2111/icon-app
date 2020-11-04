@@ -11,12 +11,18 @@ import ProtectedRoute from './components/protected-route/protected-route.compone
 //Reselect
 import { selectCurrentUser } from './redux/user/user.selectors';
 
-const ProtectedRouteHomePage = ProtectedRoute(HomePage);
 // protected routes 
+const ProtectedRouteHomePage = ProtectedRoute(HomePage);
+
 class App extends React.Component {
 
-  renderSignInRoute = (otherProps) => {
-    return (this.props.currentUser?.uid) ? <Redirect to="/" /> : <SignInAndSignUpPage {...otherProps} />;
+  renderSignInRoute = (compProps) => {
+    return (this.props.currentUser?.uid) ?
+      <Redirect to="/" /> : <SignInAndSignUpPage {...compProps} />;
+  }
+
+  renderProtectedRoute = (props, currentUser, ProtectedComponent) => {
+    return <ProtectedComponent {...props} currentUser={currentUser} />;
   }
 
   render() {
@@ -25,17 +31,8 @@ class App extends React.Component {
       <React.Fragment>
         <ToastMessage />
         <Switch>
-          <Route
-            exact
-            path='/signin'
-            render={this.renderSignInRoute}
-          >
-          </Route>
-          <Route
-            exact
-            path='/'
-            render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}>
-          </Route>
+          <Route exact path='/signin' render={this.renderSignInRoute}></Route>
+          <Route exact path='/' render={(props) => this.renderProtectedRoute(props, currentUser, ProtectedRouteHomePage)}></Route>
         </Switch>
       </React.Fragment>
     )

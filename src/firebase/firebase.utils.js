@@ -36,6 +36,7 @@ export const createUserProfileInFirestore = async (userData) => {
     }
     catch (e) {
         console.log("Profile update failed", e);
+        throw e;
     }
     return userRef;
 };
@@ -56,4 +57,5 @@ export const readUserProfileFromFireStore = async (uid) => {
         console.log("User login failed", e);
         throw e;
     }
+    return userRef;
 };
