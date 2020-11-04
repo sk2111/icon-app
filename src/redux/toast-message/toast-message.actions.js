@@ -18,4 +18,4 @@ export const showFailureToastMessage = (toastdata) => {
         type: toastMessageActionTypes.SHOW_FAILURE_TOAST_MESSAGE,
         payload: toastdata
     }
-}
+};
