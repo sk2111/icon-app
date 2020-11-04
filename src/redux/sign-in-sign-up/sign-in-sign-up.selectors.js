@@ -2,18 +2,14 @@ import { createSelector } from 'reselect';
 
 const selectSignInSignUp = state => state.signInSignUp;
 
-export const selectSignInViewHidden = createSelector([selectSignInSignUp], (signInSignUp) => {
-    return signInSignUp.signInViewHidden
-});
+export const selectSignInViewHidden = createSelector([selectSignInSignUp],
+    (signInSignUp) => signInSignUp.signInViewHidden);
 
-export const selectSignUpViewHidden = createSelector([selectSignInSignUp], (signInSignUp) => {
-    return signInSignUp.signUpViewHidden
-});
+export const selectSignUpViewHidden = createSelector([selectSignInSignUp],
+    (signInSignUp) => signInSignUp.signUpViewHidden);
 
-export const selectForgotPasswordViewHidden = createSelector([selectSignInSignUp], (signInSignUp) => {
-    return signInSignUp.forgotPasswordViewHidden
-});
+export const selectForgotPasswordViewHidden = createSelector([selectSignInSignUp],
+    (signInSignUp) => signInSignUp.forgotPasswordViewHidden);
 
-export const selectWaitingForData = createSelector([selectSignInSignUp], (signInSignUp) => {
-    return signInSignUp.waitingForData
-});
+export const selectWaitingForData = createSelector([selectSignInSignUp],
+    (signInSignUp) => signInSignUp.waitingForData);

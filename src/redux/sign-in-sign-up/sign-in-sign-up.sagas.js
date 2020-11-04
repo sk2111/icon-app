@@ -8,17 +8,17 @@ import { changeViewToSignIn, changeViewToUserLogin, setLoadingStatusForSignInSig
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 import { signInSuccess } from '../user/user.actions';
 
-
+// Sign up user saga
 export function* signUpUser({ payload: { email, password, name } }) {
     try {
         const authData = yield auth.createUserWithEmailAndPassword(email, password);
         const { additionalUserInfo, user } = authData;
         const { uid } = user;
         if (additionalUserInfo.isNewUser) {
+            yield call(createUserProfileInFirestore, { uid, email, name });
             yield user.sendEmailVerification();
             yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In', timeInSeconds: '6' }));
             yield put(changeViewToSignIn());
-            yield call(createUserProfileInFirestore, { uid, email, name });
         }
     }
     catch (e) {
@@ -26,26 +26,19 @@ export function* signUpUser({ payload: { email, password, name } }) {
         yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
     }
     yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
-}
-
-
+};
 export function* onUserSignUpStart() {
     yield takeLatest(signInSignUpActionTypes.SIGN_UP_START, signUpUser);
-}
-// Login user
+};
 
+// Login user
 export function* loginInUser({ payload: { email, password } }) {
     try {
         const authData = yield auth.signInWithEmailAndPassword(email, password);
         const { user } = authData;
         if (user.emailVerified) {
-            try {
-                const returnData = yield call(readUserProfileFromFireStore, user.uid);
-                yield put(signInSuccess(returnData));
-            }
-            catch (e) {
-                yield put(showFailureToastMessage({ message: `Signin failed ${e}`, timeInSeconds: '6' }));
-            }
+            const returnData = yield call(readUserProfileFromFireStore, user.uid);
+            yield put(signInSuccess(returnData));
             yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
             return;
         }
@@ -56,11 +49,10 @@ export function* loginInUser({ payload: { email, password } }) {
         yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
     }
     yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
-}
-
+};
 export function* onUserLoginStart() {
     yield takeLatest(signInSignUpActionTypes.USER_LOGIN_START, loginInUser);
-}
+};
 
 // send reset Link
 export function* sendResetLink({ payload: { email } }) {
@@ -74,11 +66,12 @@ export function* sendResetLink({ payload: { email } }) {
         yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
     }
     yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
-}
-
+};
 export function* sendRestLinkStart() {
     yield takeLatest(signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK, sendResetLink);
-}
+};
+
+// Group all sagas
 export function* signInSignUpSagas() {
     yield all([
         call(onUserSignUpStart),
