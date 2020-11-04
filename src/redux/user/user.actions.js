@@ -6,3 +6,9 @@ export const signInSuccess = (payload) => {
         payload
     }
 };
+
+export const checkUserPersistance = () => {
+    return {
+        type: userActionTypes.CHECK_USER_PERSISTANCE
+    }
+};
