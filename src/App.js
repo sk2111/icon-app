@@ -5,14 +5,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //component
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import HomePage from './pages/home-page/home-page.component';
+import ProtectedRouteHomePage from './pages/home-page/home-page.component';
 import ToastMessage from './components/toast-message/toast-message.component';
-import ProtectedRoute from './components/protected-route/protected-route.component';
 //Reselect
 import { selectCurrentUser } from './redux/user/user.selectors';
 
-// protected routes 
-const ProtectedRouteHomePage = ProtectedRoute(HomePage);
 
 class App extends React.Component {
 

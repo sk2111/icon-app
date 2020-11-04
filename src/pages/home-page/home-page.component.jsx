@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ProtectedRoute from '../../components/protected-route/protected-route.component';
 
 const HomePage = () => {
     return (
@@ -7,4 +7,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default ProtectedRoute(HomePage);
