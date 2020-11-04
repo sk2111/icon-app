@@ -16,6 +16,11 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
 
     const toastContainerRef = useRef(null);
     const animProp = `${showToast ? `fadein 0.5s, fadeout 0.5s ${timeInSeconds - 0.35}s, linear 0.5s` : ''}`;
+    const styleObj = {
+        visibility:`${showToast ? 'visible' : 'hidden'}`,
+        animation: animProp,
+        'WebkitAnimation': animProp
+    };
 
     useEffect(() => {
         if (showToast) {
@@ -27,19 +32,10 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
     }, [showToast, timeInSeconds, resetToastMessageState]);
 
     return (
-        <div ref={toastContainerRef}
-            style={{
-                visibility: `${showToast ? 'visible' : 'hidden'}`,
-                animation: animProp,
-                'WebkitAnimation': animProp,
-            }}
-            className={`${styles.toastbar} `}>
+        <div ref={toastContainerRef} style={styleObj} className={`${styles.toastbar} `}>
             <div className="flex-row align-cen">
                 <div className={`${styles.round} perfect - cen`}>
-                    {isSuccess ?
-                        <img className={styles.icon} alt="success" src={successImage} /> :
-                        <img className={styles.icon} alt="success" src={failureImage} />
-                    }
+                    <img src={(isSuccess ? successImage : failureImage)} key={successImage} className={styles.icon} alt="toast-img" />
                 </div>
                 <div>{message}</div>
             </div>
@@ -58,6 +54,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         resetToastMessageState: () => dispatch(resetToastMessageState())
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToastMessage);
