@@ -4,12 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 const ProtectedRoute = WrappedComponent => (props) => {
     const { currentUser, ...otherProps } = props;
-    return (
-        currentUser?.uid ?
-            <WrappedComponent {...otherProps} />
-            :
-            <Redirect to="/signin"></Redirect>
-    );
+    return (currentUser?.uid ? <WrappedComponent {...otherProps} /> : <Redirect to="/signin" />);
 };
 
 export default ProtectedRoute;

@@ -61,5 +61,6 @@ const mapDispatchToProps = (dispatch) => {
         setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
         showFailureToastMessage: (data) => dispatch(showFailureToastMessage(data))
     }
-}
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
