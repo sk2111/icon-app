@@ -12,6 +12,8 @@ import { userSignUpStart, setLoadingStatusForSignInSignUp } from '../../redux/si
 import { showFailureToastMessage } from '../../redux/toast-message/toast-message.actions';
 //reselect
 import { selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+//utilities
+import { isValidMail } from '../../utilities/validator.utils';
 
 const SignUp = ({ userSignUpStart, waitingForData, showFailureToastMessage, setLoadingStatusForSignInSignUp }) => {
     const [userDetails, setUserDetails] = useState({ name: '', email: '', password: '', confirmPassword: '' });
@@ -19,13 +21,14 @@ const SignUp = ({ userSignUpStart, waitingForData, showFailureToastMessage, setL
 
     const handleSignUpNewUser = (event) => {
         event.preventDefault();
-        const validMail = email.match(/@/g) || [];
-        if ((password === confirmPassword) && email.includes('@solitontech.com') && validMail.length === 1) {
+        const passwordMatch = (password === confirmPassword);
+
+        if (passwordMatch && isValidMail(email)) {
             setLoadingStatusForSignInSignUp({ fetching: true });
             userSignUpStart({ name, email, password });
             return;
         }
-        if (password !== confirmPassword) {
+        if (!passwordMatch) {
             showFailureToastMessage({ message: 'Password and Confirm password doesnt match', timeInSeconds: 6 });
             return;
         }
