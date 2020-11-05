@@ -1,5 +1,5 @@
 //libs
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 // css
@@ -11,8 +11,14 @@ import SignUp from '../../components/sign-up/sign-up.component';
 //reselect
 import { selectSignInViewHidden, selectSignUpViewHidden } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 
-const SignInAndSignUpPage = ({ isSignInViewHidden, isSignUpViewHidden, ...otherProps }) => {
-    console.log("signIn Component props", otherProps);
+const SignInAndSignUpPage = ({ isSignInViewHidden, isSignUpViewHidden, currentUser, history, ...otherProps }) => {
+
+    useEffect(() => {
+        if (currentUser?.uid) {
+            history.push('/');
+        }
+    });
+
     return (
         <div className={`${styles.pageContainer} flex-row`}>
             <section className={`${styles.leftContainer} perfect-cen`}>
