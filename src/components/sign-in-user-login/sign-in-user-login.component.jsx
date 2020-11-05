@@ -44,10 +44,14 @@ const SignInUserLogin = ({ fetching, viewHidden, showFailureToastMessage,
     return (
         <form autoComplete="on" onSubmit={handleUserLoginSubmit}>
             <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
-            <FormInput name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
-            <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToForgotPassword}>Forgot Password?</div>
+            <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
+            <div className={`${styles.actionLabel} flex-jus-end m-pointer mt-25`} onClick={changeViewToForgotPassword}>Forgot your password?</div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
                 <CustomButton label="Log In" type="submit"></CustomButton>
+            </div>
+            <div className="flex-row align-cen">
+                <div className={styles.signupLabel}>Don't have an account?</div>
+                <div>Sign up</div>
             </div>
         </form>
     );

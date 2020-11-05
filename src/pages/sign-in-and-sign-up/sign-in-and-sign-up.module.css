@@ -18,4 +18,6 @@
 .rightContent {
   width: 80%;
   height: 500px;
+  margin: auto;
+  margin-top:66px;
 }

@@ -24,7 +24,7 @@ const SignInAndSignUpPage = ({ isSignInViewHidden, isSignUpViewHidden, currentUs
             <section className={`${styles.leftContainer} perfect-cen`}>
                 <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" />
             </section>
-            <section className={`${styles.rightContainer} perfect-cen`}>
+            <section className={`${styles.rightContainer}`}>
                 <div className={styles.rightContent}>
                     <LoginHeader />
                     {isSignInViewHidden ? null : <SignIn />}

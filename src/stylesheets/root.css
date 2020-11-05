@@ -1,11 +1,12 @@
-* {
-  box-sizing: border-box;
-  font-family: Roboto;
-}
 :root {
   --app-green: #31d091;
   --app-form-label: #707071;
   --app-input-background: #f3f3f4;
+}
+* {
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-weight:400;
 }
 body {
   margin: 0;
