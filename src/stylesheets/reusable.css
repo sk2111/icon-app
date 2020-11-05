@@ -1,0 +1,31 @@
+/* Global classes for resuablity */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-jus-end {
+  display: flex;
+  justify-content: flex-end;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.align-cen {
+  align-items: center;
+}
+.justify-cen {
+  justify-content: center;
+}
+.perfect-cen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.m-pointer {
+  cursor: pointer;
+}
+.disable-btn {
+  pointer-events: none;
+  opacity: 0.65;
+}

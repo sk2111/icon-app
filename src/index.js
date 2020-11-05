@@ -5,9 +5,12 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-// Css imports
-import './index.css';
-//React component imports
+// Resuable Css imports
+import './stylesheets/font.css';
+import './stylesheets/root.css';
+import './stylesheets/reusable.css';
+import './stylesheets/animation.css';
+// React component imports
 import App from './App';
 
 ReactDOM.render(
