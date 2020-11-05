@@ -1,6 +1,6 @@
 //libs
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //component
@@ -13,33 +13,21 @@ import { checkUserPersistance } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 
-class App extends React.Component {
+const App = ({ currentUser, checkUserPersistance }) => {
 
-  componentDidMount() {
-    this.props.checkUserPersistance();
-  };
+  useEffect(() => {
+    checkUserPersistance();
+  }, []);
 
-  renderSignInRoute = (compProps) => {
-    return (this.props.currentUser?.uid) ?
-      <Redirect to="/" /> : <SignInAndSignUpPage {...compProps} />;
-  };
-
-  renderProtectedRoute = (props, currentUser, ProtectedComponent) => {
-    return <ProtectedComponent {...props} currentUser={currentUser} />;
-  };
-
-  render() {
-    const { currentUser } = this.props;
-    return (
-      <React.Fragment>
-        <ToastMessage />
-        <Switch>
-          <Route exact path='/signin' render={this.renderSignInRoute}></Route>
-          <Route exact path='/' render={(props) => this.renderProtectedRoute(props, currentUser, ProtectedRouteHomePage)}></Route>
-        </Switch>
-      </React.Fragment>
-    )
-  };
+  return (
+    <React.Fragment>
+      <ToastMessage />
+      <Switch>
+        <Route exact path='/signin' render={(props) => <SignInAndSignUpPage {...props} currentUser={currentUser} />}></Route>
+        <Route exact path='/' render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
+      </Switch>
+    </React.Fragment>
+  )
 
 };
 
