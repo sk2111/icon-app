@@ -12,7 +12,7 @@ const LoginHeader = ({ changeViewToSignIn, changeViewToSignUp }) => {
     return (
         <div className={styles.loginContainer}>
             <img className={styles.logo} alt="icon" src="../../../logo192.png" />
-            <h1>Soliton Icon App</h1>
+            <h1 className={styles.heading}>Soliton Icons</h1>
             <div className="flex-row">
                 <CustomButton label="Login" onClick={changeViewToSignIn} />
                 <p>or</p>
