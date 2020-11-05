@@ -1,7 +1,44 @@
-* {
-  box-sizing: border-box;
+/* Font imports */
+@font-face {
+  font-family: Roboto;
+  src: url(./fonts/Roboto-100.ttf) format("truetype");
+  font-weight: 100;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./fonts/Roboto-300.ttf) format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./fonts/Roboto-400.ttf) format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./fonts/Roboto-500.ttf) format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./fonts/Roboto-700.ttf) format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./fonts/Roboto-900.ttf) format("truetype");
+  font-weight: 900;
 }
 
+* {
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+:root {
+  --app-green: #31d091;
+  --app-form-label: #707071;
+  --app-input-background:#F3F3F4;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

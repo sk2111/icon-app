@@ -8,7 +8,7 @@
   width: 55px;
 }
 .heading{
-  color: #31D091;
-  font-family: Roboto;
+  color: var(--app-green);
   font-size: 33px;
+  font-weight: 500;
 }

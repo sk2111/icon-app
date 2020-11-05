@@ -1,10 +1,34 @@
 .formInput {
-  height: 30px;
-  width: 300px;
-  margin-top: 7px;
+  background-color: var(--app-input-background);
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 0px 1000px var(--app-input-background) inset;
+  color: var(--app-form-label);
+  font-size: 14px;
+  font-weight: 400;
+  height: 40px;
+  margin-top: 11px;
   margin-bottom: 7px;
+  padding-left: 16px;
+  width: 326px;
 }
 .formLabel {
-  font-size: 18px;
+  color: var(--app-form-label);
   display: block;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: var(--app-input-background) !important;
+  border: none !important;
+  box-shadow: 0 0 0px 1000px var(--app-input-background) inset;
+  color: var(--app-form-label) !important;
+  font-size: 14px !important;
+  font-weight: 400;
+  -webkit-box-shadow: 0 0 0px 1000px var(--app-input-background) inset;
+  -webkit-text-fill-color: var(--app-form-label) !important;
 }
