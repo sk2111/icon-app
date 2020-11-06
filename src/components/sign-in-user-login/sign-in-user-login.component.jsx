@@ -52,7 +52,7 @@ const SignInUserLogin = ({ fetching, viewHidden, showFailureToastMessage,
                 <span className={`${styles.actionLabel} m-pointer`} onClick={changeViewToForgotPassword}>Forgot your password?</span>
             </div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
-                <CustomButton type="submit">Sign In</CustomButton>
+                <CustomButton type="submit" loading={fetching}>Sign In</CustomButton>
             </div>
             <div className="flex-row perfect-cen mt-33">
                 <div className={styles.signupLabel}>Don't have an account?</div>
