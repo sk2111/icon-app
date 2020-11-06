@@ -42,11 +42,13 @@ const SignInForgotPassword = ({ viewHidden, fetching, sendResetLink,
 
     return (
         <form autoComplete="on" onSubmit={handleForgotPasswordSubmit}>
-            <FormInput name="email" label="Soliton mail address" type="email" value={resetDetails.email} required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
-            <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToUserLogin}>Go Back to Sign In?</div>
+            <h3 className={styles.header}>Forgot password</h3>
+            <p className={styles.message}>Enter the Soliton mail address associated with your account to get a reset link.</p>
+            <FormInput rootClass="mt-25" name="email" label="Soliton mail address" type="email" value={resetDetails.email} required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
-                <CustomButton label="Send Reset Link" type="submit"></CustomButton>
+                <CustomButton type="submit">Send Reset Link</CustomButton>
             </div>
+            <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToUserLogin}>Go Back to Sign In?</div>
         </form>
     );
 }
