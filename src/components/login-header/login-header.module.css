@@ -4,8 +4,8 @@
   align-items: center;
 }
 .logo {
-  height: 55px;
-  width: 55px;
+  height: 35px;
+  width: 35px;
 }
 .heading {
   color: var(--app-green);
@@ -16,5 +16,5 @@
   border-top: 1px solid #e2e2ec;
   height: 1px;
   width: var(--app-form-width);
-  margin-bottom: 15px;
+  margin-bottom: 2px;
 }

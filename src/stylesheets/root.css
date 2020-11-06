@@ -1,7 +1,11 @@
 :root {
+  /* colors */
   --app-green: #31d091;
   --app-form-label: #707071;
+  --app-text: #707071;
   --app-input-background: #f3f3f4;
+  --app-error-message: #f34469;
+  /* width */
   --app-form-width: 320px;
 }
 * {

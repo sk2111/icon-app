@@ -1,13 +1,18 @@
 .actionLabel {
-  width: var(--app-form-width);
   color: var(--app-green);
   font-size: 14px;
 }
 .buttonCon {
-  margin-top: 15px;
+  margin-top: 25px;
   width: var(--app-form-width);
 }
 .signupLabel {
   color: var(--app-form-label);
   font-size: 16px;
+}
+.erroMessage {
+  margin-top: 17px;
+  margin-bottom: 15px;
+  color: var(--app-error-message);
+  font-size: 14px;
 }

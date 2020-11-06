@@ -1,18 +1,18 @@
 .button {
-  width: 150px;
-  height: 50px;
-  color: white;
-  background-color: cornflowerblue;
-  cursor: pointer;
+  background-color: var(--app-green);
   border: none;
-  outline: none;
-  box-shadow: none;
   border-radius: 5px;
-  font-size: 16px;
+  box-shadow: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  height: 40px;
   position: relative;
+  outline: none;
   top: 0px;
   transition: top 0.1s;
   user-select: none;
+  width: 326px;
 }
 .button:hover {
   top: -2px;
