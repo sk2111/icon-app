@@ -54,9 +54,9 @@ const SignInUserLogin = ({ fetching, viewHidden, showFailureToastMessage,
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
                 <CustomButton type="submit">Sign In</CustomButton>
             </div>
-            <div className="flex-row align-cen">
+            <div className="flex-row perfect-cen mt-33">
                 <div className={styles.signupLabel}>Don't have an account?</div>
-                <div>Sign up</div>
+                <div className={styles.signupBtn}>Sign up</div>
             </div>
         </form>
     );
