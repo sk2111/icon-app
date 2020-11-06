@@ -9,7 +9,6 @@ import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 //actions
 import { changeViewToUserLogin, sendResetLink, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
-import { showFailureToastMessage } from "../../redux/toast-message/toast-message.actions";
 //reselect
 import { selectForgotPasswordViewHidden, selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
@@ -18,7 +17,7 @@ import { isValidMail } from '../../utilities/validator.utils';
 
 
 const SignInForgotPassword = ({ viewHidden, fetching, sendResetLink,
-    setLoadingStatus, showFailureToastMessage, changeViewToUserLogin }) => {
+    setLoadingStatus, changeViewToUserLogin }) => {
 
     const [resetDetails, setResetDetails] = useState({ email: '' });
     const btnClass = fetching ? 'disable-btn' : '';
@@ -31,7 +30,7 @@ const SignInForgotPassword = ({ viewHidden, fetching, sendResetLink,
     const handleForgotPasswordSubmit = (e) => {
         e.preventDefault();
         if (!isValidMail(resetDetails.email)) {
-            showFailureToastMessage({ message: 'Please enter a valid soliton mail ID', timeInSeconds: '6' });
+            //TODO Show error message in Below
             return;
         }
         setLoadingStatus({ fetching: true });
@@ -44,11 +43,13 @@ const SignInForgotPassword = ({ viewHidden, fetching, sendResetLink,
         <form autoComplete="on" onSubmit={handleForgotPasswordSubmit}>
             <h3 className={styles.header}>Forgot password</h3>
             <p className={styles.message}>Enter the Soliton mail address associated with your account to get a reset link.</p>
-            <FormInput rootClass="mt-25" name="email" label="Soliton mail address" type="email" value={resetDetails.email} required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
+            <FormInput rootClass="mt-40" name="email" label="Soliton mail address" type="email" value={resetDetails.email} required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
-                <CustomButton type="submit">Send Reset Link</CustomButton>
+                <CustomButton loading={fetching} type="submit">Send Reset Link</CustomButton>
             </div>
-            <div className={`${styles.actionLabel} flex-jus-end m-pointer`} onClick={changeViewToUserLogin}>Go Back to Sign In?</div>
+            <div className={`${styles.actionLabel} perfect-cen`}>
+                Back to <span className={styles.signInBtn} onClick={changeViewToUserLogin}>Sign In?</span>
+            </div>
         </form>
     );
 }
@@ -61,8 +62,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         sendResetLink: (data) => dispatch(sendResetLink(data)),
         changeViewToUserLogin: () => dispatch(changeViewToUserLogin()),
-        setLoadingStatus: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
-        showFailureToastMessage: (data) => dispatch(showFailureToastMessage(data))
+        setLoadingStatus: (data) => dispatch(setLoadingStatusForSignInSignUp(data))
     }
 }
 
