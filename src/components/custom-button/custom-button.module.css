@@ -1,3 +1,6 @@
+.btnContainer {
+  position: relative;
+}
 .button {
   background-color: var(--app-green);
   border: none;
@@ -6,6 +9,7 @@
   color: white;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 500;
   height: 40px;
   position: relative;
   outline: none;
@@ -19,4 +23,10 @@
 }
 .button:active {
   top: 0px;
+}
+.loading {
+  height: 23px;
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 12.5px);
 }
