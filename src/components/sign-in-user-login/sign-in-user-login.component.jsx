@@ -8,16 +8,15 @@ import styles from './sign-in-user-login.module.css';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 //actions 
-import { changeViewToForgotPassword, userLoginStart, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { changeViewToForgotPassword, userLoginStart, setLoadingStatusForSignInSignUp, changeViewToSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectUserLoginViewHidden, selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
-import { showFailureToastMessage } from "../../redux/toast-message/toast-message.actions";
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 
 
-const SignInUserLogin = ({ fetching, viewHidden, showFailureToastMessage,
-    changeViewToForgotPassword, userLoginStart, setLoadingStatus }) => {
+const SignInUserLogin = ({ fetching, viewHidden,
+    changeViewToForgotPassword, userLoginStart, setLoadingStatus, changeViewToSignUp }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
     const { email, password } = userDetails;
@@ -27,7 +26,7 @@ const SignInUserLogin = ({ fetching, viewHidden, showFailureToastMessage,
     const handleUserLoginSubmit = (e) => {
         e.preventDefault();
         if (!isValidMail(email)) {
-            showFailureToastMessage({ message: 'Please enter a valid Soliton mail ID', timeInSeconds: '6' });
+            //Todo display error message
             return;
         }
         setLoadingStatus({ fetching: true });
@@ -56,7 +55,7 @@ const SignInUserLogin = ({ fetching, viewHidden, showFailureToastMessage,
             </div>
             <div className="flex-row perfect-cen mt-33">
                 <div className={styles.signupLabel}>Don't have an account?</div>
-                <div className={styles.signupBtn}>Sign up</div>
+                <div className={styles.signupBtn} onClick={changeViewToSignUp}>Sign up</div>
             </div>
         </form>
     );
@@ -72,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
         changeViewToForgotPassword: () => dispatch(changeViewToForgotPassword()),
         userLoginStart: (data) => dispatch(userLoginStart(data)),
         setLoadingStatus: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
-        showFailureToastMessage: (data) => dispatch(showFailureToastMessage(data))
+        changeViewToSignUp: () => dispatch(changeViewToSignUp())
     }
 };
 
