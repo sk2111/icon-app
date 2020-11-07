@@ -11,6 +11,12 @@
   padding-left: 16px;
   width: var(--app-form-width);
 }
+.shortWidth {
+  width: var(--app-form-width-short);
+}
+.emailWidth {
+  width: var(--app-form-width-long);
+}
 .formLabel {
   color: var(--app-form-label);
   display: block;
@@ -18,7 +24,7 @@
 }
 
 input:active,
-input:focus{
+input:focus {
   outline: none;
 }
 input:-webkit-autofill,

@@ -7,6 +7,8 @@
   --app-error-message: #f34469;
   /* width */
   --app-form-width: 320px;
+  --app-form-width-short: 228px;
+  --app-form-width-long: 480px;
 }
 * {
   box-sizing: border-box;

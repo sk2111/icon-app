@@ -43,6 +43,9 @@
 .mt-20 {
   margin-top: 20px;
 }
+.mt-22 {
+  margin-top: 22px;
+}
 .mt-25 {
   margin-top: 25px;
 }
@@ -52,6 +55,13 @@
 .mt-33 {
   margin-top: 33px;
 }
+.mt-36 {
+  margin-top: 36px;
+}
 .mt-40 {
   margin-top: 40px;
+}
+/* margin -left */
+.ml-24 {
+  margin-left: 24px;
 }

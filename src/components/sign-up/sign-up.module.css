@@ -1,4 +1,6 @@
 .buttonCon {
-  margin-top: 15px;
-  width: 300px;
+  margin-top: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
