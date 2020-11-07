@@ -8,13 +8,13 @@ import styles from './sign-up.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 //actions
-import { userSignUpStart, setLoadingStatusForSignInSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userSignUpStart, setLoadingStatusForSignInSignUp, changeViewToSignIn } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 
-const SignUp = ({ userSignUpStart, fetching, setLoadingStatusForSignInSignUp }) => {
+const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatusForSignInSignUp }) => {
     const [userDetails, setUserDetails] = useState({ name: '', email: '', password: '', confirmPassword: '' });
     const { name, email, password, confirmPassword } = userDetails;
 
@@ -52,6 +52,10 @@ const SignUp = ({ userSignUpStart, fetching, setLoadingStatusForSignInSignUp }) 
                 <div className={`${styles.buttonCon} ${fetching ? 'disable-btn' : ''} perfect-cen`}>
                     <CustomButton loading={fetching} type="submit">Sign up</CustomButton>
                 </div>
+                <div className="flex-row perfect-cen mt-33">
+                    <div className={styles.signinLabel}>Don't have an account?</div>
+                    <div className={styles.signinBtn} onClick={changeViewToSignIn}>Sign in</div>
+                </div>
             </form>
 
         </div>
@@ -66,6 +70,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         userSignUpStart: (data) => dispatch(userSignUpStart(data)),
         setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
+        changeViewToSignIn: () => dispatch(changeViewToSignIn())
     }
 };
 
