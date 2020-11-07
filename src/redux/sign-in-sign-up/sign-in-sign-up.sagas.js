@@ -25,7 +25,6 @@ export function* signUpUser({ payload: { email, password, firstname, lastname } 
         console.log(e);
         yield put(userSignUpFailure({ message: `${e.message}` }));
     }
-    yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
 };
 export function* onUserSignUpStart() {
     yield takeLatest(signInSignUpActionTypes.SIGN_UP_START, signUpUser);

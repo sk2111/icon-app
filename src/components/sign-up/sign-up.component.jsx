@@ -8,7 +8,7 @@ import styles from './sign-up.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 //actions
-import { userSignUpStart, setLoadingStatusForSignInSignUp, changeViewToSignIn, userSignUpFailure, clearSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userSignUpStart, changeViewToSignIn, userSignUpFailure, clearSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectWaitingForData, selectSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
@@ -18,7 +18,7 @@ import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
 import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
 const SignUp = ({ userSignUpStart, userSignUpFailure, fetching,
-    changeViewToSignIn, setLoadingStatusForSignInSignUp, signUpError, clearSignUpError }) => {
+    changeViewToSignIn, signUpError, clearSignUpError }) => {
 
     const [userDetails, setUserDetails] = useState({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' });
     const [passwordViewHidden, setPasswordViewHidden] = useState({ passwordView: true, confirmPasswordView: true });
@@ -33,7 +33,6 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching,
         event.preventDefault();
         const passwordMatch = (password === confirmPassword);
         if (passwordMatch && isValidMail(email)) {
-            setLoadingStatusForSignInSignUp({ fetching: true });
             userSignUpStart({ firstname, lastname, email, password });
             return;
         }
@@ -104,7 +103,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         userSignUpStart: (data) => dispatch(userSignUpStart(data)),
         userSignUpFailure: (data) => dispatch(userSignUpFailure(data)),
-        setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
         changeViewToSignIn: () => dispatch(changeViewToSignIn()),
         clearSignUpError: () => dispatch(clearSignUpError())
     }
