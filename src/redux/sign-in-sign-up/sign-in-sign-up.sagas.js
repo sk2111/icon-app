@@ -17,7 +17,7 @@ export function* signUpUser({ payload: { email, password, firstname, lastname } 
         if (additionalUserInfo.isNewUser) {
             yield call(createUserProfileInFirestore, { uid, email, firstname, lastname });
             yield user.sendEmailVerification();
-            yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In', timeInSeconds: '6' }));
+            yield put(userSignUpSuccess({ message: 'Signup Success.Please verify your mail to SignIn' }));
             yield put(changeViewToSignIn());
         }
     }

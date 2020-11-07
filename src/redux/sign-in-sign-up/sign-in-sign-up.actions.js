@@ -42,6 +42,11 @@ export const userSignUpFailure = (payload) => {
         payload
     }
 }
+export const clearSignUpError = () => {
+    return {
+        type: signInSignUpActionTypes.CLEAR_SIGN_UP_ERROR
+    }
+}
 
 export const userLoginStart = (payload) => {
     return {
