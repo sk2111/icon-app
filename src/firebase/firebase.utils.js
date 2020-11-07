@@ -19,13 +19,14 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 export const createUserProfileInFirestore = async (userData) => {
-    const { uid, email, name } = userData;
+    const { uid, email, firstname, lastname } = userData;
     const userRef = firestore.collection('users').doc(uid);
     try {
         const snapshot = await userRef.get();
         if (!snapshot.exists) {
             const userDocToWrite = {
-                name,
+                firstName: firstname,
+                lastName: lastname,
                 email,
                 createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
                 favouriteIconsDocId: {},

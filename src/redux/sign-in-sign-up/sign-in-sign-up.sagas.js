@@ -9,13 +9,13 @@ import { showSuccessToastMessage, showFailureToastMessage } from '../toast-messa
 import { signInSuccess } from '../user/user.actions';
 
 // Sign up user saga
-export function* signUpUser({ payload: { email, password, name } }) {
+export function* signUpUser({ payload: { email, password, firstname, lastname } }) {
     try {
         const authData = yield auth.createUserWithEmailAndPassword(email, password);
         const { additionalUserInfo, user } = authData;
         const { uid } = user;
         if (additionalUserInfo.isNewUser) {
-            yield call(createUserProfileInFirestore, { uid, email, name });
+            yield call(createUserProfileInFirestore, { uid, email, firstname, lastname });
             yield user.sendEmailVerification();
             yield put(showSuccessToastMessage({ message: 'Sign up completed . Verify your email address and Sign In', timeInSeconds: '6' }));
             yield put(changeViewToSignIn());
@@ -23,7 +23,8 @@ export function* signUpUser({ payload: { email, password, name } }) {
     }
     catch (e) {
         console.log(e);
-        yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
+        //TODO: Show failure message inside signup component
+        // yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
     }
     yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
 };

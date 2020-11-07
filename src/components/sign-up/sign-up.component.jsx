@@ -21,7 +21,7 @@ const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatu
     const [userDetails, setUserDetails] = useState({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' });
     const [passwordViewHidden, setPasswordViewHidden] = useState({ passwordView: true, confirmPasswordView: true });
 
-    const { name, email, password, confirmPassword } = userDetails;
+    const { firstname, lastname, email, password, confirmPassword } = userDetails;
     const { passwordView, confirmPasswordView } = passwordViewHidden;
 
     const passwordType = passwordView ? 'password' : 'text';
@@ -32,7 +32,7 @@ const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatu
         const passwordMatch = (password === confirmPassword);
         if (passwordMatch && isValidMail(email)) {
             setLoadingStatusForSignInSignUp({ fetching: true });
-            userSignUpStart({ name, email, password });
+            userSignUpStart({ firstname, lastname, email, password });
             return;
         }
         if (!passwordMatch) {
@@ -54,8 +54,8 @@ const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatu
         <div className={`flex-col align-cen`}>
             <form autoComplete="on" onSubmit={handleSignUpNewUser}>
                 <div className="flex-row align-cen">
-                    <FormInput rootClass="mt-36" inpClass="shortWidth" name="firstname" value={name} label="First Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
-                    <FormInput rootClass="ml-24 mt-36" inpClass="shortWidth" name="lastname" value={name} label="Last Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
+                    <FormInput rootClass="mt-36" inpClass="shortWidth" name="firstname" value={firstname} label="First Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
+                    <FormInput rootClass="ml-24 mt-36" inpClass="shortWidth" name="lastname" value={lastname} label="Last Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
                 </div>
                 <FormInput rootClass="mt-22" inpClass="emailWidth" name="email" value={email} label="Soliton mail address" type="email" required autoComplete="on" handleInputChange={handleInputChange} />
                 <div className="flex-row align-cen">
