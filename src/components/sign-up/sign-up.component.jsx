@@ -8,7 +8,7 @@ import styles from './sign-up.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 //actions
-import { userSignUpStart, setLoadingStatusForSignInSignUp, changeViewToSignIn, userSignUpFailure } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userSignUpStart, setLoadingStatusForSignInSignUp, changeViewToSignIn, userSignUpFailure, clearSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectWaitingForData, selectSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
@@ -17,7 +17,8 @@ import { isValidMail } from '../../utilities/validator.utils';
 import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
 import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
-const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, changeViewToSignIn, setLoadingStatusForSignInSignUp, signUpError }) => {
+const SignUp = ({ userSignUpStart, userSignUpFailure, fetching,
+    changeViewToSignIn, setLoadingStatusForSignInSignUp, signUpError, clearSignUpError }) => {
 
     const [userDetails, setUserDetails] = useState({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' });
     const [passwordViewHidden, setPasswordViewHidden] = useState({ passwordView: true, confirmPasswordView: true });
@@ -44,6 +45,9 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, changeViewToSign
     }
     const handleInputChange = (e) => {
         const { value, name } = e.target;
+        if (signUpError) {
+            clearSignUpError();
+        }
         setUserDetails({ ...userDetails, [name]: value });
     }
     const handleViewPassword = (e) => {
@@ -102,6 +106,7 @@ const mapDispatchToProps = (dispatch) => {
         userSignUpFailure: (data) => dispatch(userSignUpFailure(data)),
         setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
         changeViewToSignIn: () => dispatch(changeViewToSignIn()),
+        clearSignUpError: () => dispatch(clearSignUpError())
     }
 };
 
