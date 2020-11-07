@@ -8,7 +8,7 @@ import styles from './sign-up.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 //actions
-import { userSignUpStart, setLoadingStatusForSignInSignUp, changeViewToSignIn } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userSignUpStart, setLoadingStatusForSignInSignUp, changeViewToSignIn, userSignUpFailure } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectWaitingForData, selectSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
@@ -16,7 +16,7 @@ import { isValidMail } from '../../utilities/validator.utils';
 //static
 import { ReactComponent as HideSvg } from '../../assests/hide.svg';
 
-const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatusForSignInSignUp, signUpError }) => {
+const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, changeViewToSignIn, setLoadingStatusForSignInSignUp, signUpError }) => {
 
     const [userDetails, setUserDetails] = useState({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' });
     const [passwordViewHidden, setPasswordViewHidden] = useState({ passwordView: true, confirmPasswordView: true });
@@ -36,10 +36,10 @@ const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatu
             return;
         }
         if (!passwordMatch) {
-            //TODO : Show error message
+            userSignUpFailure({ message: 'Password & Confirm password don\'t match' });
             return;
         }
-        //TODO: Show error message not valid soliton mail id
+        userSignUpFailure({ message: 'Please enter a valid Soliton mail address' });
     }
     const handleInputChange = (e) => {
         const { value, name } = e.target;
@@ -91,8 +91,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => {
     return {
         userSignUpStart: (data) => dispatch(userSignUpStart(data)),
+        userSignUpFailure: (data) => dispatch(userSignUpFailure(data)),
         setLoadingStatusForSignInSignUp: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
-        changeViewToSignIn: () => dispatch(changeViewToSignIn())
+        changeViewToSignIn: () => dispatch(changeViewToSignIn()),
     }
 };
 

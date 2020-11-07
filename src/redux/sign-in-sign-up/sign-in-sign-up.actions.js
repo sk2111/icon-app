@@ -42,12 +42,6 @@ export const userSignUpFailure = (payload) => {
         payload
     }
 }
-export const setLoadingStatusForSignInSignUp = (payload) => {
-    return {
-        type: signInSignUpActionTypes.SET_LOADING_STATUS_FOR_SIGNIN_SIGNUP,
-        payload
-    }
-}
 
 export const userLoginStart = (payload) => {
     return {
@@ -59,6 +53,12 @@ export const userLoginStart = (payload) => {
 export const sendResetLink = (payload) => {
     return {
         type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK,
+        payload
+    }
+}
+export const setLoadingStatusForSignInSignUp = (payload) => {
+    return {
+        type: signInSignUpActionTypes.SET_LOADING_STATUS_FOR_SIGNIN_SIGNUP,
         payload
     }
 }
