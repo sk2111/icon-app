@@ -25,6 +25,9 @@
 .m-pointer {
   cursor: pointer;
 }
+.pos-rel {
+  position: relative;
+}
 .disable-btn {
   pointer-events: none;
   opacity: 0.85;
