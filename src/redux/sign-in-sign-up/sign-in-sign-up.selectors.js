@@ -10,9 +10,12 @@ export const selectSignUpViewHidden = createSelector([selectSignInSignUp],
 
 export const selectUserLoginViewHidden = createSelector([selectSignInSignUp],
     (signInSignUp) => !signInSignUp.forgotPasswordViewHidden);
-    
+
 export const selectForgotPasswordViewHidden = createSelector([selectSignInSignUp],
     (signInSignUp) => signInSignUp.forgotPasswordViewHidden);
 
 export const selectWaitingForData = createSelector([selectSignInSignUp],
     (signInSignUp) => signInSignUp.waitingForData);
+
+export const selectSignUpError = createSelector([selectSignInSignUp],
+    (signInSignUp) => signInSignUp.signUpError);

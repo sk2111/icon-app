@@ -4,7 +4,7 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 //actions types
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
-import { changeViewToSignIn, changeViewToUserLogin, setLoadingStatusForSignInSignUp } from './sign-in-sign-up.actions';
+import { changeViewToSignIn, changeViewToUserLogin, setLoadingStatusForSignInSignUp, userSignUpSuccess, userSignUpFailure } from './sign-in-sign-up.actions';
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 import { signInSuccess } from '../user/user.actions';
 
@@ -23,8 +23,7 @@ export function* signUpUser({ payload: { email, password, firstname, lastname } 
     }
     catch (e) {
         console.log(e);
-        //TODO: Show failure message inside signup component
-        // yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
+        yield put(userSignUpFailure({ message: `${e.message}` }));
     }
     yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
 };

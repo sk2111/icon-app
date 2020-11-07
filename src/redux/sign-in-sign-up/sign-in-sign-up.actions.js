@@ -30,7 +30,18 @@ export const userSignUpStart = (userSignUpInfo) => {
         payload: userSignUpInfo
     }
 }
-
+export const userSignUpSuccess = (payload) => {
+    return {
+        type: signInSignUpActionTypes.SIGN_UP_SUCCESS,
+        payload
+    }
+}
+export const userSignUpFailure = (payload) => {
+    return {
+        type: signInSignUpActionTypes.SIGN_UP_FAILURE,
+        payload
+    }
+}
 export const setLoadingStatusForSignInSignUp = (payload) => {
     return {
         type: signInSignUpActionTypes.SET_LOADING_STATUS_FOR_SIGNIN_SIGNUP,

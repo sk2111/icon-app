@@ -10,13 +10,13 @@ import FormInput from '../form-input/form-input.component';
 //actions
 import { userSignUpStart, setLoadingStatusForSignInSignUp, changeViewToSignIn } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
-import { selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+import { selectWaitingForData, selectSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 //static
 import { ReactComponent as HideSvg } from '../../assests/hide.svg';
 
-const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatusForSignInSignUp }) => {
+const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatusForSignInSignUp, signUpError }) => {
 
     const [userDetails, setUserDetails] = useState({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' });
     const [passwordViewHidden, setPasswordViewHidden] = useState({ passwordView: true, confirmPasswordView: true });
@@ -68,6 +68,9 @@ const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatu
                         <HideSvg name="confirmPasswordView" className={styles.passwordSvg} onClick={handleViewPassword} />
                     </div>
                 </div>
+                <div className={`${styles.errorContainer} perfect-cen`}>
+                    <span className={styles.errorText}>{signUpError}</span>
+                </div>
                 <div className={`${styles.buttonCon} ${fetching ? 'disable-btn' : ''} perfect-cen`}>
                     <CustomButton loading={fetching} type="submit">Sign up</CustomButton>
                 </div>
@@ -81,7 +84,8 @@ const SignUp = ({ userSignUpStart, fetching, changeViewToSignIn, setLoadingStatu
 };
 
 const mapStateToProps = createStructuredSelector({
-    fetching: selectWaitingForData
+    fetching: selectWaitingForData,
+    signUpError: selectSignUpError
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,5 +1,5 @@
 .buttonCon {
-  margin-top: 75px;
+  margin-top: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,4 +21,15 @@
   bottom: 21px;
   z-index: 2;
   cursor: pointer;
+}
+.errorContainer {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.errorText {
+  max-width: 370px;
+  line-height: 18px;
+  color: var(--app-error-message);
+  font-size: 14px;
 }
