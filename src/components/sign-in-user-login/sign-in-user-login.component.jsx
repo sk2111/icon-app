@@ -8,15 +8,15 @@ import styles from './sign-in-user-login.module.css';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 //actions 
-import { changeViewToForgotPassword, userLoginStart, setLoadingStatusForSignInSignUp, changeViewToSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { changeViewToForgotPassword, userLoginStart, changeViewToSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
-import { selectUserLoginViewHidden, selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+import { selectUserLoginViewHidden, selectWaitingForData, selectUserLoginErrorMessage } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 
 
-const SignInUserLogin = ({ fetching, viewHidden,
-    changeViewToForgotPassword, userLoginStart, setLoadingStatus, changeViewToSignUp }) => {
+const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
+    changeViewToForgotPassword, userLoginStart, changeViewToSignUp }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
     const { email, password } = userDetails;
@@ -29,7 +29,6 @@ const SignInUserLogin = ({ fetching, viewHidden,
             //Todo display error message
             return;
         }
-        setLoadingStatus({ fetching: true });
         userLoginStart({ email, password });
     };
 
@@ -41,13 +40,13 @@ const SignInUserLogin = ({ fetching, viewHidden,
     if (viewHidden) return null;
 
     return (
-        <form autoComplete="on" onSubmit={handleUserLoginSubmit}>
-            <div className="perfect-cen">
-                <p className={styles.erroMessage}>Email ID or password is incorrect</p>
-            </div>
+        <form className="mt-25" autoComplete="on" onSubmit={handleUserLoginSubmit}>
             <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
             <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
-            <div className="flex-jus-end mt-23">
+            <div className="perfect-cen">
+                <p className={styles.erroMessage}>{errorMessage}</p>
+            </div>
+            <div className="flex-jus-end mt-5">
                 <span className={`${styles.actionLabel} m-pointer`} onClick={changeViewToForgotPassword}>Forgot your password?</span>
             </div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
@@ -64,13 +63,13 @@ const SignInUserLogin = ({ fetching, viewHidden,
 const mapStateToProps = createStructuredSelector({
     fetching: selectWaitingForData,
     viewHidden: selectUserLoginViewHidden,
+    errorMessage: selectUserLoginErrorMessage
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         changeViewToForgotPassword: () => dispatch(changeViewToForgotPassword()),
         userLoginStart: (data) => dispatch(userLoginStart(data)),
-        setLoadingStatus: (data) => dispatch(setLoadingStatusForSignInSignUp(data)),
         changeViewToSignUp: () => dispatch(changeViewToSignUp())
     }
 };

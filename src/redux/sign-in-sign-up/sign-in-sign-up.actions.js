@@ -54,7 +54,18 @@ export const userLoginStart = (payload) => {
         payload
     }
 }
-
+export const userLoginSucess = (payload) => {
+    return {
+        type: signInSignUpActionTypes.USER_LOGIN_START,
+        payload
+    }
+}
+export const userLoginFailure = (payload) => {
+    return {
+        type: signInSignUpActionTypes.USER_LOGIN_START,
+        payload
+    }
+}
 export const sendResetLink = (payload) => {
     return {
         type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK,

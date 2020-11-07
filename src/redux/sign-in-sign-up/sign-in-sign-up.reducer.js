@@ -15,10 +15,16 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
     switch (action.type) {
         case signInSignUpActionTypes.SIGN_IN_VIEW_SELECTED:
             return { ...state, signInViewHidden: false, signUpViewHidden: true };
-        case signInSignUpActionTypes.USER_LOGIN_VIEW_SELECTED:
-            return { ...state, forgotPasswordViewHidden: true };
         case signInSignUpActionTypes.FORGOT_PASSWORD_VIEW_SELECTED:
             return { ...state, forgotPasswordViewHidden: false };
+        case signInSignUpActionTypes.USER_LOGIN_VIEW_SELECTED:
+            return { ...state, forgotPasswordViewHidden: true };
+        case signInSignUpActionTypes.USER_LOGIN_START:
+            return { ...state, waitingForData: true };
+        case signInSignUpActionTypes.USER_LOGIN_SUCCESS:
+            return { ...state, waitingForData: false, signInError: CLEARVALUE };
+        case signInSignUpActionTypes.USER_LOGIN_FAILURE:
+            return { ...state, waitingForData: false, signInError: action.payload.message };
         case signInSignUpActionTypes.SIGN_UP_VIEW_SELECTED:
             return { ...state, signInViewHidden: true, signUpViewHidden: false };
         case signInSignUpActionTypes.SIGN_UP_START:
