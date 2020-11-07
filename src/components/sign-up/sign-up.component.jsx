@@ -14,7 +14,8 @@ import { selectWaitingForData, selectSignUpError } from '../../redux/sign-in-sig
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 //static
-import { ReactComponent as HideSvg } from '../../assests/hide.svg';
+import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
+import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
 const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, changeViewToSignIn, setLoadingStatusForSignInSignUp, signUpError }) => {
 
@@ -61,11 +62,18 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, changeViewToSign
                 <div className="flex-row align-cen">
                     <div className="flex-row align-cen pos-rel">
                         <FormInput rootClass="mt-22" inpClass="shortWidth" name="password" value={password} label="Password" type={passwordType} required autoComplete="on" handleInputChange={handleInputChange} />
-                        <HideSvg name="passwordView" className={styles.passwordSvg} onClick={handleViewPassword} />
+                        {
+                            passwordView ?
+                                <HideSvg name="passwordView" className={styles.passwordSvg} onClick={handleViewPassword} /> :
+                                <ShowSvg name="passwordView" className={styles.passwordSvg} onClick={handleViewPassword} />
+                        }
                     </div>
                     <div className="flex-row align-cen pos-rel">
                         <FormInput rootClass="ml-24 mt-22" inpClass="shortWidth" name="confirmPassword" value={confirmPassword} label="Confirm Password" type={confirmPasswordType} required autoComplete="on" handleInputChange={handleInputChange} />
-                        <HideSvg name="confirmPasswordView" className={styles.passwordSvg} onClick={handleViewPassword} />
+                        {confirmPasswordView ?
+                            <HideSvg name="confirmPasswordView" className={styles.passwordSvg} onClick={handleViewPassword} /> :
+                            <ShowSvg name="confirmPasswordView" className={styles.passwordSvg} onClick={handleViewPassword} />
+                        }
                     </div>
                 </div>
                 <div className={`${styles.errorContainer} perfect-cen`}>
