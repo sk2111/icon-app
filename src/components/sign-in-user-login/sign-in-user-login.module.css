@@ -26,3 +26,10 @@
   font-size: 16px;
   cursor: pointer;
 }
+.signUpSuccess{
+  margin-top: 0px;
+  margin-bottom: 15px;
+  color: var(--app-green);
+  font-size: 14px;
+  font-weight: 300;
+}

@@ -19,7 +19,7 @@ export function* signUpUser({ payload: { email, password, firstname, lastname } 
         if (additionalUserInfo.isNewUser) {
             yield call(createUserProfileInFirestore, { uid, email, firstname, lastname });
             yield user.sendEmailVerification();
-            yield put(userSignUpSuccess({ message: 'Signup Success.Please verify your mail to SignIn' }));
+            yield put(userSignUpSuccess({ message: 'Signup success.Please verify your mail to signIn' }));
             yield put(changeViewToSignIn());
         }
     }

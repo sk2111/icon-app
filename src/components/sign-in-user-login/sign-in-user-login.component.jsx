@@ -10,12 +10,12 @@ import CustomButton from '../custom-button/custom-button.component';
 //actions 
 import { changeViewToForgotPassword, userLoginStart, changeViewToSignUp, userLoginFailure, clearSignInError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
-import { selectUserLoginViewHidden, selectWaitingForData, selectUserLoginErrorMessage } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+import { selectUserLoginViewHidden, selectWaitingForData, selectUserLoginErrorMessage, selectSignUpSuccessMessage } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 
 
-const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
+const SignInUserLogin = ({ fetching, viewHidden, errorMessage, signUpSuccessMsg,
     changeViewToForgotPassword, userLoginStart, userLoginFailure, clearSignInError, changeViewToSignUp }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
@@ -39,6 +39,7 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
         }
         setUserDetails({ ...userDetails, [name]: value });
     };
+
     const renderErrorMessage = (errorMessage) => {
         if (!errorMessage) return null;
         return (
@@ -51,6 +52,7 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
 
     return (
         <form className="mt-25" autoComplete="on" onSubmit={handleUserLoginSubmit}>
+            {signUpSuccessMsg ? <p className={styles.signUpSuccess}>{signUpSuccessMsg}</p> : null}
             <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
             <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
             {renderErrorMessage(errorMessage)}
@@ -71,6 +73,7 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
 const mapStateToProps = createStructuredSelector({
     fetching: selectWaitingForData,
     viewHidden: selectUserLoginViewHidden,
+    signUpSuccessMsg: selectSignUpSuccessMessage,
     errorMessage: selectUserLoginErrorMessage
 });
 
