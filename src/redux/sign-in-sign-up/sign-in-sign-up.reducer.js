@@ -18,6 +18,8 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
             return { ...state, signInViewHidden: false, signUpViewHidden: true };
         case signInSignUpActionTypes.FORGOT_PASSWORD_VIEW_SELECTED:
             return { ...state, forgotPasswordViewHidden: false };
+        case signInSignUpActionTypes.CLEAR_FORGOT_PASSWORD_ERROR:
+            return { ...state, forgotPasswordError: false };
         case signInSignUpActionTypes.USER_LOGIN_VIEW_SELECTED:
             return { ...state, forgotPasswordViewHidden: true };
         case signInSignUpActionTypes.USER_LOGIN_START:

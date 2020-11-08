@@ -23,6 +23,11 @@ export const changeViewToForgotPassword = () => {
         type: signInSignUpActionTypes.FORGOT_PASSWORD_VIEW_SELECTED
     }
 }
+export const clearForgotPasswordError = () => {
+    return {
+        type: signInSignUpActionTypes.CLEAR_FORGOT_PASSWORD_ERROR
+    }
+}
 
 export const userSignUpStart = (userSignUpInfo) => {
     return {

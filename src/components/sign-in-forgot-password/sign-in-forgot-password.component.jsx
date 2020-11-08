@@ -8,7 +8,7 @@ import styles from './sign-in-forgot-password.module.css';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 //actions
-import { changeViewToUserLogin, sendResetLinkStart, sendResetLinkFailure } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { changeViewToUserLogin, sendResetLinkStart, sendResetLinkFailure, clearForgotPasswordError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectForgotPasswordErrorMessage, selectForgotPasswordViewHidden, selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
@@ -16,7 +16,8 @@ import { isValidMail } from '../../utilities/validator.utils';
 
 
 
-const SignInForgotPassword = ({ viewHidden, fetching, sendResetLinkStart, sendResetLinkFailure, errorMessage, changeViewToUserLogin }) => {
+const SignInForgotPassword = ({ viewHidden, fetching, sendResetLinkStart, clearForgotPasswordError,
+    sendResetLinkFailure, errorMessage, changeViewToUserLogin }) => {
 
     const [resetDetails, setResetDetails] = useState({ email: '' });
     const btnClass = fetching ? 'disable-btn' : '';
@@ -24,7 +25,7 @@ const SignInForgotPassword = ({ viewHidden, fetching, sendResetLinkStart, sendRe
     const handleForgotPassEmailChange = (e) => {
         const { name, value } = e.target;
         if (errorMessage) {
-            // fire an action to clear error todo
+            clearForgotPasswordError();
         }
         setResetDetails({ ...resetDetails, [name]: value });
     };
@@ -66,6 +67,7 @@ const mapDispatchToProps = (dispatch) => {
         sendResetLinkStart: (data) => dispatch(sendResetLinkStart(data)),
         sendResetLinkFailure: (data) => dispatch(sendResetLinkFailure(data)),
         changeViewToUserLogin: () => dispatch(changeViewToUserLogin()),
+        clearForgotPasswordError: () => dispatch(clearForgotPasswordError())
     }
 }
 
