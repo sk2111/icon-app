@@ -20,7 +20,7 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
         case signInSignUpActionTypes.USER_LOGIN_VIEW_SELECTED:
             return { ...state, forgotPasswordViewHidden: true };
         case signInSignUpActionTypes.USER_LOGIN_START:
-            return { ...state, waitingForData: true };
+            return { ...state, waitingForData: true, signUpSuccess: CLEARVALUE };
         case signInSignUpActionTypes.USER_LOGIN_SUCCESS:
             return { ...state, waitingForData: false, signInError: CLEARVALUE };
         case signInSignUpActionTypes.USER_LOGIN_FAILURE:
@@ -34,7 +34,7 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
         case signInSignUpActionTypes.SIGN_UP_SUCCESS:
             return { ...state, waitingForData: false, signUpError: CLEARVALUE, signUpSuccess: action.payload.message };
         case signInSignUpActionTypes.SIGN_UP_FAILURE:
-            return { ...state, waitingForData: false, signUpError: action.payload.message };
+            return { ...state, waitingForData: false, signUpSuccess: CLEARVALUE, signUpError: action.payload.message };
         case signInSignUpActionTypes.CLEAR_SIGN_UP_ERROR:
             return { ...state, signUpError: CLEARVALUE };
         case signInSignUpActionTypes.SET_LOADING_STATUS_FOR_SIGNIN_SIGNUP:
