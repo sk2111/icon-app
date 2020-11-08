@@ -2,20 +2,22 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Link } from 'react-router-dom';
 //styles
 import styles from './sign-in-user-login.module.css';
 //components
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 //actions 
-import { changeViewToForgotPassword, userLoginStart, changeViewToSignUp, userLoginFailure, clearSignInError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userLoginStart, userLoginFailure, clearSignInError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
-import { selectUserLoginViewHidden, selectWaitingForData, selectUserLoginErrorMessage, selectShowUserMessage } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+import { selectWaitingForData, selectUserLoginErrorMessage, selectShowUserMessage } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
+import { BASE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
 
 
-const SignInUserLogin = ({ fetching, viewHidden, errorMessage, showUserMessage,
+const SignInUserLogin = ({ fetching, errorMessage, showUserMessage,
     changeViewToForgotPassword, userLoginStart, userLoginFailure, clearSignInError, changeViewToSignUp }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
@@ -48,7 +50,6 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage, showUserMessage,
             </div>
         );
     }
-    if (viewHidden) return null;
 
     return (
         <form className="mt-25 flex-col-cen" autoComplete="on" onSubmit={handleUserLoginSubmit}>
@@ -57,14 +58,14 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage, showUserMessage,
             <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
             {renderErrorMessage(errorMessage)}
             <div className={`${styles.forgotLabel} flex-jus-end mt-15`}>
-                <span className={`${styles.actionLabel} m-pointer`} onClick={changeViewToForgotPassword}>Forgot your password?</span>
+                <Link to={`${BASE_PATH}${FORGOT_PASSWORD_PAGE_PATH}`} className={styles.actionLabel} onClick={changeViewToForgotPassword}>Forgot your password?</Link>
             </div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
                 <CustomButton type="submit" loading={fetching}>Sign In</CustomButton>
             </div>
             <div className="flex-row perfect-cen mt-33">
                 <div className={styles.signupLabel}>Don't have an account?</div>
-                <div className={styles.signupBtn} onClick={changeViewToSignUp}>Sign up</div>
+                <Link to={`${BASE_PATH}${SIGN_UP_PAGE_PATH}`} className={styles.signupLink} onClick={changeViewToSignUp}>Sign up</Link>
             </div>
         </form>
     );
@@ -72,17 +73,14 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage, showUserMessage,
 
 const mapStateToProps = createStructuredSelector({
     fetching: selectWaitingForData,
-    viewHidden: selectUserLoginViewHidden,
     showUserMessage: selectShowUserMessage,
     errorMessage: selectUserLoginErrorMessage
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeViewToForgotPassword: () => dispatch(changeViewToForgotPassword()),
         userLoginStart: (data) => dispatch(userLoginStart(data)),
         userLoginFailure: (data) => dispatch(userLoginFailure(data)),
-        changeViewToSignUp: () => dispatch(changeViewToSignUp()),
         clearSignInError: () => dispatch(clearSignInError())
     }
 };
