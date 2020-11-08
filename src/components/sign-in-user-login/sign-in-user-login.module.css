@@ -10,6 +10,9 @@
   color: var(--app-form-label);
   font-size: 16px;
 }
+.forgotLabel {
+  width: var(--app-form-width);
+}
 .erroMessage {
   margin-top: 17px;
   margin-bottom: 2px;
@@ -26,7 +29,7 @@
   font-size: 16px;
   cursor: pointer;
 }
-.showUserMessage{
+.showUserMessage {
   margin-top: 0px;
   margin-bottom: 15px;
   color: var(--app-green);

@@ -51,12 +51,12 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage, showUserMessage,
     if (viewHidden) return null;
 
     return (
-        <form className="mt-25" autoComplete="on" onSubmit={handleUserLoginSubmit}>
+        <form className="mt-25 flex-col-cen" autoComplete="on" onSubmit={handleUserLoginSubmit}>
             {showUserMessage ? <p className={styles.showUserMessage}>{showUserMessage}</p> : null}
             <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
             <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
             {renderErrorMessage(errorMessage)}
-            <div className="flex-jus-end mt-15">
+            <div className={`${styles.forgotLabel} flex-jus-end mt-15`}>
                 <span className={`${styles.actionLabel} m-pointer`} onClick={changeViewToForgotPassword}>Forgot your password?</span>
             </div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>

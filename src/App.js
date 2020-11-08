@@ -23,7 +23,7 @@ const App = ({ currentUser, checkUserPersistance }) => {
     <React.Fragment>
       <ToastMessage />
       <Switch>
-        <Route exact path='/signin' render={(props) => <SignInAndSignUpPage {...props} currentUser={currentUser} />}></Route>
+        <Route path='/auth' render={(props) => <SignInAndSignUpPage {...props} currentUser={currentUser} />}></Route>
         <Route exact path='/' render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
       </Switch>
     </React.Fragment>
