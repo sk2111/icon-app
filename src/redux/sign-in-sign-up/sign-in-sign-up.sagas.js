@@ -5,8 +5,8 @@ import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from
 //actions types
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
 import {
-    changeViewToSignIn, changeViewToUserLogin, userSignUpSuccess, userSignUpFailure,
-    userLoginFailure, userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure
+    userSignUpSuccess, userSignUpFailure, userLoginFailure,
+    userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure
 } from './sign-in-sign-up.actions';
 
 // Sign up user saga
@@ -19,7 +19,8 @@ export function* signUpUser({ payload: { email, password, firstname, lastname } 
             yield call(createUserProfileInFirestore, { uid, email, firstname, lastname });
             yield user.sendEmailVerification();
             yield put(userSignUpSuccess({ message: 'Signup success.Please verify your mail to signIn' }));
-            yield put(changeViewToSignIn());
+            //TODO do programmtic nav to signnin page
+            //yield put(changeViewToSignIn());
         }
     }
     catch (e) {
@@ -60,9 +61,10 @@ export function* onUserLoginStart() {
 // send reset Link
 export function* sendResetLink({ payload: { email } }) {
     try {
-        yield auth.sendPasswordResetEmail(email)
-        yield put(sendResetLinkSuccess({ message: 'Password reset link successfully sent to your mail' }))
-        yield put(changeViewToUserLogin());
+        yield auth.sendPasswordResetEmail(email);
+        yield put(sendResetLinkSuccess({ message: 'Password reset link successfully sent to your mail' }));
+        //TODO : Add programmatic navigation to user login 
+        //yield put(changeViewToUserLogin());
     }
     catch (e) {
         console.log(e);

@@ -1,34 +1,10 @@
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
 
-export const changeViewToSignIn = () => {
-    return {
-        type: signInSignUpActionTypes.SIGN_IN_VIEW_SELECTED
-    }
-}
-
-export const changeViewToSignUp = () => {
-    return {
-        type: signInSignUpActionTypes.SIGN_UP_VIEW_SELECTED
-    }
-}
-
-export const changeViewToUserLogin = () => {
-    return {
-        type: signInSignUpActionTypes.USER_LOGIN_VIEW_SELECTED
-    }
-}
-
-export const changeViewToForgotPassword = () => {
-    return {
-        type: signInSignUpActionTypes.FORGOT_PASSWORD_VIEW_SELECTED
-    }
-}
 export const clearForgotPasswordError = () => {
     return {
         type: signInSignUpActionTypes.CLEAR_FORGOT_PASSWORD_ERROR
     }
 }
-
 export const userSignUpStart = (userSignUpInfo) => {
     return {
         type: signInSignUpActionTypes.SIGN_UP_START,
@@ -71,7 +47,7 @@ export const userLoginFailure = (payload) => {
         payload
     }
 }
-export const clearSignInError = () => {
+export const clearLoginError = () => {
     return {
         type: signInSignUpActionTypes.CLEAR_SIGN_IN_ERROR
     }

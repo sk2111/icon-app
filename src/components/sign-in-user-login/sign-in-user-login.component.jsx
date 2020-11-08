@@ -9,7 +9,7 @@ import styles from './sign-in-user-login.module.css';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 //actions 
-import { userLoginStart, userLoginFailure, clearSignInError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userLoginStart, userLoginFailure, clearLoginError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectWaitingForData, selectUserLoginErrorMessage, selectShowUserMessage } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
@@ -17,7 +17,7 @@ import { isValidMail } from '../../utilities/validator.utils';
 import { BASE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
 
 
-const SignInUserLogin = ({ fetching, errorMessage, showUserMessage, userLoginStart, userLoginFailure, clearSignInError }) => {
+const SignInUserLogin = ({ fetching, errorMessage, showUserMessage, userLoginStart, userLoginFailure, clearLoginError }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
     const { email, password } = userDetails;
@@ -36,7 +36,7 @@ const SignInUserLogin = ({ fetching, errorMessage, showUserMessage, userLoginSta
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (errorMessage) {
-            clearSignInError();
+            clearLoginError();
         }
         setUserDetails({ ...userDetails, [name]: value });
     };
@@ -80,7 +80,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         userLoginStart: (data) => dispatch(userLoginStart(data)),
         userLoginFailure: (data) => dispatch(userLoginFailure(data)),
-        clearSignInError: () => dispatch(clearSignInError())
+        clearLoginError: () => dispatch(clearLoginError())
     }
 };
 
