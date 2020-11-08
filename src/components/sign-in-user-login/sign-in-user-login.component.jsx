@@ -17,8 +17,7 @@ import { isValidMail } from '../../utilities/validator.utils';
 import { BASE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
 
 
-const SignInUserLogin = ({ fetching, errorMessage, showUserMessage,
-    changeViewToForgotPassword, userLoginStart, userLoginFailure, clearSignInError, changeViewToSignUp }) => {
+const SignInUserLogin = ({ fetching, errorMessage, showUserMessage, userLoginStart, userLoginFailure, clearSignInError }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
     const { email, password } = userDetails;
@@ -49,7 +48,7 @@ const SignInUserLogin = ({ fetching, errorMessage, showUserMessage,
                 <p className={styles.erroMessage}>{errorMessage}</p>
             </div>
         );
-    }
+    };
 
     return (
         <form className="mt-25 flex-col-cen" autoComplete="on" onSubmit={handleUserLoginSubmit}>
@@ -58,14 +57,14 @@ const SignInUserLogin = ({ fetching, errorMessage, showUserMessage,
             <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
             {renderErrorMessage(errorMessage)}
             <div className={`${styles.forgotLabel} flex-jus-end mt-15`}>
-                <Link to={`${BASE_PATH}${FORGOT_PASSWORD_PAGE_PATH}`} className={styles.actionLabel} onClick={changeViewToForgotPassword}>Forgot your password?</Link>
+                <Link to={`${BASE_PATH}${FORGOT_PASSWORD_PAGE_PATH}`} className={styles.actionLabel}>Forgot your password?</Link>
             </div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
                 <CustomButton type="submit" loading={fetching}>Sign In</CustomButton>
             </div>
             <div className="flex-row perfect-cen mt-33">
                 <div className={styles.signupLabel}>Don't have an account?</div>
-                <Link to={`${BASE_PATH}${SIGN_UP_PAGE_PATH}`} className={styles.signupLink} onClick={changeViewToSignUp}>Sign up</Link>
+                <Link to={`${BASE_PATH}${SIGN_UP_PAGE_PATH}`} className={styles.signupLink}>Sign up</Link>
             </div>
         </form>
     );
