@@ -18,6 +18,10 @@
   user-select: none;
   width: 326px;
 }
+.button:focus {
+  top:-2px;
+  box-shadow: 0 0 3px 1px var(--app-green);
+}
 .button:hover {
   top: -2px;
 }
