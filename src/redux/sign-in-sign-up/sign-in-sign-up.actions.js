@@ -77,9 +77,10 @@ export const sendResetLinkStart = (payload) => {
         payload
     }
 }
-export const sendResetLinkSuccess = () => {
+export const sendResetLinkSuccess = (payload) => {
     return {
         type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS,
+        payload
     }
 }
 export const sendResetLinkFailure = (payload) => {

@@ -8,8 +8,8 @@ export const selectSignInViewHidden = createSelector([selectSignInSignUp],
 export const selectSignUpViewHidden = createSelector([selectSignInSignUp],
     (signInSignUp) => signInSignUp.signUpViewHidden);
 
-export const selectSignUpSuccessMessage = createSelector([selectSignInSignUp],
-    (signInSignUp) => signInSignUp.signUpSuccess);
+export const selectShowUserMessage = createSelector([selectSignInSignUp],
+    (signInSignUp) => signInSignUp.showUserMessage);
 
 export const selectSignUpError = createSelector([selectSignInSignUp],
     (signInSignUp) => signInSignUp.signUpError);

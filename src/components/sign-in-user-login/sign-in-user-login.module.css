@@ -26,7 +26,7 @@
   font-size: 16px;
   cursor: pointer;
 }
-.signUpSuccess{
+.showUserMessage{
   margin-top: 0px;
   margin-bottom: 15px;
   color: var(--app-green);

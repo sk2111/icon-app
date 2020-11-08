@@ -5,7 +5,7 @@ const INITIALSTATE = {
     signUpViewHidden: true,
     forgotPasswordViewHidden: true,
     waitingForData: false,
-    signUpSuccess: '',
+    showUserMessage: '',
     signUpError: '',
     signInError: '',
     forgotPasswordError: ''
@@ -21,7 +21,7 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
         case signInSignUpActionTypes.USER_LOGIN_VIEW_SELECTED:
             return { ...state, forgotPasswordViewHidden: true };
         case signInSignUpActionTypes.USER_LOGIN_START:
-            return { ...state, waitingForData: true, signUpSuccess: CLEARVALUE };
+            return { ...state, waitingForData: true, showUserMessage: CLEARVALUE };
         case signInSignUpActionTypes.USER_LOGIN_SUCCESS:
             return { ...state, waitingForData: false, signInError: CLEARVALUE };
         case signInSignUpActionTypes.USER_LOGIN_FAILURE:
@@ -33,15 +33,15 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
         case signInSignUpActionTypes.SIGN_UP_START:
             return { ...state, waitingForData: true };
         case signInSignUpActionTypes.SIGN_UP_SUCCESS:
-            return { ...state, waitingForData: false, signUpError: CLEARVALUE, signUpSuccess: action.payload.message };
+            return { ...state, waitingForData: false, signUpError: CLEARVALUE, showUserMessage: action.payload.message };
         case signInSignUpActionTypes.SIGN_UP_FAILURE:
-            return { ...state, waitingForData: false, signUpSuccess: CLEARVALUE, signUpError: action.payload.message };
+            return { ...state, waitingForData: false, showUserMessage: CLEARVALUE, signUpError: action.payload.message };
         case signInSignUpActionTypes.CLEAR_SIGN_UP_ERROR:
             return { ...state, signUpError: CLEARVALUE };
         case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_START:
             return { ...state, waitingForData: true };
         case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS:
-            return { ...state, waitingForData: false, forgotPasswordError: CLEARVALUE };
+            return { ...state, waitingForData: false, forgotPasswordError: CLEARVALUE, showUserMessage: action.payload.message };
         case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_FAILURE:
             return { ...state, waitingForData: false, forgotPasswordError: action.payload.message };
         default:
