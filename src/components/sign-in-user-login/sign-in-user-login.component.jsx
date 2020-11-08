@@ -39,17 +39,22 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
         }
         setUserDetails({ ...userDetails, [name]: value });
     };
-
+    const renderErrorMessage = (errorMessage) => {
+        if (!errorMessage) return null;
+        return (
+            <div className="perfect-cen">
+                <p className={styles.erroMessage}>{errorMessage}</p>
+            </div>
+        );
+    }
     if (viewHidden) return null;
 
     return (
         <form className="mt-25" autoComplete="on" onSubmit={handleUserLoginSubmit}>
             <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
             <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
-            <div className="perfect-cen">
-                <p className={styles.erroMessage}>{errorMessage}</p>
-            </div>
-            <div className="flex-jus-end mt-5">
+            {renderErrorMessage(errorMessage)}
+            <div className="flex-jus-end mt-15">
                 <span className={`${styles.actionLabel} m-pointer`} onClick={changeViewToForgotPassword}>Forgot your password?</span>
             </div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
