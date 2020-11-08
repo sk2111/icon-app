@@ -52,7 +52,6 @@ export const readUserProfileFromFireStore = async (uid) => {
                 ...snapshot.data()
             };
         }
-        console.log("User profile not found");
         return false;
     }
     catch (e) {

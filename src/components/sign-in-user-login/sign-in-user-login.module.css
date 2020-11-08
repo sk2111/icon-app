@@ -15,6 +15,9 @@
   margin-bottom: 15px;
   color: var(--app-error-message);
   font-size: 14px;
+  max-width: 280px;
+  text-align: center;
+  line-height: 19px;
 }
 .signupBtn {
   color: var(--app-green);

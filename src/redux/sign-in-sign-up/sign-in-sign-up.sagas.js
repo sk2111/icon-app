@@ -44,6 +44,7 @@ export function* loginInUser({ payload: { email, password } }) {
                 return;
             }
             yield put(userLoginFailure({ message: `User Profile not found` }));
+            return;
         }
         yield put(userLoginFailure({ message: `Please verify your Soliton mail ID before login` }));
     }
@@ -52,6 +53,7 @@ export function* loginInUser({ payload: { email, password } }) {
         yield put(userLoginFailure({ message: `${e.message}` }));
     }
 };
+
 export function* onUserLoginStart() {
     yield takeLatest(signInSignUpActionTypes.USER_LOGIN_START, loginInUser);
 };
