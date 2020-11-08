@@ -1,4 +1,5 @@
-import { userActionTypes } from './user.type';
+// import { userActionTypes } from './user.type';
+import { signInSignUpActionTypes } from '../sign-in-sign-up/sign-in-sign-up.type';
 
 const INITIAL_STATE = {
     currentUser: null
@@ -6,7 +7,7 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case userActionTypes.SIGN_IN_SUCCESS:
+        case signInSignUpActionTypes.USER_LOGIN_SUCCESS:
             return { ...state, currentUser: action.payload };
         default:
             return state;

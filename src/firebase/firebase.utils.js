@@ -52,13 +52,13 @@ export const readUserProfileFromFireStore = async (uid) => {
                 ...snapshot.data()
             };
         }
-        console.log("User profile didnt created successfully");
+        console.log("User profile not found");
+        return false;
     }
     catch (e) {
         console.log("User login failed", e);
         throw e;
     }
-    return userRef;
 };
 
 export const getCurrentUser = () => {

@@ -25,6 +25,8 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
             return { ...state, waitingForData: false, signInError: CLEARVALUE };
         case signInSignUpActionTypes.USER_LOGIN_FAILURE:
             return { ...state, waitingForData: false, signInError: action.payload.message };
+        case signInSignUpActionTypes.CLEAR_SIGN_IN_ERROR:
+            return { ...state, signInError: CLEARVALUE };
         case signInSignUpActionTypes.SIGN_UP_VIEW_SELECTED:
             return { ...state, signInViewHidden: true, signUpViewHidden: false };
         case signInSignUpActionTypes.SIGN_UP_START:

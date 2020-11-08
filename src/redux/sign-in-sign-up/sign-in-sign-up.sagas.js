@@ -4,9 +4,11 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 //actions types
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
-import { changeViewToSignIn, changeViewToUserLogin, setLoadingStatusForSignInSignUp, userSignUpSuccess, userSignUpFailure } from './sign-in-sign-up.actions';
+import {
+    changeViewToSignIn, changeViewToUserLogin, setLoadingStatusForSignInSignUp,
+    userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess
+} from './sign-in-sign-up.actions';
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
-import { signInSuccess } from '../user/user.actions';
 
 // Sign up user saga
 export function* signUpUser({ payload: { email, password, firstname, lastname } }) {
@@ -37,17 +39,18 @@ export function* loginInUser({ payload: { email, password } }) {
         const { user } = authData;
         if (user.emailVerified) {
             const returnData = yield call(readUserProfileFromFireStore, user.uid);
-            yield put(signInSuccess(returnData));
-            yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
-            return;
+            if (returnData) {
+                yield put(userLoginSucess(returnData));
+                return;
+            }
+            yield put(userLoginFailure({ message: `User Profile not found` }));
         }
-        yield put(showFailureToastMessage({ message: `Signin failed.Please verify your Email before login`, timeInSeconds: '6' }));
+        yield put(userLoginFailure({ message: `Please verify your Soliton mail ID before login` }));
     }
     catch (e) {
         console.log(e);
-        yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
+        yield put(userLoginFailure({ message: `${e.message}` }));
     }
-    yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
 };
 export function* onUserLoginStart() {
     yield takeLatest(signInSignUpActionTypes.USER_LOGIN_START, loginInUser);

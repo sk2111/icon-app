@@ -8,7 +8,7 @@ import styles from './sign-in-user-login.module.css';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 //actions 
-import { changeViewToForgotPassword, userLoginStart, changeViewToSignUp } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { changeViewToForgotPassword, userLoginStart, changeViewToSignUp, userLoginFailure, clearSignInError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectUserLoginViewHidden, selectWaitingForData, selectUserLoginErrorMessage } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
@@ -16,7 +16,7 @@ import { isValidMail } from '../../utilities/validator.utils';
 
 
 const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
-    changeViewToForgotPassword, userLoginStart, changeViewToSignUp }) => {
+    changeViewToForgotPassword, userLoginStart, userLoginFailure, clearSignInError, changeViewToSignUp }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
     const { email, password } = userDetails;
@@ -26,7 +26,7 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
     const handleUserLoginSubmit = (e) => {
         e.preventDefault();
         if (!isValidMail(email)) {
-            //Todo display error message
+            userLoginFailure({ message: 'Please enter Soliton mail ID' });
             return;
         }
         userLoginStart({ email, password });
@@ -34,6 +34,9 @@ const SignInUserLogin = ({ fetching, viewHidden, errorMessage,
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        if (errorMessage) {
+            clearSignInError();
+        }
         setUserDetails({ ...userDetails, [name]: value });
     };
 
@@ -70,7 +73,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeViewToForgotPassword: () => dispatch(changeViewToForgotPassword()),
         userLoginStart: (data) => dispatch(userLoginStart(data)),
-        changeViewToSignUp: () => dispatch(changeViewToSignUp())
+        userLoginFailure: (data) => dispatch(userLoginFailure(data)),
+        changeViewToSignUp: () => dispatch(changeViewToSignUp()),
+        clearSignInError: () => dispatch(clearSignInError())
     }
 };
 
