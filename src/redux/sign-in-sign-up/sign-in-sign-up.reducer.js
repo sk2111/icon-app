@@ -1,9 +1,6 @@
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
 
 const INITIALSTATE = {
-    signInViewHidden: false,
-    signUpViewHidden: true,
-    forgotPasswordViewHidden: true,
     waitingForData: false,
     showUserMessage: '',
     signUpError: '',
@@ -14,14 +11,8 @@ const CLEARVALUE = '';
 
 const signInSignUpReducer = (state = INITIALSTATE, action) => {
     switch (action.type) {
-        case signInSignUpActionTypes.SIGN_IN_VIEW_SELECTED:
-            return { ...state, signInViewHidden: false, signUpViewHidden: true };
-        case signInSignUpActionTypes.FORGOT_PASSWORD_VIEW_SELECTED:
-            return { ...state, forgotPasswordViewHidden: false };
         case signInSignUpActionTypes.CLEAR_FORGOT_PASSWORD_ERROR:
             return { ...state, forgotPasswordError: false };
-        case signInSignUpActionTypes.USER_LOGIN_VIEW_SELECTED:
-            return { ...state, forgotPasswordViewHidden: true };
         case signInSignUpActionTypes.USER_LOGIN_START:
             return { ...state, waitingForData: true, showUserMessage: CLEARVALUE };
         case signInSignUpActionTypes.USER_LOGIN_SUCCESS:
@@ -30,8 +21,6 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
             return { ...state, waitingForData: false, signInError: action.payload.message };
         case signInSignUpActionTypes.CLEAR_SIGN_IN_ERROR:
             return { ...state, signInError: CLEARVALUE };
-        case signInSignUpActionTypes.SIGN_UP_VIEW_SELECTED:
-            return { ...state, signInViewHidden: true, signUpViewHidden: false };
         case signInSignUpActionTypes.SIGN_UP_START:
             return { ...state, waitingForData: true };
         case signInSignUpActionTypes.SIGN_UP_SUCCESS:
