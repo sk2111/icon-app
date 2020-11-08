@@ -23,5 +23,8 @@ export const selectUserLoginErrorMessage = createSelector([selectSignInSignUp],
 export const selectForgotPasswordViewHidden = createSelector([selectSignInSignUp],
     (signInSignUp) => signInSignUp.forgotPasswordViewHidden);
 
+export const selectForgotPasswordErrorMessage = createSelector([selectSignInSignUp],
+    (signInSignUp) => signInSignUp.forgotPasswordError);
+
 export const selectWaitingForData = createSelector([selectSignInSignUp],
     (signInSignUp) => signInSignUp.waitingForData);

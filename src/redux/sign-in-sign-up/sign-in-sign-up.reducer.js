@@ -7,7 +7,8 @@ const INITIALSTATE = {
     waitingForData: false,
     signUpSuccess: '',
     signUpError: '',
-    signInError: ''
+    signInError: '',
+    forgotPasswordError: ''
 };
 const CLEARVALUE = '';
 
@@ -37,8 +38,12 @@ const signInSignUpReducer = (state = INITIALSTATE, action) => {
             return { ...state, waitingForData: false, signUpSuccess: CLEARVALUE, signUpError: action.payload.message };
         case signInSignUpActionTypes.CLEAR_SIGN_UP_ERROR:
             return { ...state, signUpError: CLEARVALUE };
-        case signInSignUpActionTypes.SET_LOADING_STATUS_FOR_SIGNIN_SIGNUP:
-            return { ...state, waitingForData: action.payload.fetching };
+        case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_START:
+            return { ...state, waitingForData: true };
+        case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS:
+            return { ...state, waitingForData: false, forgotPasswordError: CLEARVALUE };
+        case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_FAILURE:
+            return { ...state, waitingForData: false, forgotPasswordError: action.payload.message };
         default:
             return state;
     }

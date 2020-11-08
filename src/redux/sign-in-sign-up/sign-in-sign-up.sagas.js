@@ -5,10 +5,9 @@ import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from
 //actions types
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
 import {
-    changeViewToSignIn, changeViewToUserLogin, setLoadingStatusForSignInSignUp,
-    userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess
+    changeViewToSignIn, changeViewToUserLogin, userSignUpSuccess, userSignUpFailure,
+    userLoginFailure, userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure
 } from './sign-in-sign-up.actions';
-import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 
 // Sign up user saga
 export function* signUpUser({ payload: { email, password, firstname, lastname } }) {
@@ -62,17 +61,16 @@ export function* onUserLoginStart() {
 export function* sendResetLink({ payload: { email } }) {
     try {
         yield auth.sendPasswordResetEmail(email)
-        yield put(showSuccessToastMessage({ message: `Reset Password link sent to your soliton mail`, timeInSeconds: '6' }));
+        yield put(sendResetLinkSuccess({ message: 'Password reset link successfully sent to your mail' }))
         yield put(changeViewToUserLogin());
     }
     catch (e) {
         console.log(e);
-        yield put(showFailureToastMessage({ message: `${e.message}`, timeInSeconds: '6' }));
+        yield put(sendResetLinkFailure({ message: `${e.message}` }));
     }
-    yield put(setLoadingStatusForSignInSignUp({ fetching: false }));
 };
 export function* sendRestLinkStart() {
-    yield takeLatest(signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK, sendResetLink);
+    yield takeLatest(signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_START, sendResetLink);
 };
 
 // Group all sagas

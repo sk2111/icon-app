@@ -71,15 +71,20 @@ export const clearSignInError = () => {
         type: signInSignUpActionTypes.CLEAR_SIGN_IN_ERROR
     }
 }
-export const sendResetLink = (payload) => {
+export const sendResetLinkStart = (payload) => {
     return {
-        type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK,
+        type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_START,
         payload
     }
 }
-export const setLoadingStatusForSignInSignUp = (payload) => {
+export const sendResetLinkSuccess = () => {
     return {
-        type: signInSignUpActionTypes.SET_LOADING_STATUS_FOR_SIGNIN_SIGNUP,
+        type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS,
+    }
+}
+export const sendResetLinkFailure = (payload) => {
+    return {
+        type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_FAILURE,
         payload
     }
 }
