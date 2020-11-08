@@ -1,5 +1,6 @@
 //libs
 import { takeLatest, put, all, call } from 'redux-saga/effects';
+import history from '../../utilities/history';
 //firebase
 import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 //actions types
@@ -8,6 +9,8 @@ import {
     userSignUpSuccess, userSignUpFailure, userLoginFailure,
     userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure
 } from './sign-in-sign-up.actions';
+//constants
+import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 
 // Sign up user saga
 export function* signUpUser({ payload: { email, password, firstname, lastname } }) {
@@ -19,8 +22,7 @@ export function* signUpUser({ payload: { email, password, firstname, lastname } 
             yield call(createUserProfileInFirestore, { uid, email, firstname, lastname });
             yield user.sendEmailVerification();
             yield put(userSignUpSuccess({ message: 'Signup success.Please verify your mail to signIn' }));
-            //TODO do programmtic nav to signnin page
-            //yield put(changeViewToSignIn());
+            history.push(BASE_PATH + SIGN_IN_PAGE_PATH);
         }
     }
     catch (e) {
@@ -63,8 +65,7 @@ export function* sendResetLink({ payload: { email } }) {
     try {
         yield auth.sendPasswordResetEmail(email);
         yield put(sendResetLinkSuccess({ message: 'Password reset link successfully sent to your mail' }));
-        //TODO : Add programmatic navigation to user login 
-        //yield put(changeViewToUserLogin());
+        history.push(BASE_PATH + SIGN_IN_PAGE_PATH);
     }
     catch (e) {
         console.log(e);
