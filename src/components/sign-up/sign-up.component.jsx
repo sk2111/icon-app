@@ -2,23 +2,24 @@
 import React, { useState } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 //css
 import styles from './sign-up.module.css';
 //components
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 //actions
-import { userSignUpStart, changeViewToSignIn, userSignUpFailure, clearSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userSignUpStart, userSignUpFailure, clearSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
 //reselect
 import { selectWaitingForData, selectSignUpError } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
+import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 //static
 import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
 import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
-const SignUp = ({ userSignUpStart, userSignUpFailure, fetching,
-    changeViewToSignIn, signUpError, clearSignUpError }) => {
+const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, signUpErrorMsg, clearSignUpError }) => {
 
     const [userDetails, setUserDetails] = useState({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' });
     const [passwordViewHidden, setPasswordViewHidden] = useState({ passwordView: true, confirmPasswordView: true });
@@ -44,7 +45,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching,
     }
     const handleInputChange = (e) => {
         const { value, name } = e.target;
-        if (signUpError) {
+        if (signUpErrorMsg) {
             clearSignUpError();
         }
         setUserDetails({ ...userDetails, [name]: value });
@@ -80,14 +81,14 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching,
                     </div>
                 </div>
                 <div className={`${styles.errorContainer} perfect-cen`}>
-                    <span className={styles.errorText}>{signUpError}</span>
+                    <span className={styles.errorText}>{signUpErrorMsg}</span>
                 </div>
                 <div className={`${styles.buttonCon} ${fetching ? 'disable-btn' : ''} perfect-cen`}>
                     <CustomButton loading={fetching} type="submit">Sign up</CustomButton>
                 </div>
                 <div className="flex-row perfect-cen mt-33">
                     <div className={styles.signinLabel}>Don't have an account?</div>
-                    <div className={styles.signinBtn} onClick={changeViewToSignIn}>Sign in</div>
+                    <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signinLink}>Sign in</Link>
                 </div>
             </form>
         </div>
@@ -96,14 +97,13 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching,
 
 const mapStateToProps = createStructuredSelector({
     fetching: selectWaitingForData,
-    signUpError: selectSignUpError
+    signUpErrorMsg: selectSignUpError
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         userSignUpStart: (data) => dispatch(userSignUpStart(data)),
         userSignUpFailure: (data) => dispatch(userSignUpFailure(data)),
-        changeViewToSignIn: () => dispatch(changeViewToSignIn()),
         clearSignUpError: () => dispatch(clearSignUpError())
     }
 };
