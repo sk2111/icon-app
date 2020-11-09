@@ -88,7 +88,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
                 </div>
                 <div className="flex-row perfect-cen mt-33">
                     <div className={styles.signinLabel}>Don't have an account?</div>
-                    <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signinLink}>Sign in</Link>
+                    <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signinLink} onClick={clearAuthError}>Sign in</Link>
                 </div>
             </form>
         </div>

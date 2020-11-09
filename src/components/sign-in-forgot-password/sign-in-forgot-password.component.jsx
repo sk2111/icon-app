@@ -51,7 +51,7 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
                 <CustomButton loading={fetching} type="submit">Send Reset Link</CustomButton>
             </div>
             <div className={`${styles.actionLabel} perfect-cen`}>
-                Back to <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signInLink}>Sign In?</Link>
+                Back to <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signInLink} onClick={clearAuthError}>Sign In?</Link>
             </div>
         </form>
     );

@@ -64,7 +64,7 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
             </div>
             <div className="flex-row perfect-cen mt-33">
                 <div className={styles.signupLabel}>Don't have an account?</div>
-                <Link to={`${BASE_PATH}${SIGN_UP_PAGE_PATH}`} className={styles.signupLink}>Sign up</Link>
+                <Link to={`${BASE_PATH}${SIGN_UP_PAGE_PATH}`} className={styles.signupLink} onClick={clearAuthError}>Sign up</Link>
             </div>
         </form>
     );
