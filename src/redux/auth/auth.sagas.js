@@ -6,25 +6,24 @@ import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from
 //actions types
 import { authActionTypes } from './auth.type';
 import { userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure } from './auth.actions';
-//constants
+//Route constants
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 
 // Sign up user saga
 export function* signUpUser({ payload: { email, password, firstname, lastname } }) {
     try {
-        const authData = yield auth.createUserWithEmailAndPassword(email, password);
-        const { additionalUserInfo, user } = authData;
+        const { additionalUserInfo, user } = yield auth.createUserWithEmailAndPassword(email, password);
         const { uid } = user;
         if (additionalUserInfo.isNewUser) {
             yield call(createUserProfileInFirestore, { uid, email, firstname, lastname });
             yield user.sendEmailVerification();
-            yield put(userSignUpSuccess({ message: 'Signup success.Please verify your mail to signIn' }));
+            yield put(userSignUpSuccess('Signup success.Please verify your mail to signIn'));
             history.push(BASE_PATH + SIGN_IN_PAGE_PATH);
         }
     }
     catch (e) {
         console.log(e);
-        yield put(userSignUpFailure({ message: `${e.message}` }));
+        yield put(userSignUpFailure(`${e.message}`));
     }
 };
 export function* onUserSignUpStart() {
@@ -34,22 +33,22 @@ export function* onUserSignUpStart() {
 // Login user
 export function* loginInUser({ payload: { email, password } }) {
     try {
-        const authData = yield auth.signInWithEmailAndPassword(email, password);
-        const { user } = authData;
+        const { user } = yield auth.signInWithEmailAndPassword(email, password);
         if (user.emailVerified) {
             const returnData = yield call(readUserProfileFromFireStore, user.uid);
             if (returnData) {
+                // TODO : Check how this line behaves
                 yield put(userLoginSucess(returnData));
                 return;
             }
-            yield put(userLoginFailure({ message: `User Profile not found` }));
+            yield put(userLoginFailure('User Profile not found'));
             return;
         }
-        yield put(userLoginFailure({ message: `Please verify your Soliton mail ID before login` }));
+        yield put(userLoginFailure('Please verify your Soliton mail ID before login'));
     }
     catch (e) {
         console.log(e);
-        yield put(userLoginFailure({ message: `${e.message}` }));
+        yield put(userLoginFailure(`${e.message}`));
     }
 };
 
@@ -61,15 +60,15 @@ export function* onUserLoginStart() {
 export function* sendResetLink({ payload: { email } }) {
     try {
         yield auth.sendPasswordResetEmail(email);
-        yield put(sendResetLinkSuccess({ message: 'Password reset link successfully sent to your mail' }));
+        yield put(sendResetLinkSuccess('Password reset link successfully sent to your mail'));
         history.push(BASE_PATH + SIGN_IN_PAGE_PATH);
     }
     catch (e) {
         console.log(e);
-        yield put(sendResetLinkFailure({ message: `${e.message}` }));
+        yield put(sendResetLinkFailure(`${e.message}`));
     }
 };
-export function* sendRestLinkStart() {
+export function* onSendRestLinkStart() {
     yield takeLatest(authActionTypes.SEND_PASSWORD_RESET_LINK_START, sendResetLink);
 };
 
@@ -78,6 +77,6 @@ export function* authSagas() {
     yield all([
         call(onUserSignUpStart),
         call(onUserLoginStart),
-        call(sendRestLinkStart)
+        call(onSendRestLinkStart)
     ])
 }

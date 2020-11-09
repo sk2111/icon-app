@@ -21,7 +21,7 @@ const authReducer = (state = INITIALSTATE, action) => {
         case authActionTypes.USER_LOGIN_SUCCESS:
         case authActionTypes.SIGN_UP_SUCCESS:
         case authActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS:
-            return { ...state, waitingForData: false, error: CLEARVALUE, userMessage: action.payload.message };
+            return { ...state, waitingForData: false, error: CLEARVALUE, userMessage: action.payload };
 
         case authActionTypes.USER_LOGIN_FAILURE:
         case authActionTypes.SIGN_UP_FAILURE:
