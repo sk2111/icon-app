@@ -9,16 +9,16 @@ import styles from './sign-in-forgot-password.module.css';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 //actions
-import { sendResetLinkStart, sendResetLinkFailure, clearForgotPasswordError } from '../../redux/auth/auth.actions';
+import { sendResetLinkStart, sendResetLinkFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect
-import { selectForgotPasswordErrorMessage, selectForgotPasswordViewHidden, selectWaitingForData } from '../../redux/auth/auth.selectors';
+import { selectWaitingForData, selectErrorMessage } from '../../redux/auth/auth.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 
 
 
-const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearForgotPasswordError,
+const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
     sendResetLinkFailure, errorMessage }) => {
 
     const [resetDetails, setResetDetails] = useState({ email: '' });
@@ -27,7 +27,7 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearForgotPasswor
     const handleForgotPassEmailChange = (e) => {
         const { name, value } = e.target;
         if (errorMessage) {
-            clearForgotPasswordError();
+            clearAuthError();
         }
         setResetDetails({ ...resetDetails, [name]: value });
     };
@@ -57,16 +57,15 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearForgotPasswor
     );
 }
 const mapStateToProps = createStructuredSelector({
-    viewHidden: selectForgotPasswordViewHidden,
     fetching: selectWaitingForData,
-    errorMessage: selectForgotPasswordErrorMessage
+    errorMessage: selectErrorMessage
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         sendResetLinkStart: (data) => dispatch(sendResetLinkStart(data)),
         sendResetLinkFailure: (data) => dispatch(sendResetLinkFailure(data)),
-        clearForgotPasswordError: () => dispatch(clearForgotPasswordError())
+        clearAuthError: () => dispatch(clearAuthError())
     }
 }
 
