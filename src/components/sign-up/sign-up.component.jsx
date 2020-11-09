@@ -22,10 +22,10 @@ import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, clearAuthError }) => {
 
     const [userDetails, setUserDetails] = useState({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' });
-    const [passwordViewHidden, setPasswordViewHidden] = useState({ passwordView: true, confirmPasswordView: true });
+    const [passwordViews, setPasswordViews] = useState({ passwordView: true, confirmPasswordView: true });
 
     const { firstname, lastname, email, password, confirmPassword } = userDetails;
-    const { passwordView, confirmPasswordView } = passwordViewHidden;
+    const { passwordView, confirmPasswordView } = passwordViews;
 
     const passwordType = passwordView ? 'password' : 'text';
     const confirmPasswordType = confirmPasswordView ? 'password' : 'text';
@@ -52,8 +52,8 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
     }
     const handleViewPassword = (e) => {
         const name = e.currentTarget.getAttribute("name");
-        const value = !passwordViewHidden[name];
-        setPasswordViewHidden({ ...passwordViewHidden, [name]: value });
+        const value = !passwordViews[name];
+        setPasswordViews({ ...passwordViews, [name]: value });
     }
     return (
         <div className={`flex-col align-cen`}>
