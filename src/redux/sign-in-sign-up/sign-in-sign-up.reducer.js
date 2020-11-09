@@ -1,40 +1,33 @@
 import { signInSignUpActionTypes } from './sign-in-sign-up.type';
 
+const CLEARVALUE = '';
 const INITIALSTATE = {
     waitingForData: false,
-    showUserMessage: '',
-    signUpError: '',
-    signInError: '',
-    forgotPasswordError: ''
+    showUserMessage: CLEARVALUE,
+    error: CLEARVALUE,
 };
-const CLEARVALUE = '';
 
 const signInSignUpReducer = (state = INITIALSTATE, action) => {
     switch (action.type) {
-        case signInSignUpActionTypes.CLEAR_FORGOT_PASSWORD_ERROR:
-            return { ...state, forgotPasswordError: false };
+
+        case signInSignUpActionTypes.CLEAR_AUTH_ERROR:
+            return { ...state, error: CLEARVALUE };
+
         case signInSignUpActionTypes.USER_LOGIN_START:
-            return { ...state, waitingForData: true, showUserMessage: CLEARVALUE };
-        case signInSignUpActionTypes.USER_LOGIN_SUCCESS:
-            return { ...state, waitingForData: false, signInError: CLEARVALUE };
-        case signInSignUpActionTypes.USER_LOGIN_FAILURE:
-            return { ...state, waitingForData: false, signInError: action.payload.message };
-        case signInSignUpActionTypes.CLEAR_SIGN_IN_ERROR:
-            return { ...state, signInError: CLEARVALUE };
         case signInSignUpActionTypes.SIGN_UP_START:
-            return { ...state, waitingForData: true };
-        case signInSignUpActionTypes.SIGN_UP_SUCCESS:
-            return { ...state, waitingForData: false, signUpError: CLEARVALUE, showUserMessage: action.payload.message };
-        case signInSignUpActionTypes.SIGN_UP_FAILURE:
-            return { ...state, waitingForData: false, showUserMessage: CLEARVALUE, signUpError: action.payload.message };
-        case signInSignUpActionTypes.CLEAR_SIGN_UP_ERROR:
-            return { ...state, signUpError: CLEARVALUE };
         case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_START:
-            return { ...state, waitingForData: true };
+            return { ...state, waitingForData: true, error: CLEARVALUE, showUserMessage: CLEARVALUE };
+
+        case signInSignUpActionTypes.USER_LOGIN_SUCCESS:
+        case signInSignUpActionTypes.SIGN_UP_SUCCESS:
         case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS:
-            return { ...state, waitingForData: false, forgotPasswordError: CLEARVALUE, showUserMessage: action.payload.message };
+            return { ...state, waitingForData: false, error: CLEARVALUE, showUserMessage: action.payload.message };
+
+        case signInSignUpActionTypes.USER_LOGIN_FAILURE:
+        case signInSignUpActionTypes.SIGN_UP_FAILURE:
         case signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_FAILURE:
-            return { ...state, waitingForData: false, forgotPasswordError: action.payload.message };
+            return { ...state, waitingForData: false, error: action.payload, showUserMessage: CLEARVALUE };
+
         default:
             return state;
     }
