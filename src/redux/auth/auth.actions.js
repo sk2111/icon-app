@@ -1,49 +1,49 @@
-import { signInSignUpActionTypes } from './sign-in-sign-up.type';
+import { authActionTypes } from './auth.type';
 
 // clear auth error
 export const clearAuthError = () => ({
-    type: signInSignUpActionTypes.CLEAR_AUTH_ERROR
+    type: authActionTypes.CLEAR_AUTH_ERROR
 });
 
 // User login actions
 export const userLoginStart = (payload) => ({
-    type: signInSignUpActionTypes.USER_LOGIN_START,
+    type: authActionTypes.USER_LOGIN_START,
     payload
 });
 export const userLoginSucess = (payload) => ({
-    type: signInSignUpActionTypes.USER_LOGIN_SUCCESS,
+    type: authActionTypes.USER_LOGIN_SUCCESS,
     payload
 });
 export const userLoginFailure = (payload) => ({
-    type: signInSignUpActionTypes.USER_LOGIN_FAILURE,
+    type: authActionTypes.USER_LOGIN_FAILURE,
     payload
 });
 
 // Signup actions
 export const userSignUpStart = (userSignUpInfo) => ({
-    type: signInSignUpActionTypes.SIGN_UP_START,
+    type: authActionTypes.SIGN_UP_START,
     payload: userSignUpInfo
 
 });
 export const userSignUpSuccess = (payload) => ({
-    type: signInSignUpActionTypes.SIGN_UP_SUCCESS,
+    type: authActionTypes.SIGN_UP_SUCCESS,
     payload
 });
 export const userSignUpFailure = (payload) => ({
-    type: signInSignUpActionTypes.SIGN_UP_FAILURE,
+    type: authActionTypes.SIGN_UP_FAILURE,
     payload
 });
 
 // Reset Link actions
 export const sendResetLinkStart = (payload) => ({
-    type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_START,
+    type: authActionTypes.SEND_PASSWORD_RESET_LINK_START,
     payload
 });
 export const sendResetLinkSuccess = (payload) => ({
-    type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS,
+    type: authActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS,
     payload
 });
 export const sendResetLinkFailure = (payload) => ({
-    type: signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_FAILURE,
+    type: authActionTypes.SEND_PASSWORD_RESET_LINK_FAILURE,
     payload
 });

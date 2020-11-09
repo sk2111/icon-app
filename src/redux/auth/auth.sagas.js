@@ -4,11 +4,8 @@ import history from '../../utilities/history';
 //firebase
 import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 //actions types
-import { signInSignUpActionTypes } from './sign-in-sign-up.type';
-import {
-    userSignUpSuccess, userSignUpFailure, userLoginFailure,
-    userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure
-} from './sign-in-sign-up.actions';
+import { authActionTypes } from './auth.type';
+import { userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure } from './auth.actions';
 //constants
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 
@@ -31,7 +28,7 @@ export function* signUpUser({ payload: { email, password, firstname, lastname } 
     }
 };
 export function* onUserSignUpStart() {
-    yield takeLatest(signInSignUpActionTypes.SIGN_UP_START, signUpUser);
+    yield takeLatest(authActionTypes.SIGN_UP_START, signUpUser);
 };
 
 // Login user
@@ -57,7 +54,7 @@ export function* loginInUser({ payload: { email, password } }) {
 };
 
 export function* onUserLoginStart() {
-    yield takeLatest(signInSignUpActionTypes.USER_LOGIN_START, loginInUser);
+    yield takeLatest(authActionTypes.USER_LOGIN_START, loginInUser);
 };
 
 // send reset Link
@@ -73,11 +70,11 @@ export function* sendResetLink({ payload: { email } }) {
     }
 };
 export function* sendRestLinkStart() {
-    yield takeLatest(signInSignUpActionTypes.SEND_PASSWORD_RESET_LINK_START, sendResetLink);
+    yield takeLatest(authActionTypes.SEND_PASSWORD_RESET_LINK_START, sendResetLink);
 };
 
 // Group all sagas
-export function* signInSignUpSagas() {
+export function* authSagas() {
     yield all([
         call(onUserSignUpStart),
         call(onUserLoginStart),

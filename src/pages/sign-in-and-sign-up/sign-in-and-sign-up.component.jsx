@@ -15,7 +15,7 @@ import { selectSignInViewHidden, selectSignUpViewHidden } from '../../redux/sign
 //constants
 import { SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
 
-const SignInAndSignUpPage = ({ isSignInViewHidden, isSignUpViewHidden, currentUser, history, match, ...otherProps }) => {
+const SignInAndSignUpPage = ({ isSignInViewHidden, isSignUpViewHidden, currentUser, history, match }) => {
     const { path } = match;
     useEffect(() => {
         if (currentUser?.uid) {

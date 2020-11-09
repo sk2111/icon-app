@@ -9,9 +9,9 @@ import styles from './sign-in-forgot-password.module.css';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 //actions
-import { sendResetLinkStart, sendResetLinkFailure, clearForgotPasswordError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { sendResetLinkStart, sendResetLinkFailure, clearForgotPasswordError } from '../../redux/auth/auth.actions';
 //reselect
-import { selectForgotPasswordErrorMessage, selectForgotPasswordViewHidden, selectWaitingForData } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+import { selectForgotPasswordErrorMessage, selectForgotPasswordViewHidden, selectWaitingForData } from '../../redux/auth/auth.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';

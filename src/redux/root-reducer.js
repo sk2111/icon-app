@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import signInSignUpReducer from './sign-in-sign-up/sign-in-sign-up.reducer';
+import authReducer from './auth/auth.reducer';
 import toastMessageReducer from './toast-message/toast-message.reducer';
 import userReducer from './user/user.reducer';
 
 const rootReducer = combineReducers({
-    userData: userReducer,
-    signInSignUp: signInSignUpReducer,
+    currentUser: userReducer,
+    auth: authReducer,
     toastMessage: toastMessageReducer
 });
 
