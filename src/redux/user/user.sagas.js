@@ -3,7 +3,7 @@ import { userActionTypes } from './user.type';
 import { getCurrentUser, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 
 //actions
-import {userLoginSucess} from '../sign-in-sign-up/sign-in-sign-up.actions';
+import {userLoginSucess} from '../auth/auth.actions';
 
 function* checkUserAuthPersist() {
     const userData = yield call(getCurrentUser);
