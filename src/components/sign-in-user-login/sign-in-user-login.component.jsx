@@ -9,15 +9,15 @@ import styles from './sign-in-user-login.module.css';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 //actions 
-import { userLoginStart, userLoginFailure, clearLoginError } from '../../redux/sign-in-sign-up/sign-in-sign-up.actions';
+import { userLoginStart, userLoginFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect
-import { selectWaitingForData, selectUserLoginErrorMessage, selectShowUserMessage } from '../../redux/sign-in-sign-up/sign-in-sign-up.selectors';
+import { selectWaitingForData, selectErrorMessage, selectUserMessage } from '../../redux/auth/auth.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 import { BASE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
 
 
-const SignInUserLogin = ({ fetching, errorMessage, showUserMessage, userLoginStart, userLoginFailure, clearLoginError }) => {
+const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, userLoginFailure, clearAuthError }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
     const { email, password } = userDetails;
@@ -36,7 +36,7 @@ const SignInUserLogin = ({ fetching, errorMessage, showUserMessage, userLoginSta
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (errorMessage) {
-            clearLoginError();
+            clearAuthError();
         }
         setUserDetails({ ...userDetails, [name]: value });
     };
@@ -52,7 +52,7 @@ const SignInUserLogin = ({ fetching, errorMessage, showUserMessage, userLoginSta
 
     return (
         <form className="mt-25 flex-col-cen" autoComplete="on" onSubmit={handleUserLoginSubmit}>
-            {showUserMessage ? <p className={styles.showUserMessage}>{showUserMessage}</p> : null}
+            {userMessage ? <p className={styles.userMessage}>{userMessage}</p> : null}
             <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
             <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
             {renderErrorMessage(errorMessage)}
@@ -72,15 +72,15 @@ const SignInUserLogin = ({ fetching, errorMessage, showUserMessage, userLoginSta
 
 const mapStateToProps = createStructuredSelector({
     fetching: selectWaitingForData,
-    showUserMessage: selectShowUserMessage,
-    errorMessage: selectUserLoginErrorMessage
+    showUserMessage: selectUserMessage,
+    errorMessage: selectErrorMessage
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         userLoginStart: (data) => dispatch(userLoginStart(data)),
         userLoginFailure: (data) => dispatch(userLoginFailure(data)),
-        clearLoginError: () => dispatch(clearLoginError())
+        clearAuthError: () => dispatch(clearAuthError())
     }
 };
 

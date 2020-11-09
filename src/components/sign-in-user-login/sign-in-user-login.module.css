@@ -30,7 +30,7 @@
   font-size: 16px;
   text-decoration: none;
 }
-.showUserMessage {
+.userMessage {
   margin-top: 0px;
   margin-bottom: 15px;
   color: var(--app-green);
