@@ -55,7 +55,7 @@ export const readUserProfileFromFireStore = async (uid) => {
         return false;
     }
     catch (e) {
-        console.log("User login failed", e);
+        console.log("Reading profile failed", e);
         throw e;
     }
 };
