@@ -27,10 +27,12 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
     const handleUserLoginSubmit = (e) => {
         e.preventDefault();
         if (!isValidMail(email)) {
-            userLoginFailure({ message: 'Please enter Soliton mail ID' });
+            userLoginFailure('Please enter Soliton mail ID');
             return;
         }
-        userLoginStart({ email, password });
+        if (password) {
+            userLoginStart({ email, password });
+        }
     };
 
     const handleInputChange = (e) => {
@@ -72,7 +74,7 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
 
 const mapStateToProps = createStructuredSelector({
     fetching: selectWaitingForData,
-    showUserMessage: selectUserMessage,
+    userMessage: selectUserMessage,
     errorMessage: selectErrorMessage
 });
 

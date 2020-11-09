@@ -35,7 +35,7 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
     const handleForgotPasswordSubmit = (e) => {
         e.preventDefault();
         if (!isValidMail(resetDetails.email)) {
-            sendResetLinkFailure({ message: 'Please enter Soliton mail ID' });
+            sendResetLinkFailure('Please enter Soliton mail ID');
             return;
         }
         sendResetLinkStart({ email: resetDetails.email });

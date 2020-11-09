@@ -33,15 +33,15 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
     const handleSignUpNewUser = (event) => {
         event.preventDefault();
         const passwordMatch = (password === confirmPassword);
-        if (passwordMatch && isValidMail(email)) {
+        if (passwordMatch && isValidMail(email) && firstname && lastname) {
             userSignUpStart({ firstname, lastname, email, password });
             return;
         }
         if (!passwordMatch) {
-            userSignUpFailure({ message: 'Password & Confirm password don\'t match' });
+            userSignUpFailure('Password & Confirm password don\'t match');
             return;
         }
-        userSignUpFailure({ message: 'Please enter a valid Soliton mail address' });
+        userSignUpFailure('Please enter a valid Soliton mail address');
     }
     const handleInputChange = (e) => {
         const { value, name } = e.target;
