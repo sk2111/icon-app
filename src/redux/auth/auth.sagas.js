@@ -6,6 +6,7 @@ import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from
 //actions types
 import { authActionTypes } from './auth.type';
 import { userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure } from './auth.actions';
+import { userAuthSuccess } from '../user/user.actions';
 //Route constants
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 
@@ -35,10 +36,10 @@ export function* loginInUser({ payload: { email, password } }) {
     try {
         const { user } = yield auth.signInWithEmailAndPassword(email, password);
         if (user.emailVerified) {
-            const returnData = yield call(readUserProfileFromFireStore, user.uid);
-            if (returnData) {
-                // TODO : Check how this line behaves
-                yield put(userLoginSucess(returnData));
+            const userData = yield call(readUserProfileFromFireStore, user.uid);
+            if (userData) {
+                yield put(userLoginSucess('User login Success'));
+                yield put(userAuthSuccess(userData));
                 return;
             }
             yield put(userLoginFailure('User Profile not found'));
