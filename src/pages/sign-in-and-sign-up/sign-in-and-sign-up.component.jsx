@@ -10,33 +10,40 @@ import SignInForgotPassword from '../../components/sign-in-forgot-password/sign-
 import SignUp from '../../components/sign-up/sign-up.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
 //constants
-import { SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
+import { SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, HOME_PATH } from '../../utilities/route.paths';
 
 const SignInAndSignUpPage = ({ currentUser, history, match }) => {
     const { path } = match;
     useEffect(() => {
         if (currentUser?.uid) {
-            //history.push('/');
+            history.push(HOME_PATH);
         }
     });
-
+    const renderHelper = (currentUser) => {
+        if (currentUser?.uid) { return null; }
+        return (
+            <div className={`${styles.pageContainer} flex-row`}>
+                <section className={`${styles.leftContainer} perfect-cen`}>
+                    <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" />
+                </section>
+                <section className={`${styles.rightContainer}`}>
+                    <div className={styles.rightContent}>
+                        <LoginHeader />
+                        <Switch>
+                            <Route exact path={`${path}${SIGN_IN_PAGE_PATH}`} component={SignInUserLogin} />
+                            <Route exact path={`${path}${FORGOT_PASSWORD_PAGE_PATH}`} component={SignInForgotPassword} />
+                            <Route exact path={`${path}${SIGN_UP_PAGE_PATH}`} component={SignUp} />
+                            <Route component={RouteNotFound}></Route>
+                        </Switch>
+                    </div>
+                </section>
+            </div>
+        )
+    }
     return (
-        <div className={`${styles.pageContainer} flex-row`}>
-            <section className={`${styles.leftContainer} perfect-cen`}>
-                <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" />
-            </section>
-            <section className={`${styles.rightContainer}`}>
-                <div className={styles.rightContent}>
-                    <LoginHeader />
-                    <Switch>
-                    <Route exact path={`${path}${SIGN_IN_PAGE_PATH}`} component={SignInUserLogin} />
-                    <Route exact path={`${path}${FORGOT_PASSWORD_PAGE_PATH}`} component={SignInForgotPassword} />
-                    <Route exact path={`${path}${SIGN_UP_PAGE_PATH}`} component={SignUp} />
-                    <Route component={RouteNotFound}></Route>
-                    </Switch>
-                </div>
-            </section>
-        </div>
+        <React.Fragment>
+            { renderHelper(currentUser)}
+        </React.Fragment>
     );
 };
 
