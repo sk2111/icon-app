@@ -12,6 +12,8 @@ import CustomButton from '../custom-button/custom-button.component';
 import { userLoginStart, userLoginFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect
 import { selectWaitingForData, selectErrorMessage, selectUserMessage } from '../../redux/auth/auth.selectors';
+//constants
+import { USER_LOGIN_INVALID_ERROR_MAIL_MESSAGE } from '../../utilities/auth.messages';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 import { BASE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
@@ -27,7 +29,7 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
     const handleUserLoginSubmit = (e) => {
         e.preventDefault();
         if (!isValidMail(email)) {
-            userLoginFailure('Please enter Soliton mail ID');
+            userLoginFailure(USER_LOGIN_INVALID_ERROR_MAIL_MESSAGE);
             return;
         }
         if (password) {

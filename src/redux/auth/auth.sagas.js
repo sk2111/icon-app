@@ -11,7 +11,12 @@ import { userAuthSuccess } from '../user/user.actions';
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 import { isValidMail } from '../../utilities/validator.utils';
 //constants
-import { SIGN_UP_SUCCESS_MESSAGE, SIGN_UP_INVALID_ERROR_MAIL_MESSAGE } from '../../utilities/auth.messages';
+import {
+    SIGN_UP_SUCCESS_MESSAGE, SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, RESET_LINK_SUCCESS_MESSAGE,
+    USER_LOGIN_SUCCESS_MESSAGE, USER_LOGIN_PROFILE_ERROR_MESSAGE, USER_LOGIN_VERIFY_ERROR_MESSAGE
+} from '../../utilities/auth.messages';
+
+
 // Sign up user saga
 export function* signUpUser({ payload: { email, password, firstname, lastname } }) {
     try {
@@ -43,14 +48,14 @@ export function* loginInUser({ payload: { email, password } }) {
         if (user.emailVerified) {
             const userData = yield call(readUserProfileFromFireStore, user.uid);
             if (userData) {
-                yield put(userLoginSucess('User login Success'));
+                yield put(userLoginSucess(USER_LOGIN_SUCCESS_MESSAGE));
                 yield put(userAuthSuccess(userData));
                 return;
             }
-            yield put(userLoginFailure('User Profile not found'));
+            yield put(userLoginFailure(USER_LOGIN_PROFILE_ERROR_MESSAGE));
             return;
         }
-        yield put(userLoginFailure('Please verify your Soliton mail ID before login'));
+        yield put(userLoginFailure(USER_LOGIN_VERIFY_ERROR_MESSAGE));
     }
     catch (e) {
         console.log(e);
@@ -66,7 +71,7 @@ export function* onUserLoginStart() {
 export function* sendResetLink({ payload: { email } }) {
     try {
         yield auth.sendPasswordResetEmail(email);
-        yield put(sendResetLinkSuccess('Password reset link successfully sent to your mail'));
+        yield put(sendResetLinkSuccess(RESET_LINK_SUCCESS_MESSAGE));
         history.push(BASE_PATH + SIGN_IN_PAGE_PATH);
     }
     catch (e) {
