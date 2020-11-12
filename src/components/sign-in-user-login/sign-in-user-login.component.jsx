@@ -61,7 +61,7 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
             <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
             {renderErrorMessage(errorMessage)}
             <div className={`${styles.forgotLabel} flex-jus-end mt-15`}>
-                <Link to={`${BASE_PATH}${FORGOT_PASSWORD_PAGE_PATH}`} className={styles.actionLabel}>Forgot your password?</Link>
+                <Link to={`${BASE_PATH}${FORGOT_PASSWORD_PAGE_PATH}`} className={styles.actionLabel} onClick={clearAuthError}>Forgot your password?</Link>
             </div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
                 <CustomButton type="submit" loading={fetching}>Sign In</CustomButton>
