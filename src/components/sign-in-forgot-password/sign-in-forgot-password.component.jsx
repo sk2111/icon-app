@@ -12,6 +12,8 @@ import CustomButton from '../../components/custom-button/custom-button.component
 import { sendResetLinkStart, sendResetLinkFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect
 import { selectWaitingForData, selectErrorMessage } from '../../redux/auth/auth.selectors';
+//constants
+import { FORGOT_PASSWORD_INVALID_ERROR_MAIL_MESSAGE } from '../../utilities/auth.messages';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
@@ -35,7 +37,7 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
     const handleForgotPasswordSubmit = (e) => {
         e.preventDefault();
         if (!isValidMail(resetDetails.email)) {
-            sendResetLinkFailure('Please enter Soliton mail ID');
+            sendResetLinkFailure(FORGOT_PASSWORD_INVALID_ERROR_MAIL_MESSAGE);
             return;
         }
         sendResetLinkStart({ email: resetDetails.email });
