@@ -32,6 +32,12 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
     const passwordType = passwordView ? 'password' : 'text';
     const confirmPasswordType = confirmPasswordView ? 'password' : 'text';
 
+    const clearAuthErrorMessage = () => {
+        if (errorMessage) {
+            clearAuthError();
+        }
+    };
+
     const handleSignUpNewUser = (event) => {
         event.preventDefault();
         const passwordMatch = (password === confirmPassword);
@@ -49,9 +55,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
     }
     const handleInputChange = (e) => {
         const { value, name } = e.target;
-        if (errorMessage) {
-            clearAuthError();
-        }
+        clearAuthErrorMessage();
         setUserDetails({ ...userDetails, [name]: value });
     }
     const handleViewPassword = (e) => {
@@ -92,7 +96,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
                 </div>
                 <div className="flex-row perfect-cen mt-33">
                     <div className={styles.signinLabel}>Don't have an account?</div>
-                    <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signinLink} onClick={clearAuthError}>Sign in</Link>
+                    <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signinLink} onClick={clearAuthErrorMessage}>Sign in</Link>
                 </div>
             </form>
         </div>
