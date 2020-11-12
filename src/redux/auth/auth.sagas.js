@@ -9,16 +9,21 @@ import { userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess
 import { userAuthSuccess } from '../user/user.actions';
 //Route constants
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
-
+import { isValidMail } from '../../utilities/validator.utils';
+//constants
+import { SIGN_UP_SUCCESS_MESSAGE, SIGN_UP_INVALID_ERROR_MAIL_MESSAGE } from '../../utilities/auth.messages';
 // Sign up user saga
 export function* signUpUser({ payload: { email, password, firstname, lastname } }) {
     try {
+        if (!isValidMail(email)) {
+            throw new Error(SIGN_UP_INVALID_ERROR_MAIL_MESSAGE);
+        }
         const { additionalUserInfo, user } = yield auth.createUserWithEmailAndPassword(email, password);
         const { uid } = user;
         if (additionalUserInfo.isNewUser) {
             yield call(createUserProfileInFirestore, { uid, email, firstname, lastname });
             yield user.sendEmailVerification();
-            yield put(userSignUpSuccess('Signup success.Please verify your mail to signIn'));
+            yield put(userSignUpSuccess(SIGN_UP_SUCCESS_MESSAGE));
             history.push(BASE_PATH + SIGN_IN_PAGE_PATH);
         }
     }

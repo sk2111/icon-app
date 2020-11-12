@@ -15,6 +15,8 @@ import { selectWaitingForData, selectErrorMessage } from '../../redux/auth/auth.
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
 import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
+//constants
+import { SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, SIGN_UP_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities/auth.messages';
 //static
 import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
 import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
@@ -34,10 +36,11 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
         event.preventDefault();
         const passwordMatch = (password === confirmPassword);
         if (!isValidMail(email)) {
-            userSignUpFailure('Please enter a valid Soliton mail address');
+            userSignUpFailure(SIGN_UP_INVALID_ERROR_MAIL_MESSAGE);
+            return;
         }
         if (!passwordMatch) {
-            userSignUpFailure('Password & Confirm password don\'t match');
+            userSignUpFailure(SIGN_UP_PASSWORD_NOT_MATCH_MESSAGE);
             return;
         }
         if (firstname && lastname) {
