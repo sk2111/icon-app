@@ -5,6 +5,7 @@ import { getCurrentUser, readUserProfileFromFireStore } from '../../firebase/fir
 //actions
 import { userAuthSuccess, userPersistanceCheckCompleted } from './user.actions';
 
+//persistance check sagas
 function* checkUserAuthPersist() {
     const userData = yield call(getCurrentUser);
     if (userData?.emailVerified) {
