@@ -6,10 +6,10 @@ import { ReactComponent as LoadingSpinner } from '../../assests/loading-for-btn.
 const CustomButton = ({ className, setStyle, children, loading, ...otherProps }) => {
     return (
         <div className={styles.btnContainer}>
-            <button styles={setStyle} className={`${className ? styles[className] : styles.button}`} {...otherProps}>{children}</button>
+            <button style={setStyle} className={`${className ? styles[className] : styles.button}`} {...otherProps}>{children}</button>
             {loading ? <LoadingSpinner className={styles.loading} /> : null}
         </div>
     );
-}
+};
 
 export default CustomButton;

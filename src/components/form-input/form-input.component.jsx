@@ -9,6 +9,6 @@ const FormInput = ({ rootClass, inpClass, handleInputChange, label, ...otherProp
             <input className={inputClass} {...otherProps} onChange={handleInputChange} />
         </div>
     );
-}
+};
 
-export default FormInput
+export default FormInput;

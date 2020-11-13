@@ -62,8 +62,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
 
     const handleViewHidePassword = (e) => {
         const name = e.currentTarget.getAttribute("name");
-        const value = !passwordViews[name];
-        setPasswordViews({ ...passwordViews, [name]: value });
+        setPasswordViews({ ...passwordViews, [name]: !passwordViews[name] });
     };
 
     const renderViewOrHideSvg = (toHideValue, type) => {
@@ -75,19 +74,19 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
     return (
         <div className={`flex-col align-cen`}>
             <form autoComplete="on" onSubmit={handleSignUpNewUser}>
-                <div className="flex-row align-cen">
+                <div className="flex-row-acen">
                     <FormInput rootClass="mt-36" inpClass="shortWidth" name="firstname" value={firstname} label="First Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
                     <FormInput rootClass="ml-24 mt-36" inpClass="shortWidth" name="lastname" value={lastname} label="Last Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
                 </div>
-                <div className="flex-row align-cen">
+                <div className="flex-row-acen">
                     <FormInput rootClass="mt-22" inpClass="emailWidth" name="email" value={email} label="Soliton mail address" type="email" required autoComplete="on" handleInputChange={handleInputChange} />
                 </div>
-                <div className="flex-row align-cen">
-                    <div className="flex-row align-cen pos-rel">
+                <div className="flex-row-acen">
+                    <div className="flex-row-acen pos-rel">
                         <FormInput rootClass="mt-22" inpClass="shortWidth" name="password" value={password} label="Password" type={passwordType} required autoComplete="on" handleInputChange={handleInputChange} />
                         {renderViewOrHideSvg(passwordView, 'passwordView')}
                     </div>
-                    <div className="flex-row align-cen pos-rel">
+                    <div className="flex-row-acen pos-rel">
                         <FormInput rootClass="ml-24 mt-22" inpClass="shortWidth" name="confirmPassword" value={confirmPassword} label="Confirm Password" type={confirmPasswordType} required autoComplete="on" handleInputChange={handleInputChange} />
                         {renderViewOrHideSvg(confirmPasswordView, 'confirmPasswordView')}
                     </div>

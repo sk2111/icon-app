@@ -14,11 +14,13 @@ import { SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, HOME_P
 
 const SignInAndSignUpPage = ({ currentUser, history, match }) => {
     const { path } = match;
+
     useEffect(() => {
         if (currentUser?.uid) {
             history.push(HOME_PATH);
         }
     });
+    
     const renderHelper = (currentUser) => {
         if (currentUser?.uid) { return null; }
         return (
@@ -39,7 +41,8 @@ const SignInAndSignUpPage = ({ currentUser, history, match }) => {
                 </section>
             </div>
         )
-    }
+    };
+
     return (
         <React.Fragment>
             { renderHelper(currentUser)}

@@ -73,6 +73,6 @@ const mapDispatchToProps = (dispatch) => {
         sendResetLinkFailure: (data) => dispatch(sendResetLinkFailure(data)),
         clearAuthError: () => dispatch(clearAuthError())
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInForgotPassword);
