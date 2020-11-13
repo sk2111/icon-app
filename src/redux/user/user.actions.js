@@ -12,3 +12,9 @@ export const checkUserPersistance = () => {
         type: userActionTypes.CHECK_USER_PERSISTANCE
     }
 };
+
+export const userPersistanceCheckCompleted = () => {
+    return {
+        type: userActionTypes.CHECK_USER_PERSISTANCE_COMPLETED
+    }
+};
