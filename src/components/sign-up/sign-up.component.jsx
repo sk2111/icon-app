@@ -52,17 +52,26 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
         if (firstname && lastname) {
             userSignUpStart({ firstname, lastname, email, password });
         }
-    }
+    };
+
     const handleInputChange = (e) => {
         const { value, name } = e.target;
         clearAuthErrorMessage();
         setUserDetails({ ...userDetails, [name]: value });
-    }
-    const handleViewPassword = (e) => {
+    };
+
+    const handleViewHidePassword = (e) => {
         const name = e.currentTarget.getAttribute("name");
         const value = !passwordViews[name];
         setPasswordViews({ ...passwordViews, [name]: value });
-    }
+    };
+
+    const renderViewOrHideSvg = (toHideValue, type) => {
+        return (toHideValue ?
+            <HideSvg name={type} className={styles.passwordSvg} onClick={handleViewHidePassword} /> :
+            <ShowSvg name={type} className={styles.passwordSvg} onClick={handleViewHidePassword} />)
+    };
+
     return (
         <div className={`flex-col align-cen`}>
             <form autoComplete="on" onSubmit={handleSignUpNewUser}>
@@ -70,22 +79,17 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
                     <FormInput rootClass="mt-36" inpClass="shortWidth" name="firstname" value={firstname} label="First Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
                     <FormInput rootClass="ml-24 mt-36" inpClass="shortWidth" name="lastname" value={lastname} label="Last Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
                 </div>
-                <FormInput rootClass="mt-22" inpClass="emailWidth" name="email" value={email} label="Soliton mail address" type="email" required autoComplete="on" handleInputChange={handleInputChange} />
+                <div className="flex-row align-cen">
+                    <FormInput rootClass="mt-22" inpClass="emailWidth" name="email" value={email} label="Soliton mail address" type="email" required autoComplete="on" handleInputChange={handleInputChange} />
+                </div>
                 <div className="flex-row align-cen">
                     <div className="flex-row align-cen pos-rel">
                         <FormInput rootClass="mt-22" inpClass="shortWidth" name="password" value={password} label="Password" type={passwordType} required autoComplete="on" handleInputChange={handleInputChange} />
-                        {
-                            passwordView ?
-                                <HideSvg name="passwordView" className={styles.passwordSvg} onClick={handleViewPassword} /> :
-                                <ShowSvg name="passwordView" className={styles.passwordSvg} onClick={handleViewPassword} />
-                        }
+                        {renderViewOrHideSvg(passwordView, 'passwordView')}
                     </div>
                     <div className="flex-row align-cen pos-rel">
                         <FormInput rootClass="ml-24 mt-22" inpClass="shortWidth" name="confirmPassword" value={confirmPassword} label="Confirm Password" type={confirmPasswordType} required autoComplete="on" handleInputChange={handleInputChange} />
-                        {confirmPasswordView ?
-                            <HideSvg name="confirmPasswordView" className={styles.passwordSvg} onClick={handleViewPassword} /> :
-                            <ShowSvg name="confirmPasswordView" className={styles.passwordSvg} onClick={handleViewPassword} />
-                        }
+                        {renderViewOrHideSvg(confirmPasswordView, 'confirmPasswordView')}
                     </div>
                 </div>
                 <div className={`${styles.errorContainer} perfect-cen`}>
