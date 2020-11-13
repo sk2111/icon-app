@@ -18,8 +18,8 @@ import { BASE_PATH, HOME_PATH } from './utilities/route.paths';
 const App = ({ currentUser, checkUserPersistance }) => {
 
   useEffect(() => {
-    // checkUserPersistance();
-  }, []);
+    checkUserPersistance();
+  }, [checkUserPersistance]);
 
   return (
     <React.Fragment>
