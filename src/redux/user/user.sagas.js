@@ -1,17 +1,18 @@
-import { takeLatest, all, call, put } from 'redux-saga/effects';
+import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
 import { userActionTypes } from './user.type';
 import { getCurrentUser, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 
 //actions
-import {userAuthSuccess} from './user.actions';
+import { userAuthSuccess, userPersistanceCheckCompleted } from './user.actions';
 
 function* checkUserAuthPersist() {
     const userData = yield call(getCurrentUser);
     if (userData?.emailVerified) {
         const returnData = yield call(readUserProfileFromFireStore, userData.uid);
         yield put(userAuthSuccess(returnData));
-        return;
     }
+    yield delay(1000);
+    yield put(userPersistanceCheckCompleted());
 };
 
 function* onCheckUserPersistanceStart() {
