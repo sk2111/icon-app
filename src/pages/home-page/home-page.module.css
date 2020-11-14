@@ -1,0 +1,24 @@
+.rootContainer{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    flex-direction: row;
+}
+.leftContainer{
+    width:200px;
+    height:100%;
+    background-color: #173895;
+}
+.rightContainer{
+    width:inherit;
+    height:100%;
+}
+.rightHeader{
+    height:54px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 2px 3px 0 #E6E8ED;
+}
+.rightContent{
+    height: calc(100% - 54px);
+    background-color: grey;
+}
