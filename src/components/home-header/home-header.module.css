@@ -1,0 +1,16 @@
+.headerContainer{
+    height:100%;
+    width:100%;
+    padding: 12px 8px 12px 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.headerLeftSec{
+    width:52%;
+    background-color: lavender;
+}
+.headerRightSec{
+    width:32%;
+    background-color: lawngreen;
+}
