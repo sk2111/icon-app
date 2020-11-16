@@ -30,7 +30,7 @@
   align-items: center;
   position: relative;
 }
-.searchLogo {
+.SearchLens {
   height: 16px;
   width: 16px;
   position: absolute;
@@ -47,6 +47,7 @@
   margin-top: 4px;
   overflow-y: scroll;
   transition: height 0.4s;
+  z-index: 1;
 }
 .searchItem {
   cursor: pointer;

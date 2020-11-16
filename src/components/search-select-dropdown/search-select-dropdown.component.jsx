@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 //css
 import styles from './search-select-dropdown.module.css';
 //static
-import { ReactComponent as SearchLogo } from '../../assests/searchLogo.svg';
+import { ReactComponent as SearchLens } from '../../assests/searchLogo.svg';
+//constants
+import { ENTER_KEYNAME } from './search-select-dropdown.constants';
 
 const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -12,10 +14,15 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
     const filteredList = searchList.filter((item) => item.includes(searchTerm));
     const searchListStyle = (listHidden || !filteredList.length) ? { height: '0px' } : {};
 
-    console.log("the output", searchTerm, listHidden);
+    const handleInputKeyPress = (e) => {
+        if (e.key === ENTER_KEYNAME) {
+            e.target.blur();
+            setListHidden(true);
+        }
+    };
+
     const handleListSelect = (listVal) => {
         setListHidden(true);
-        console.log("My value", listVal);
         setSearchTerm(listVal);
     };
 
@@ -23,14 +30,23 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
         <div className={className}>
             <div className={styles.searchSelectContainer}>
                 <div className={styles.inputLogoContainer}>
-                    <input className={styles.searchInput} value={searchTerm} type="text" placeholder={placeholder}
-                        onClick={() => setListHidden(false)} onChange={(e) => setSearchTerm(e.target.value)} />
-                    <SearchLogo className={styles.searchLogo} />
+                    <input
+                        className={styles.searchInput}
+                        value={searchTerm}
+                        type="text"
+                        placeholder={placeholder}
+                        onFocus={() => setListHidden(false)}
+                        onBlur={() => setListHidden(true)}
+                        onKeyPress={handleInputKeyPress}
+                        onClick={() => setListHidden(false)}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <SearchLens className={styles.SearchLens} />
                 </div>
                 <div style={searchListStyle} className={styles.searchListContainer}>
                     {filteredList.map(
                         (listVal) => <p key={listVal} className={styles.searchItem}
-                            onClick={() => handleListSelect(listVal)}>{listVal}</p>
+                            onMouseDown={() => handleListSelect(listVal)}>{listVal}</p>
                     )}
                 </div>
             </div>
@@ -40,7 +56,7 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
 
 SearchSelectDropdown.defaultProps = {
     searchList: ['testerr', 'poda', 'sampler', 'variation', 'algo',
-        'ennamo', 'nothing', 'new', 'testerr2', 'new2']
+        'ennamo', 'nothing', 'new', 'testerr2', 'object']
 };
 
 export default SearchSelectDropdown;
