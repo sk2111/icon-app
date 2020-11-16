@@ -11,8 +11,8 @@
   font-size: 14px;
   font-weight: 500;
   height: 40px;
-  position: relative;
   outline: none;
+  position: relative;
   top: 0px;
   transition: top 0.1s;
   user-select: none;

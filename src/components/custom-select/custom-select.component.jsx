@@ -15,8 +15,8 @@ const CustomSelect = ({ options }) => {
                 <span className={styles.selectedValue}>{selectValue}</span>
                 <div style={containerStyle} className={styles.optionsCon}>
                     {options.map((option) =>
-                        <p className={styles.option} onClick={() => { setSelectValue(option) }}>{option}</p>)
-                    }
+                        <p className={styles.option} onClick={() => { setSelectValue(option) }}>{option}</p>
+                    )}
                 </div>
             </div>
         </React.Fragment>
