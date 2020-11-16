@@ -1,21 +1,21 @@
 .headerContainer {
-  height: 100%;
-  width: 100%;
-  padding: 12px 8px 12px 8px;
   display: flex;
   flex-direction: row;
+  height: 100%;
   justify-content: space-between;
+  padding: 12px 8px 12px 8px;
+  width: 100%;
 }
 .headerLeftSec {
-  width: 52%;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  width: 52%;
 }
 .userSearch {
   margin-left: 20px;
 }
 .headerRightSec {
-  width: 32%;
   background-color: lawngreen;
+  width: 32%;
 }
