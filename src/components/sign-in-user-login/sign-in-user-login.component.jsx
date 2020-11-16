@@ -62,7 +62,7 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
         <form className="mt-25 flex-col-cen" autoComplete="on" onSubmit={handleUserLoginSubmit}>
             {userMessage ? <p className={styles.userMessage}>{userMessage}</p> : null}
             <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
-            <FormInput rootClass="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
+            <FormInput className="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
             {renderErrorMessage(errorMessage)}
             <div className={`${styles.forgotLabel} flex-jus-end mt-15`}>
                 <Link to={`${BASE_PATH}${FORGOT_PASSWORD_PAGE_PATH}`} className={styles.actionLabel} onClick={clearAuthErrorMessage}>Forgot your password?</Link>

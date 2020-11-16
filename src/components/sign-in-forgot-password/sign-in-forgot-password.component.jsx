@@ -51,7 +51,7 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
         <form className={styles.container} autoComplete="on" onSubmit={handleForgotPasswordSubmit}>
             <h3 className={styles.header}>Forgot password</h3>
             <p className={styles.message}>Enter the Soliton mail address associated with your account to get a reset link.</p>
-            <FormInput rootClass="mt-25" name="email" label="Soliton mail address" type="email" value={resetDetails.email} required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
+            <FormInput className="mt-25" name="email" label="Soliton mail address" type="email" value={resetDetails.email} required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
             {errorMessage ? <p className={styles.errorMessage}>{errorMessage}</p> : null}
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
                 <CustomButton loading={fetching} type="submit">Send Reset Link</CustomButton>
