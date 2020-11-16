@@ -1,0 +1,39 @@
+.dropLabel {
+  color: var(--app-form-label);
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 40px;
+  margin-right: 16px;
+}
+.dropdown {
+  height: 30px;
+  width: 158px;
+  border: 0px;
+  border-radius: 3px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #707071;
+  font-family: Roboto;
+  font-size: 14px;
+  position: relative;
+}
+.selectedValue {
+  display: inline-block;
+  margin: 7px 0px 8px 16px;
+}
+.optionsCon {
+  max-height: 200px;
+  overflow-y: scroll;
+  background-color: white;
+  width: 100%;
+  transition: height 0.4s;
+  position: absolute;
+}
+.option {
+  padding-left: 16px;
+}
+.option:hover {
+  background-color: lightblue;
+  color: white;
+}
