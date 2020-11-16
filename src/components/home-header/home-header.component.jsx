@@ -14,6 +14,21 @@ const HomeHeader = () => {
             <div className={styles.headerLeftSec}>
                 <HamSvg></HamSvg>
                 <SearchSelectDropdown className="ml-24" placeholder="Search for your favourite icon" />
+                <span className={styles.dropLabel}>Categories</span>
+                <select className={styles.dropdown}>
+                    <option>All</option>
+                    <option>Home</option>
+                    <option>Human</option>
+                    <option>Arrows</option>
+                    <option>All</option>
+                    <option>Home</option>
+                    <option>Human</option>
+                    <option>Arrows</option>
+                    <option>All</option>
+                    <option>Home</option>
+                    <option>Human</option>
+                    <option>Arrows</option>
+                </select>
             </div>
             <div className={styles.headerRightSec}>
 

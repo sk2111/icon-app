@@ -11,7 +11,7 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [listHidden, setListHidden] = useState(true);
 
-    const filteredList = searchList.filter((item) => item.includes(searchTerm));
+    const filteredList = searchList.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()));
     const searchListStyle = (listHidden || !filteredList.length) ? { height: '0px' } : {};
 
     const handleInputKeyPress = (e) => {
@@ -55,8 +55,8 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
 };
 
 SearchSelectDropdown.defaultProps = {
-    searchList: ['testerr', 'poda', 'sampler', 'variation', 'algo',
-        'ennamo', 'nothing', 'new', 'testerr2', 'object']
+    searchList: ['testerr', 'sampler', 'variation', 'algo',
+        'home', 'nothing', 'new', 'testerr2', 'object']
 };
 
 export default SearchSelectDropdown;

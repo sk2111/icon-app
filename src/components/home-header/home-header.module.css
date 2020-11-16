@@ -19,3 +19,24 @@
   width: 32%;
   background-color: lawngreen;
 }
+.dropLabel{
+  color: var(--app-form-label);
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left:40px;
+  margin-right:16px;
+}
+.dropdown {
+  height: 30px;
+  width: 158px;
+  border:0px;
+  border-radius: 3px;
+  padding:0 16px;
+  outline:none;
+  background-color: #F3F3F4;
+  color: #707071;
+  font-family: Roboto;
+  font-size: 14px;
+  cursor:pointer;
+}

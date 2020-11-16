@@ -40,9 +40,9 @@
   position: relative;
 }
 .searchListContainer {
-  height: 250px;
+  max-height: 250px;
   width: 100%;
-  background-color: yellow;
+  background-color: white;
   position: absolute;
   margin-top: 4px;
   overflow-y: scroll;
