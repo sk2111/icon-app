@@ -3,21 +3,21 @@
   width: 100vw;
 }
 .leftContainer {
-  width: 50vw;
-  height: 100vh;
   background-color: #f3f3f4;
+  height: 100vh;
+  width: 50vw;
 }
 .illustration {
   width: 80%;
 }
 .rightContainer {
-  width: 50vw;
   height: 100vh;
   padding: 20px;
+  width: 50vw;
 }
 .rightContent {
-  width: 80%;
   height: 500px;
   margin: auto;
   margin-top:66px;
+  width: 80%;
 }

@@ -1,23 +1,23 @@
 .toastbar {
-  visibility: hidden;
-  min-width: 250px;
-  margin-left: -125px;
   background-color: rgba(0, 0, 0, 0.8);
+  bottom: 30px;
   border-radius: 4px;
   color: #fff;
-  text-align: center;
+  left: 50%;
+  min-width: 250px;
+  margin-left: -125px;
   padding: 16px;
   position: fixed;
-  z-index: 10;
-  left: 50%;
-  bottom: 30px;
+  text-align: center;
   user-select: none;
+  visibility: hidden;
+  z-index: 10;
 }
 
 .showToastbar {
+  animation: fadein 0.25s linear;
   visibility: visible;
   -webkit-animation: fadein 0.25s linear;
-  animation: fadein 0.25s linear;
 }
 .round {
   margin-right: 15px;

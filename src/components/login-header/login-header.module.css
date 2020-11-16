@@ -1,7 +1,7 @@
 .loginContainer {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 .logo {
   height: 35px;
@@ -15,6 +15,6 @@
 .lineBreak {
   border-top: 1px solid #e2e2ec;
   height: 1px;
-  width: var(--app-form-width);
   margin-bottom: 2px;
+  width: var(--app-form-width);
 }

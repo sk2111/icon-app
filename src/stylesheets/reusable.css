@@ -4,9 +4,9 @@
   flex-direction: row;
 }
 .flex-row-acen{
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
 }
 .flex-jus-end {
   display: flex;
@@ -17,9 +17,9 @@
   flex-direction: column;
 }
 .flex-col-cen {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 .align-cen {
   align-items: center;
@@ -28,8 +28,8 @@
   justify-content: center;
 }
 .perfect-cen {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }
 .m-pointer {

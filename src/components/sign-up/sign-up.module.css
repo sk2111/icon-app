@@ -1,8 +1,8 @@
 .buttonCon {
-  margin-top: 40px;
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
+  margin-top: 40px;
 }
 .signinLabel {
   color: var(--app-form-label);
@@ -10,27 +10,27 @@
 }
 .signinLink {
   color: var(--app-green);
-  margin-left: 5px;
-  font-weight: 500;
   font-size: 16px;
+  font-weight: 500;
+  margin-left: 5px;
   text-decoration: none;
   outline:none;
 }
 .passwordSvg {
+  bottom: 21px;
+  cursor: pointer;
   position: absolute;
   right: 12px;
-  bottom: 21px;
   z-index: 2;
-  cursor: pointer;
 }
 .errorContainer {
-  margin-top: 28px;
   margin-bottom: 10px;
+  margin-top: 28px;
   width: 100%;
 }
 .errorText {
-  max-width: 370px;
-  line-height: 19px;
   color: var(--app-error-message);
   font-size: 14px;
+  line-height: 19px;
+  max-width: 370px;
 }

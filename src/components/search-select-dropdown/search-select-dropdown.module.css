@@ -2,51 +2,51 @@
   background-color: #f3f3f4;
   border: 0px;
   border-radius: 18.5px;
+  color: var(--app-text);
+  font-size: 14px;
   height: 30px;
   padding: 6px 16px 6px 16px;
   width: 330px;
-  color: #707071;
-  font-size: 14px;
 }
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #dbdbdc;
+  color: var(--app-search-select-label);
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #dbdbdc;
+  color: var(--app-search-select-label);
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #dbdbdc;
+  color: var(--app-search-select-label);
 }
 .inputLogoContainer {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   position: relative;
 }
 .SearchLens {
   height: 16px;
-  width: 16px;
   position: absolute;
   right: 18px;
+  width: 16px;
 }
 .searchSelectContainer {
   position: relative;
 }
 .searchListContainer {
-  max-height: 250px;
-  width: 100%;
-  background-color: white;
-  position: absolute;
+  background-color: var(--app-pure-white);
   margin-top: 4px;
+  max-height: 250px;
   overflow-y: scroll;
+  position: absolute;
   transition: height 0.4s;
+  width: 100%;
   z-index: 1;
 }
 .searchItem {
