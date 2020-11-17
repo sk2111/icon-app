@@ -9,3 +9,6 @@ export const USER_LOGIN_PROFILE_ERROR_MESSAGE = 'User Profile not found';
 //reset link success
 export const RESET_LINK_SUCCESS_MESSAGE = 'Password reset link successfully sent to your mail';
 export const FORGOT_PASSWORD_INVALID_ERROR_MAIL_MESSAGE = 'Please enter a valid Soliton mail address';
+//signout message
+export const SIGN_OUT_SUCCESS_MESSAGE = 'Signout successful';
+export const SIGN_OUT_FAILURE_MESSAGE = 'Signout failed . Please try again';
