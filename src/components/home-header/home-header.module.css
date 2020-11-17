@@ -16,6 +16,9 @@
   margin-left: 20px;
 }
 .headerRightSec {
-  background-color: lawngreen;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   width: 32%;
 }
