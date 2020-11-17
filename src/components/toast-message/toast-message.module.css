@@ -2,7 +2,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   bottom: 30px;
   border-radius: 4px;
-  color: #fff;
+  color:var(--app-pure-white);
   left: 50%;
   min-width: 250px;
   margin-left: -125px;

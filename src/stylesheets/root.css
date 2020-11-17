@@ -5,8 +5,11 @@
   --app-text: #707071;
   --app-input-background: #f3f3f4;
   --app-error-message: #f34469;
-  --app-pure-white:#white;
-  --app-search-select-label:#dbdbdc;
+  --app-pure-white: white;
+  --app-search-select-label: #dbdbdc;
+  --app-linebreak-border: #e2e2ec;
+  --app-soliton-blue: #173895;
+  --app-pure-white-shadow: #e6e8ed;
   /* width */
   --app-form-width: 320px;
   --app-form-width-short: 228px;

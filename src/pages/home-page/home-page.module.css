@@ -1,24 +1,24 @@
-.rootContainer{
-    display: flex;
-    flex-direction: row;
-    height:100vh;
-    width:100vw;
+.rootContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
 }
-.leftContainer{
-    background-color: #173895;
-    height:100%;
-    width:250px;
+.leftContainer {
+  background-color: var(--app-soliton-blue);
+  height: 100%;
+  width: 250px;
 }
-.rightContainer{
-    height:100%;
-    width:inherit;
+.rightContainer {
+  height: 100%;
+  width: inherit;
 }
-.rightHeader{
-    background-color: #FFFFFF;
-    box-shadow: 1px 2px 3px 0 #E6E8ED;
-    height:54px;
+.rightHeader {
+  background-color: var(--app-pure-white);
+  box-shadow: 1px 2px 3px 0 var(--app-pure-white-shadow);
+  height: 54px;
 }
-.rightContent{
-    background-color: #F3F3F4;
-    height: calc(100% - 54px);
+.rightContent {
+  background-color: var(--app-input-background);
+  height: calc(100% - 54px);
 }

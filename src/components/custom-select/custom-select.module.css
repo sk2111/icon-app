@@ -7,7 +7,7 @@
   margin-right: 16px;
 }
 .dropdown {
-  background-color: #f3f3f4;
+  background-color: var(--app-input-background);
   border: 0px;
   border-radius: 3px;
   color: var(--app-form-label);

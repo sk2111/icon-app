@@ -1,5 +1,5 @@
 .searchInput {
-  background-color: #f3f3f4;
+  background-color: var(--app-input-background);
   border: 0px;
   border-radius: 18.5px;
   color: var(--app-text);
