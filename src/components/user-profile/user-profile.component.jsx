@@ -1,12 +1,15 @@
 //libs
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+//selectors
+import { selectCurrentUserEmail } from '../../redux/user/user.selectors';
 //css
 import styles from './user-profile.module.css';
 //actions
-import { userSignOutStart } from '../../redux/user/user.actions';
+import { userSignOutStart, updateOrResetPasswordStart } from '../../redux/user/user.actions';
 
-const UserProfile = ({ userSignOutStart }) => {
+const UserProfile = ({ userSignOutStart, updateOrResetPasswordStart, curentUserEmail }) => {
     const [settingsHidden, setSettingsHidden] = useState(true);
 
     const containerStyle = settingsHidden ? { height: '0px' } : {};
@@ -18,7 +21,7 @@ const UserProfile = ({ userSignOutStart }) => {
             <div className={styles.profileContainer}>
                 <div className={`${styles.profilePic} perfect-cen`} onClick={() => setSettingsHidden(!settingsHidden)}>S</div>
                 <div style={containerStyle} className={styles.settingsCon}>
-                    <p className={styles.label}>Reset Password</p>
+                    <p className={styles.label} onClick={() => updateOrResetPasswordStart({ email: curentUserEmail })}>update or Reset Password</p>
                     <p className={styles.label} onClick={userSignOutStart}>Sign out</p>
                 </div>
             </div>
@@ -26,10 +29,15 @@ const UserProfile = ({ userSignOutStart }) => {
     );
 };
 
+const mapStateToProps = createStructuredSelector({
+    curentUserEmail: selectCurrentUserEmail
+});
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        userSignOutStart: () => dispatch(userSignOutStart())
+        userSignOutStart: () => dispatch(userSignOutStart()),
+        updateOrResetPasswordStart: (data) => dispatch(updateOrResetPasswordStart(data))
     }
-}
+};
 
-export default connect(null, mapDispatchToProps)(UserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
