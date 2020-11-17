@@ -23,7 +23,9 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
 
     const handleListSelect = (listVal) => {
         setListHidden(true);
-        setSearchTerm(listVal);
+        setTimeout(() => {
+            setSearchTerm(listVal);
+        }, 300);
     };
 
     return (
