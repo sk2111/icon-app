@@ -45,7 +45,7 @@
   max-height: 250px;
   overflow-y: scroll;
   position: absolute;
-  transition: height 0.4s;
+  transition: max-height 0.4s;
   width: 100%;
   z-index: 1;
 }

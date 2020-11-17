@@ -6,7 +6,7 @@ const CustomSelect = ({ options }) => {
     const [selectValue, setSelectValue] = useState('All');
     const [selectHidden, setSelectHidden] = useState(true);
 
-    const containerStyle = selectHidden ? { height: '0px' } : {};
+    const containerStyle = selectHidden ? { maxHeight: '0px' } : {};
 
     return (
         <React.Fragment>

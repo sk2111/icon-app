@@ -27,7 +27,7 @@
   max-height: 200px;
   overflow-y: scroll;
   position: absolute;
-  transition: height 0.4s;
+  transition: max-height 0.4s;
   width: 100%;
 }
 .option {
@@ -35,5 +35,5 @@
 }
 .option:hover {
   background-color: lightblue;
-  color: white;
+  color: var(--app-pure-white);
 }

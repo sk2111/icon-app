@@ -8,7 +8,10 @@ const UserProfile = () => {
         <React.Fragment>
             <div className={styles.verticalLine}></div>
             <p className={styles.username}>Sathish Kumar</p>
-            <div className={`${styles.profilePic} perfect-cen`}>S</div>
+            <div className={styles.profileContainer}>
+                <div className={`${styles.profilePic} perfect-cen`}>S</div>
+                <div className={styles.settingsCon}> </div>
+            </div>
         </React.Fragment>
     );
 };

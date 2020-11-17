@@ -12,6 +12,11 @@
   margin: 0px;
   margin-right: 16px;
 }
+
+.profileContainer {
+  position: relative;
+}
+
 .profilePic {
   background-color: violet;
   border-radius: 50%;
@@ -20,4 +25,14 @@
   height: 30px;
   margin-right: 15px;
   width: 30px;
+}
+
+.settingsCon {
+  background-color: var(--app-pure-white);
+  height: 200px;
+  position: absolute;
+  right:15px;
+  transition: height 0.4s;
+  width: 200px;
+  z-index:1;
 }
