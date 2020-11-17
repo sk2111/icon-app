@@ -30,9 +30,17 @@
 .settingsCon {
   background-color: var(--app-pure-white);
   height: 200px;
+  overflow: hidden;
   position: absolute;
   right:15px;
   transition: height 0.4s;
   width: 200px;
   z-index:1;
+}
+
+.label{
+  color:var(--app-text);
+  cursor:pointer;
+  font-size: 14px;
+  padding: 20px;
 }
