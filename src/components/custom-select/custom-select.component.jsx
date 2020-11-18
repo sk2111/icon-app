@@ -11,11 +11,11 @@ const CustomSelect = ({ options }) => {
     return (
         <React.Fragment>
             <span className={styles.dropLabel}>Categories</span>
-            <div className={styles.dropdown} onClick={() => setSelectHidden(!selectHidden)}>
-                <span className={styles.selectedValue}>{selectValue}</span>
+            <div className={styles.dropdown}>
+                <input className={styles.selectedValue} readOnly value={selectValue} onBlur={() => setSelectHidden(true)} onClick={() => setSelectHidden(!selectHidden)} />
                 <div style={containerStyle} className={styles.optionsCon}>
                     {options.map((option) =>
-                        <p className={styles.option} onClick={() => { setSelectValue(option) }}>{option}</p>
+                        <p className={styles.option} onMouseDown={() => { setSelectValue(option) }}>{option}</p>
                     )}
                 </div>
             </div>
