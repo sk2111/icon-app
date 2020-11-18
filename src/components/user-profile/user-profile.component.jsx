@@ -20,7 +20,7 @@ const UserProfile = ({ userSignOutStart, updateOrResetPasswordStart, curentUserE
             <p className={styles.username}>{fullName}</p>
             <div className={styles.profileContainer}>
                 <div className={`${styles.profilePic} perfect-cen`} onClick={() => setSettingsHidden(!settingsHidden)}>{fullName ? fullName[0] : '-'}</div>
-                <div style={containerStyle} className={styles.settingsCon}>
+                <div style={containerStyle} className={styles.settingsCon} onClick={() => setSettingsHidden(true)}>
                     <p className={styles.label} onClick={() => updateOrResetPasswordStart({ email: curentUserEmail })}>update or Reset Password</p>
                     <p className={styles.label} onClick={userSignOutStart}>Sign out</p>
                 </div>
