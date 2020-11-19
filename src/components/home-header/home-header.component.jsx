@@ -10,11 +10,11 @@ import UserProfile from '../user-profile/user-profile.component';
 import { ReactComponent as HamSvg } from '../../assests/ham-menu.svg';
 
 
-const HomeHeader = ({ navMenuExtended, setNavMenuExtended }) => {
+const HomeHeader = ({ navMenuExpanded, setNavMenuExpanded }) => {
     return (
         <div className={styles.headerContainer}>
             <div className={styles.headerLeftSec}>
-                <HamSvg className={styles.hamsvg} onClick={() => setNavMenuExtended(!navMenuExtended)}></HamSvg>
+                <HamSvg className={styles.hamsvg} onClick={() => setNavMenuExpanded(!navMenuExpanded)}></HamSvg>
                 <SearchSelectDropdown className="ml-24" placeholder="Search for your favourite icon" />
                 <CustomSelect options={['All', 'Human', 'Flower', 'Bridge', 'Arrow']} />
             </div>
