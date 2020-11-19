@@ -8,6 +8,7 @@
   background-color: var(--app-soliton-blue);
   height: 100%;
   width: 250px;
+  transition: width 0.5s;
 }
 .rightContainer {
   height: 100%;

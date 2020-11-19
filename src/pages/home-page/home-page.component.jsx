@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //css
 import styles from './home-page.module.css';
 //component
@@ -6,12 +6,16 @@ import ProtectedRoute from '../../components/protected-route/protected-route.com
 import HomeHeader from '../../components/home-header/home-header.component';
 
 const HomePage = () => {
+    const [navMenuExtended, setNavMenuExtended] = useState(true);
+
+    const navigationStyle = navMenuExtended ? { width: '250px' } : { width: '70px' };
+
     return (
         <div className={styles.rootContainer}>
-            <section className={styles.leftContainer}></section>
+            <section style={navigationStyle} className={styles.leftContainer}></section>
             <section className={styles.rightContainer}>
                 <section className={styles.rightHeader}>
-                    <HomeHeader />
+                    <HomeHeader navMenuExtended={navMenuExtended} setNavMenuExtended={setNavMenuExtended} />
                 </section>
                 <section className={styles.rightContent}></section>
             </section>
