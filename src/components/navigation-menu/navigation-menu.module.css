@@ -1,0 +1,40 @@
+.navContainer {
+  background-color: var(--app-soliton-blue);
+  height: 100%;
+  width: 250px;
+}
+.headerCon {
+  padding: 26px 24px 26px 24px;
+}
+.navTitle {
+  color: var(--app-navi-label);
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0px;
+}
+.appLogo {
+  height: 30px;
+  margin-right: 24px;
+  width: 30px;
+}
+.routeLinks {
+  margin-top: 60px;
+}
+.naviLinkCon {
+  background-color: #0c2b81;
+  height: 50px;
+  margin-bottom: 18px;
+  padding: 11px 0px;
+}
+.navLogo {
+  height: 26px;
+  margin-right: 24px;
+  margin-left: 24px;
+  width: 26px;
+}
+.navLink {
+  color: var(--app-navi-label);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}

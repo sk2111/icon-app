@@ -5,10 +5,10 @@
   width: 100vw;
 }
 .leftContainer {
-  background-color: var(--app-soliton-blue);
   height: 100%;
-  width: 250px;
+  overflow: hidden;
   transition: width 0.5s;
+  width: 250px;
 }
 .rightContainer {
   height: 100%;

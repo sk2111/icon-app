@@ -14,7 +14,7 @@ const HomeHeader = ({ navMenuExtended, setNavMenuExtended }) => {
     return (
         <div className={styles.headerContainer}>
             <div className={styles.headerLeftSec}>
-                <HamSvg onClick={() => setNavMenuExtended(!navMenuExtended)}></HamSvg>
+                <HamSvg className={styles.hamsvg} onClick={() => setNavMenuExtended(!navMenuExtended)}></HamSvg>
                 <SearchSelectDropdown className="ml-24" placeholder="Search for your favourite icon" />
                 <CustomSelect options={['All', 'Human', 'Flower', 'Bridge', 'Arrow']} />
             </div>

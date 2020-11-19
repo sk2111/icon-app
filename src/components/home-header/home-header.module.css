@@ -1,3 +1,7 @@
+.hamsvg {
+  cursor: pointer;
+}
+
 .headerContainer {
   display: flex;
   flex-direction: row;
