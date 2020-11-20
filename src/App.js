@@ -29,7 +29,7 @@ const App = ({ currentUser, userPersistCheckDone, checkUserPersistance }) => {
         <ToastMessage />
         <Switch>
           <Route path={BASE_PATH} render={(props) => <SignInAndSignUpPage {...props} currentUser={currentUser} />}></Route>
-          <Route exact path={HOME_PATH} render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
+          <Route path={HOME_PATH} render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
           <Route component={RouteNotFound}></Route>
         </Switch>
       </React.Fragment>

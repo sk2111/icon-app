@@ -10,14 +10,14 @@ import SignInForgotPassword from '../../components/sign-in-forgot-password/sign-
 import SignUp from '../../components/sign-up/sign-up.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
 //constants
-import { SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, HOME_PATH } from '../../utilities/route.paths';
+import { SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, LANDING_PATH } from '../../utilities/route.paths';
 
 const SignInAndSignUpPage = ({ currentUser, history, match }) => {
     const { path } = match;
 
     useEffect(() => {
         if (currentUser?.uid) {
-            history.push(HOME_PATH);
+            history.push(LANDING_PATH);
         }
     });
     
