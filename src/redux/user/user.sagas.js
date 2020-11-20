@@ -14,6 +14,8 @@ import {
     UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE, UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE
 } from '../../utilities/auth.messages';
 
+import { LOADING_PERSISTANT_CHECK_TIME } from '../../utilities/app.constants';
+
 //persistance check sagas
 function* checkUserAuthPersist() {
     const userData = yield call(getCurrentUser);
@@ -21,7 +23,7 @@ function* checkUserAuthPersist() {
         const returnData = yield call(readUserProfileFromFireStore, userData.uid);
         yield put(userAuthSuccess(returnData));
     }
-    yield delay(1000);
+    yield delay(LOADING_PERSISTANT_CHECK_TIME);
     yield put(userPersistanceCheckCompleted());
 };
 
