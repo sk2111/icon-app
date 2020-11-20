@@ -21,10 +21,13 @@
   margin-top: 60px;
 }
 .naviLinkCon {
-  background-color: #0c2b81;
+  cursor: pointer;
   height: 50px;
   margin-bottom: 18px;
   padding: 11px 0px;
+}
+.naviLinkCon:hover {
+  background-color: #0c2b81;
 }
 .navLogo {
   height: 26px;
@@ -36,5 +39,6 @@
   color: var(--app-navi-label);
   font-size: 14px;
   font-weight: 500;
+  margin: 0px;
   text-decoration: none;
 }

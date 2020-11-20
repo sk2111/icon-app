@@ -1,5 +1,5 @@
 //libs
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 //css
 import styles from './navigation-menu.module.css';
@@ -9,6 +9,12 @@ import { ReactComponent as AppLogo } from '../../assests/applogo.svg';
 import { NAVI_LINKS } from './navigation-menu.utilities';
 
 const NavigationMenu = () => {
+    const [selectedLink, setSelectedLink] = useState(0);
+
+    const handleSelectedLink = (e) => {
+        console.log("I am selected link",e.currentTarget.dataset.index);
+        //setSelectedLink(index)
+    }
     return (
         <div className={styles.navContainer}>
             <div className={`${styles.headerCon} flex-row-acen`}>
@@ -17,11 +23,13 @@ const NavigationMenu = () => {
             </div>
             <div className={styles.routeLinks}>
                 {
-                    NAVI_LINKS.map((link) => {
+                    NAVI_LINKS.map((link, index) => {
                         return (
-                            <div className={`${styles.naviLinkCon} flex-row-acen`}>
+                            <div key={link.name} data-index={index} data-route={link.route}
+                                className={`${styles.naviLinkCon} flex-row-acen`}
+                                onClick={handleSelectedLink}>
                                 <AppLogo className={styles.navLogo} />
-                                <Link className={styles.navLink} to={`${link.route}`}>{link.name}</Link>
+                                <p className={styles.navLink}>{link.name}</p>
                             </div>
                         );
                     })
