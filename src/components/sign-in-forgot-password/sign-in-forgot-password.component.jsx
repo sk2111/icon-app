@@ -16,7 +16,7 @@ import { selectWaitingForData, selectErrorMessage } from '../../redux/auth/auth.
 import { FORGOT_PASSWORD_INVALID_ERROR_MAIL_MESSAGE } from '../../utilities/auth.messages';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
-import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
+import { AUTH_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 
 
 
@@ -57,7 +57,7 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
                 <CustomButton loading={fetching} type="submit">Send Reset Link</CustomButton>
             </div>
             <div className={`${styles.actionLabel} perfect-cen`}>
-                Back to <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signInLink} onClick={clearAuthErrorMessage}>Sign In?</Link>
+                Back to <Link to={`${AUTH_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signInLink} onClick={clearAuthErrorMessage}>Sign In?</Link>
             </div>
         </form>
     );

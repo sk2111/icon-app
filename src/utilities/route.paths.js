@@ -1,4 +1,4 @@
-export const BASE_PATH = '/auth';
+export const AUTH_PATH = '/auth';
 export const HOME_PATH = '/home';
 export const PROTECTED_ROUTE_PATH = '/signin';
 export const SIGN_IN_PAGE_PATH = '/signin';

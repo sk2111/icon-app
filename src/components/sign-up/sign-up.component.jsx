@@ -14,7 +14,7 @@ import { userSignUpStart, userSignUpFailure, clearAuthError } from '../../redux/
 import { selectWaitingForData, selectErrorMessage } from '../../redux/auth/auth.selectors';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
-import { BASE_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
+import { AUTH_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 //constants
 import { SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, SIGN_UP_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities/auth.messages';
 //static
@@ -99,7 +99,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
                 </div>
                 <div className="flex-row perfect-cen mt-33">
                     <div className={styles.signinLabel}>Don't have an account?</div>
-                    <Link to={`${BASE_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signinLink} onClick={clearAuthErrorMessage}>Sign in</Link>
+                    <Link to={`${AUTH_PATH}${SIGN_IN_PAGE_PATH}`} className={styles.signinLink} onClick={clearAuthErrorMessage}>Sign in</Link>
                 </div>
             </form>
         </div>

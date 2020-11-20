@@ -16,7 +16,7 @@ import { selectWaitingForData, selectErrorMessage, selectUserMessage } from '../
 import { USER_LOGIN_INVALID_ERROR_MAIL_MESSAGE } from '../../utilities/auth.messages';
 //utilities
 import { isValidMail } from '../../utilities/validator.utils';
-import { BASE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
+import { AUTH_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH } from '../../utilities/route.paths';
 
 
 const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, userLoginFailure, clearAuthError }) => {
@@ -65,14 +65,14 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
             <FormInput className="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
             {renderErrorMessage(errorMessage)}
             <div className={`${styles.forgotLabel} flex-jus-end mt-15`}>
-                <Link to={`${BASE_PATH}${FORGOT_PASSWORD_PAGE_PATH}`} className={styles.actionLabel} onClick={clearAuthErrorMessage}>Forgot your password?</Link>
+                <Link to={`${AUTH_PATH}${FORGOT_PASSWORD_PAGE_PATH}`} className={styles.actionLabel} onClick={clearAuthErrorMessage}>Forgot your password?</Link>
             </div>
             <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
                 <CustomButton type="submit" loading={fetching}>Sign In</CustomButton>
             </div>
             <div className="flex-row perfect-cen mt-33">
                 <div className={styles.signupLabel}>Don't have an account?</div>
-                <Link to={`${BASE_PATH}${SIGN_UP_PAGE_PATH}`} className={styles.signupLink} onClick={clearAuthErrorMessage}>Sign up</Link>
+                <Link to={`${AUTH_PATH}${SIGN_UP_PAGE_PATH}`} className={styles.signupLink} onClick={clearAuthErrorMessage}>Sign up</Link>
             </div>
         </form>
     );

@@ -1,4 +1,6 @@
+//libs
 import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 //css
 import styles from './home-page.module.css';
 //component
@@ -20,7 +22,11 @@ const HomePage = () => {
                 <section className={styles.rightHeader}>
                     <HomeHeader navMenuExpanded={navMenuExpanded} setNavMenuExpanded={setNavMenuExpanded} />
                 </section>
-                <section className={styles.rightContent}></section>
+                <section className={styles.rightContent}>
+                    <Switch>
+                        <Route />
+                    </Switch>
+                </section>
             </section>
         </div>
     );

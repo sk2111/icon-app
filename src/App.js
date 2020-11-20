@@ -13,7 +13,7 @@ import { checkUserPersistance, userPersistanceCheckCompleted } from './redux/use
 //Reselect
 import { selectCurrentUser, selectUserPersistCheckDone } from './redux/user/user.selectors';
 // constants
-import { BASE_PATH, HOME_PATH } from './utilities/route.paths';
+import { AUTH_PATH, HOME_PATH } from './utilities/route.paths';
 //logos
 import { ReactComponent as AppLogo } from './assests/applogo.svg';
 
@@ -28,8 +28,8 @@ const App = ({ currentUser, userPersistCheckDone, checkUserPersistance }) => {
       <React.Fragment>
         <ToastMessage />
         <Switch>
-          <Route path={BASE_PATH} render={(props) => <SignInAndSignUpPage {...props} currentUser={currentUser} />}></Route>
-          <Route path={HOME_PATH} render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
+          <Route path={AUTH_PATH} render={(props) => <SignInAndSignUpPage {...props} currentUser={currentUser} />}></Route>
+          <Route path={`${HOME_PATH}/:navRoute`} render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
           <Route component={RouteNotFound}></Route>
         </Switch>
       </React.Fragment>
