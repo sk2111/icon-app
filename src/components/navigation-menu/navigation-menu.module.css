@@ -28,17 +28,19 @@
   );
   background-position: left bottom;
   background-size: 200% 100%;
+  border-left: 4px solid var(--app-soliton-blue);
   cursor: pointer;
   height: 50px;
   margin-bottom: 18px;
   padding: 11px 0px;
-  transition: all 0.35s ease;
+  transition: background 0.35s ease;
 }
 .naviLinkCon:hover {
   background-position: right bottom;
 }
 .highlightNavi {
   background-position: right bottom;
+  border-left: 4px solid var(--app-green);
 }
 .navLogo {
   height: 26px;
