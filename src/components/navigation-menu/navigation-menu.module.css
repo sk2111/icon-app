@@ -21,16 +21,24 @@
   margin-top: 60px;
 }
 .naviLinkCon {
+  background: linear-gradient(
+    to right,
+    var(--app-soliton-blue) 50%,
+    var(--app-navi-highlight) 50%
+  );
+  background-position: left bottom;
+  background-size: 200% 100%;
   cursor: pointer;
   height: 50px;
   margin-bottom: 18px;
   padding: 11px 0px;
+  transition: all 0.35s ease;
 }
 .naviLinkCon:hover {
-  background-color: var(--app-navi-highlight);
+  background-position: right bottom;
 }
 .highlightNavi {
-  background-color: var(--app-navi-highlight);
+  background-position: right bottom;
 }
 .navLogo {
   height: 26px;
