@@ -8,7 +8,7 @@
 }
 .navTitle {
   color: var(--app-navi-label);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 500;
   margin: 0px;
 }
@@ -21,6 +21,7 @@
   margin-top: 60px;
 }
 .naviLinkCon {
+  align-items: center;
   background: linear-gradient(
     to right,
     var(--app-soliton-blue) 50%,
@@ -30,6 +31,8 @@
   background-size: 200% 100%;
   border-left: 4px solid var(--app-soliton-blue);
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
   height: 50px;
   margin-bottom: 18px;
   padding: 11px 0px;

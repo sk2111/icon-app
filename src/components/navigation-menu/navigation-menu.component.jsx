@@ -1,6 +1,6 @@
 //libs
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 //css
 import styles from './navigation-menu.module.css';
 //static
@@ -9,14 +9,8 @@ import { ReactComponent as AppLogo } from '../../assests/applogo.svg';
 import { NAVI_LINKS } from './navigation-menu.utilities';
 
 const NavigationMenu = () => {
-    const [selectedLink, setSelectedLink] = useState(0);
     const history = useHistory();
-
-    const handleSelectedLink = (e) => {
-        const { index, route } = e.currentTarget.dataset;
-        setSelectedLink(+index);
-        history.push(route);
-    };
+    const { pathname } = useLocation();
 
     return (
         <div className={styles.navContainer}>
@@ -26,21 +20,17 @@ const NavigationMenu = () => {
             </div>
             <div className={styles.routeLinks}>
                 {
-                    NAVI_LINKS.map((link, index) => {
+                    NAVI_LINKS.map(({ name, route }) => {
                         return (
-                            <div key={link.name} data-index={index} data-route={link.route}
-                                className={`${styles.naviLinkCon} 
-                                    ${selectedLink === index ? styles.highlightNavi : ''} 
-                                    flex-row-acen`
-                                }
-                                onClick={handleSelectedLink}>
+                            <div key={name}
+                                className={`${styles.naviLinkCon} ${pathname === route ? styles.highlightNavi : ''}`}
+                                onClick={() => history.push(route)}>
                                 <AppLogo className={styles.navLogo} />
-                                <p className={styles.navLink}>{link.name}</p>
+                                <p className={styles.navLink}>{name}</p>
                             </div>
                         );
                     })
                 }
-
             </div>
         </div>
     );
