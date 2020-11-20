@@ -1,6 +1,6 @@
 //libs
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 //css
 import styles from './navigation-menu.module.css';
 //static
@@ -10,10 +10,12 @@ import { NAVI_LINKS } from './navigation-menu.utilities';
 
 const NavigationMenu = () => {
     const [selectedLink, setSelectedLink] = useState(0);
+    const history = useHistory();
 
     const handleSelectedLink = (e) => {
         const { index, route } = e.currentTarget.dataset;
         setSelectedLink(+index);
+        history.push(route);
     };
 
     return (
