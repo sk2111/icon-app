@@ -12,9 +12,10 @@ const NavigationMenu = () => {
     const [selectedLink, setSelectedLink] = useState(0);
 
     const handleSelectedLink = (e) => {
-        console.log("I am selected link",e.currentTarget.dataset.index);
-        //setSelectedLink(index)
-    }
+        const { index, route } = e.currentTarget.dataset;
+        setSelectedLink(+index);
+    };
+
     return (
         <div className={styles.navContainer}>
             <div className={`${styles.headerCon} flex-row-acen`}>
@@ -26,7 +27,10 @@ const NavigationMenu = () => {
                     NAVI_LINKS.map((link, index) => {
                         return (
                             <div key={link.name} data-index={index} data-route={link.route}
-                                className={`${styles.naviLinkCon} flex-row-acen`}
+                                className={`${styles.naviLinkCon} 
+                                    ${selectedLink === index ? styles.highlightNavi : ''} 
+                                    flex-row-acen`
+                                }
                                 onClick={handleSelectedLink}>
                                 <AppLogo className={styles.navLogo} />
                                 <p className={styles.navLink}>{link.name}</p>
