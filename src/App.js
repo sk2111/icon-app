@@ -15,7 +15,7 @@ import { selectCurrentUser, selectUserPersistCheckDone } from './redux/user/user
 // constants
 import { AUTH_PATH, HOME_PATH } from './utilities/route.paths';
 //logos
-import { ReactComponent as AppLogo } from './assests/applogo.svg';
+import { ReactComponent as AnimAppLogo } from './assests/anim-applogo.svg';
 
 const App = ({ currentUser, userPersistCheckDone, checkUserPersistance }) => {
   useEffect(() => {
@@ -23,7 +23,7 @@ const App = ({ currentUser, userPersistCheckDone, checkUserPersistance }) => {
   }, [checkUserPersistance]);
 
   const renderHelper = () => {
-    if (!userPersistCheckDone) return <AppLogo />;
+    if (!userPersistCheckDone) return <AnimAppLogo />;
     return (
       <React.Fragment>
         <ToastMessage />

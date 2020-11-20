@@ -10,6 +10,9 @@ import SignInForgotPassword from '../../components/sign-in-forgot-password/sign-
 import SignUp from '../../components/sign-up/sign-up.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
 //constants
+import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
+import { LOADING_ANIM_LOGO_TIME } from '../../utilities/app.constants';
+
 import { SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, LANDING_PATH } from '../../utilities/route.paths';
 
 const SignInAndSignUpPage = ({ currentUser, history, match }) => {
@@ -17,12 +20,14 @@ const SignInAndSignUpPage = ({ currentUser, history, match }) => {
 
     useEffect(() => {
         if (currentUser?.uid) {
-            history.push(LANDING_PATH);
+            const timer = setTimeout(() => history.push(LANDING_PATH), LOADING_ANIM_LOGO_TIME);
+            return () => clearTimeout(timer);
         }
     });
-    
+
     const renderHelper = (currentUser) => {
-        if (currentUser?.uid) { return null; }
+        // return A animation logo and after a few sec redirect to Landing page
+        if (currentUser?.uid) { return <AnimAppLogo />; }
         return (
             <div className={`${styles.pageContainer} flex-row`}>
                 <section className={`${styles.leftContainer} perfect-cen`}>
