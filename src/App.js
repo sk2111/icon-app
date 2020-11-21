@@ -18,6 +18,7 @@ import { AUTH_PATH, HOME_PATH } from './utilities/route.paths';
 import { ReactComponent as AnimAppLogo } from './assests/anim-applogo.svg';
 
 const App = ({ currentUser, userPersistCheckDone, checkUserPersistance }) => {
+  
   useEffect(() => {
     checkUserPersistance();
   }, [checkUserPersistance]);
@@ -29,7 +30,7 @@ const App = ({ currentUser, userPersistCheckDone, checkUserPersistance }) => {
         <ToastMessage />
         <Switch>
           <Route path={AUTH_PATH} render={(props) => <SignInAndSignUpPage {...props} currentUser={currentUser} />}></Route>
-          <Route path={`${HOME_PATH}/:navRoute`} render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
+          <Route path={`${HOME_PATH}`} render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
           <Route component={RouteNotFound}></Route>
         </Switch>
       </React.Fragment>

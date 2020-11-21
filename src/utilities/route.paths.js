@@ -10,6 +10,7 @@ export const ALL_ICONS = HOME_PATH + '/allIcons';
 export const PROJECTS = HOME_PATH + '/projects';
 export const FAVORITES = HOME_PATH + '/favorites';
 export const EDIT = HOME_PATH + '/edit';
+export const MESSAGES = HOME_PATH + '/messages';
 
 // Default Landing path after sign in success
 export const LANDING_PATH = ALL_ICONS;
