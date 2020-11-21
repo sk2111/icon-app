@@ -10,6 +10,7 @@ import styles from './user-profile.module.css';
 import { userSignOutStart, updateOrResetPasswordStart } from '../../redux/user/user.actions';
 
 const UserProfile = ({ userSignOutStart, updateOrResetPasswordStart, curentUserEmail, fullName }) => {
+    
     const [settingsHidden, setSettingsHidden] = useState(true);
 
     const containerStyle = settingsHidden ? { height: '0px' } : {};
