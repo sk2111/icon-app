@@ -16,7 +16,6 @@ const CustomSelect = ({ options }) => {
                 <input className={styles.selectedValue}
                     readOnly
                     value={selectValue}
-                    onFocus={() => setSelectHidden(!selectHidden)}
                     onBlur={() => setSelectHidden(true)}
                     onClick={() => setSelectHidden(!selectHidden)} />
                 <div style={containerStyle} className={styles.optionsCon}>
