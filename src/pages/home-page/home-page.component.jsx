@@ -9,13 +9,14 @@ import HomeHeader from '../../components/home-header/home-header.component';
 import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
 //route paths
 import { ALL_ICONS, PROJECTS, FAVORITES, EDIT, MESSAGES } from '../../utilities/route.paths';
-
+//constants
+import { NAV_MENU_EXPANDED_WIDTH, NAV_MENU_COLLAPSED_WIDTH } from '../../utilities/app.constants';
 
 const HomePage = () => {
 
     const [navMenuExpanded, setNavMenuExpanded] = useState(true);
 
-    const navigationStyle = navMenuExpanded ? { width: '250px' } : { width: '80px' };
+    const navigationStyle = navMenuExpanded ? { width: NAV_MENU_EXPANDED_WIDTH } : { width: NAV_MENU_COLLAPSED_WIDTH };
 
     return (
         <div className={styles.rootContainer}>
