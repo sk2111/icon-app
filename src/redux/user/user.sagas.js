@@ -27,7 +27,7 @@ function* checkUserAuthPersist() {
     yield put(userPersistanceCheckCompleted());
 };
 
-function* onCheckUserPersistanceStart() {
+function* onUserPersistanceStart() {
     yield takeLatest(userActionTypes.CHECK_USER_PERSISTANCE, checkUserAuthPersist);
 };
 
@@ -65,7 +65,7 @@ function* onUserSignOutStart() {
 
 export function* userSagas() {
     yield all([
-        call(onCheckUserPersistanceStart),
+        call(onUserPersistanceStart),
         call(onUpdateOrResetPasswordStart),
         call(onUserSignOutStart)
     ]);

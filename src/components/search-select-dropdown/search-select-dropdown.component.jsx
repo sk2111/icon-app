@@ -5,9 +5,10 @@ import styles from './search-select-dropdown.module.css';
 //static
 import { ReactComponent as SearchLens } from '../../assests/searchLogo.svg';
 //constants
-import { ENTER_KEYNAME } from './search-select-dropdown.constants';
+import { ENTER_KEYNAME, DROPDOWN_CLOSE_TIME } from './search-select-dropdown.constants';
 
 const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
+
     const [searchTerm, setSearchTerm] = useState('');
     const [listHidden, setListHidden] = useState(true);
 
@@ -25,7 +26,7 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
         setListHidden(true);
         setTimeout(() => {
             setSearchTerm(listVal);
-        }, 300);
+        }, DROPDOWN_CLOSE_TIME);
     };
 
     return (

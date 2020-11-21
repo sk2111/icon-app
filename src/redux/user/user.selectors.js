@@ -4,11 +4,11 @@ const CLEARVALUE = '';
 
 const selectUser = (state) => state.user;
 
-export const selectCurrentUser = createSelector([selectUser], (state) => state.currentUser);
+export const selectCurrentUser = createSelector([selectUser], (user) => user.currentUser);
 
-export const selectCurrentUserEmail = createSelector([selectCurrentUser], (state) => state?.email);
+export const selectCurrentUserEmail = createSelector([selectCurrentUser], (user) => user?.email);
 
 export const selectCurrentUserFullName = createSelector([selectCurrentUser],
-    (state) => state ? state.firstName + ' ' + state.lastName : CLEARVALUE);
+    (user) => user ? user.firstName + ' ' + user.lastName : CLEARVALUE);
 
-export const selectUserPersistCheckDone = createSelector([selectUser], (state) => state.userPersistCheckDone);
+export const selectUserPersistCheckDone = createSelector([selectUser], (user) => user.userPersistCheckDone);
