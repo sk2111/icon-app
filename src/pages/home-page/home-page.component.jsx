@@ -7,6 +7,7 @@ import styles from './home-page.module.css';
 import ProtectedRoute from '../../components/protected-route/protected-route.component';
 import HomeHeader from '../../components/home-header/home-header.component';
 import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
+import RouteNotFound from '../../components/route-not-found/route-not-found.component';
 //route paths
 import { ALL_ICONS, PROJECTS, FAVORITES, EDIT, MESSAGES } from '../../utilities/route.paths';
 //constants
@@ -34,6 +35,7 @@ const HomePage = () => {
                         <Route exact path={FAVORITES} render={() => { return <div>I am favourites page</div> }} />
                         <Route exact path={EDIT} render={() => { return <div>I am edit page</div> }} />
                         <Route exact path={MESSAGES} render={() => { return <div>I am messages page</div> }} />
+                        <Route component={RouteNotFound}></Route>
                     </Switch>
                 </section>
             </section>
