@@ -6,7 +6,7 @@ import styles from './navigation-menu.module.css';
 //static
 import { ReactComponent as AppLogo } from '../../assests/applogo.svg';
 //constants
-import { NAVI_LINKS } from './navigation-menu.utilities';
+import { NAVI_LINKS, MESSAGE_LINK } from './navigation-menu.utilities';
 
 const NavigationMenu = () => {
 
@@ -33,7 +33,7 @@ const NavigationMenu = () => {
                     })
                 }
             </div>
-            <div className={styles.messageContainer}>
+            <div className={styles.messageContainer} onClick={() => history.push(MESSAGE_LINK)}>
 
             </div>
         </div>
