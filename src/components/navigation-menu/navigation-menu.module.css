@@ -58,3 +58,13 @@
   margin: 0px;
   text-decoration: none;
 }
+.messageContainer {
+  background-color: var(--app-green);
+  border-radius: 50%;
+  bottom: 30px;
+  cursor: pointer;
+  left: 20px;
+  height: 40px;
+  position: absolute;
+  width: 40px;
+}

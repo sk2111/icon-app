@@ -9,7 +9,7 @@ import { ReactComponent as AppLogo } from '../../assests/applogo.svg';
 import { NAVI_LINKS } from './navigation-menu.utilities';
 
 const NavigationMenu = () => {
-    
+
     const history = useHistory();
     const { pathname } = useLocation();
 
@@ -32,6 +32,9 @@ const NavigationMenu = () => {
                         );
                     })
                 }
+            </div>
+            <div className={styles.messageContainer}>
+
             </div>
         </div>
     );
