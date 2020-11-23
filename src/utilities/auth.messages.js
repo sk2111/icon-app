@@ -3,7 +3,7 @@ export const SIGN_UP_INVALID_ERROR_MAIL_MESSAGE = 'Please enter a valid Soliton 
 export const SIGN_UP_PASSWORD_NOT_MATCH_MESSAGE = 'Password & Confirm password don\'t match';
 //user login message
 export const USER_LOGIN_INVALID_ERROR_MAIL_MESSAGE = 'Please enter a valid Soliton mail address';
-export const USER_LOGIN_SUCCESS_MESSAGE = 'User login Success';
+export const USER_LOGIN_SUCCESS_MESSAGE = '';
 export const USER_LOGIN_VERIFY_ERROR_MESSAGE = 'Please verify your Soliton mail ID before login';
 export const USER_LOGIN_PROFILE_ERROR_MESSAGE = 'User Profile not found';
 //reset link success
