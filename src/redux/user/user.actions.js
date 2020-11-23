@@ -20,6 +20,27 @@ export const userPersistanceCheckCompleted = () => {
     }
 };
 
+// user role access check actions
+export const getUserAccessRoleStart = () => {
+    return {
+        type: userActionTypes.GET_USER_ACCESS_ROLE_START
+    }
+};
+
+export const getUserAccessRoleSucess = (payload) => {
+    return {
+        type: userActionTypes.GET_USER_ACCESS_ROLE_SUCCESS,
+        payload
+    }
+};
+
+export const getUserAccessRoleFailure = (payload) => {
+    return {
+        type: userActionTypes.GET_USER_ACCESS_ROLE_FAILURE,
+        payload
+    }
+};
+
 //signout actions
 export const userSignOutStart = () => {
     return {
