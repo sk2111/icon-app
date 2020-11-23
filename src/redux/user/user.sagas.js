@@ -7,6 +7,7 @@ import {
     updateOrResetPasswordSuccess, updateOrResetPasswordFailure, userAuthSuccess,
     userPersistanceCheckCompleted, userSignOutFailure, userSignOutSuccess
 } from './user.actions';
+import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 
 //constants
 import {
@@ -36,10 +37,12 @@ function* updateOrResetPassword({ payload: { email } }) {
     try {
         yield auth.sendPasswordResetEmail(email);
         yield put(updateOrResetPasswordSuccess(UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE));
+        yield put(showSuccessToastMessage({ message: UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE, timeInSeconds: 6 }));
     }
     catch (e) {
         console.log(e);
         yield put(updateOrResetPasswordFailure(UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE));
+        yield put(showFailureToastMessage({ message: UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE, timeInSeconds: 6 }));
     }
 };
 
