@@ -33,6 +33,15 @@ function* onUserPersistanceStart() {
     yield takeLatest(userActionTypes.CHECK_USER_PERSISTANCE, checkUserAuthPersist);
 };
 
+// get user access role sagas
+function* getUserAccessRole(){
+    yield console.log("Hai I am user access role checker on successful auth");
+};
+
+function* onGetUserAccessRoleStart(){
+    yield takeLatest(userActionTypes.USER_AUTH_SUCCESS,getUserAccessRole);
+};
+
 //update or reset password sagas
 function* updateOrResetPassword({ payload: { email } }) {
     try {
@@ -70,6 +79,7 @@ function* onUserSignOutStart() {
 export function* userSagas() {
     yield all([
         call(onUserPersistanceStart),
+        call(onGetUserAccessRoleStart),
         call(onUpdateOrResetPasswordStart),
         call(onUserSignOutStart)
     ]);
