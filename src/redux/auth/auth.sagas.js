@@ -15,6 +15,9 @@ import {
     SIGN_UP_SUCCESS_MESSAGE, SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, RESET_LINK_SUCCESS_MESSAGE,
     USER_LOGIN_SUCCESS_MESSAGE, USER_LOGIN_PROFILE_ERROR_MESSAGE, USER_LOGIN_VERIFY_ERROR_MESSAGE
 } from '../../utilities/auth.messages';
+//helper functions
+import { frameCurrentUserObject } from '../../utilities/helper.functions';
+
 
 
 // Sign up user saga
@@ -49,7 +52,7 @@ export function* loginInUser({ payload: { email, password } }) {
             const userData = yield call(readUserProfileFromFireStore, user.uid);
             if (userData) {
                 yield put(userLoginSucess(USER_LOGIN_SUCCESS_MESSAGE));
-                yield put(userAuthSuccess(userData));
+                yield put(userAuthSuccess(frameCurrentUserObject(userData)));
                 return;
             }
             yield put(userLoginFailure(USER_LOGIN_PROFILE_ERROR_MESSAGE));

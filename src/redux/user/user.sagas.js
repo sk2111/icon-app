@@ -1,28 +1,29 @@
 import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
 import { userActionTypes } from './user.type';
 import { getCurrentUser, readUserProfileFromFireStore, auth } from '../../firebase/firebase.utils';
-
 //actions
 import {
     updateOrResetPasswordSuccess, updateOrResetPasswordFailure, userAuthSuccess,
     userPersistanceCheckCompleted, userSignOutFailure, userSignOutSuccess
 } from './user.actions';
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
-
 //constants
 import {
     SIGN_OUT_SUCCESS_MESSAGE, SIGN_OUT_FAILURE_MESSAGE,
     UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE, UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE
 } from '../../utilities/auth.messages';
-
 import { LOADING_PERSISTANT_CHECK_TIME } from '../../utilities/app.constants';
+//helper functions
+import { frameCurrentUserObject } from '../../utilities/helper.functions';
+
+
 
 //persistance check sagas
 function* checkUserAuthPersist() {
     const userData = yield call(getCurrentUser);
     if (userData?.emailVerified) {
-        const returnData = yield call(readUserProfileFromFireStore, userData.uid);
-        yield put(userAuthSuccess(returnData));
+        const currentUserData = yield call(readUserProfileFromFireStore, userData.uid);
+        yield put(userAuthSuccess(frameCurrentUserObject(currentUserData)));
     }
     yield delay(LOADING_PERSISTANT_CHECK_TIME);
     yield put(userPersistanceCheckCompleted());
