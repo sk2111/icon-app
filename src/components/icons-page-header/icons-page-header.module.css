@@ -1,0 +1,23 @@
+.headerContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.header {
+  color: var(--app-text);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0px;
+}
+.uploadBtn {
+  background-color: var(--app-green);
+  border: 0px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: var(--app-pure-white);
+  font-size: 12px;
+  height: 30px;
+  outline: none;
+  width: 101px;
+}
