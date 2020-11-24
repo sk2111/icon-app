@@ -25,6 +25,8 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
     const handleListSelect = (listVal) => {
         setListHidden(true);
         setTimeout(() => {
+            // Adding small delay beacause clicking one item will filter the list 
+            //and the list become 1 so small glitch in UI 
             setSearchTerm(listVal);
         }, DROPDOWN_CLOSE_TIME);
     };

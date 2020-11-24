@@ -47,7 +47,7 @@
   max-height: 140px;
   overflow-y: scroll;
   position: absolute;
-  transition: max-height 0.4s;
+  transition: max-height 0.2s; /*transisition time and UI update time are kept in sync for smooth animation*/
   width: 100%;
   z-index: 1;
   width: 330px;
@@ -64,4 +64,19 @@
 }
 .searchItem:hover {
   background-color: #f3f3f4;
+}
+
+/* scroll bar width */
+.searchListContainer::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.searchListContainer::-webkit-scrollbar-track {
+  background-color: var(--app-pure-white);
+}
+
+/* Handle */
+.searchListContainer::-webkit-scrollbar-thumb {
+  border: 3px solid var(--app-scroll-thumb);
 }
