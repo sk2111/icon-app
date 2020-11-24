@@ -1,18 +1,19 @@
 :root {
   /* colors */
-  --app-green: #00C578;
+  --app-green: #00c578;
   --app-form-label: #707071;
   --app-text: #707071;
   --app-input-background: #f3f3f4;
   --app-error-message: #f34469;
   --app-pure-white: white;
   --app-search-select-label: #dbdbdc;
+  --app-search-select-border: #dbdbdc;
   --app-linebreak-border: #e2e2ec;
   --app-soliton-blue: #173895;
   --app-pure-white-shadow: #e6e8ed;
   --app-vertical-line: #e2e2ec;
   --app-navi-label: #e7eaf1;
-  --app-navi-highlight:#0c2b81;
+  --app-navi-highlight: #0c2b81;
   /* width */
   --app-form-width: 320px;
   --app-form-width-short: 228px;

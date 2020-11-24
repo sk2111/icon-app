@@ -13,7 +13,7 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
     const [listHidden, setListHidden] = useState(true);
 
     const filteredList = searchList.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()));
-    const searchListStyle = (listHidden || !filteredList.length) ? { maxHeight: '0px' } : {};
+    const searchListStyle = (listHidden || !filteredList.length) ? { maxHeight: '0px', border: 'none' } : {};
 
     const handleInputKeyPress = (e) => {
         if (e.key === ENTER_KEYNAME) {

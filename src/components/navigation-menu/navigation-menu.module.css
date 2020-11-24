@@ -44,6 +44,11 @@
 .highlightNavi {
   background-position: right bottom;
   border-left: 4px solid var(--app-green);
+  background: linear-gradient(
+    to left,
+    var(--app-soliton-blue) 0%,
+    var(--app-navi-highlight) 100%
+  );
 }
 .navLogo {
   height: 26px;
