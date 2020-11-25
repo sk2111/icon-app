@@ -13,6 +13,14 @@ const NavigationMenu = () => {
     const history = useHistory();
     const { pathname } = useLocation();
 
+    const getNaviConClass = (pathname, route) => {
+        return `${styles.naviLinkCon} ${pathname === route ? styles.highlightNaviCon : styles.notHighlightNaviCon}`;
+    };
+    
+    const getIconClass = (pathname, route) => {
+        return `${styles.navLogo} ${pathname === route ? styles.logoHighlight : styles.logoNotHighlight}`;
+    };
+
     return (
         <div className={styles.navContainer}>
             <div className={`${styles.headerCon} flex-row-acen`}>
@@ -21,12 +29,10 @@ const NavigationMenu = () => {
             </div>
             <div className={styles.routeLinks}>
                 {
-                    NAVI_LINKS.map(({ name, route }) => {
+                    NAVI_LINKS.map(({ name, route, IconComp }) => {
                         return (
-                            <div key={name}
-                                className={`${styles.naviLinkCon} ${pathname === route ? styles.highlightNavi : ''}`}
-                                onClick={() => history.push(route)}>
-                                <AppLogo className={styles.navLogo} />
+                            <div key={name} className={getNaviConClass(pathname, route)} onClick={() => history.push(route)}>
+                                <IconComp className={getIconClass(pathname, route)} />
                                 <p className={styles.navLink}>{name}</p>
                             </div>
                         );

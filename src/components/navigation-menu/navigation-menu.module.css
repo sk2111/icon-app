@@ -41,7 +41,7 @@
 .naviLinkCon:hover {
   background-position: right bottom;
 }
-.highlightNavi {
+.highlightNaviCon {
   background-position: right bottom;
   border-left: 4px solid var(--app-green);
   background: linear-gradient(
@@ -49,6 +49,10 @@
     var(--app-soliton-blue) 0%,
     var(--app-navi-highlight) 100%
   );
+  color: var(--app-navi-label);
+}
+.notHighlightNaviCon {
+  color: var(--app-navi-link-not-highlight);
 }
 .navLogo {
   height: 26px;
@@ -56,8 +60,13 @@
   margin-left: 24px;
   width: 26px;
 }
+.logoHighlight {
+  color: var(--app-navi-link-highlight);
+}
+.logoNotHighlight {
+  color: var(--app-navi-link-not-highlight);
+}
 .navLink {
-  color: var(--app-navi-label);
   font-size: 14px;
   font-weight: 500;
   margin: 0px;
