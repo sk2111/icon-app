@@ -16,7 +16,7 @@ const HomeHeader = ({ navMenuExpanded, setNavMenuExpanded }) => {
             <div className={styles.headerLeftSec}>
                 <HamSvg className={styles.hamsvg} onClick={() => setNavMenuExpanded(!navMenuExpanded)}></HamSvg>
                 <SearchSelectDropdown className="ml-24" placeholder="Search for your favourite icon" />
-                <CustomSelect options={['All', 'Human', 'Flower', 'Bridge', 'Arrow']} />
+                <CustomSelect options={['All', 'Human', 'Flower', 'Bridge', 'Arrow', 'icons', 'Lorsem', 'ipsum', 'Arrow2']} />
             </div>
             <div className={styles.headerRightSec}>
                 <UserProfile />

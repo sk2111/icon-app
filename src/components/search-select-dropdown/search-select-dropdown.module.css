@@ -63,7 +63,7 @@
   padding-left: 16px;
 }
 .searchItem:hover {
-  background-color: #f3f3f4;
+  background-color: var(--app-input-background-hover);
 }
 
 /* scroll bar width */

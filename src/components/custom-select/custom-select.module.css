@@ -40,9 +40,12 @@
   margin: 0px;
   padding-left: 16px;
 }
-.option:hover {
+.selectedOption {
   background-color: var(--app-soliton-blue);
   color: var(--app-pure-white);
+}
+.option:hover {
+  background-color: var(--app-input-background-hover);
 }
 
 /* scroll bar width */
