@@ -13,6 +13,8 @@
   --app-vertical-line: #e2e2ec;
   --app-navi-label: #e7eaf1;
   --app-navi-highlight: #0c2b81;
+  --app-navi-link-not-highlight: #7488cc;
+  --app-navi-link-highlight: #f3f3f4;
   --app-scroll-thumb: #989899;
   /* width */
   --app-form-width: 320px;
