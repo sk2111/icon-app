@@ -11,18 +11,18 @@
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: var(--app-search-select-label);
+  color: var(--app-search-select-common);
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: var(--app-search-select-label);
+  color: var(--app-search-select-common);
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: var(--app-search-select-label);
+  color: var(--app-search-select-common);
 }
 .inputLogoContainer {
   align-items: center;
@@ -41,9 +41,9 @@
 }
 .searchListContainer {
   background-color: var(--app-pure-white);
-  border: 1px solid var(--app-search-select-border);
   border-radius: 2px;
-  margin-top: 4px;
+  box-shadow: 0 0 3px 0 var(--app-search-select-common);
+  margin-top: 2px;
   max-height: 140px;
   overflow-y: scroll;
   position: absolute;
