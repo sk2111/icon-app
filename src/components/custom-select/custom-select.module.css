@@ -41,8 +41,8 @@
   padding-left: 16px;
 }
 .selectedOption {
-  background-color: var(--app-soliton-blue);
-  color: var(--app-pure-white);
+  background-color: var(--app-soliton-blue) !important;
+  color: var(--app-pure-white) !important;
 }
 .option:hover {
   background-color: var(--app-input-background-hover);

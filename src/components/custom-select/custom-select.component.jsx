@@ -18,14 +18,18 @@ const CustomSelect = ({ options }) => {
                     value={selectValue}
                     onBlur={() => setSelectHidden(true)}
                     onClick={() => setSelectHidden(!selectHidden)} />
+
                 <div style={containerStyle} className={styles.optionsCon}>
-                    {options.map((option) =>
-                        <p className={styles.option} onMouseDown={() => { setSelectValue(option) }}>{option}</p>
-                    )}
+                    {
+                        options.map((option) => {
+                            const matchedOption = option === selectValue ? styles.selectedOption : '';
+                            return <p className={`${matchedOption} ${styles.option}`} onMouseDown={() => { setSelectValue(option) }}>{option}</p>
+                        })
+                    }
                 </div>
             </div>
         </React.Fragment>
-    )
+    );
 };
 
 
