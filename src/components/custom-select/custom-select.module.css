@@ -15,6 +15,7 @@
   border: 0px;
   border-radius: 3px;
   color: var(--app-form-label);
+  cursor: default;
   display: inline-block;
   height: 30px;
   outline: none;
@@ -46,6 +47,11 @@
 }
 .option:hover {
   background-color: var(--app-input-background-hover);
+}
+.arrowDown {
+  position: absolute;
+  right: 11px;
+  top: 7px;
 }
 
 /* scroll bar width */

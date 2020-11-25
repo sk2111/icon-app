@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 //css
 import styles from './custom-select.module.css';
+//static 
+import  {ReactComponent as ArrowDownLogo} from '../../assests/arrow-down.svg';
 
 const CustomSelect = ({ options }) => {
 
@@ -18,12 +20,12 @@ const CustomSelect = ({ options }) => {
                     value={selectValue}
                     onBlur={() => setSelectHidden(true)}
                     onClick={() => setSelectHidden(!selectHidden)} />
-
+                <ArrowDownLogo className={styles.arrowDown}/>
                 <div style={containerStyle} className={styles.optionsCon}>
                     {
                         options.map((option) => {
                             const matchedOption = option === selectValue ? styles.selectedOption : '';
-                            return <p className={`${matchedOption} ${styles.option}`} onMouseDown={() => { setSelectValue(option) }}>{option}</p>
+                            return <p key={option} className={`${matchedOption} ${styles.option}`} onMouseDown={() => { setSelectValue(option) }}>{option}</p>
                         })
                     }
                 </div>
