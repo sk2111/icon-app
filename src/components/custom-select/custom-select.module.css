@@ -1,6 +1,5 @@
 .dropLabel {
   color: var(--app-form-label);
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 500;
   margin-left: 40px;
@@ -24,16 +23,39 @@
 }
 .optionsCon {
   background-color: var(--app-pure-white);
-  max-height: 200px;
+  box-shadow: 0 0 3px 0 var(--app-select-shadow);
+  max-height: 140px;
   overflow-y: scroll;
   position: absolute;
-  transition: max-height 0.4s;
+  transition: max-height 0.2s;
   width: 100%;
 }
 .option {
+  align-items: center;
+  background-color: var(--app-pure-white);
+  color: var(--app-text);
+  display: flex;
+  flex-direction: row;
+  height: 28px;
+  margin: 0px;
   padding-left: 16px;
 }
 .option:hover {
-  /* background-color: lightblue; */
+  background-color: var(--app-soliton-blue);
   color: var(--app-pure-white);
+}
+
+/* scroll bar width */
+.optionsCon::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.optionsCon::-webkit-scrollbar-track {
+  background-color: var(--app-pure-white);
+}
+
+/* Handle */
+.optionsCon::-webkit-scrollbar-thumb {
+  border: 3px solid var(--app-scroll-thumb);
 }
