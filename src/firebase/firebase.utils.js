@@ -56,8 +56,8 @@ export const getCurrentUser = () => {
 };
 
 export const getUserAccessRoleFromFireStore = async ({ payload: { uid } }) => {
-    // If user doc not exists then we dont need to care t send return data
-    // Beacuse by defaukt isAdmin State property is kept false
+    // If user doc not exists then we dont need to care to send return data
+    // Beacuse by defaukt isAdmin State property is kept false in redux store
     const userAccessRoleRef = firestore.doc(GET_ACCESS_ROLE_PATH + uid);
     const snapshot = await userAccessRoleRef.get();
     if (snapshot.exists) {
