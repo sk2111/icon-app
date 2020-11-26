@@ -11,3 +11,4 @@ export const FIREBASE_CONFIG = {
 
 //collection paths
 export const USERS_COLLECTION_PATH = 'users';
+export const GET_ACCESS_ROLE_PATH = 'appData/adminPanel/adminUsers/';

@@ -1,10 +1,11 @@
 import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
 import { userActionTypes } from './user.type';
-import { getCurrentUser, readUserProfileFromFireStore, auth } from '../../firebase/firebase.utils';
+import { getCurrentUser, readUserProfileFromFireStore, getUserAccessRoleFromFireStore, auth } from '../../firebase/firebase.utils';
 //actions
 import {
     updateOrResetPasswordSuccess, updateOrResetPasswordFailure, userAuthSuccess,
-    userPersistanceCheckCompleted, userSignOutFailure, userSignOutSuccess
+    userPersistanceCheckCompleted, userSignOutFailure, userSignOutSuccess, getUserAccessRoleSucess,
+    getUserAccessRoleFailure
 } from './user.actions';
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 //constants
@@ -34,12 +35,21 @@ function* onUserPersistanceStart() {
 };
 
 // get user access role sagas
-function* getUserAccessRole(){
-    yield console.log("Hai I am user access role checker on successful auth");
+function* getUserAccessRole(data) {
+    try {
+        const userRoleData = yield getUserAccessRoleFromFireStore(data);
+        if (userRoleData?.isAdmin) {
+            yield put(getUserAccessRoleSucess(userRoleData));
+        }
+    }
+    catch (e) {
+        console.log("Reading profile admin profile failed", e);
+        yield put(getUserAccessRoleFailure(e));
+    }
 };
 
-function* onGetUserAccessRoleStart(){
-    yield takeLatest(userActionTypes.USER_AUTH_SUCCESS,getUserAccessRole);
+function* onGetUserAccessRoleStart() {
+    yield takeLatest(userActionTypes.USER_AUTH_SUCCESS, getUserAccessRole);
 };
 
 //update or reset password sagas

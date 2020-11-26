@@ -4,7 +4,7 @@ import 'firebase/auth';
 //helpers
 import { createUserProileDocObj } from './firebase.helpers';
 // constants
-import { FIREBASE_CONFIG, USERS_COLLECTION_PATH } from './firebase.constants';
+import { FIREBASE_CONFIG, USERS_COLLECTION_PATH, GET_ACCESS_ROLE_PATH } from './firebase.constants';
 
 //init
 firebase.initializeApp(FIREBASE_CONFIG);
@@ -53,4 +53,17 @@ export const getCurrentUser = () => {
             res(userAuth);
         }, rej)
     })
+};
+
+export const getUserAccessRoleFromFireStore = async ({ payload: { uid } }) => {
+    // If user doc not exists then we dont need to care t send return data
+    // Beacuse by defaukt isAdmin State property is kept false
+    const userAccessRoleRef = firestore.doc(GET_ACCESS_ROLE_PATH + uid);
+    const snapshot = await userAccessRoleRef.get();
+    if (snapshot.exists) {
+        console.log("I am tester of admin functionality", snapshot.data());
+        return {
+            ...snapshot.data()
+        };
+    }
 };
