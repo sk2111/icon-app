@@ -9,7 +9,7 @@ import ProtectedRouteHomePage from './pages/home-page/home-page.component';
 import ToastMessage from './components/toast-message/toast-message.component';
 import RouteNotFound from './components/route-not-found/route-not-found.component';
 //actions
-import { checkUserPersistance, userPersistanceCheckCompleted } from './redux/user/user.actions';
+import { checkUserPersistanceStart, userPersistanceCheckCompleted } from './redux/user/user.actions';
 //Reselect
 import { selectCurrentUser, selectUserPersistCheckDone } from './redux/user/user.selectors';
 // constants
@@ -17,11 +17,11 @@ import { AUTH_PATH, HOME_PATH } from './utilities/route.paths';
 //logos
 import { ReactComponent as AnimAppLogo } from './assests/anim-applogo.svg';
 
-const App = ({ currentUser, userPersistCheckDone, checkUserPersistance }) => {
-  
+const App = ({ currentUser, userPersistCheckDone, checkUserPersistanceStart }) => {
+
   useEffect(() => {
-    checkUserPersistance();
-  }, [checkUserPersistance]);
+    checkUserPersistanceStart();
+  }, [checkUserPersistanceStart]);
 
   const renderHelper = () => {
     if (!userPersistCheckDone) return <AnimAppLogo />;
@@ -52,7 +52,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkUserPersistance: () => dispatch(checkUserPersistance()),
+    checkUserPersistanceStart: () => dispatch(checkUserPersistanceStart()),
     userPersistanceCheckCompleted: () => dispatch(userPersistanceCheckCompleted())
   }
 };

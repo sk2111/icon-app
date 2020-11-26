@@ -8,9 +8,9 @@ export const userAuthSuccess = (payload) => {
 };
 
 // persistance check actions
-export const checkUserPersistance = () => {
+export const checkUserPersistanceStart = () => {
     return {
-        type: userActionTypes.CHECK_USER_PERSISTANCE
+        type: userActionTypes.CHECK_USER_PERSISTANCE_START
     }
 };
 

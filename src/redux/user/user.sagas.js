@@ -31,7 +31,7 @@ function* checkUserAuthPersist() {
 };
 
 function* onUserPersistanceStart() {
-    yield takeLatest(userActionTypes.CHECK_USER_PERSISTANCE, checkUserAuthPersist);
+    yield takeLatest(userActionTypes.CHECK_USER_PERSISTANCE_START, checkUserAuthPersist);
 };
 
 // get user access role sagas
