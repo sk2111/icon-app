@@ -14,6 +14,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return { ...state, errorMessage: CLEARVALUE, currentUser: action.payload };
         case userActionTypes.CHECK_USER_PERSISTANCE_COMPLETED:
             return { ...state, errorMessage: CLEARVALUE, userPersistCheckDone: true };
+        case userActionTypes.GET_USER_ACCESS_ROLE_SUCCESS:
+            return { ...state, errorMessage: CLEARVALUE, currentUser: { ...state.currentUser, isAdmin: action.payload } };
+        case userActionTypes.GET_USER_ACCESS_ROLE_FAILURE:
+            return { ...state, errorMessage: action.payload };
         case userActionTypes.USER_SIGN_OUT_SUCCESS:
             return { ...state, errorMessage: CLEARVALUE, currentUser: null };
         case userActionTypes.USER_SIGN_OUT_FAILURE:

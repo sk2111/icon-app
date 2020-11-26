@@ -39,12 +39,12 @@ function* getUserAccessRole(data) {
     try {
         const userRoleData = yield getUserAccessRoleFromFireStore(data);
         if (userRoleData?.isAdmin) {
-            yield put(getUserAccessRoleSucess(userRoleData));
+            yield put(getUserAccessRoleSucess(!!userRoleData?.isAdmin));
         }
     }
     catch (e) {
         console.log("Reading profile admin profile failed", e);
-        yield put(getUserAccessRoleFailure(e));
+        yield put(getUserAccessRoleFailure(e?.message));
     }
 };
 

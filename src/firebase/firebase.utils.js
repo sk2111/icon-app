@@ -61,7 +61,6 @@ export const getUserAccessRoleFromFireStore = async ({ payload: { uid } }) => {
     const userAccessRoleRef = firestore.doc(GET_ACCESS_ROLE_PATH + uid);
     const snapshot = await userAccessRoleRef.get();
     if (snapshot.exists) {
-        console.log("I am tester of admin functionality", snapshot.data());
         return {
             ...snapshot.data()
         };
