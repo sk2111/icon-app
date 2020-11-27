@@ -13,7 +13,7 @@ import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
 const GeneralIconsPage = ({ currentUserAccessRole }) => {
     return (
         <div className={styles.viewContainer}>
-            <IconsPageHeader showButton={currentUserAccessRole} />
+            <IconsPageHeader showUploadButton={currentUserAccessRole} />
         </div>
     );
 };
