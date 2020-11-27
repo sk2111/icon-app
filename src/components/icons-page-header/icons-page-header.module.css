@@ -14,9 +14,11 @@
   position: relative;
 }
 .arrow {
-  height: 14px;
+  height: 15px;
+  left: 9px;
   position: absolute;
-  width: 14px;
+  top: 7px;
+  width: 15px;
 }
 .uploadBtn {
   background-color: var(--app-green);
@@ -27,6 +29,6 @@
   font-size: 12px;
   height: 30px;
   outline: none;
-  padding-left: 26px;
+  padding-left: 23px;
   width: 108px;
 }

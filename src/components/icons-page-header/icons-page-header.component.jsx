@@ -2,7 +2,7 @@ import React from 'react';
 //css
 import styles from './icons-page-header.module.css';
 //static
-import { ReactComponent as ArrowUp } from '../../assests/applogo.svg';
+import { ReactComponent as ArrowUp } from '../../assests/upload-arrow.svg';
 
 const IconsPageHeader = ({ label, showUploadButton }) => {
     const renderUploadButton = () => {
