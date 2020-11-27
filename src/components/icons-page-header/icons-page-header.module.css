@@ -12,6 +12,15 @@
 }
 .btnContainer {
   position: relative;
+  top: 0px;
+  transition: top 0.1s;
+}
+.btnContainer:hover,
+.btnContainer:focus {
+  top: -2px;
+}
+.btnContainer:active {
+  top: 0px;
 }
 .arrow {
   height: 15px;
