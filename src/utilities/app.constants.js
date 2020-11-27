@@ -10,4 +10,4 @@ export const NAV_MENU_COLLAPSED_WIDTH = "80px";
 export const ALL_ICONS_HEADER_LABEL = "All Icons";
 export const PROJECT_ICONS_HEADER_LABEL = "Project Icons";
 export const FAVORITES_ICONS_HEADER_LABEL = "Favorites Icons";
-export const EDIT_ICONS_HEADER_LABEL = "Edit Icon";
+export const EDIT_ICON_HEADER_LABEL = "Edit Icon";

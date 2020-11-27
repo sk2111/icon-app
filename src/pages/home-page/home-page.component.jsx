@@ -7,6 +7,7 @@ import styles from './home-page.module.css';
 import GeneralIconsPage from '../general-icons-page/general-icons-page.component';
 import ProjectIconsPage from '../project-icons-page/project-icons-page.component';
 import FavoritesIconsPage from '../favorites-icons-page/favorites-icons-page.component';
+import EditIconPage from '../edit-icon-page/edit-icon-page.component';
 //component
 import ProtectedRoute from '../../components/protected-route/protected-route.component';
 import HomeHeader from '../../components/home-header/home-header.component';
@@ -37,7 +38,7 @@ const HomePage = () => {
                         <Route path={ALL_ICONS} component={GeneralIconsPage} />
                         <Route exact path={PROJECTS} component={ProjectIconsPage} />
                         <Route exact path={FAVORITES} component={FavoritesIconsPage} />
-                        <Route exact path={EDIT} render={() => { return <div>I am edit page</div> }} />
+                        <Route exact path={EDIT} component={EditIconPage} />
                         <Route exact path={MESSAGES} render={() => { return <div>I am messages page</div> }} />
                         <Route component={RouteNotFound}></Route>
                     </Switch>
