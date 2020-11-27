@@ -10,10 +10,10 @@ import styles from './user-profile.module.css';
 import { userSignOutStart, updateOrResetPasswordStart } from '../../redux/user/user.actions';
 
 const UserProfile = ({ userSignOutStart, updateOrResetPasswordStart, curentUserEmail, fullName }) => {
-    
+
     const [settingsHidden, setSettingsHidden] = useState(true);
 
-    const containerStyle = settingsHidden ? { height: '0px' } : {};
+    const containerStyle = settingsHidden ? { maxHeight: '0px' } : {};
 
     return (
         <React.Fragment>
@@ -22,8 +22,17 @@ const UserProfile = ({ userSignOutStart, updateOrResetPasswordStart, curentUserE
             <div className={styles.profileContainer}>
                 <div className={`${styles.profilePic} perfect-cen`} onClick={() => setSettingsHidden(!settingsHidden)}>{fullName ? fullName[0] : '-'}</div>
                 <div style={containerStyle} className={styles.settingsCon} onClick={() => setSettingsHidden(true)}>
-                    <p className={styles.label} onClick={() => updateOrResetPasswordStart({ email: curentUserEmail })}>update or Reset Password</p>
-                    <p className={styles.label} onClick={userSignOutStart}>Sign out</p>
+                    <div className={styles.topContainer}>
+                        <div className={styles.profilePicDropdown}>S</div>
+                        <div className={styles.nameContainer}>
+                            <h4 className={styles.fullName}>{fullName}</h4>
+                            <p className={styles.emailText}>{curentUserEmail}</p>
+                        </div>
+                    </div>
+                    <div className={styles.breakLine}></div>
+                    <p className={`${styles.label} ${styles.firstLabel}`}
+                        onClick={() => updateOrResetPasswordStart({ email: curentUserEmail })}>Update password</p>
+                    <p className={`${styles.label} ${styles.signOutLabel}`} onClick={userSignOutStart}>Sign out</p>
                 </div>
             </div>
         </React.Fragment>

@@ -31,18 +31,68 @@
 
 .settingsCon {
   background-color: var(--app-pure-white);
-  height: 200px;
+  border-radius: 3px;
+  box-shadow: 0 0 3px 0 var(--app-select-shadow);
+  height: 178px;
+  max-height: 178px;
   overflow: hidden;
   position: absolute;
-  right:15px;
-  transition: height 0.4s;
-  width: 200px;
-  z-index:1;
+  right: 0px;
+  top: 35px;
+  transition: max-height 0.25s;
+  width: 270px;
+  z-index: 1;
 }
 
-.label{
-  color:var(--app-text);
-  cursor:pointer;
+.topContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+}
+
+.profilePicDropdown {
+  background-color: lawngreen;
+  border-radius: 50%;
+  min-height: 40px;
+  min-width: 40px;
+}
+
+.nameContainer {
+  margin-left: 8px;
+}
+
+.fullName {
+  color: var(--app-text);
   font-size: 14px;
-  padding: 20px;
+  font-weight: 500;
+  margin: 0px;
+  text-transform: capitalize;
+}
+
+.emailText {
+  color: var(--app-text);
+  font-size: 11px;
+  font-weight: 300;
+  margin: 6px 0px 0px 0px;
+}
+
+.breakLine {
+  border-top: 1px solid var(--app-linebreak-border);
+  margin: 0px 16px;
+}
+
+.label {
+  color: var(--app-text);
+  cursor: pointer;
+  font-size: 12px;
+  padding-left: 20px;
+}
+
+.firstLabel {
+  margin: 16px 0px 0px 0px;
+}
+
+.signOutLabel {
+  margin: 25px 0px 0px 0px;
 }
