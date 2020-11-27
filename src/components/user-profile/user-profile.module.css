@@ -52,8 +52,12 @@
 }
 
 .profilePicDropdown {
+  align-items: center;
   background-color: lawngreen;
   border-radius: 50%;
+  color: var(--app-pure-white);
+  display: flex;
+  justify-content: center;
   min-height: 40px;
   min-width: 40px;
 }
@@ -83,10 +87,17 @@
 }
 
 .label {
+  align-items: center;
   color: var(--app-text);
   cursor: pointer;
+  display: flex;
   font-size: 12px;
+  height: 28px;
   padding-left: 20px;
+}
+
+.label:hover {
+  background-color: var(--app-input-background-hover);
 }
 
 .firstLabel {
@@ -94,5 +105,5 @@
 }
 
 .signOutLabel {
-  margin: 25px 0px 0px 0px;
+  margin: 15px 0px 0px 0px;
 }
