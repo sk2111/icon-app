@@ -1,3 +1,3 @@
 .viewContainer {
-  padding: 23px 10px 0px 30px;
+  padding: var(--app-icons-view-conatiner-padding);
 }

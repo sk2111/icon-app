@@ -22,6 +22,7 @@
   --app-form-width: 320px;
   --app-form-width-short: 228px;
   --app-form-width-long: 480px;
+  --app-icons-view-conatiner-padding: 23px 10px 0px 30px;
 }
 * {
   box-sizing: border-box;
