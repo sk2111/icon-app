@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import styles from './home-page.module.css';
 //pages
 import GeneralIconsPage from '../general-icons-page/general-icons-page.component';
+import ProjectIconsPage from '../project-icons-page/project-icons-page.component';
 //component
 import ProtectedRoute from '../../components/protected-route/protected-route.component';
 import HomeHeader from '../../components/home-header/home-header.component';
@@ -33,7 +34,7 @@ const HomePage = () => {
                 <section className={styles.rightContent}>
                     <Switch>
                         <Route path={ALL_ICONS} component={GeneralIconsPage} />
-                        <Route exact path={PROJECTS} render={() => { return <div>I am projects page</div> }} />
+                        <Route exact path={PROJECTS} component={ProjectIconsPage} />
                         <Route exact path={FAVORITES} render={() => { return <div>I am favourites page</div> }} />
                         <Route exact path={EDIT} render={() => { return <div>I am edit page</div> }} />
                         <Route exact path={MESSAGES} render={() => { return <div>I am messages page</div> }} />

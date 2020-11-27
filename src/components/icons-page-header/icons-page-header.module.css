@@ -15,6 +15,7 @@
 }
 .arrow {
   height: 14px;
+  position: absolute;
   width: 14px;
 }
 .uploadBtn {

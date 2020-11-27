@@ -4,7 +4,7 @@ import styles from './icons-page-header.module.css';
 //static
 import { ReactComponent as ArrowUp } from '../../assests/applogo.svg';
 
-const IconsPageHeader = ({ showUploadButton }) => {
+const IconsPageHeader = ({ label, showUploadButton }) => {
     const renderUploadButton = () => {
         return (
             <div className={styles.btnContainer}>
@@ -15,7 +15,7 @@ const IconsPageHeader = ({ showUploadButton }) => {
     }
     return (
         <div className={styles.headerContainer}>
-            <h4 className={styles.header}>All Icons</h4>
+            <h4 className={styles.header}>{label}</h4>
             {
                 showUploadButton ? renderUploadButton() : null
             }
