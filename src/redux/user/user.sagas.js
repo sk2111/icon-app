@@ -8,14 +8,14 @@ import { AUTH_PATH, SIGN_OUT_PAGE_PATH } from '../../utilities/route.paths';
 //actions
 import {
     updateOrResetPasswordSuccess, updateOrResetPasswordFailure, userAuthSuccess,
-    userPersistanceCheckCompleted, userSignOutFailure, userSignOutSuccess, getUserAccessRoleSucess,
+    userPersistanceCheckCompleted, userSignOutFailure, getUserAccessRoleSucess,
     getUserAccessRoleFailure
 } from './user.actions';
 import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 //constants
 import {
-    SIGN_OUT_SUCCESS_MESSAGE, SIGN_OUT_FAILURE_MESSAGE,
-    UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE, UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE
+    SIGN_OUT_FAILURE_MESSAGE, UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE,
+    UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE
 } from '../../utilities/auth.messages';
 import { LOADING_PERSISTANT_CHECK_TIME } from '../../utilities/app.constants';
 //helper functions
@@ -79,7 +79,6 @@ function* signOutUser() {
     try {
         history.replace(AUTH_PATH + SIGN_OUT_PAGE_PATH);
         yield auth.signOut();
-        // yield put(userSignOutSuccess(SIGN_OUT_SUCCESS_MESSAGE));
     }
     catch (e) {
         console.log("User signout failed", e);
