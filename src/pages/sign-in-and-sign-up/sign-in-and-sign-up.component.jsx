@@ -13,7 +13,9 @@ import RouteNotFound from '../../components/route-not-found/route-not-found.comp
 import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
 import { LOADING_ANIM_LOGO_TIME } from '../../utilities/app.constants';
 
-import { SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, LANDING_PATH } from '../../utilities/route.paths';
+import {
+    SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, LANDING_PATH
+} from '../../utilities/route.paths';
 
 const SignInAndSignUpPage = ({ currentUser, history, match }) => {
     const { path } = match;

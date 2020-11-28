@@ -1,6 +1,10 @@
 import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
 import { userActionTypes } from './user.type';
 import { getCurrentUser, readUserProfileFromFireStore, getUserAccessRoleFromFireStore, auth } from '../../firebase/firebase.utils';
+//history
+import history from '../../utilities/history';
+//route constants 
+import { AUTH_PATH, SIGN_OUT_PAGE_PATH } from '../../utilities/route.paths';
 //actions
 import {
     updateOrResetPasswordSuccess, updateOrResetPasswordFailure, userAuthSuccess,
@@ -73,8 +77,9 @@ function* onUpdateOrResetPasswordStart() {
 // user sign out sagas
 function* signOutUser() {
     try {
+        history.replace(AUTH_PATH + SIGN_OUT_PAGE_PATH);
         yield auth.signOut();
-        yield put(userSignOutSuccess(SIGN_OUT_SUCCESS_MESSAGE));
+        // yield put(userSignOutSuccess(SIGN_OUT_SUCCESS_MESSAGE));
     }
     catch (e) {
         console.log("User signout failed", e);
