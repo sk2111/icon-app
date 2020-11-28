@@ -1,22 +1,28 @@
 //libs
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 //css
 import styles from './sign-out.module.css';
 //actions
 import { userSignOutSuccess } from '../../redux/user/user.actions';
+//Route constants
+import { GO_TO_SIGNIN } from '../../utilities/route.paths';
 //static
 import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
 import { SIGNOUT_ANIMATION_LOADING_TIME } from '../../utilities/app.constants';
 
 const SignOut = ({ userSignOutSuccess }) => {
+    const history = useHistory();
 
     useEffect(() => {
-        console.log(" I am use effect of signout")
+        //clear current user in redux and got to sign in page 
         setTimeout(() => {
             userSignOutSuccess();
+            history.replace(GO_TO_SIGNIN);
         }, SIGNOUT_ANIMATION_LOADING_TIME);
-    }, [userSignOutSuccess]);
+
+    }, [history, userSignOutSuccess]);
 
     return (
         <div className={styles.container}>
