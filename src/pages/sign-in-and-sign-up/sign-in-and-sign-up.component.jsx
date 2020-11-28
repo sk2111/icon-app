@@ -8,13 +8,15 @@ import LoginHeader from '../../components/login-header/login-header.component';
 import SignInUserLogin from '../../components/sign-in-user-login/sign-in-user-login.component';
 import SignInForgotPassword from '../../components/sign-in-forgot-password/sign-in-forgot-password.component';
 import SignUp from '../../components/sign-up/sign-up.component';
+import UpdatePassword from '../../components/update-password/update-password.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
 //constants
 import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
 import { LOADING_ANIM_LOGO_TIME } from '../../utilities/app.constants';
 
 import {
-    SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, LANDING_PATH
+    SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH,
+    LANDING_PATH, UPDATE_PASSWORD_PAGE_PATH
 } from '../../utilities/route.paths';
 
 const SignInAndSignUpPage = ({ currentUser, history, match }) => {
@@ -42,6 +44,7 @@ const SignInAndSignUpPage = ({ currentUser, history, match }) => {
                             <Route exact path={`${path}${SIGN_IN_PAGE_PATH}`} component={SignInUserLogin} />
                             <Route exact path={`${path}${FORGOT_PASSWORD_PAGE_PATH}`} component={SignInForgotPassword} />
                             <Route exact path={`${path}${SIGN_UP_PAGE_PATH}`} component={SignUp} />
+                            <Route exact path={`${path}${UPDATE_PASSWORD_PAGE_PATH}`} component={UpdatePassword} />
                             <Route component={RouteNotFound}></Route>
                         </Switch>
                     </div>
