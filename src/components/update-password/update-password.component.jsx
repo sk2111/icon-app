@@ -16,19 +16,25 @@ import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
 const UpdatePassword = () => {
     const errorMessage = 'Hai I am error message', fetching = false;
-    const handleForgotPasswordSubmit = (e) => {
-        e.preventDefault();
-    };
     const clearAuthErrorMessage = () => {
 
     };
 
 
-    const [passwordDetails, setPasswordDetails] = useState({ currentPassword: '', password: '', confirmPassword: '' });
-    const [passwordViews, setPasswordViews] = useState({ currentPasswordView: true, passwordView: true, confirmPasswordView: true });
+    const [passwordDetails, setPasswordDetails] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
+    const [passwordViews, setPasswordViews] = useState({ currentPasswordView: true, newPasswordView: true, confirmNewPasswordView: true });
 
-    const { currentPassword, password, confirmPassword } = passwordDetails;
-    const { currentPasswordView, passwordView, confirmPasswordView } = passwordViews;
+    const { currentPassword, newPassword, confirmNewPassword } = passwordDetails;
+    const { currentPasswordView, newPasswordView, confirmNewPasswordView } = passwordViews;
+
+    const handleUpdatePasswordSubmit = (e) => {
+        e.preventDefault();
+        // todo : check whether new passsword and confirm password are same 
+        // if not throw error message using actio
+        // check whether all inpyuts have value using if condition
+
+        console.log("FOrm update change", currentPassword, newPassword, confirmNewPassword);
+    };
 
     const handleInputChange = (e) => {
         const { value, name } = e.target;
@@ -41,34 +47,24 @@ const UpdatePassword = () => {
         setPasswordViews({ ...passwordViews, [name]: !passwordViews[name] });
     };
 
-    const renderViewOrHideSvg = (toHideValue, type) => {
-        return (toHideValue ?
-            <HideSvg name={type} className={styles.passwordSvg} onClick={handleViewHidePassword} /> :
-            <ShowSvg name={type} className={styles.passwordSvg} onClick={handleViewHidePassword} />)
-    };
-
-    const getFormType = (isTypePassword) => {
-        return isTypePassword ? 'password' : 'text';
+    const renderFormInput = (label, formName, value, showAsPassword, svgName) => {
+        const formType = showAsPassword ? 'password' : 'text';
+        return (
+            <div className="flex-row-acen pos-rel">
+                <FormInput className="mt-22" name={formName} value={value}
+                    label={label} type={formType} required autoComplete="off" handleInputChange={handleInputChange} />
+                {showAsPassword ? <HideSvg name={svgName} className={styles.passwordSvg} onClick={handleViewHidePassword} /> :
+                    <ShowSvg name={svgName} className={styles.passwordSvg} onClick={handleViewHidePassword} />}
+            </div>
+        );
     };
 
     return (
-        <form className={styles.container} autoComplete="on" onSubmit={handleForgotPasswordSubmit}>
+        <form className={styles.container} autoComplete="on" onSubmit={handleUpdatePasswordSubmit}>
             <h3 className={styles.header}>Update password</h3>
-            <div className="flex-row-acen pos-rel">
-                <FormInput className="mt-22" name="currentPassword" value={currentPassword}
-                    label="Current Password" type={getFormType(currentPasswordView)} required autoComplete="off" handleInputChange={handleInputChange} />
-                {renderViewOrHideSvg(currentPasswordView, 'currentPasswordView')}
-            </div>
-            <div className="flex-row-acen pos-rel">
-                <FormInput className="mt-22" name="password" value={password}
-                    label="Password" type={getFormType(passwordView)} required autoComplete="off" handleInputChange={handleInputChange} />
-                {renderViewOrHideSvg(passwordView, 'passwordView')}
-            </div>
-            <div className="flex-row-acen pos-rel">
-                <FormInput className="mt-22" name="confirmPassword" value={confirmPassword}
-                    label="Confirm Password" type={getFormType(confirmPasswordView)} required autoComplete="off" handleInputChange={handleInputChange} />
-                {renderViewOrHideSvg(confirmPasswordView, 'confirmPasswordView')}
-            </div>
+            {renderFormInput("Current Password", "currentPassword", currentPassword, currentPasswordView, 'currentPasswordView')}
+            {renderFormInput("New Password", "newPassword", newPassword, newPasswordView, 'newPasswordView')}
+            {renderFormInput("Confirm New Password", "confirmNewPassword", confirmNewPassword, confirmNewPasswordView, 'confirmNewPasswordView')}
             <div className={`${styles.errorContainer} perfect-cen`}>
                 <span className={styles.errorText}>{errorMessage}</span>
             </div>
