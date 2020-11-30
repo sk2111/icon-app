@@ -98,8 +98,6 @@ export function* updateUserPassword({ payload: { currentPassword, newPassword } 
         yield currentUser.reauthenticateWithCredential(credential);
         yield currentUser.updatePassword(newPassword);
         yield put(updateNewPasswordSuccess(UPDATE_PASSWORD_SUCCESS_MESSAGE));
-        delay(5000);
-        history.goBack();
     }
     catch (e) {
         console.log("update password failed", e);

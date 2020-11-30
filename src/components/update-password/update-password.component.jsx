@@ -10,7 +10,7 @@ import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 //reselect
 import { selectCurrentUser } from '../../redux/user/user.selectors';
-import { selectWaitingForData, selectErrorMessage } from '../../redux/auth/auth.selectors';
+import { selectWaitingForData, selectUserMessage, selectErrorMessage } from '../../redux/auth/auth.selectors';
 //actions
 import { clearAuthError, updateNewPasswordStart, updateNewPasswordFailure } from '../../redux/auth/auth.actions';
 //route constants
@@ -21,7 +21,7 @@ import { UPDATE_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities//auth.message
 import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
 import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
-const UpdatePassword = ({ currentUser, fetching, errorMessage, updateNewPasswordStart, updateNewPasswordFailure, clearAuthErrorMessage }) => {
+const UpdatePassword = ({ currentUser, fetching, userMessage, errorMessage, updateNewPasswordStart, updateNewPasswordFailure, clearAuthErrorMessage }) => {
 
     const history = useHistory();
     const [passwordDetails, setPasswordDetails] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
@@ -75,6 +75,7 @@ const UpdatePassword = ({ currentUser, fetching, errorMessage, updateNewPassword
     return (
         <form className={styles.container} autoComplete="on" onSubmit={handleUpdatePasswordSubmit}>
             <h3 className={styles.header}>Update password</h3>
+            {userMessage ? <p className={styles.userMessage}>{userMessage}</p> : null}
             {renderFormInput("Current Password", "currentPassword", currentPassword, currentPasswordView, 'currentPasswordView')}
             {renderFormInput("New Password", "newPassword", newPassword, newPasswordView, 'newPasswordView')}
             {renderFormInput("Confirm New Password", "confirmNewPassword", confirmNewPassword, confirmNewPasswordView, 'confirmNewPasswordView')}
@@ -95,6 +96,7 @@ const UpdatePassword = ({ currentUser, fetching, errorMessage, updateNewPassword
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
     fetching: selectWaitingForData,
+    userMessage: selectUserMessage,
     errorMessage: selectErrorMessage
 });
 

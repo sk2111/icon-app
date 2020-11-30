@@ -53,8 +53,9 @@ export const updateNewPasswordStart = (payload) => ({
     type: authActionTypes.UPDATE_NEW_PASSWORD_START,
     payload
 });
-export const updateNewPasswordSuccess = () => ({
+export const updateNewPasswordSuccess = (payload) => ({
     type: authActionTypes.UPDATE_NEW_PASSWORD_SUCCESS,
+    payload
 });
 export const updateNewPasswordFailure = (payload) => ({
     type: authActionTypes.UPDATE_NEW_PASSWORD_FAILURE,
