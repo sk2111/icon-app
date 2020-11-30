@@ -29,6 +29,7 @@ const UpdatePassword = ({ currentUser, fetching, userMessage, errorMessage, upda
 
     const { currentPassword, newPassword, confirmNewPassword } = passwordDetails;
     const { currentPasswordView, newPasswordView, confirmNewPasswordView } = passwordViews;
+    const btnClass = fetching ? 'disable-btn' : '';
 
     const handleUpdatePasswordSubmit = (e) => {
         e.preventDefault();
@@ -82,7 +83,7 @@ const UpdatePassword = ({ currentUser, fetching, userMessage, errorMessage, upda
             <div className={`${styles.errorContainer} perfect-cen`}>
                 <span className={styles.errorText}>{errorMessage}</span>
             </div>
-            <div className={`${styles.buttonCon} perfect-cen`}>
+            <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
                 <CustomButton loading={fetching} type="submit">Reset password</CustomButton>
             </div>
             <div className={`${styles.actionLabel} perfect-cen mt-33`}>

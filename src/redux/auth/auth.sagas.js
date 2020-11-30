@@ -1,5 +1,5 @@
 //libs
-import { takeLatest, put, all, call, delay } from 'redux-saga/effects';
+import { takeLatest, put, all, call } from 'redux-saga/effects';
 import history from '../../utilities/history';
 //firebase
 import { auth, firebaseIns, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
