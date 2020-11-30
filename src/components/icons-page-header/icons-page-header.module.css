@@ -23,6 +23,7 @@
   top: 0px;
 }
 .arrow {
+  cursor: pointer;
   height: 15px;
   left: 9px;
   position: absolute;

@@ -7,11 +7,14 @@ export const getCurrentUserInfoStart = (payload) => {
         payload
     }
 };
-export const getCurrentUserInfoSuccess = () => {
+
+export const getCurrentUserInfoSuccess = (payload) => {
     return {
-        type: userActionTypes.GET_CURRENT_USER_INFO_SUCCESS
+        type: userActionTypes.GET_CURRENT_USER_INFO_SUCCESS,
+        payload
     }
 };
+
 export const getCurrentUserInfoFailure = (payload) => {
     return {
         type: userActionTypes.GET_CURRENT_USER_INFO_FAILURE,
