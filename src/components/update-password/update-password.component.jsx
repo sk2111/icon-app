@@ -29,8 +29,7 @@ const UpdatePassword = () => {
 
     const handleUpdatePasswordSubmit = (e) => {
         e.preventDefault();
-        if((newPassword === confirmNewPassword) && newPassword.length)
-        {
+        if ((newPassword === confirmNewPassword) && newPassword.length) {
             //todo : Do reset password logic here
             return;
         }
