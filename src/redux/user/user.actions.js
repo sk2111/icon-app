@@ -61,25 +61,3 @@ export const userSignOutFailure = (payload) => {
         payload
     }
 };
-
-// send reset link to update or change password 
-export const updateOrResetPasswordStart = (payload) => {
-    return {
-        type: userActionTypes.UPDATE_OR_RESET_PASSWORD_START,
-        payload
-    }
-};
-
-export const updateOrResetPasswordSuccess = (payload) => {
-    return {
-        type: userActionTypes.UPDATE_OR_RESET_PASSWORD_SUCCESS,
-        payload
-    }
-};
-
-export const updateOrResetPasswordFailure = (payload) => {
-    return {
-        type: userActionTypes.UPDATE_OR_RESET_PASSWORD_FAILURE,
-        payload
-    }
-};

@@ -7,16 +7,11 @@ import history from '../../utilities/history';
 import { AUTH_PATH, SIGN_OUT_PAGE_PATH } from '../../utilities/route.paths';
 //actions
 import {
-    updateOrResetPasswordSuccess, updateOrResetPasswordFailure, userAuthSuccess,
-    userPersistanceCheckCompleted, userSignOutFailure, getUserAccessRoleSucess,
-    getUserAccessRoleFailure
+    userAuthSuccess, userPersistanceCheckCompleted, userSignOutFailure,
+    getUserAccessRoleSucess, getUserAccessRoleFailure
 } from './user.actions';
-import { showSuccessToastMessage, showFailureToastMessage } from '../toast-message/toast-message.actions';
 //constants
-import {
-    SIGN_OUT_FAILURE_MESSAGE, UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE,
-    UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE
-} from '../../utilities/auth.messages';
+import { SIGN_OUT_FAILURE_MESSAGE } from '../../utilities/auth.messages';
 import { LOADING_PERSISTANT_CHECK_TIME } from '../../utilities/app.constants';
 //helper functions
 import { frameCurrentUserObject } from '../../utilities/helper.functions';
@@ -56,24 +51,6 @@ function* onGetUserAccessRoleStart() {
     yield takeLatest(userActionTypes.USER_AUTH_SUCCESS, getUserAccessRole);
 };
 
-//update or reset password sagas
-function* updateOrResetPassword({ payload: { email } }) {
-    try {
-        yield auth.sendPasswordResetEmail(email);
-        yield put(updateOrResetPasswordSuccess(UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE));
-        yield put(showSuccessToastMessage({ message: UPDATE_OR_RESET_PASSWORD_SUCCESS_MESSAGE, timeInSeconds: 6 }));
-    }
-    catch (e) {
-        console.log(e);
-        yield put(updateOrResetPasswordFailure(UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE));
-        yield put(showFailureToastMessage({ message: UPDATE_OR_RESET_PASSWORD_FAILURE_MESSAGE, timeInSeconds: 6 }));
-    }
-};
-
-function* onUpdateOrResetPasswordStart() {
-    yield takeLatest(userActionTypes.UPDATE_OR_RESET_PASSWORD_START, updateOrResetPassword);
-};
-
 // user sign out sagas
 function* signOutUser() {
     try {
@@ -94,7 +71,6 @@ export function* userSagas() {
     yield all([
         call(onUserPersistanceStart),
         call(onGetUserAccessRoleStart),
-        call(onUpdateOrResetPasswordStart),
         call(onUserSignOutStart)
     ]);
 };

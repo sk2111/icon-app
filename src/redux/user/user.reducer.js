@@ -22,10 +22,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return { ...state, errorMessage: CLEARVALUE, currentUser: null };
         case userActionTypes.USER_SIGN_OUT_FAILURE:
             return { ...state, errorMessage: action.payload };
-        case userActionTypes.UPDATE_OR_RESET_PASSWORD_SUCCESS:
-            return { ...state, errorMessage: CLEARVALUE };
-        case userActionTypes.UPDATE_OR_RESET_PASSWORD_FAILURE:
-            return { ...state, errorMessage: action.payload }
         default:
             return state;
     }
