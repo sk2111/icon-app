@@ -47,3 +47,16 @@ export const sendResetLinkFailure = (payload) => ({
     type: authActionTypes.SEND_PASSWORD_RESET_LINK_FAILURE,
     payload
 });
+
+// update password actions
+export const updateNewPasswordStart = (payload) => ({
+    type: authActionTypes.UPDATE_NEW_PASSWORD_START,
+    payload
+});
+export const updateNewPasswordSuccess = () => ({
+    type: authActionTypes.UPDATE_NEW_PASSWORD_SUCCESS,
+});
+export const updateNewPasswordFailure = (payload) => ({
+    type: authActionTypes.UPDATE_NEW_PASSWORD_FAILURE,
+    payload
+});

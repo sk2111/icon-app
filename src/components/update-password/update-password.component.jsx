@@ -29,11 +29,12 @@ const UpdatePassword = () => {
 
     const handleUpdatePasswordSubmit = (e) => {
         e.preventDefault();
-        // todo : check whether new passsword and confirm password are same 
-        // if not throw error message using actio
-        // check whether all inpyuts have value using if condition
-
-        console.log("FOrm update change", currentPassword, newPassword, confirmNewPassword);
+        if((newPassword === confirmNewPassword) && newPassword.length)
+        {
+            //todo : Do reset password logic here
+            return;
+        }
+        //display error message here
     };
 
     const handleInputChange = (e) => {
