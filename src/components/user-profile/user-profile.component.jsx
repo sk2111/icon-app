@@ -1,6 +1,7 @@
 //libs
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 //selectors
 import { selectCurrentUserEmail, selectCurrentUserFullName } from '../../redux/user/user.selectors';
@@ -8,9 +9,11 @@ import { selectCurrentUserEmail, selectCurrentUserFullName } from '../../redux/u
 import styles from './user-profile.module.css';
 //actions
 import { userSignOutStart } from '../../redux/user/user.actions';
+//Route constants
+import { GO_TO_UPDATE_PASSWORD } from '../../utilities/route.paths';
 
 const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
-
+    const history = useHistory();
     const [settingsHidden, setSettingsHidden] = useState(true);
 
     const containerStyle = settingsHidden ? { maxHeight: '0px' } : {};
@@ -32,7 +35,7 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
                     </div>
                     <div className={styles.breakLine}></div>
                     <p className={`${styles.label} ${styles.firstLabel}`}
-                        onClick={() => { }}>Update password</p>
+                        onClick={() => { history.push(GO_TO_UPDATE_PASSWORD) }}>Update password</p>
                     <p className={`${styles.label} ${styles.signOutLabel}`} onClick={userSignOutStart}>Sign out</p>
                 </div>
             </div>
