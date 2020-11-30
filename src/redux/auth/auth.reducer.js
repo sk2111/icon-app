@@ -16,16 +16,19 @@ const authReducer = (state = INITIALSTATE, action) => {
         case authActionTypes.USER_LOGIN_START:
         case authActionTypes.SIGN_UP_START:
         case authActionTypes.SEND_PASSWORD_RESET_LINK_START:
+        case authActionTypes.UPDATE_NEW_PASSWORD_START:
             return { ...state, waitingForData: true, error: CLEARVALUE, userMessage: CLEARVALUE };
 
         case authActionTypes.USER_LOGIN_SUCCESS:
         case authActionTypes.SIGN_UP_SUCCESS:
         case authActionTypes.SEND_PASSWORD_RESET_LINK_SUCCESS:
+        case authActionTypes.UPDATE_NEW_PASSWORD_SUCCESS:
             return { ...state, waitingForData: false, error: CLEARVALUE, userMessage: action.payload };
 
         case authActionTypes.USER_LOGIN_FAILURE:
         case authActionTypes.SIGN_UP_FAILURE:
         case authActionTypes.SEND_PASSWORD_RESET_LINK_FAILURE:
+        case authActionTypes.UPDATE_NEW_PASSWORD_FAILURE:
             return { ...state, waitingForData: false, error: action.payload, userMessage: CLEARVALUE };
 
         default:

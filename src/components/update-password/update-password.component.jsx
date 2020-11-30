@@ -10,19 +10,18 @@ import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 //reselect
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectWaitingForData, selectErrorMessage } from '../../redux/auth/auth.selectors';
 //actions
-//import {  } from '../../redux/auth/auth.actions';
+import { clearAuthError, updateNewPasswordStart, updateNewPasswordFailure } from '../../redux/auth/auth.actions';
 //route constants
 import { LANDING_PATH, GO_TO_SIGNIN } from '../../utilities/route.paths';
+//constants
+import { UPDATE_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities//auth.messages';
 //static
 import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
 import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
-const UpdatePassword = ({ currentUser }) => {
-    const errorMessage = 'Hai I am error message', fetching = false;
-    const clearAuthErrorMessage = () => {
-
-    };
+const UpdatePassword = ({ currentUser, fetching, errorMessage, updateNewPasswordStart, updateNewPasswordFailure, clearAuthErrorMessage }) => {
 
     const history = useHistory();
     const [passwordDetails, setPasswordDetails] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
@@ -34,15 +33,17 @@ const UpdatePassword = ({ currentUser }) => {
     const handleUpdatePasswordSubmit = (e) => {
         e.preventDefault();
         if ((newPassword === confirmNewPassword) && newPassword.length) {
-            //todo : Do reset password logic here
+            updateNewPasswordStart(newPassword);
             return;
         }
-        //display error message here
+        updateNewPasswordFailure(UPDATE_PASSWORD_NOT_MATCH_MESSAGE);
     };
 
     const handleInputChange = (e) => {
         const { value, name } = e.target;
-        clearAuthErrorMessage();
+        if (errorMessage) {
+            clearAuthErrorMessage();
+        }
         setPasswordDetails({ ...passwordDetails, [name]: value });
     };
 
@@ -62,6 +63,7 @@ const UpdatePassword = ({ currentUser }) => {
             </div>
         );
     };
+
     //useeffect for redirect to sign in if user not logged
     useEffect(() => {
         if (!currentUser?.uid) {
@@ -94,6 +96,16 @@ const UpdatePassword = ({ currentUser }) => {
 
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
+    fetching: selectWaitingForData,
+    errorMessage: selectErrorMessage
 });
 
-export default connect(mapStateToProps)(UpdatePassword);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        clearAuthErrorMessage: () => dispatch(clearAuthError()),
+        updateNewPasswordStart: (newPassword) => dispatch(updateNewPasswordStart(newPassword)),
+        updateNewPasswordFailure: (message) => dispatch(updateNewPasswordFailure(message))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UpdatePassword);

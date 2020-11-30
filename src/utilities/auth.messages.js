@@ -12,3 +12,5 @@ export const FORGOT_PASSWORD_INVALID_ERROR_MAIL_MESSAGE = 'Please enter a valid 
 //signout message
 export const SIGN_OUT_SUCCESS_MESSAGE = 'Signout successful';
 export const SIGN_OUT_FAILURE_MESSAGE = 'Signout failed . Please try again';
+//update password 
+export const UPDATE_PASSWORD_NOT_MATCH_MESSAGE = 'New password & Confirm new password don\'t match';
