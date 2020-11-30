@@ -15,12 +15,10 @@ const CustomSelect = ({ options }) => {
         <React.Fragment>
             <span className={styles.dropLabel}>Categories</span>
             <div className={styles.dropdown}>
-                <input className={styles.selectedValue}
-                    readOnly
-                    value={selectValue}
-                    onBlur={() => setSelectHidden(true)}
-                    onClick={() => setSelectHidden(!selectHidden)} />
-                <ArrowDownLogo className={styles.arrowDown} />
+                <div className={styles.valueCon} tabIndex="0" onBlur={() => setSelectHidden(true)} onClick={() => setSelectHidden(!selectHidden)}>
+                    <div className={styles.selectedValue}>{selectValue}</div>
+                    <ArrowDownLogo className={styles.arrowDown} />
+                </div>
                 <div style={containerStyle} className={styles.optionsCon}>
                     {
                         options.map((option) => {

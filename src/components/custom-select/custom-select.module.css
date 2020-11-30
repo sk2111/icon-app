@@ -9,14 +9,18 @@
   font-size: 14px;
   position: relative;
 }
-
+.valueCon:focus {
+  outline: none;
+}
 .selectedValue {
+  align-items: center;
   background-color: var(--app-input-background);
   border: 0px;
   border-radius: 3px;
   color: var(--app-form-label);
   cursor: default;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
   height: 30px;
   outline: none;
   padding-left: 16px;
