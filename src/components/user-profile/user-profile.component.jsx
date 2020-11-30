@@ -7,9 +7,9 @@ import { selectCurrentUserEmail, selectCurrentUserFullName } from '../../redux/u
 //css
 import styles from './user-profile.module.css';
 //actions
-import { userSignOutStart, updateOrResetPasswordStart } from '../../redux/user/user.actions';
+import { userSignOutStart } from '../../redux/user/user.actions';
 
-const UserProfile = ({ userSignOutStart, updateOrResetPasswordStart, curentUserEmail, fullName }) => {
+const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
 
     const [settingsHidden, setSettingsHidden] = useState(true);
 
@@ -32,7 +32,7 @@ const UserProfile = ({ userSignOutStart, updateOrResetPasswordStart, curentUserE
                     </div>
                     <div className={styles.breakLine}></div>
                     <p className={`${styles.label} ${styles.firstLabel}`}
-                        onClick={() => updateOrResetPasswordStart({ email: curentUserEmail })}>Update password</p>
+                        onClick={() => { }}>Update password</p>
                     <p className={`${styles.label} ${styles.signOutLabel}`} onClick={userSignOutStart}>Sign out</p>
                 </div>
             </div>
@@ -47,8 +47,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        userSignOutStart: () => dispatch(userSignOutStart()),
-        updateOrResetPasswordStart: (data) => dispatch(updateOrResetPasswordStart(data))
+        userSignOutStart: () => dispatch(userSignOutStart())
     }
 };
 
