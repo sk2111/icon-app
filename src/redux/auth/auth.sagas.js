@@ -6,7 +6,7 @@ import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from
 //actions types
 import { authActionTypes } from './auth.type';
 import { userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure } from './auth.actions';
-import { userAuthSuccess } from '../user/user.actions';
+import { getCurrentUserInfoStart } from '../user/user.actions';
 //Route constants
 import { AUTH_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
 import { isValidMail } from '../../utilities/validator.utils';
@@ -15,9 +15,6 @@ import {
     SIGN_UP_SUCCESS_MESSAGE, SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, RESET_LINK_SUCCESS_MESSAGE,
     USER_LOGIN_SUCCESS_MESSAGE, USER_LOGIN_PROFILE_ERROR_MESSAGE, USER_LOGIN_VERIFY_ERROR_MESSAGE
 } from '../../utilities/auth.messages';
-//helper functions
-import { frameCurrentUserObject } from '../../utilities/helper.functions';
-
 
 
 // Sign up user saga
@@ -52,7 +49,7 @@ export function* loginInUser({ payload: { email, password } }) {
             const userData = yield call(readUserProfileFromFireStore, user.uid);
             if (userData) {
                 yield put(userLoginSucess(USER_LOGIN_SUCCESS_MESSAGE));
-                yield put(userAuthSuccess(frameCurrentUserObject(userData)));
+                yield put(getCurrentUserInfoStart(userData));
                 return;
             }
             yield put(userLoginFailure(USER_LOGIN_PROFILE_ERROR_MESSAGE));

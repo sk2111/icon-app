@@ -1,8 +1,20 @@
 import { userActionTypes } from './user.type';
 
-export const userAuthSuccess = (payload) => {
+// get current user info
+export const getCurrentUserInfoStart = (payload) => {
     return {
-        type: userActionTypes.USER_AUTH_SUCCESS,
+        type: userActionTypes.GET_CURRENT_USER_INFO_START,
+        payload
+    }
+};
+export const getCurrentUserInfoSuccess = () => {
+    return {
+        type: userActionTypes.GET_CURRENT_USER_INFO_SUCCESS
+    }
+};
+export const getCurrentUserInfoFailure = (payload) => {
+    return {
+        type: userActionTypes.GET_CURRENT_USER_INFO_FAILURE,
         payload
     }
 };
@@ -17,27 +29,6 @@ export const checkUserPersistanceStart = () => {
 export const userPersistanceCheckCompleted = () => {
     return {
         type: userActionTypes.CHECK_USER_PERSISTANCE_COMPLETED
-    }
-};
-
-// user role access check actions
-export const getUserAccessRoleStart = () => {
-    return {
-        type: userActionTypes.GET_USER_ACCESS_ROLE_START
-    }
-};
-
-export const getUserAccessRoleSucess = (payload) => {
-    return {
-        type: userActionTypes.GET_USER_ACCESS_ROLE_SUCCESS,
-        payload
-    }
-};
-
-export const getUserAccessRoleFailure = (payload) => {
-    return {
-        type: userActionTypes.GET_USER_ACCESS_ROLE_FAILURE,
-        payload
     }
 };
 
