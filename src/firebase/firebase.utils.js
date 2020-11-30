@@ -9,6 +9,7 @@ import { FIREBASE_CONFIG, USERS_COLLECTION_PATH, GET_ACCESS_ROLE_PATH } from './
 //init
 firebase.initializeApp(FIREBASE_CONFIG);
 
+export const firebaseIns = firebase;
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 

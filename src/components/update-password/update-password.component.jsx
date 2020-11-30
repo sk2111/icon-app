@@ -33,7 +33,7 @@ const UpdatePassword = ({ currentUser, fetching, errorMessage, updateNewPassword
     const handleUpdatePasswordSubmit = (e) => {
         e.preventDefault();
         if ((newPassword === confirmNewPassword) && newPassword.length) {
-            updateNewPasswordStart(newPassword);
+            updateNewPasswordStart({ currentPassword, newPassword });
             return;
         }
         updateNewPasswordFailure(UPDATE_PASSWORD_NOT_MATCH_MESSAGE);
@@ -64,14 +64,12 @@ const UpdatePassword = ({ currentUser, fetching, errorMessage, updateNewPassword
         );
     };
 
-    //useeffect for redirect to sign in if user not logged
     useEffect(() => {
         if (!currentUser?.uid) {
             history.replace(GO_TO_SIGNIN);
         }
     });
 
-    // If user is not logged in redirect to signin 
     if (!currentUser?.uid) return null;
 
     return (
@@ -106,6 +104,6 @@ const mapDispatchToProps = (dispatch) => {
         updateNewPasswordStart: (newPassword) => dispatch(updateNewPasswordStart(newPassword)),
         updateNewPasswordFailure: (message) => dispatch(updateNewPasswordFailure(message))
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdatePassword);

@@ -1,11 +1,14 @@
 //libs
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeLatest, put, all, call, delay } from 'redux-saga/effects';
 import history from '../../utilities/history';
 //firebase
-import { auth, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
+import { auth, firebaseIns, createUserProfileInFirestore, readUserProfileFromFireStore } from '../../firebase/firebase.utils';
 //actions types
 import { authActionTypes } from './auth.type';
-import { userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess, sendResetLinkSuccess, sendResetLinkFailure } from './auth.actions';
+import {
+    userSignUpSuccess, userSignUpFailure, userLoginFailure, userLoginSucess,
+    sendResetLinkSuccess, sendResetLinkFailure, updateNewPasswordSuccess, updateNewPasswordFailure
+} from './auth.actions';
 import { getCurrentUserInfoStart } from '../user/user.actions';
 //Route constants
 import { AUTH_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
@@ -13,7 +16,8 @@ import { isValidMail } from '../../utilities/validator.utils';
 //constants
 import {
     SIGN_UP_SUCCESS_MESSAGE, SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, RESET_LINK_SUCCESS_MESSAGE,
-    USER_LOGIN_SUCCESS_MESSAGE, USER_LOGIN_PROFILE_ERROR_MESSAGE, USER_LOGIN_VERIFY_ERROR_MESSAGE
+    USER_LOGIN_SUCCESS_MESSAGE, USER_LOGIN_PROFILE_ERROR_MESSAGE, USER_LOGIN_VERIFY_ERROR_MESSAGE,
+    CURRENT_PASSWORD_NOT_MATCH_MESSAGE, UPDATE_PASSWORD_SUCCESS_MESSAGE
 } from '../../utilities/auth.messages';
 
 
@@ -83,11 +87,36 @@ export function* onSendRestLinkStart() {
     yield takeLatest(authActionTypes.SEND_PASSWORD_RESET_LINK_START, sendResetLink);
 };
 
+//update current user password saga
+export function* updateUserPassword({ payload: { currentPassword, newPassword } }) {
+    try {
+        const currentUser = firebaseIns.auth().currentUser;
+        const credential = firebaseIns.auth.EmailAuthProvider.credential(
+            currentUser.email,
+            currentPassword
+        );
+        yield currentUser.reauthenticateWithCredential(credential);
+        yield currentUser.updatePassword(newPassword);
+        yield put(updateNewPasswordSuccess(UPDATE_PASSWORD_SUCCESS_MESSAGE));
+        delay(5000);
+        history.goBack();
+    }
+    catch (e) {
+        console.log("update password failed", e);
+        const errorMessage = e?.code === 'auth/wrong-password' ? CURRENT_PASSWORD_NOT_MATCH_MESSAGE : e?.message;
+        yield put(updateNewPasswordFailure(errorMessage));
+    }
+};
+export function* onUpdateUserPasswordStart() {
+    yield takeLatest(authActionTypes.UPDATE_NEW_PASSWORD_START, updateUserPassword);
+};
+
 // Group all sagas
 export function* authSagas() {
     yield all([
         call(onUserSignUpStart),
         call(onUserLoginStart),
-        call(onSendRestLinkStart)
+        call(onSendRestLinkStart),
+        call(onUpdateUserPasswordStart)
     ])
 }
