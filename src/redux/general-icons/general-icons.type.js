@@ -1,0 +1,3 @@
+export const generalIconsActionsTypes = {
+    'GET_SEARCH_KEYWORD_AND_CATEGORY_LIST': 'GET_SEARCH_KEYWORD_AND_CATEGORY_LIST'
+}
