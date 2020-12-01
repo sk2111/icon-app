@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 //css
 import styles from './home-page.module.css';
 //pages
-import GeneralIconsPage from '../general-icons-page/general-icons-page.component';
+import CommonIconsPage from '../common-icons-page/common-icons-page.component';
 import ProjectIconsPage from '../project-icons-page/project-icons-page.component';
 import FavoritesIconsPage from '../favorites-icons-page/favorites-icons-page.component';
 import EditIconPage from '../edit-icon-page/edit-icon-page.component';
@@ -14,7 +14,7 @@ import HomeHeader from '../../components/home-header/home-header.component';
 import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
 //route paths
-import { ALL_ICONS, PROJECTS, FAVORITES, EDIT, MESSAGES } from '../../utilities/route.paths';
+import { COMMON_ICONS, PROJECTS, FAVORITES, EDIT, MESSAGES } from '../../utilities/route.paths';
 //constants
 import { NAV_MENU_EXPANDED_WIDTH, NAV_MENU_COLLAPSED_WIDTH } from '../../utilities/app.constants';
 
@@ -35,7 +35,7 @@ const HomePage = () => {
                 </section>
                 <section className={styles.rightContent}>
                     <Switch>
-                        <Route path={ALL_ICONS} component={GeneralIconsPage} />
+                        <Route path={COMMON_ICONS} component={CommonIconsPage} />
                         <Route exact path={PROJECTS} component={ProjectIconsPage} />
                         <Route exact path={FAVORITES} component={FavoritesIconsPage} />
                         <Route exact path={EDIT} component={EditIconPage} />

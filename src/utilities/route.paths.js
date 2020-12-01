@@ -8,7 +8,7 @@ export const FORGOT_PASSWORD_PAGE_PATH = '/forgotpassword';
 export const UPDATE_PASSWORD_PAGE_PATH = '/updatepassword';
 export const GO_TO_UPDATE_PASSWORD = AUTH_PATH + UPDATE_PASSWORD_PAGE_PATH;
 // navigation paths
-export const COMMON_ICONS = HOME_PATH + '/commonIcons';
+export const COMMON_ICONS = HOME_PATH + '/common';
 export const PROJECTS = HOME_PATH + '/projects';
 export const FAVORITES = HOME_PATH + '/favorites';
 export const EDIT = HOME_PATH + '/edit';
