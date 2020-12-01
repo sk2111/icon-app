@@ -1,27 +1,36 @@
 //libs
-import { takeLatest, put, call, all, delay } from 'redux-saga/effects';
+import { takeLatest, put, call, all } from 'redux-saga/effects';
 //firesbase
-import { getUserDisplayDataFromFireStore } from '../../firebase/firebase.utils';
+import { getDocDataFromFireStore } from '../../firebase/firebase.utils';
 import { COMMON_ICONS_USER_OPTIONS_DATA_PATH } from '../../firebase/firebase.constants';
 //action types
 import { commonIconsActionsTypes } from './common-icons.type';
 import { userActionTypes } from '../user/user.type';
 //actions
 import {
-    fetchCommonIconsUserOptionsStart
+    fetchCommonIconsUserOptionsStart,
+    fetchCommonIconsUserOptionsSuccess,
+    fetchCommonIconsUserOptionsFailure
 } from './common-icons.actions';
+//constants
+import { FETCH_USER_OPTIONS_ERROR_MESSAGE } from './common-icons.messages';
 
 
-//Get common icons search keyowrd and category saga
-function* getSearchKeywordAndCategoryList() {
-    const userOptions = yield call(getUserDisplayDataFromFireStore, COMMON_ICONS_USER_OPTIONS_DATA_PATH);
+//Get common icons search keyword and category options to select saga
+function* fetchKeywordAndSelectOptions() {
+    const userOptions = yield call(getDocDataFromFireStore, COMMON_ICONS_USER_OPTIONS_DATA_PATH);
     if (userOptions) {
-        console.log(" Hai i am user options", userOptions);
+        const { searchKeywordsList, selectOptionsList } = userOptions;
+        yield put(fetchCommonIconsUserOptionsSuccess({ searchKeywordsList, selectOptionsList }));
+        return;
     }
+    console.error("Failed to fetch user options - empty data received");
+    yield put(fetchCommonIconsUserOptionsFailure({ message: FETCH_USER_OPTIONS_ERROR_MESSAGE }));
 
 };
-function* onGetSearchKeywordAndCategoryList() {
-    yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START, getSearchKeywordAndCategoryList);
+
+function* onFetchKeywordAndSelectOptions() {
+    yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START, fetchKeywordAndSelectOptions);
 };
 
 // on user auth completion success trigger fetch actions for common icons
@@ -34,7 +43,7 @@ export function* onCurrentUserInfoFetchSuccess() {
 //Group all sagas
 export function* commonIconsSaga() {
     yield all([
-        call(onGetSearchKeywordAndCategoryList),
+        call(onFetchKeywordAndSelectOptions),
         call(onCurrentUserInfoFetchSuccess)
     ]);
 };

@@ -74,10 +74,10 @@ export const getUserAccessRoleFromFireStore = async (uid) => {
     }
 };
 
-export const getUserDisplayDataFromFireStore = async (dbPath) => {
-    const uiDisplayDataDocRef = firestore.doc(dbPath);
+export const getDocDataFromFireStore = async (dbDocPath) => {
+    const dataDocRef = firestore.doc(dbDocPath);
     try {
-        const snapshot = await uiDisplayDataDocRef.get();
+        const snapshot = await dataDocRef.get();
         if (snapshot.exists) {
             return { ...snapshot.data() };
         }
