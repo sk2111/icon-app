@@ -1,7 +1,7 @@
 //libs
 import { takeLatest, put, call, all, delay } from 'redux-saga/effects';
 //firesbase
-import { getUiDisplayDataFromFireStore } from '../../firebase/firebase.utils';
+import { getUserDisplayDataFromFireStore } from '../../firebase/firebase.utils';
 import { COMMON_ICONS_USER_OPTIONS_DATA_PATH } from '../../firebase/firebase.constants';
 //action types
 import { commonIconsActionsTypes } from './common-icons.type';
@@ -14,7 +14,7 @@ import {
 
 //Get common icons search keyowrd and category saga
 function* getSearchKeywordAndCategoryList() {
-    const userOptions = yield call(getUiDisplayDataFromFireStore, COMMON_ICONS_USER_OPTIONS_DATA_PATH);
+    const userOptions = yield call(getUserDisplayDataFromFireStore, COMMON_ICONS_USER_OPTIONS_DATA_PATH);
     if (userOptions) {
         console.log(" Hai i am user options", userOptions);
     }

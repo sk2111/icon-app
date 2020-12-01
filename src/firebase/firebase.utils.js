@@ -60,10 +60,29 @@ export const getUserAccessRoleFromFireStore = async (uid) => {
     // If user doc not exists then we dont need to care to send return data
     // Beacuse by defaukt isAdmin State property is kept false in redux store
     const userAccessRoleRef = firestore.doc(GET_ACCESS_ROLE_PATH + uid);
-    const snapshot = await userAccessRoleRef.get();
-    if (snapshot.exists) {
-        return {
-            ...snapshot.data()
-        };
+    try {
+
+        const snapshot = await userAccessRoleRef.get();
+        if (snapshot.exists) {
+            return {
+                ...snapshot.data()
+            };
+        }
+    }
+    catch (e) {
+        console.log("User Access Role Ref fetching failed", e);
+    }
+};
+
+export const getUserDisplayDataFromFireStore = async (dbPath) => {
+    const uiDisplayDataDocRef = firestore.doc(dbPath);
+    try {
+        const snapshot = await uiDisplayDataDocRef.get();
+        if (snapshot.exists) {
+            return { ...snapshot.data() };
+        }
+    }
+    catch (e) {
+        console.log("Reading from firestore for Ui display data failed", e);
     }
 };
