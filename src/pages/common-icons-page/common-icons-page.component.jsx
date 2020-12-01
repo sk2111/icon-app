@@ -9,13 +9,13 @@ import IconsPageHeader from '../../components/icons-page-header/icons-page-heade
 //reselect
 import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
 //constants
-import { ALL_ICONS_HEADER_LABEL } from '../../utilities/app.constants';
+import { COMMON_ICONS_HEADER_LABEL } from '../../utilities/app.constants';
 
 
 const CommonIconsPage = ({ currentUserAccessRole }) => {
     return (
         <div className={styles.viewContainer}>
-            <IconsPageHeader label={ALL_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
+            <IconsPageHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
         </div>
     );
 };
