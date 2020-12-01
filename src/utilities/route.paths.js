@@ -8,11 +8,11 @@ export const FORGOT_PASSWORD_PAGE_PATH = '/forgotpassword';
 export const UPDATE_PASSWORD_PAGE_PATH = '/updatepassword';
 export const GO_TO_UPDATE_PASSWORD = AUTH_PATH + UPDATE_PASSWORD_PAGE_PATH;
 // navigation paths
-export const COMMON_ICONS = HOME_PATH + '/common';
-export const PROJECTS = HOME_PATH + '/projects';
-export const FAVORITES = HOME_PATH + '/favorites';
-export const EDIT = HOME_PATH + '/edit';
-export const MESSAGES = HOME_PATH + '/messages';
+export const COMMON_ROUTE = HOME_PATH + '/common';
+export const PROJECTS_ROUTE = HOME_PATH + '/projects';
+export const FAVORITES_ROUTE = HOME_PATH + '/favorites';
+export const EDIT_ROUTE = HOME_PATH + '/edit';
+export const MESSAGES_ROUTE = HOME_PATH + '/messages';
 
 // Default Landing path after sign in success
-export const LANDING_PATH = COMMON_ICONS;
+export const LANDING_PATH = COMMON_ROUTE;

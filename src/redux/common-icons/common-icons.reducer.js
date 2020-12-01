@@ -4,7 +4,7 @@ import { commonIconsActionsTypes } from './common-icons.type';
 const INITIAL_STATE = {
     iconsMap: {},
     searchKeywordsList: [],
-    selectOptionsList: []
+    selectOptionsList: [],
 };
 
 const commonIconsReducer = (state = INITIAL_STATE, action) => {
