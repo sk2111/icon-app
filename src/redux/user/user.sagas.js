@@ -1,10 +1,12 @@
 import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
-import { userActionTypes } from './user.type';
 import { getCurrentUser, readUserProfileFromFireStore, getUserAccessRoleFromFireStore, auth } from '../../firebase/firebase.utils';
 //history
 import history from '../../utilities/history';
 //route constants 
 import { AUTH_PATH, SIGN_OUT_PAGE_PATH } from '../../utilities/route.paths';
+//action types
+import { userActionTypes } from './user.type';
+import { authActionTypes } from '../auth/auth.type';
 //actions
 import {
     userPersistanceCheckCompleted, userSignOutFailure, getCurrentUserInfoStart, getCurrentUserInfoSuccess,
@@ -32,7 +34,10 @@ function* storeAndFetchCurrentUserDetails({ payload: { ...currentUserData } }) {
 }
 
 function* onStoreAndFetchCurrentUserDetails() {
-    yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_START, storeAndFetchCurrentUserDetails);
+    yield takeLatest([
+        userActionTypes.GET_CURRENT_USER_INFO_START,
+        authActionTypes.USER_LOGIN_SUCCESS
+    ], storeAndFetchCurrentUserDetails);
 }
 
 //persistance check sagas
