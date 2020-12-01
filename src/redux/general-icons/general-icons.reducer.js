@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 const generalIconsReducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
-        case generalIconsActionsTypes.GET_SEARCH_KEYWORD_AND_CATEGORY_LIST:
+        case generalIconsActionsTypes.FETCH_SEARCH_KEYWORD_AND_CATEGORY_LIST_SUCCESS:
             const { searchKeywordsList, categoryList } = action.payload;
             return { ...state, searchKeywordsList: [...searchKeywordsList], categoryList: [...categoryList] };
         default:
