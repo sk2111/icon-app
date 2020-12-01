@@ -8,7 +8,7 @@ import { commonIconsActionsTypes } from './common-icons.type';
 import { userActionTypes } from '../user/user.type';
 //actions
 import {
-    fetchAllIconsTabUserOptionsStart
+    fetchCommonIconsUserOptionsStart
 } from './common-icons.actions';
 
 
@@ -21,12 +21,12 @@ function* getSearchKeywordAndCategoryList() {
 
 };
 function* onGetSearchKeywordAndCategoryList() {
-    yield takeLatest(commonIconsActionsTypes.FETCH_ALL_ICONS_USER_OPTIONS_START, getSearchKeywordAndCategoryList);
+    yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START, getSearchKeywordAndCategoryList);
 };
 
 // on user auth completion success trigger fetch actions for common icons
 export function* triggerInitialDataFetchActions() {
-    yield put(fetchAllIconsTabUserOptionsStart());
+    yield put(fetchCommonIconsUserOptionsStart());
 };
 export function* onCurrentUserInfoFetchSuccess() {
     yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_SUCCESS, triggerInitialDataFetchActions);
