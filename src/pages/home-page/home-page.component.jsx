@@ -14,7 +14,7 @@ import HomeHeader from '../../components/home-header/home-header.component';
 import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
 //route paths
-import { COMMON_ICONS, PROJECTS, FAVORITES, EDIT, MESSAGES } from '../../utilities/route.paths';
+import { COMMON_ROUTE, PROJECTS_ROUTE, FAVORITES_ROUTE, EDIT_ROUTE, MESSAGES_ROUTE } from '../../utilities/route.paths';
 //constants
 import { NAV_MENU_EXPANDED_WIDTH, NAV_MENU_COLLAPSED_WIDTH } from '../../utilities/app.constants';
 
@@ -35,11 +35,11 @@ const HomePage = () => {
                 </section>
                 <section className={styles.rightContent}>
                     <Switch>
-                        <Route path={COMMON_ICONS} component={CommonIconsPage} />
-                        <Route exact path={PROJECTS} component={ProjectIconsPage} />
-                        <Route exact path={FAVORITES} component={FavoritesIconsPage} />
-                        <Route exact path={EDIT} component={EditIconPage} />
-                        <Route exact path={MESSAGES} render={() => { return <div>I am messages page</div> }} />
+                        <Route path={COMMON_ROUTE} component={CommonIconsPage} />
+                        <Route exact path={PROJECTS_ROUTE} component={ProjectIconsPage} />
+                        <Route exact path={FAVORITES_ROUTE} component={FavoritesIconsPage} />
+                        <Route exact path={EDIT_ROUTE} component={EditIconPage} />
+                        <Route exact path={MESSAGES_ROUTE} render={() => { return <div>I am messages page</div> }} />
                         <Route component={RouteNotFound}></Route>
                     </Switch>
                 </section>
