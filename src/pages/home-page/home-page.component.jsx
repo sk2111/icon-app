@@ -10,7 +10,6 @@ import FavoritesIconsPage from '../favorites-icons-page/favorites-icons-page.com
 import EditIconPage from '../edit-icon-page/edit-icon-page.component';
 //component
 import ProtectedRoute from '../../components/protected-route/protected-route.component';
-import HomeHeader from '../../components/home-header/home-header.component';
 import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
 //route paths
@@ -30,9 +29,6 @@ const HomePage = () => {
                 <NavigationMenu />
             </section>
             <section className={styles.rightContainer}>
-                <section className={styles.rightHeader}>
-                    <HomeHeader navMenuExpanded={navMenuExpanded} setNavMenuExpanded={setNavMenuExpanded} />
-                </section>
                 <section className={styles.rightContent}>
                     <Switch>
                         <Route path={COMMON_ROUTE} component={CommonIconsPage} />
