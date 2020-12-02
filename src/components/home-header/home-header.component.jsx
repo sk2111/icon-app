@@ -13,19 +13,19 @@ import { toggleNavigationMenuView } from '../../redux/app-data/app-data.actions'
 import { ReactComponent as HamSvg } from '../../assests/ham-menu.svg';
 
 
-const HomeHeader = ({ toggleNavigationMenuView, searchPlaceHolder, searchKeywords,
+const HomeHeader = ({ toggleNavigationMenuView,
+    searchPlaceHolder, searchValue, searchKeywords, handleSearchValueChange,
     selectLabelText, selectOptions, hideSelect }) => {
     return (
         <div className={styles.headerContainer}>
             <div className={styles.headerLeftSec}>
-                <HamSvg
-                    className={styles.hamsvg}
-                    onClick={toggleNavigationMenuView}
-                ></HamSvg>
+                <HamSvg className={styles.hamsvg} onClick={toggleNavigationMenuView} />
                 <SearchSelectDropdown
                     className="ml-24"
                     placeholder={searchPlaceHolder}
+                    searchValue={searchValue}
                     searchList={searchKeywords}
+                    handleSearchValueChange={handleSearchValueChange}
                 />
                 {
                     hideSelect ? null :
