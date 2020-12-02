@@ -4,7 +4,7 @@ import styles from './icons-page-header.module.css';
 //static
 import { ReactComponent as ArrowUp } from '../../assests/upload-arrow.svg';
 
-const IconsPageHeader = ({ label, showUploadButton }) => {
+const IconsViewHeader = ({ label, showUploadButton }) => {
     return (
         <div className={styles.headerContainer}>
             <h4 className={styles.header}>{label}</h4>
@@ -22,4 +22,4 @@ const IconsPageHeader = ({ label, showUploadButton }) => {
     );
 };
 
-export default IconsPageHeader;
+export default IconsViewHeader;

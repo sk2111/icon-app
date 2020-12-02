@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import styles from './common-icons-page.module.css';
 //components
 import HomeHeader from '../../components/home-header/home-header.component';
-import IconsPageHeader from '../../components/icons-page-header/icons-page-header.component';
+import IconsViewHeader from '../../components/icons-view-header/icons-view-header.component';
 //reselect
 import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
 //constants
@@ -18,7 +18,7 @@ const CommonIconsPage = ({ currentUserAccessRole, handleNavMenuClick }) => {
         <div className={styles.pageContainer}>
             <HomeHeader handleNavMenuClick={handleNavMenuClick} />
             <div className={styles.viewContainer}>
-                <IconsPageHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
+                <IconsViewHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
             </div>
         </div>
     );
