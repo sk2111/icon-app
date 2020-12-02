@@ -1,6 +1,6 @@
 import React from 'react';
 //css
-import styles from './icons-page-header.module.css';
+import styles from './icons-view-header.module.css';
 //static
 import { ReactComponent as ArrowUp } from '../../assests/upload-arrow.svg';
 
