@@ -1,6 +1,8 @@
 //libs
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 //css
 import styles from './home-page.module.css';
 //pages
@@ -12,21 +14,17 @@ import EditIconPage from '../edit-icon-page/edit-icon-page.component';
 import ProtectedRoute from '../../components/protected-route/protected-route.component';
 import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
+//reselect
+import { selectIsNavMenuExpanded } from '../../redux/app-data/app-data.selectors';
 //route paths
 import { COMMON_ROUTE, PROJECTS_ROUTE, FAVORITES_ROUTE, EDIT_ROUTE, MESSAGES_ROUTE } from '../../utilities/route.paths';
 //constants
 import { NAV_MENU_EXPANDED_WIDTH, NAV_MENU_COLLAPSED_WIDTH } from '../../utilities/app.constants';
 
-const HomePage = () => {
+const HomePage = ({ isNavMenuExpanded }) => {
 
-    const [navMenuExpanded, setNavMenuExpanded] = useState(true);
+    const navigationStyle = isNavMenuExpanded ? { width: NAV_MENU_EXPANDED_WIDTH } : { width: NAV_MENU_COLLAPSED_WIDTH };
 
-    const navigationStyle = navMenuExpanded ? { width: NAV_MENU_EXPANDED_WIDTH } : { width: NAV_MENU_COLLAPSED_WIDTH };
-
-    const handleNavMenuClick = () => {
-        setNavMenuExpanded(!navMenuExpanded);
-    };
-    
     return (
         <div className={styles.rootContainer}>
             <section style={navigationStyle} className={styles.leftContainer}>
@@ -34,7 +32,7 @@ const HomePage = () => {
             </section>
             <section className={styles.rightContainer}>
                 <Switch>
-                    <Route path={COMMON_ROUTE} render={() => <CommonIconsPage handleNavMenuClick={handleNavMenuClick} />} />
+                    <Route path={COMMON_ROUTE} render={() => <CommonIconsPage />} />
                     <Route exact path={PROJECTS_ROUTE} component={ProjectIconsPage} />
                     <Route exact path={FAVORITES_ROUTE} component={FavoritesIconsPage} />
                     <Route exact path={EDIT_ROUTE} component={EditIconPage} />
@@ -46,4 +44,8 @@ const HomePage = () => {
     );
 };
 
-export default ProtectedRoute(HomePage);
+const mapStateToProps = createStructuredSelector({
+    isNavMenuExpanded: selectIsNavMenuExpanded
+});
+
+export default connect(mapStateToProps)(ProtectedRoute(HomePage));

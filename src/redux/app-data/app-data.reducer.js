@@ -1,13 +1,13 @@
 import { appDataActionTypes } from './app-data.types';
 
 const INITIAL_STATE = {
-    isExpanded: true
+    isNavMenuExpanded: true
 };
 
 const appDataReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case appDataActionTypes.SET_NAVIGATION_MENU_VIEW:
-            return { ...state, isExpanded: action.payload };
+            return { ...state, isNavMenuExpanded: action.payload };
         default:
             return state;
     }
