@@ -8,8 +8,15 @@ export const SELECT_OPTIONS = 'selectoptions';
 
 export const PLACEHOLDERMAP = {
     [COMMON_ROUTE]: 'Search for common icons',
-    [PROJECTS_ROUTE]: 'Search for project icons',
-    [FAVORITES_ROUTE]: 'Search for favorites icons',
+    [PROJECTS_ROUTE]: 'Search your project icons',
+    [FAVORITES_ROUTE]: 'Search your favorites icons',
+    [EDIT_ROUTE]: '',
+};
+
+export const LABELTEXTMAP = {
+    [COMMON_ROUTE]: 'Categories',
+    [PROJECTS_ROUTE]: 'Projects',
+    [FAVORITES_ROUTE]: '',
     [EDIT_ROUTE]: '',
 };
 //helpers

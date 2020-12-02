@@ -4,6 +4,8 @@
   font-weight: 500;
   margin-left: 40px;
   margin-right: 16px;
+  text-align: center;
+  width: 70px;
 }
 .dropdown {
   font-size: 14px;

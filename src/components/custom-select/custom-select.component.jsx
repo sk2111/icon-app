@@ -4,7 +4,7 @@ import styles from './custom-select.module.css';
 //static 
 import { ReactComponent as ArrowDownLogo } from '../../assests/arrow-down.svg';
 
-const CustomSelect = ({ options }) => {
+const CustomSelect = ({ label, options }) => {
 
     const [selectValue, setSelectValue] = useState('All');
     const [selectHidden, setSelectHidden] = useState(true);
@@ -13,7 +13,7 @@ const CustomSelect = ({ options }) => {
 
     return (
         <React.Fragment>
-            <span className={styles.dropLabel}>Categories</span>
+            <span className={styles.dropLabel}>{label}</span>
             <div className={styles.dropdown}>
                 <div className={styles.valueCon} tabIndex="0" onBlur={() => setSelectHidden(true)} onClick={() => setSelectHidden(!selectHidden)}>
                     <div className={styles.selectedValue}>{selectValue}</div>
