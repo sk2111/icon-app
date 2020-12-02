@@ -11,7 +11,7 @@ import { ReactComponent as HamSvg } from '../../assests/ham-menu.svg';
 
 
 const HomeHeader = ({ handleNavMenuClick, searchPlaceHolder, searchOptions,
-    selectLabelText, selectOptions }) => {
+    selectLabelText, selectOptions, hideSelect }) => {
     return (
         <div className={styles.headerContainer}>
             <div className={styles.headerLeftSec}>
@@ -24,9 +24,15 @@ const HomeHeader = ({ handleNavMenuClick, searchPlaceHolder, searchOptions,
                     placeholder={searchPlaceHolder}
                     searchList={searchOptions}
                 />
-                <CustomSelect
-                    label={selectLabelText}
-                    options={selectOptions} />
+                {
+                    hideSelect ?
+                        null
+                        :
+                        <CustomSelect
+                            label={selectLabelText}
+                            options={selectOptions}
+                        />
+                }
             </div>
             <div className={styles.headerRightSec}>
                 <UserProfile />

@@ -14,9 +14,15 @@ import { COMMON_ICONS_HEADER_LABEL } from '../../utilities/app.constants';
 
 
 const CommonIconsPage = ({ currentUserAccessRole, handleNavMenuClick }) => {
+
+    const placeHolder = 'Search for common icons';
+
     return (
         <div className={styles.pageContainer}>
-            <HomeHeader handleNavMenuClick={handleNavMenuClick} />
+            <HomeHeader
+                handleNavMenuClick={handleNavMenuClick}
+                searchPlaceHolder={placeHolder}
+            />
             <div className={styles.viewContainer}>
                 <IconsViewHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
             </div>
