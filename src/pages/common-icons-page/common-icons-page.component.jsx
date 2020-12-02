@@ -10,17 +10,16 @@ import IconsViewHeader from '../../components/icons-view-header/icons-view-heade
 //reselect
 import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
 //constants
-import { COMMON_ICONS_HEADER_LABEL } from '../../utilities/app.constants';
+import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS_SELECT_LABEL } from '../../utilities/app.constants';
 
 
 const CommonIconsPage = ({ currentUserAccessRole }) => {
 
-    const placeHolder = 'Search for common icons';
-
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
-                searchPlaceHolder={placeHolder}
+                searchPlaceHolder={COMMON_ICONS_INPUT_PLACEHOLDER}
+                selectLabelText={COMMON_ICONS_SELECT_LABEL}
             />
             <div className={styles.viewContainer}>
                 <IconsViewHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />

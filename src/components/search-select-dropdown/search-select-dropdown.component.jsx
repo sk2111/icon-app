@@ -60,8 +60,7 @@ const SearchSelectDropdown = ({ className, placeholder, searchList }) => {
 };
 
 SearchSelectDropdown.defaultProps = {
-    searchList: ['testerr', 'sampler', 'variation', 'algo',
-        'home', 'nothing', 'new', 'testerr2', 'object']
+    searchList: []
 };
 
 export default SearchSelectDropdown;
