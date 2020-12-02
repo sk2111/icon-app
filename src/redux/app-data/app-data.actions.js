@@ -3,9 +3,8 @@ import { appDataActionTypes } from './app-data.types';
 
 //Navigation menu view actions
 
-export const setNavigationMenuView = (payload) => {
+export const toggleNavigationMenuView = () => {
     return {
-        type: appDataActionTypes.SET_NAVIGATION_MENU_VIEW,
-        payload
+        type: appDataActionTypes.TOGGLE_NAVIGATION_MENU_VIEW,
     }
 };

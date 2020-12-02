@@ -13,14 +13,13 @@ import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
 import { COMMON_ICONS_HEADER_LABEL } from '../../utilities/app.constants';
 
 
-const CommonIconsPage = ({ currentUserAccessRole, handleNavMenuClick }) => {
+const CommonIconsPage = ({ currentUserAccessRole }) => {
 
     const placeHolder = 'Search for common icons';
 
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
-                handleNavMenuClick={handleNavMenuClick}
                 searchPlaceHolder={placeHolder}
             />
             <div className={styles.viewContainer}>
