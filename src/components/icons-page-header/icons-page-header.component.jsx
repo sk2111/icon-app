@@ -5,19 +5,18 @@ import styles from './icons-page-header.module.css';
 import { ReactComponent as ArrowUp } from '../../assests/upload-arrow.svg';
 
 const IconsPageHeader = ({ label, showUploadButton }) => {
-    const renderUploadButton = () => {
-        return (
-            <div className={styles.btnContainer}>
-                <ArrowUp className={styles.arrow} />
-                <button className={styles.uploadBtn}>Upload Icon</button>
-            </div>
-        );
-    }
     return (
         <div className={styles.headerContainer}>
             <h4 className={styles.header}>{label}</h4>
             {
-                showUploadButton ? renderUploadButton() : null
+                showUploadButton ?
+                    (
+                        <div className={styles.btnContainer}>
+                            <ArrowUp className={styles.arrow} />
+                            <button className={styles.uploadBtn}>Upload Icon</button>
+                        </div>
+                    )
+                    : null
             }
         </div>
     );

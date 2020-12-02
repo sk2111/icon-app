@@ -27,32 +27,29 @@ const SignInAndSignUpPage = ({ currentUser, history, match }) => {
         }
     });
 
-    const renderHelper = (currentUser) => {
-        // return A animation logo and after a few sec redirect to Landing page
-        if (currentUser?.uid) { return <AnimAppLogo />; }
-        return (
-            <div className={`${styles.pageContainer} flex-row`}>
-                <section className={`${styles.leftContainer} perfect-cen`}>
-                    <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" />
-                </section>
-                <section className={`${styles.rightContainer}`}>
-                    <div className={styles.rightContent}>
-                        <LoginHeader />
-                        <Switch>
-                            <Route exact path={`${path}${SIGN_IN_PAGE_PATH}`} component={SignInUserLogin} />
-                            <Route exact path={`${path}${FORGOT_PASSWORD_PAGE_PATH}`} component={SignInForgotPassword} />
-                            <Route exact path={`${path}${SIGN_UP_PAGE_PATH}`} component={SignUp} />
-                            <Route component={RouteNotFound}></Route>
-                        </Switch>
-                    </div>
-                </section>
-            </div>
-        )
-    };
-
     return (
         <React.Fragment>
-            { renderHelper(currentUser)}
+            { currentUser?.uid ?
+                <AnimAppLogo /> :
+                (
+                    <div className={`${styles.pageContainer} flex-row`}>
+                        <section className={`${styles.leftContainer} perfect-cen`}>
+                            <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" />
+                        </section>
+                        <section className={`${styles.rightContainer}`}>
+                            <div className={styles.rightContent}>
+                                <LoginHeader />
+                                <Switch>
+                                    <Route exact path={`${path}${SIGN_IN_PAGE_PATH}`} component={SignInUserLogin} />
+                                    <Route exact path={`${path}${FORGOT_PASSWORD_PAGE_PATH}`} component={SignInForgotPassword} />
+                                    <Route exact path={`${path}${SIGN_UP_PAGE_PATH}`} component={SignUp} />
+                                    <Route component={RouteNotFound}></Route>
+                                </Switch>
+                            </div>
+                        </section>
+                    </div>
+                )
+            }
         </React.Fragment>
     );
 };
