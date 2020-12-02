@@ -13,11 +13,13 @@ import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
 import { COMMON_ICONS_HEADER_LABEL } from '../../utilities/app.constants';
 
 
-const CommonIconsPage = ({ currentUserAccessRole }) => {
+const CommonIconsPage = ({ currentUserAccessRole, handleNavMenuClick }) => {
     return (
-        <div className={styles.viewContainer}>
-            <HomeHeader />
-            <IconsPageHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
+        <div className={styles.pageContainer}>
+            <HomeHeader handleNavMenuClick={handleNavMenuClick} />
+            <div className={styles.viewContainer}>
+                <IconsPageHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
+            </div>
         </div>
     );
 };

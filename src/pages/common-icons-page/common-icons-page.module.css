@@ -1,3 +1,8 @@
+.pageContainer {
+  height: 100%;
+}
 .viewContainer {
+  background-color: var(--app-input-background);
+  height: calc(100% - 54px);
   padding: var(--app-icons-view-conatiner-padding);
 }

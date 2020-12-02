@@ -23,22 +23,24 @@ const HomePage = () => {
 
     const navigationStyle = navMenuExpanded ? { width: NAV_MENU_EXPANDED_WIDTH } : { width: NAV_MENU_COLLAPSED_WIDTH };
 
+    const handleNavMenuClick = () => {
+        setNavMenuExpanded(!navMenuExpanded);
+    };
+    
     return (
         <div className={styles.rootContainer}>
             <section style={navigationStyle} className={styles.leftContainer}>
                 <NavigationMenu />
             </section>
             <section className={styles.rightContainer}>
-                <section className={styles.rightContent}>
-                    <Switch>
-                        <Route path={COMMON_ROUTE} component={CommonIconsPage} />
-                        <Route exact path={PROJECTS_ROUTE} component={ProjectIconsPage} />
-                        <Route exact path={FAVORITES_ROUTE} component={FavoritesIconsPage} />
-                        <Route exact path={EDIT_ROUTE} component={EditIconPage} />
-                        <Route exact path={MESSAGES_ROUTE} render={() => { return <div>I am messages page</div> }} />
-                        <Route component={RouteNotFound}></Route>
-                    </Switch>
-                </section>
+                <Switch>
+                    <Route path={COMMON_ROUTE} render={() => <CommonIconsPage handleNavMenuClick={handleNavMenuClick} />} />
+                    <Route exact path={PROJECTS_ROUTE} component={ProjectIconsPage} />
+                    <Route exact path={FAVORITES_ROUTE} component={FavoritesIconsPage} />
+                    <Route exact path={EDIT_ROUTE} component={EditIconPage} />
+                    <Route exact path={MESSAGES_ROUTE} render={() => { return <div>I am messages page</div> }} />
+                    <Route component={RouteNotFound}></Route>
+                </Switch>
             </section>
         </div>
     );

@@ -33,6 +33,9 @@ const CustomSelect = ({ label, options }) => {
     );
 };
 
+CustomSelect.defaultProps = {
+    options: []
+};
 
 export default CustomSelect;
 
