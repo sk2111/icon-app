@@ -7,9 +7,9 @@ import { ReactComponent as ArrowDownLogo } from '../../assests/arrow-down.svg';
 const CustomSelect = ({ label, options, defaultSelectValue, handleSelectValueChange }) => {
 
     const [selectValue, setSelectValue] = useState(defaultSelectValue);
-    const [selectHidden, setSelectHidden] = useState(true);
+    const [optionsHidden, setOptionsHidden] = useState(true);
 
-    const containerStyle = selectHidden ? { maxHeight: '0px' } : {};
+    const containerStyle = optionsHidden ? { maxHeight: '0px' } : {};
 
     useEffect(() => {
         handleSelectValueChange(selectValue);
@@ -19,14 +19,14 @@ const CustomSelect = ({ label, options, defaultSelectValue, handleSelectValueCha
         <React.Fragment>
             <span className={styles.dropLabel}>{label}</span>
             <div className={styles.dropdown}>
-                <div className={styles.valueCon} tabIndex="0" onBlur={() => setSelectHidden(true)} onClick={() => setSelectHidden(!selectHidden)}>
+                <div className={styles.valueCon} tabIndex="0" onBlur={() => setOptionsHidden(true)} onClick={() => setOptionsHidden(!optionsHidden)}>
                     <div className={styles.selectedValue}>{selectValue}</div>
                     <ArrowDownLogo className={styles.arrowDown} />
                 </div>
                 <div style={containerStyle} className={styles.optionsCon}>
                     {
                         options.map((option) => {
-                            const matchedOption = (option === selectValue) && (!selectHidden) ? styles.selectedOption : '';
+                            const matchedOption = (option === selectValue) && (!optionsHidden) ? styles.selectedOption : '';
                             return <p key={option} className={`${matchedOption} ${styles.option}`}
                                 onMouseDown={() => { setSelectValue(option) }}>{option}</p>
                         })
