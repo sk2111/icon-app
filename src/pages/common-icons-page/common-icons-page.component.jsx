@@ -13,14 +13,14 @@ import { setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../.
 import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
 import {
     selectCommonIconsSearchKeywords, selectCommonIconsSelectOptions,
-    selectCommonIconsSearchValue, selectCommonIconsSelectValue
+    selectCommonIconsSearchValue, selectCommonIconsSelectValue, selectCommonIconsToDisplay
 } from '../../redux/common-icons/common-icons.selectors';
 //constants
 import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS_SELECT_LABEL } from '../../utilities/app.constants';
 
 
 const CommonIconsPage = ({ currentUserAccessRole, searchKeywords, searchValue, setSearchValue,
-    selectOptions, selectValue, setSelectValue }) => {
+    selectOptions, selectValue, setSelectValue, icons }) => {
 
     return (
         <div className={styles.pageContainer}>
@@ -36,6 +36,13 @@ const CommonIconsPage = ({ currentUserAccessRole, searchKeywords, searchValue, s
             />
             <div className={styles.viewContainer}>
                 <IconsViewHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
+                <div>
+                    {
+                        icons.map((icon) => {
+                            return <div>{icon.name}</div>;
+                        })
+                    }
+                </div>
             </div>
         </div>
     );
@@ -47,7 +54,8 @@ const mapStateToProps = createStructuredSelector({
     searchValue: selectCommonIconsSearchValue,
     selectValue: selectCommonIconsSelectValue,
     searchKeywords: selectCommonIconsSearchKeywords,
-    selectOptions: selectCommonIconsSelectOptions
+    selectOptions: selectCommonIconsSelectOptions,
+    icons: selectCommonIconsToDisplay
 });
 
 const mapDispatchToProps = (dispatch) => {
