@@ -20,7 +20,7 @@ import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS
 
 
 const CommonIconsPage = ({ currentUserAccessRole, searchKeywords, searchValue, setSearchValue,
-    selectOptions, setSelectValue }) => {
+    selectOptions, selectValue, setSelectValue }) => {
 
     return (
         <div className={styles.pageContainer}>
@@ -30,7 +30,9 @@ const CommonIconsPage = ({ currentUserAccessRole, searchKeywords, searchValue, s
                 searchValue={searchValue}
                 handleSearchValueChange={setSearchValue}
                 selectLabelText={COMMON_ICONS_SELECT_LABEL}
+                selectValue={selectValue}
                 selectOptions={selectOptions}
+                handleSelectValueChange={setSelectValue}
             />
             <div className={styles.viewContainer}>
                 <IconsViewHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />

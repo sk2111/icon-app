@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //css
 import styles from './custom-select.module.css';
 //static 
 import { ReactComponent as ArrowDownLogo } from '../../assests/arrow-down.svg';
 
-const CustomSelect = ({ label, options }) => {
+const CustomSelect = ({ label, options, defaultSelectValue, handleSelectValueChange }) => {
 
-    const [selectValue, setSelectValue] = useState('All');
+    const [selectValue, setSelectValue] = useState(defaultSelectValue);
     const [selectHidden, setSelectHidden] = useState(true);
 
     const containerStyle = selectHidden ? { maxHeight: '0px' } : {};
+
+    useEffect(() => {
+        handleSelectValueChange(selectValue);
+    }, [selectValue, handleSelectValueChange]);
 
     return (
         <React.Fragment>

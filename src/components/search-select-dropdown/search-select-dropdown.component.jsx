@@ -7,10 +7,10 @@ import { ReactComponent as SearchLens } from '../../assests/searchLogo.svg';
 //constants
 import { ENTER_KEYNAME, DROPDOWN_CLOSE_TIME } from './search-select-dropdown.constants';
 
-const SearchSelectDropdown = ({ className, placeholder, searchValue,
+const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
     handleSearchValueChange, searchList }) => {
 
-    const [searchTerm, setSearchTerm] = useState(searchValue);
+    const [searchTerm, setSearchTerm] = useState(defaultSearchValue);
     const [listHidden, setListHidden] = useState(true);
 
     const debounceTime = 800; //ms
@@ -71,7 +71,7 @@ const SearchSelectDropdown = ({ className, placeholder, searchValue,
 };
 
 SearchSelectDropdown.defaultProps = {
-    searchValue: '',
+    defaultSearchValue: '',
     handleSearchValueChange: () => { },
     searchList: []
 };

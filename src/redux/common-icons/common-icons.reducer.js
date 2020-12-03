@@ -1,13 +1,14 @@
 import { commonIconsActionsTypes } from './common-icons.type';
 
 const CLEAR_VALUE = '';
+const DEFAULT_SELECT_VALUE = 'All';
 
 const INITIAL_STATE = {
     iconsMap: {},
     searchKeywordsList: [],
     selectOptionsList: [],
     searchValue: CLEAR_VALUE,
-    selectValue: CLEAR_VALUE
+    selectValue: DEFAULT_SELECT_VALUE
 };
 
 const commonIconsReducer = (state = INITIAL_STATE, action) => {
