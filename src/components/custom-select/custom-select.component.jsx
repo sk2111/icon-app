@@ -38,7 +38,9 @@ const CustomSelect = ({ label, options, defaultSelectValue, handleSelectValueCha
 };
 
 CustomSelect.defaultProps = {
-    options: []
+    defaultSelectValue: '',
+    options: [],
+    handleSelectValueChange: () => { }
 };
 
 export default CustomSelect;
