@@ -14,6 +14,7 @@ import EditIconPage from '../edit-icon-page/edit-icon-page.component';
 import ProtectedRoute from '../../components/protected-route/protected-route.component';
 import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
+import Modal from '../../components/modal/modal.component';
 //reselect
 import { selectIsNavMenuExpanded } from '../../redux/app-data/app-data.selectors';
 //route paths
@@ -21,7 +22,7 @@ import { COMMON_ROUTE, PROJECTS_ROUTE, FAVORITES_ROUTE, EDIT_ROUTE, MESSAGES_ROU
 //constants
 import { NAV_MENU_EXPANDED_WIDTH, NAV_MENU_COLLAPSED_WIDTH } from '../../utilities/app.constants';
 
-const HomePage = ({ isNavMenuExpanded }) => {
+const HomePage = ({ isNavMenuExpanded, isCurrentUserAdmin }) => {
 
     const navigationStyle = isNavMenuExpanded ? { width: NAV_MENU_EXPANDED_WIDTH } : { width: NAV_MENU_COLLAPSED_WIDTH };
 
@@ -40,6 +41,10 @@ const HomePage = ({ isNavMenuExpanded }) => {
                     <Route component={RouteNotFound}></Route>
                 </Switch>
             </section>
+            {isCurrentUserAdmin ?
+                <Modal>Sathish</Modal>
+                : null
+            }
         </div>
     );
 };
