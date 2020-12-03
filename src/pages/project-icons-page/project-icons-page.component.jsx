@@ -7,22 +7,22 @@ import styles from './project-icons-page.module.css';
 //components
 import IconsViewHeader from '../../components/icons-view-header/icons-view-header.component';
 //reselect
-import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
+import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
 //constants
 import { PROJECT_ICONS_HEADER_LABEL } from '../../utilities/app.constants';
 
 
-const ProjectIconsPage = ({ currentUserAccessRole }) => {
+const ProjectIconsPage = ({ isCurrentUserAdmin }) => {
     return (
         <div className={styles.viewContainer}>
-            <IconsViewHeader label={PROJECT_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
+            <IconsViewHeader label={PROJECT_ICONS_HEADER_LABEL} showUploadButton={isCurrentUserAdmin} />
         </div>
     );
 };
 
 
 const mapStateToProps = createStructuredSelector({
-    currentUserAccessRole: selectCurrentUserAccessRole
+    isCurrentUserAdmin: selectCurrentUserAdminRole
 });
 
 export default connect(mapStateToProps)(ProjectIconsPage);

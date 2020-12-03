@@ -6,7 +6,7 @@ const selectUser = (state) => state.user;
 
 export const selectCurrentUser = createSelector([selectUser], (user) => user.currentUser);
 
-export const selectCurrentUserAccessRole = createSelector([selectUser], (user) => user.currentUser.isAdmin);
+export const selectCurrentUserAdminRole = createSelector([selectUser], (user) => user.currentUser.isAdmin);
 
 export const selectCurrentUserEmail = createSelector([selectCurrentUser], (user) => user.email);
 

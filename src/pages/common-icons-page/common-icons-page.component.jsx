@@ -10,7 +10,7 @@ import IconsViewHeader from '../../components/icons-view-header/icons-view-heade
 //actions
 import { setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../../redux/common-icons/common-icons.actions';
 //reselect
-import { selectCurrentUserAccessRole } from '../../redux/user/user.selectors';
+import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
 import {
     selectCommonIconsSearchKeywords, selectCommonIconsSelectOptions,
     selectCommonIconsSearchValue, selectCommonIconsSelectValue, selectCommonIconsToDisplay
@@ -19,7 +19,7 @@ import {
 import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS_SELECT_LABEL } from '../../utilities/app.constants';
 
 
-const CommonIconsPage = ({ currentUserAccessRole, searchKeywords, searchValue, setSearchValue,
+const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue,
     selectOptions, selectValue, setSelectValue, icons }) => {
 
     return (
@@ -35,7 +35,7 @@ const CommonIconsPage = ({ currentUserAccessRole, searchKeywords, searchValue, s
                 handleSelectValueChange={setSelectValue}
             />
             <div className={styles.viewContainer}>
-                <IconsViewHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={currentUserAccessRole} />
+                <IconsViewHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={isCurrentUserAdmin} />
                 <div>
                     {
                         icons.map((icon) => {
@@ -44,13 +44,14 @@ const CommonIconsPage = ({ currentUserAccessRole, searchKeywords, searchValue, s
                     }
                 </div>
             </div>
+
         </div>
     );
 };
 
 
 const mapStateToProps = createStructuredSelector({
-    currentUserAccessRole: selectCurrentUserAccessRole,
+    isCurrentUserAdmin: selectCurrentUserAdminRole,
     searchValue: selectCommonIconsSearchValue,
     selectValue: selectCommonIconsSelectValue,
     searchKeywords: selectCommonIconsSearchKeywords,
