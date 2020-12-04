@@ -66,7 +66,7 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
             <div className={`${styles.forgotLabel} flex-jus-end mt-15`}>
                 <Link to={FORGOT_PASSWORD_ROUTE_PATH} className={styles.actionLabel} onClick={clearAuthErrorMessage}>Forgot your password?</Link>
             </div>
-            <div className={`${styles.buttonCon} ${btnClass} perfect-cen mt-24`}>
+            <div className={styles.buttonCon}>
                 <CustomButton type="submit" loading={fetching}>Sign In</CustomButton>
             </div>
             <div className="flex-row perfect-cen mt-33">

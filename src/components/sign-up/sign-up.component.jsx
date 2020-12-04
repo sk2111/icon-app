@@ -94,7 +94,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
                 <div className={`${styles.errorContainer} perfect-cen`}>
                     <span className={styles.errorText}>{errorMessage}</span>
                 </div>
-                <div className={`${styles.buttonCon} ${fetching ? 'disable-btn' : ''} perfect-cen`}>
+                <div className={styles.buttonCon}>
                     <CustomButton loading={fetching} type="submit">Sign up</CustomButton>
                 </div>
                 <div className="flex-row perfect-cen mt-33">

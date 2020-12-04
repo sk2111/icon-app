@@ -1,5 +1,10 @@
-.btnContainer {
+.container {
   position: relative;
+}
+.containerLoading {
+  opacity: 0.85;
+  position: relative;
+  pointer-events: none;
 }
 .button {
   background-color: var(--app-green);

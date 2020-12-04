@@ -24,7 +24,6 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
     sendResetLinkFailure, errorMessage }) => {
 
     const [resetDetails, setResetDetails] = useState({ email: '' });
-    const btnClass = fetching ? 'disable-btn' : '';
 
     const clearAuthErrorMessage = () => {
         if (errorMessage) {
@@ -54,7 +53,7 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
             <FormInput className="mt-25" name="email" label="Soliton mail address" type="email" value={resetDetails.email}
                 required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
             {errorMessage ? <p className={styles.errorMessage}>{errorMessage}</p> : null}
-            <div className={`${styles.buttonCon} ${btnClass} perfect-cen`}>
+            <div className={styles.buttonCon}>
                 <CustomButton loading={fetching} type="submit">Send Reset Link</CustomButton>
             </div>
             <div className={`${styles.actionLabel} perfect-cen`}>
