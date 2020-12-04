@@ -60,6 +60,7 @@
   justify-content: center;
   min-height: 40px;
   min-width: 40px;
+  text-transform: uppercase;
 }
 
 .nameContainer {

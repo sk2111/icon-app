@@ -24,10 +24,10 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
             <p className={styles.username}>{fullName}</p>
             <div className={styles.profileContainer}>
                 <div className={`${styles.profilePic} perfect-cen`}
-                    onClick={() => setSettingsHidden(!settingsHidden)}>{fullName ? fullName[0] : '-'}</div>
+                    onClick={() => setSettingsHidden(!settingsHidden)}>{fullName[0]}</div>
                 <div style={containerStyle} className={styles.settingsCon} onClick={() => setSettingsHidden(true)}>
                     <div className={styles.topContainer}>
-                        <div className={styles.profilePicDropdown}>S</div>
+                        <div className={styles.profilePicDropdown}>{fullName[0]}</div>
                         <div className={styles.nameContainer}>
                             <h4 className={styles.fullName}>{fullName}</h4>
                             <p className={styles.emailText}>{curentUserEmail}</p>
