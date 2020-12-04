@@ -26,8 +26,6 @@ const UpdatePassword = ({ fetching, userMessage, errorMessage, updateNewPassword
 
     const { currentPassword, newPassword, confirmNewPassword } = passwordDetails;
 
-    const btnClass = fetching ? 'disable-btn' : '';
-
     const handleUpdatePasswordSubmit = (e) => {
         e.preventDefault();
         if ((newPassword === confirmNewPassword) && newPassword.length) {

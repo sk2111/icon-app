@@ -25,8 +25,6 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
     const { email, password } = userDetails;
 
-    const btnClass = fetching ? 'disable-btn' : '';
-
     const clearAuthErrorMessage = () => {
         if (errorMessage) {
             clearAuthError();
