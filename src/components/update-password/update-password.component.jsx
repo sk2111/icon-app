@@ -6,8 +6,8 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './update-password.module.css';
 //components
-import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
+import FormInputPassword from '../../components/form-input-password/form-input-password.component';
 //reselect
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectWaitingForData, selectUserMessage, selectErrorMessage } from '../../redux/auth/auth.selectors';
@@ -17,52 +17,33 @@ import { clearAuthError, updateNewPasswordStart, updateNewPasswordFailure } from
 import { LANDING_PATH, GO_TO_SIGNIN } from '../../utilities/route.paths';
 //constants
 import { UPDATE_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities//auth.messages';
-//static
-import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
-import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
+
 
 const UpdatePassword = ({ currentUser, fetching, userMessage, errorMessage, updateNewPasswordStart, updateNewPasswordFailure, clearAuthErrorMessage }) => {
 
+    const INITIAL_STATE = { currentPassword: '', newPassword: '', confirmNewPassword: '' };
     const history = useHistory();
-    const [passwordDetails, setPasswordDetails] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
-    const [passwordViews, setPasswordViews] = useState({ currentPasswordView: true, newPasswordView: true, confirmNewPasswordView: true });
+    const [passwordDetails, setPasswordDetails] = useState(INITIAL_STATE);
 
     const { currentPassword, newPassword, confirmNewPassword } = passwordDetails;
-    const { currentPasswordView, newPasswordView, confirmNewPasswordView } = passwordViews;
+
     const btnClass = fetching ? 'disable-btn' : '';
 
     const handleUpdatePasswordSubmit = (e) => {
         e.preventDefault();
         if ((newPassword === confirmNewPassword) && newPassword.length) {
             updateNewPasswordStart({ currentPassword, newPassword });
+            setPasswordDetails({ ...INITIAL_STATE });
             return;
         }
         updateNewPasswordFailure(UPDATE_PASSWORD_NOT_MATCH_MESSAGE);
     };
 
-    const handleInputChange = (e) => {
-        const { value, name } = e.target;
+    const handleValueChange = ({ value, name }) => {
         if (errorMessage) {
             clearAuthErrorMessage();
         }
         setPasswordDetails({ ...passwordDetails, [name]: value });
-    };
-
-    const handleViewHidePassword = (e) => {
-        const name = e.currentTarget.getAttribute("name");
-        setPasswordViews({ ...passwordViews, [name]: !passwordViews[name] });
-    };
-
-    const renderFormInput = (label, formName, value, showAsPassword, svgName) => {
-        const formType = showAsPassword ? 'password' : 'text';
-        return (
-            <div className="flex-row-acen pos-rel">
-                <FormInput className="mt-22" name={formName} value={value}
-                    label={label} type={formType} required autoComplete="off" handleInputChange={handleInputChange} />
-                {showAsPassword ? <HideSvg name={svgName} className={styles.passwordSvg} onClick={handleViewHidePassword} /> :
-                    <ShowSvg name={svgName} className={styles.passwordSvg} onClick={handleViewHidePassword} />}
-            </div>
-        );
     };
 
     useEffect(() => {
@@ -77,9 +58,9 @@ const UpdatePassword = ({ currentUser, fetching, userMessage, errorMessage, upda
         <form className={styles.container} autoComplete="on" onSubmit={handleUpdatePasswordSubmit}>
             <h3 className={styles.header}>Update password</h3>
             {userMessage ? <p className={styles.userMessage}>{userMessage}</p> : null}
-            {renderFormInput("Current Password", "currentPassword", currentPassword, currentPasswordView, 'currentPasswordView')}
-            {renderFormInput("New Password", "newPassword", newPassword, newPasswordView, 'newPasswordView')}
-            {renderFormInput("Confirm New Password", "confirmNewPassword", confirmNewPassword, confirmNewPasswordView, 'confirmNewPasswordView')}
+            <FormInputPassword label="Current Password" name="currentPassword" value={currentPassword} handleValueChange={handleValueChange} />
+            <FormInputPassword label="New Password" name="newPassword" value={newPassword} handleValueChange={handleValueChange} />
+            <FormInputPassword label="Confirm New Password" name="confirmNewPassword" value={confirmNewPassword} handleValueChange={handleValueChange} />
             <div className={`${styles.errorContainer} perfect-cen`}>
                 <span className={styles.errorText}>{errorMessage}</span>
             </div>

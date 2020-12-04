@@ -13,5 +13,5 @@ export const SIGN_OUT_SUCCESS_MESSAGE = 'Signout successful';
 export const SIGN_OUT_FAILURE_MESSAGE = 'Signout failed . Please try again';
 //update password 
 export const UPDATE_PASSWORD_NOT_MATCH_MESSAGE = 'New password & Confirm new password don\'t match';
-export const CURRENT_PASSWORD_NOT_MATCH_MESSAGE = 'Current password is not valid . Please verify your password';
+export const CURRENT_PASSWORD_NOT_MATCH_MESSAGE = 'Current password is not valid . Please check your password';
 export const UPDATE_PASSWORD_SUCCESS_MESSAGE = 'Profile password updated successfully';
