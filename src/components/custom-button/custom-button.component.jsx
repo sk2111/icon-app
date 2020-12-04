@@ -13,7 +13,6 @@ const CustomButton = ({ children, loading, ...otherProps }) => {
             {loading ? <LoadingSpinner className={styles.loading} /> : null}
         </div>
     );
-
 };
 
 export default CustomButton;
