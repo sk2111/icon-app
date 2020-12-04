@@ -1,6 +1,6 @@
 //auth setimeouts
-export const LOADING_ANIM_LOGO_TIME = 2000; // 2 seconds
-export const SIGNOUT_ANIMATION_LOADING_TIME = 2000; // 2 seconds
+export const LOADING_ANIM_LOGO_TIME = 1000; // 1 second
+export const SIGNOUT_ANIMATION_LOADING_TIME = 1500; // 1.5 second
 export const LOADING_PERSISTANT_CHECK_TIME = 1000; // 1 sec
 
 // navigation menu
