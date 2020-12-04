@@ -1,5 +1,10 @@
 :root {
   /* colors */
+  --app-submit-button-background: #00c578;
+  --app-submit-button-text-color: #ffffff;
+
+
+
   --app-green: #00c578;
   --app-form-label: #707071;
   --app-text: #707071;
@@ -20,8 +25,10 @@
   --app-scroll-thumb: #989899;
   /* width */
   --app-form-width: 320px;
+  --app-form-width-medium: 320px;
   --app-form-width-short: 228px;
   --app-form-width-long: 480px;
+  /* universal padding */
   --app-icons-view-conatiner-padding: 23px 10px 0px 30px;
 }
 * {

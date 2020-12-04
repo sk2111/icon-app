@@ -7,11 +7,11 @@
   pointer-events: none;
 }
 .button {
-  background-color: var(--app-green);
+  background-color: var(--app-submit-button-background);
   border: none;
   border-radius: 5px;
   box-shadow: none;
-  color: white;
+  color: var(--app-submit-button-text-color);
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
@@ -21,7 +21,7 @@
   top: 0px;
   transition: top 0.1s;
   user-select: none;
-  width: var(--app-form-width);
+  width: var(--app-form-width-medium);
 }
 .button:hover,
 .button:focus {
