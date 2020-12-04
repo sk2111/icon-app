@@ -1,28 +1,27 @@
 //libs
-import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //css
 import styles from './update-password.module.css';
 //components
-import CustomButton from '../../components/custom-button/custom-button.component';
-import FormInputPassword from '../../components/form-input-password/form-input-password.component';
+import CustomButton from '../custom-button/custom-button.component';
+import FormInputPassword from '../form-input-password/form-input-password.component';
+import ProtectedRoute from '../protected-route/protected-route.component';
 //reselect
-import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectWaitingForData, selectUserMessage, selectErrorMessage } from '../../redux/auth/auth.selectors';
 //actions
 import { clearAuthError, updateNewPasswordStart, updateNewPasswordFailure } from '../../redux/auth/auth.actions';
 //route constants
-import { LANDING_PATH, GO_TO_SIGNIN } from '../../utilities/route.paths';
+import { LANDING_PATH } from '../../utilities/route.paths';
 //constants
 import { UPDATE_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities//auth.messages';
 
 
-const UpdatePassword = ({ currentUser, fetching, userMessage, errorMessage, updateNewPasswordStart, updateNewPasswordFailure, clearAuthErrorMessage }) => {
+const UpdatePassword = ({ fetching, userMessage, errorMessage, updateNewPasswordStart, updateNewPasswordFailure, clearAuthErrorMessage }) => {
 
     const INITIAL_STATE = { currentPassword: '', newPassword: '', confirmNewPassword: '' };
-    const history = useHistory();
     const [passwordDetails, setPasswordDetails] = useState(INITIAL_STATE);
 
     const { currentPassword, newPassword, confirmNewPassword } = passwordDetails;
@@ -46,14 +45,6 @@ const UpdatePassword = ({ currentUser, fetching, userMessage, errorMessage, upda
         setPasswordDetails({ ...passwordDetails, [name]: value });
     };
 
-    useEffect(() => {
-        if (!currentUser?.uid) {
-            history.replace(GO_TO_SIGNIN);
-        }
-    });
-
-    if (!currentUser?.uid) return null;
-
     return (
         <form className={styles.container} autoComplete="on" onSubmit={handleUpdatePasswordSubmit}>
             <h3 className={styles.header}>Update password</h3>
@@ -76,7 +67,6 @@ const UpdatePassword = ({ currentUser, fetching, userMessage, errorMessage, upda
 };
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
     fetching: selectWaitingForData,
     userMessage: selectUserMessage,
     errorMessage: selectErrorMessage
@@ -90,4 +80,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdatePassword);
+export default connect(mapStateToProps, mapDispatchToProps)(ProtectedRoute(UpdatePassword));

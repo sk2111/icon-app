@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 //component
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import SignOut from './components/sign-out/sign-out.component';
-import UpdatePassword from './components/update-password/update-password.component';
+import ProtectedUpdatePassword from './components/update-password/update-password.component';
 import ProtectedRouteHomePage from './pages/home-page/home-page.component';
 import ToastMessage from './components/toast-message/toast-message.component';
 import RouteNotFound from './components/route-not-found/route-not-found.component';
@@ -15,7 +15,7 @@ import { checkUserPersistanceStart } from './redux/user/user.actions';
 //Reselect
 import { selectCurrentUser, selectUserPersistCheckDone } from './redux/user/user.selectors';
 // constants
-import { AUTH_PATH, SIGN_OUT_PAGE_PATH, UPDATE_PASSWORD_PAGE_PATH, HOME_PATH } from './utilities/route.paths';
+import { SIGN_OUT_ROUTE_PATH, UPDATE_PASSWORD_ROUTE_PATH, AUTH_ROUTE_PATH, HOME_ROUTE_PATH } from './utilities/route.paths';
 //logos
 import { ReactComponent as AnimAppLogo } from './assests/anim-applogo.svg';
 
@@ -32,10 +32,10 @@ const App = ({ currentUser, userPersistCheckDone, checkUserPersistanceStart }) =
     <React.Fragment>
       <ToastMessage />
       <Switch>
-        <Route exact path={`${AUTH_PATH}${SIGN_OUT_PAGE_PATH}`} render={(routeProps) => <SignOut {...routeProps} />} />
-        <Route exact path={`${AUTH_PATH}${UPDATE_PASSWORD_PAGE_PATH}`} render={(routeProps) => <UpdatePassword {...routeProps} />} />
-        <Route path={AUTH_PATH} render={(routeProps) => <SignInAndSignUpPage {...routeProps} currentUser={currentUser} />} />
-        <Route path={`${HOME_PATH}`} render={(routeProps) => <ProtectedRouteHomePage {...routeProps} currentUser={currentUser} />} />
+        <Route exact path={SIGN_OUT_ROUTE_PATH} render={(routeProps) => <SignOut {...routeProps} />} />
+        <Route exact path={UPDATE_PASSWORD_ROUTE_PATH} render={(routeProps) => <ProtectedUpdatePassword {...routeProps} currentUser={currentUser} />} />
+        <Route path={AUTH_ROUTE_PATH} render={(routeProps) => <SignInAndSignUpPage {...routeProps} currentUser={currentUser} />} />
+        <Route path={HOME_ROUTE_PATH} render={(routeProps) => <ProtectedRouteHomePage {...routeProps} currentUser={currentUser} />} />
         <Route render={(routeProps) => <RouteNotFound {...routeProps} />} />
       </Switch>
     </React.Fragment>

@@ -1,18 +1,16 @@
-export const AUTH_PATH = '/auth';
-export const HOME_PATH = '/home';
-export const SIGN_IN_PAGE_PATH = '/signin';
-export const SIGN_OUT_PAGE_PATH = '/signout';
-export const GO_TO_SIGNIN = AUTH_PATH + SIGN_IN_PAGE_PATH;
-export const SIGN_UP_PAGE_PATH = '/signup';
-export const FORGOT_PASSWORD_PAGE_PATH = '/forgotpassword';
-export const UPDATE_PASSWORD_PAGE_PATH = '/updatepassword';
-export const GO_TO_UPDATE_PASSWORD = AUTH_PATH + UPDATE_PASSWORD_PAGE_PATH;
+export const AUTH_ROUTE_PATH = '/auth';
+export const HOME_ROUTE_PATH = '/home';
+export const SIGN_IN_ROUTE_PATH = AUTH_ROUTE_PATH + '/signin';
+export const SIGN_OUT_ROUTE_PATH = AUTH_ROUTE_PATH + '/signout';
+export const SIGN_UP_ROUTE_PATH = AUTH_ROUTE_PATH + '/signup';
+export const FORGOT_PASSWORD_ROUTE_PATH = AUTH_ROUTE_PATH + '/forgotpassword';
+export const UPDATE_PASSWORD_ROUTE_PATH = AUTH_ROUTE_PATH + '/updatepassword';
 // navigation paths
-export const COMMON_ROUTE = HOME_PATH + '/common';
-export const PROJECTS_ROUTE = HOME_PATH + '/projects';
-export const FAVORITES_ROUTE = HOME_PATH + '/favorites';
-export const EDIT_ROUTE = HOME_PATH + '/edit';
-export const MESSAGES_ROUTE = HOME_PATH + '/messages';
+export const COMMON_ICONS_ROUTE_PATH = HOME_ROUTE_PATH + '/common';
+export const PROJECTS_ROUTE = HOME_ROUTE_PATH + '/projects';
+export const FAVORITES_ROUTE = HOME_ROUTE_PATH + '/favorites';
+export const EDIT_ROUTE = HOME_ROUTE_PATH + '/edit';
+export const MESSAGES_ROUTE = HOME_ROUTE_PATH + '/messages';
 
 // Default Landing path after sign in success
-export const LANDING_PATH = COMMON_ROUTE;
+export const LANDING_ROUTE_PATH = COMMON_ICONS_ROUTE_PATH;
