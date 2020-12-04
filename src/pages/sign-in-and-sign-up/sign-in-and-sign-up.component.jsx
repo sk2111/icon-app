@@ -12,44 +12,40 @@ import RouteNotFound from '../../components/route-not-found/route-not-found.comp
 //constants
 import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
 import { LOADING_ANIM_LOGO_TIME } from '../../utilities/app.constants';
-
+//route constants
 import {
-    SIGN_IN_ROUTE_PATH, SIGN_UP_ROUTE_PATH, FORGOT_PASSWORD_ROUTE_PATH, LANDING_ROUTE_PATH
+    SIGN_IN_ROUTE_PATH, SIGN_UP_ROUTE_PATH,
+    FORGOT_PASSWORD_ROUTE_PATH, LANDING_ROUTE_PATH
 } from '../../utilities/route.paths';
+
 
 const SignInAndSignUpPage = ({ currentUser, history }) => {
 
     useEffect(() => {
         if (currentUser?.uid) {
-            const timer = setTimeout(() => history.push(LANDING_ROUTE_PATH), LOADING_ANIM_LOGO_TIME);
-            return () => clearTimeout(timer);
+            setTimeout(() => history.push(LANDING_ROUTE_PATH), LOADING_ANIM_LOGO_TIME);
         }
     });
 
+    if (currentUser?.uid) return <AnimAppLogo />;
+
     return (
-        <React.Fragment>
-            { currentUser?.uid ?
-                <AnimAppLogo /> :
-                (
-                    <div className={`${styles.pageContainer} flex-row`}>
-                        <section className={`${styles.leftContainer} perfect-cen`}>
-                            <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" />
-                        </section>
-                        <section className={`${styles.rightContainer}`}>
-                            <div className={styles.rightContent}>
-                                <LoginHeader />
-                                <Switch>
-                                    <Route exact path={SIGN_IN_ROUTE_PATH} component={SignInUserLogin} />
-                                    <Route exact path={FORGOT_PASSWORD_ROUTE_PATH} component={SignInForgotPassword} />
-                                    <Route exact path={SIGN_UP_ROUTE_PATH} component={SignUp} />
-                                    <Route component={RouteNotFound}></Route>
-                                </Switch>
-                            </div>
-                        </section>
-                    </div>
-                )
-            }
-        </React.Fragment>
+        <div className={styles.pageContainer}>
+            <section className={styles.leftContainer}>
+                <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" />
+            </section>
+            <section className={styles.rightContainer}>
+                <div className={styles.rightContent}>
+                    <LoginHeader />
+                    <Switch>
+                        <Route exact path={SIGN_IN_ROUTE_PATH} render={(routeProps) => <SignInUserLogin {...routeProps} />} />
+                        <Route exact path={FORGOT_PASSWORD_ROUTE_PATH} render={(routeProps) => <SignInForgotPassword {...routeProps} />} />
+                        <Route exact path={SIGN_UP_ROUTE_PATH} component={SignUp} />
+                        <Route component={RouteNotFound}></Route>
+                    </Switch>
+                </div>
+            </section>
+        </div>
     );
 };
 
