@@ -26,7 +26,7 @@ import { NAV_MENU_EXPANDED_WIDTH, NAV_MENU_COLLAPSED_WIDTH } from '../../utiliti
 
 const HomePage = ({ isNavMenuExpanded }) => {
 
-    const navigationStyle = isNavMenuExpanded ? { width: NAV_MENU_EXPANDED_WIDTH } : { width: NAV_MENU_COLLAPSED_WIDTH };
+    const navigationStyle = { width: (isNavMenuExpanded ? NAV_MENU_EXPANDED_WIDTH : NAV_MENU_COLLAPSED_WIDTH) };
 
     return (
         <div className={styles.rootContainer}>
@@ -36,11 +36,11 @@ const HomePage = ({ isNavMenuExpanded }) => {
             <section className={styles.rightContainer}>
                 <Switch>
                     <Route path={COMMON_ROUTE_PATH} render={() => <CommonIconsPage />} />
-                    <Route exact path={PROJECTS_ROUTE_PATH} component={ProjectIconsPage} />
-                    <Route exact path={FAVORITES_ROUTE_PATH} component={FavoritesIconsPage} />
-                    <Route exact path={EDIT_ROUTE_PATH} component={EditIconPage} />
-                    <Route exact path={MESSAGES_ROUTE_PATH} render={() => { return <div>I am messages page</div> }} />
-                    <Route component={RouteNotFound}></Route>
+                    <Route exact path={PROJECTS_ROUTE_PATH} render={() => <ProjectIconsPage />} />
+                    <Route exact path={FAVORITES_ROUTE_PATH} component={() => <FavoritesIconsPage />} />
+                    <Route exact path={EDIT_ROUTE_PATH} component={() => <EditIconPage />} />
+                    <Route exact path={MESSAGES_ROUTE_PATH} render={() => <div>I am messages page</div>} />
+                    <Route component={RouteNotFound} />
                 </Switch>
             </section>
         </div>
