@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 //constants
-import { GO_TO_SIGNIN } from '../../utilities/route.paths';
+import { SIGN_IN_ROUTE_PATH } from '../../utilities/route.paths';
 
 const RouteNotFound = () => {
-    return (<Redirect to={GO_TO_SIGNIN} />);
+    return (<Redirect to={SIGN_IN_ROUTE_PATH} />);
 };
 
 export default RouteNotFound;

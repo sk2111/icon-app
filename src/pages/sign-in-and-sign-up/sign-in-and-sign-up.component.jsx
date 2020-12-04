@@ -14,15 +14,14 @@ import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
 import { LOADING_ANIM_LOGO_TIME } from '../../utilities/app.constants';
 
 import {
-    SIGN_IN_PAGE_PATH, SIGN_UP_PAGE_PATH, FORGOT_PASSWORD_PAGE_PATH, LANDING_PATH
+    SIGN_IN_ROUTE_PATH, SIGN_UP_ROUTE_PATH, FORGOT_PASSWORD_ROUTE_PATH, LANDING_ROUTE_PATH
 } from '../../utilities/route.paths';
 
-const SignInAndSignUpPage = ({ currentUser, history, match }) => {
-    const { path } = match;
+const SignInAndSignUpPage = ({ currentUser, history }) => {
 
     useEffect(() => {
         if (currentUser?.uid) {
-            const timer = setTimeout(() => history.push(LANDING_PATH), LOADING_ANIM_LOGO_TIME);
+            const timer = setTimeout(() => history.push(LANDING_ROUTE_PATH), LOADING_ANIM_LOGO_TIME);
             return () => clearTimeout(timer);
         }
     });
@@ -40,9 +39,9 @@ const SignInAndSignUpPage = ({ currentUser, history, match }) => {
                             <div className={styles.rightContent}>
                                 <LoginHeader />
                                 <Switch>
-                                    <Route exact path={`${path}${SIGN_IN_PAGE_PATH}`} component={SignInUserLogin} />
-                                    <Route exact path={`${path}${FORGOT_PASSWORD_PAGE_PATH}`} component={SignInForgotPassword} />
-                                    <Route exact path={`${path}${SIGN_UP_PAGE_PATH}`} component={SignUp} />
+                                    <Route exact path={SIGN_IN_ROUTE_PATH} component={SignInUserLogin} />
+                                    <Route exact path={FORGOT_PASSWORD_ROUTE_PATH} component={SignInForgotPassword} />
+                                    <Route exact path={SIGN_UP_ROUTE_PATH} component={SignUp} />
                                     <Route component={RouteNotFound}></Route>
                                 </Switch>
                             </div>

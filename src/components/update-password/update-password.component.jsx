@@ -14,7 +14,7 @@ import { selectWaitingForData, selectUserMessage, selectErrorMessage } from '../
 //actions
 import { clearAuthError, updateNewPasswordStart, updateNewPasswordFailure } from '../../redux/auth/auth.actions';
 //route constants
-import { LANDING_PATH } from '../../utilities/route.paths';
+import { LANDING_ROUTE_PATH } from '../../utilities/route.paths';
 //constants
 import { UPDATE_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities//auth.messages';
 
@@ -60,7 +60,7 @@ const UpdatePassword = ({ fetching, userMessage, errorMessage, updateNewPassword
             </div>
             <div className={`${styles.actionLabel} perfect-cen mt-33`}>
                 Back to
-                <Link to={`${LANDING_PATH}`} className={styles.homeLink} onClick={clearAuthErrorMessage}>Home Page?</Link>
+                <Link to={LANDING_ROUTE_PATH} className={styles.homeLink} onClick={clearAuthErrorMessage}>Home Page?</Link>
             </div>
         </form>
     );

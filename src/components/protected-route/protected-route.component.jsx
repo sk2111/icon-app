@@ -2,10 +2,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 // constants
-import { GO_TO_SIGNIN } from '../../utilities/route.paths';
+import { SIGN_IN_ROUTE_PATH } from '../../utilities/route.paths';
 
 const ProtectedRoute = WrappedComponent => ({ currentUser, ...otherProps }) => {
-    return (currentUser?.uid ? <WrappedComponent {...otherProps} isCurrentUserAdmin={currentUser.isAdmin} /> : <Redirect to={GO_TO_SIGNIN} />);
+    return (currentUser?.uid ? <WrappedComponent {...otherProps} /> : <Redirect to={SIGN_IN_ROUTE_PATH} />);
 };
 
 export default ProtectedRoute;

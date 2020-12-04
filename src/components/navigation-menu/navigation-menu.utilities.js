@@ -1,4 +1,4 @@
-import { COMMON_ROUTE, EDIT_ROUTE, FAVORITES_ROUTE, MESSAGES_ROUTE, PROJECTS_ROUTE } from '../../utilities/route.paths';
+import { COMMON_ICONS_ROUTE_PATH, EDIT_ROUTE_PATH, FAVORITES_ROUTE_PATH, MESSAGES_ROUTE_PATH, PROJECTS_ROUTE_PATH } from '../../utilities/route.paths';
 
 import { ReactComponent as CommonIconsLogo } from '../../assests/navigation/common-icons-menu.svg';
 import { ReactComponent as ProjectsLogo } from '../../assests/navigation/projects-menu.svg';
@@ -6,10 +6,10 @@ import { ReactComponent as FavoritesLogo } from '../../assests/navigation/favori
 import { ReactComponent as EditLogo } from '../../assests/navigation/edit-menu.svg';
 
 export const NAVI_LINKS = [
-    { name: 'Common', route: COMMON_ROUTE, IconComp: CommonIconsLogo },
-    { name: 'Projects', route: PROJECTS_ROUTE, IconComp: ProjectsLogo },
-    { name: 'Favorites', route: FAVORITES_ROUTE, IconComp: FavoritesLogo },
-    { name: 'Edit', route: EDIT_ROUTE, IconComp: EditLogo },
+    { name: 'Common', route: COMMON_ICONS_ROUTE_PATH, IconComp: CommonIconsLogo },
+    { name: 'Projects', route: PROJECTS_ROUTE_PATH, IconComp: ProjectsLogo },
+    { name: 'Favorites', route: FAVORITES_ROUTE_PATH, IconComp: FavoritesLogo },
+    { name: 'Edit', route: EDIT_ROUTE_PATH, IconComp: EditLogo },
 ];
 
-export const MESSAGE_LINK = MESSAGES_ROUTE;
+export const MESSAGE_LINK = MESSAGES_ROUTE_PATH;

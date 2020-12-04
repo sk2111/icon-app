@@ -10,7 +10,7 @@ import {
     sendResetLinkSuccess, sendResetLinkFailure, updateNewPasswordSuccess, updateNewPasswordFailure
 } from './auth.actions';
 //Route constants
-import { AUTH_PATH, SIGN_IN_PAGE_PATH } from '../../utilities/route.paths';
+import { SIGN_IN_ROUTE_PATH } from '../../utilities/route.paths';
 import { isValidMail } from '../../utilities/validator.utils';
 //constants
 import {
@@ -32,7 +32,7 @@ export function* signUpUser({ payload: { email, password, firstname, lastname } 
             yield call(createUserProfileInFirestore, { uid, email, firstname, lastname });
             yield user.sendEmailVerification();
             yield put(userSignUpSuccess(SIGN_UP_SUCCESS_MESSAGE));
-            history.push(AUTH_PATH + SIGN_IN_PAGE_PATH);
+            history.push(SIGN_IN_ROUTE_PATH);
         }
     }
     catch (e) {
@@ -74,7 +74,7 @@ export function* sendResetLink({ payload: { email } }) {
     try {
         yield auth.sendPasswordResetEmail(email);
         yield put(sendResetLinkSuccess(RESET_LINK_SUCCESS_MESSAGE));
-        history.push(AUTH_PATH + SIGN_IN_PAGE_PATH);
+        history.push(SIGN_IN_ROUTE_PATH);
     }
     catch (e) {
         console.log(e);

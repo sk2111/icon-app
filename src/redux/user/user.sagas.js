@@ -3,7 +3,7 @@ import { getCurrentUser, readUserProfileFromFireStore, getUserAccessRoleFromFire
 //history
 import history from '../../utilities/history';
 //route constants 
-import { AUTH_PATH, SIGN_OUT_PAGE_PATH } from '../../utilities/route.paths';
+import { SIGN_OUT_ROUTE_PATH } from '../../utilities/route.paths';
 //action types
 import { userActionTypes } from './user.type';
 import { authActionTypes } from '../auth/auth.type';
@@ -58,7 +58,7 @@ function* onUserPersistanceStart() {
 // user sign out sagas
 function* signOutUser() {
     try {
-        history.replace(AUTH_PATH + SIGN_OUT_PAGE_PATH);
+        history.replace(SIGN_OUT_ROUTE_PATH);
         yield auth.signOut();
     }
     catch (e) {

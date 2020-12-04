@@ -7,7 +7,7 @@ import styles from './sign-out.module.css';
 //actions
 import { userSignOutSuccess } from '../../redux/user/user.actions';
 //Route constants
-import { GO_TO_SIGNIN } from '../../utilities/route.paths';
+import { SIGN_IN_ROUTE_PATH } from '../../utilities/route.paths';
 //static
 import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
 import { SIGNOUT_ANIMATION_LOADING_TIME } from '../../utilities/app.constants';
@@ -19,7 +19,7 @@ const SignOut = ({ userSignOutSuccess }) => {
         //clear current user in redux and got to sign in page 
         setTimeout(() => {
             userSignOutSuccess();
-            history.replace(GO_TO_SIGNIN);
+            history.replace(SIGN_IN_ROUTE_PATH);
         }, SIGNOUT_ANIMATION_LOADING_TIME);
 
     }, [history, userSignOutSuccess]);

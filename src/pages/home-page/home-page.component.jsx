@@ -17,7 +17,10 @@ import RouteNotFound from '../../components/route-not-found/route-not-found.comp
 //reselect
 import { selectIsNavMenuExpanded } from '../../redux/app-data/app-data.selectors';
 //route paths
-import { COMMON_ROUTE, PROJECTS_ROUTE, FAVORITES_ROUTE, EDIT_ROUTE, MESSAGES_ROUTE } from '../../utilities/route.paths';
+import {
+    COMMON_ICONS_ROUTE_PATH, PROJECTS_ROUTE_PATH, FAVORITES_ROUTE_PATH,
+    EDIT_ROUTE_PATH, MESSAGES_ROUTE_PATH
+} from '../../utilities/route.paths';
 //constants
 import { NAV_MENU_EXPANDED_WIDTH, NAV_MENU_COLLAPSED_WIDTH } from '../../utilities/app.constants';
 
@@ -32,11 +35,11 @@ const HomePage = ({ isNavMenuExpanded, isCurrentUserAdmin }) => {
             </section>
             <section className={styles.rightContainer}>
                 <Switch>
-                    <Route path={COMMON_ROUTE} render={() => <CommonIconsPage />} />
-                    <Route exact path={PROJECTS_ROUTE} component={ProjectIconsPage} />
-                    <Route exact path={FAVORITES_ROUTE} component={FavoritesIconsPage} />
-                    <Route exact path={EDIT_ROUTE} component={EditIconPage} />
-                    <Route exact path={MESSAGES_ROUTE} render={() => { return <div>I am messages page</div> }} />
+                    <Route path={COMMON_ICONS_ROUTE_PATH} render={() => <CommonIconsPage />} />
+                    <Route exact path={PROJECTS_ROUTE_PATH} component={ProjectIconsPage} />
+                    <Route exact path={FAVORITES_ROUTE_PATH} component={FavoritesIconsPage} />
+                    <Route exact path={EDIT_ROUTE_PATH} component={EditIconPage} />
+                    <Route exact path={MESSAGES_ROUTE_PATH} render={() => { return <div>I am messages page</div> }} />
                     <Route component={RouteNotFound}></Route>
                 </Switch>
             </section>

@@ -10,7 +10,7 @@ import styles from './user-profile.module.css';
 //actions
 import { userSignOutStart } from '../../redux/user/user.actions';
 //Route constants
-import { GO_TO_UPDATE_PASSWORD } from '../../utilities/route.paths';
+import { UPDATE_PASSWORD_ROUTE_PATH } from '../../utilities/route.paths';
 
 const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
     const history = useHistory();
@@ -35,7 +35,7 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
                     </div>
                     <div className={styles.breakLine}></div>
                     <p className={`${styles.label} ${styles.firstLabel}`}
-                        onClick={() => { history.push(GO_TO_UPDATE_PASSWORD) }}>Update password</p>
+                        onClick={() => { history.push(UPDATE_PASSWORD_ROUTE_PATH) }}>Update password</p>
                     <p className={`${styles.label} ${styles.signOutLabel}`} onClick={userSignOutStart}>Sign out</p>
                 </div>
             </div>
