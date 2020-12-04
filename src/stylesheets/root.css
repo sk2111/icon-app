@@ -1,9 +1,20 @@
 :root {
-  /* colors */
+  /* button input colors */
   --app-submit-button-background: #00c578;
-  --app-submit-button-text-color: #ffffff;
-
-
+  --app-submit-button-text: #ffffff;
+  /* select input colors*/
+  --app-select-label: #707071;
+  --app-select-selected-text: #707071;
+  --app-select-selected-background: #f3f3f4;
+  --app-select-dropdown-background: #ffffff;
+  --app-select-dropdown-shadow: #dbdbdc;
+  --app-select-dropdown-option-text: #707071;
+  --app-select-dropdown-option-background: #ffffff;
+  --app-select-dropdown-option-hover: #f3f3f4;
+  --app-select-selected-option-background: #173895;
+  --app-select-selected-option: #ffffff;
+  /* select effects */
+  --app-select-open-transition: 0.3s;
 
   --app-green: #00c578;
   --app-form-label: #707071;
@@ -22,7 +33,9 @@
   --app-navi-highlight: #0c2b81;
   --app-navi-link-not-highlight: #7488cc;
   --app-navi-link-highlight: #f3f3f4;
+  /* scroll bar */
   --app-scroll-thumb: #989899;
+  --app-scroll-track: #ffffff;
   /* width */
   --app-form-width: 320px;
   --app-form-width-medium: 320px;

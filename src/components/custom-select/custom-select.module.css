@@ -1,5 +1,5 @@
 .dropLabel {
-  color: var(--app-form-label);
+  color: var(--app-select-label);
   font-size: 14px;
   font-weight: 500;
   margin-left: 40px;
@@ -16,10 +16,10 @@
 }
 .selectedValue {
   align-items: center;
-  background-color: var(--app-input-background);
+  background-color: var(--app-select-selected-background);
   border: 0px;
   border-radius: 3px;
-  color: var(--app-form-label);
+  color: var(--app-select-selected-text);
   cursor: default;
   display: flex;
   flex-direction: row;
@@ -29,18 +29,19 @@
   width: 158px;
 }
 .optionsCon {
-  background-color: var(--app-pure-white);
-  box-shadow: 0 0 3px 0 var(--app-select-shadow);
+  background-color: var(--app-select-dropdown-background);
+  box-shadow: 0 0 3px 0 var(--app-select-dropdown-shadow);
+  margin-top: 1px;
   max-height: 140px;
   overflow-y: scroll;
   position: absolute;
-  transition: max-height 0.2s;
+  transition: max-height var(--app-select-open-transition);
   width: 100%;
 }
 .option {
   align-items: center;
-  background-color: var(--app-pure-white);
-  color: var(--app-text);
+  background-color: var(--app-select-dropdown-option-background);
+  color: var(--app-select-dropdown-option-text);
   display: flex;
   flex-direction: row;
   height: 28px;
@@ -48,11 +49,11 @@
   padding-left: 16px;
 }
 .selectedOption {
-  background-color: var(--app-soliton-blue) !important;
-  color: var(--app-pure-white) !important;
+  background-color: var(--app-select-selected-option-background) !important;
+  color: var(--app-select-selected-option) !important;
 }
 .option:hover {
-  background-color: var(--app-input-background-hover);
+  background-color: var(--app-select-dropdown-option-hover);
 }
 .arrowDown {
   position: absolute;
@@ -64,12 +65,10 @@
 .optionsCon::-webkit-scrollbar {
   width: 3px;
 }
-
 /* Track */
 .optionsCon::-webkit-scrollbar-track {
-  background-color: var(--app-pure-white);
+  background-color: var(--app-scroll-track);
 }
-
 /* Handle */
 .optionsCon::-webkit-scrollbar-thumb {
   border: 3px solid var(--app-scroll-thumb);
