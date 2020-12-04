@@ -8,6 +8,7 @@ import styles from './sign-in-user-login.module.css';
 //components
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
+import FormInputPassword from '../form-input-password/form-input-password.component';
 //actions 
 import { userLoginStart, userLoginFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect
@@ -44,16 +45,16 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
     };
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target || e;
         clearAuthErrorMessage();
         setUserDetails({ ...userDetails, [name]: value });
     };
 
     return (
         <form className="mt-25 flex-col-cen" autoComplete="on" onSubmit={handleUserLoginSubmit}>
-            {userMessage ? <p className={styles.userMessage}>{userMessage}</p> : null}
+            <p className={styles.userMessage}>{userMessage}</p>
             <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
-            <FormInput className="mt-14" name="password" label="Password" value={password} type="password" required autoComplete="on" handleInputChange={handleInputChange} />
+            <FormInputPassword name="password" label="Password" value={password} handleValueChange={handleInputChange} />
             {errorMessage ?
                 (
                     <div className="perfect-cen">

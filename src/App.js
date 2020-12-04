@@ -11,7 +11,7 @@ import ProtectedRouteHomePage from './pages/home-page/home-page.component';
 import ToastMessage from './components/toast-message/toast-message.component';
 import RouteNotFound from './components/route-not-found/route-not-found.component';
 //actions
-import { checkUserPersistanceStart, userPersistanceCheckCompleted } from './redux/user/user.actions';
+import { checkUserPersistanceStart } from './redux/user/user.actions';
 //Reselect
 import { selectCurrentUser, selectUserPersistCheckDone } from './redux/user/user.selectors';
 // constants
@@ -25,25 +25,19 @@ const App = ({ currentUser, userPersistCheckDone, checkUserPersistanceStart }) =
     checkUserPersistanceStart();
   }, [checkUserPersistanceStart]);
 
-  const renderHelper = () => {
-    if (!userPersistCheckDone) return <AnimAppLogo />;
-    return (
-      <React.Fragment>
-        <ToastMessage />
-        <Switch>
-          <Route exact path={`${AUTH_PATH}${SIGN_OUT_PAGE_PATH}`} component={SignOut}></Route>
-          <Route exact path={`${AUTH_PATH}${UPDATE_PASSWORD_PAGE_PATH}`} component={UpdatePassword}></Route>
-          <Route path={AUTH_PATH} render={(props) => <SignInAndSignUpPage {...props} currentUser={currentUser} />}></Route>
-          <Route path={`${HOME_PATH}`} render={(props) => <ProtectedRouteHomePage {...props} currentUser={currentUser} />}></Route>
-          <Route component={RouteNotFound}></Route>
-        </Switch>
-      </React.Fragment>
-    );
-  };
+  //until persistance check done show loading logo to avoid UI flicker
+  if (!userPersistCheckDone) return <AnimAppLogo />;
 
   return (
     <React.Fragment>
-      {renderHelper()}
+      <ToastMessage />
+      <Switch>
+        <Route exact path={`${AUTH_PATH}${SIGN_OUT_PAGE_PATH}`} render={(routeProps) => <SignOut {...routeProps} />} />
+        <Route exact path={`${AUTH_PATH}${UPDATE_PASSWORD_PAGE_PATH}`} render={(routeProps) => <UpdatePassword {...routeProps} />} />
+        <Route path={AUTH_PATH} render={(routeProps) => <SignInAndSignUpPage {...routeProps} currentUser={currentUser} />} />
+        <Route path={`${HOME_PATH}`} render={(routeProps) => <ProtectedRouteHomePage {...routeProps} currentUser={currentUser} />} />
+        <Route render={(routeProps) => <RouteNotFound {...routeProps} />} />
+      </Switch>
     </React.Fragment>
   );
 
@@ -56,8 +50,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkUserPersistanceStart: () => dispatch(checkUserPersistanceStart()),
-    userPersistanceCheckCompleted: () => dispatch(userPersistanceCheckCompleted())
+    checkUserPersistanceStart: () => dispatch(checkUserPersistanceStart())
   }
 };
 

@@ -39,7 +39,7 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                 <div>
                     {
                         icons.map((icon) => {
-                            return <div>{icon.name}</div>;
+                            return <div key={icon.name}>{icon.name}</div>;
                         })
                     }
                 </div>
