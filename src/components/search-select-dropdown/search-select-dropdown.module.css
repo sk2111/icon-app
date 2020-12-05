@@ -1,5 +1,5 @@
 .searchInput {
-  background-color: var(--app-input-background);
+  background-color: var(--app-search-select-background);
   border: 0px;
   border-radius: 3px;
   color: var(--app-text);
@@ -8,20 +8,14 @@
   padding: 6px 16px 6px 16px;
   width: 330px;
 }
-
-::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
+.searchInput::placeholder {
   color: var(--app-search-select-common);
-  opacity: 1; /* Firefox */
+  opacity: 1;
 }
-
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
+.searchInput:-ms-input-placeholder {
   color: var(--app-search-select-common);
 }
-
-::-ms-input-placeholder {
-  /* Microsoft Edge */
+.searchInput::-ms-input-placeholder {
   color: var(--app-search-select-common);
 }
 .inputLogoContainer {
@@ -40,21 +34,21 @@
   position: relative;
 }
 .searchListContainer {
-  background-color: var(--app-pure-white);
+  background-color: var(--app-search-select-list-background);
   border-radius: 2px;
-  box-shadow: 0 0 3px 0 var(--app-search-select-common);
+  box-shadow: 0 0 3px 0 var(--app-search-select-list-shadow);
   margin-top: 2px;
   max-height: 140px;
   overflow-y: scroll;
   position: absolute;
-  transition: max-height 0.2s; /*transisition time and UI update time are kept in sync for smooth animation*/
+  transition: max-height var(--app-search-select-open-transition);
   width: 100%;
   z-index: 1;
   width: 330px;
 }
 .searchItem {
   align-items: center;
-  color: var(--app-text);
+  color: var(--app-search-select-list-text);
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -63,20 +57,15 @@
   padding-left: 16px;
 }
 .searchItem:hover {
-  background-color: var(--app-input-background-hover);
+  background-color: var(--app-search-select-list-hover);
 }
 
-/* scroll bar width */
 .searchListContainer::-webkit-scrollbar {
   width: 3px;
 }
-
-/* Track */
 .searchListContainer::-webkit-scrollbar-track {
-  background-color: var(--app-pure-white);
+  background-color: var(--app-scroll-track);
 }
-
-/* Handle */
 .searchListContainer::-webkit-scrollbar-thumb {
   border: 3px solid var(--app-scroll-thumb);
 }

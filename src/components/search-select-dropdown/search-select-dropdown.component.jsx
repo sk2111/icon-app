@@ -12,11 +12,10 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
     const [listHidden, setListHidden] = useState(true);
 
     const ENTER_KEYNAME = 'Enter';
-    const DROPDOWN_CLOSE_TIME = '150'; // millisec
-    const DEBOUNCE_TIME = 700; //millisec
+    const DEBOUNCE_TIME = 1000; //millisec
 
     const filteredList = searchList.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()));
-    const searchListStyle = (listHidden || !filteredList.length) ? { maxHeight: '0px', border: 'none' } : {};
+    const searchListStyle = (listHidden || !filteredList.length) ? { maxHeight: '0px', transition: 'none', border: 'none' } : {};
 
 
     useEffect(() => {
@@ -36,11 +35,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
 
     const handleListSelect = (listVal) => {
         setListHidden(true);
-        setTimeout(() => {
-            // Adding small delay beacause clicking one item will filter the list 
-            //and the list become 1 so small glitch in UI 
-            setSearchTerm(listVal);
-        }, DROPDOWN_CLOSE_TIME);
+        setSearchTerm(listVal);
     };
 
     return (
@@ -61,10 +56,15 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
                     <SearchLens className={styles.SearchLens} />
                 </div>
                 <div style={searchListStyle} className={styles.searchListContainer}>
-                    {filteredList.map(
-                        (listVal) => <p key={listVal} className={styles.searchItem}
-                            onMouseDown={() => handleListSelect(listVal)}>{listVal}</p>
-                    )}
+                    {
+                        filteredList.map((listVal) => {
+                            return (
+                                <p key={listVal}
+                                    className={styles.searchItem}
+                                    onMouseDown={() => handleListSelect(listVal)}>{listVal}</p>
+                            );
+                        })
+                    }
                 </div>
             </div>
         </div>

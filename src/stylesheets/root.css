@@ -38,7 +38,27 @@
 
   /* Modal colors */
   --app-modal-overlay: rgba(0, 0, 0, 0.6);
-  --app-modal-content-background:#ffffff;
+  --app-modal-content-background: #ffffff;
+
+  /* Navigation  */
+  --app-navigation-background: #173895;
+  --app-navigation-label: #e7eaf1;
+  --app-navigation-highlight: #0c2b81;
+  --app-navigation-link-not-highlight: #7488cc;
+  --app-navigation-link-highlight: #f3f3f4;
+  --app-navigation-message-background: #00c578;
+
+  /* search select dropdown */
+  --app-search-select-background: #f3f3f4;
+  --app-search-select-common: #dbdbdc;
+  --app-search-select-list-background: #ffffff;
+  --app-search-select-list-shadow: #dbdbdc;
+  --app-search-select-list-text: #707071;
+  --app-search-select-list-hover: #f3f3f4;
+  /* search select effects */
+  --app-search-select-open-transition: 0.4s;
+
+
 
 
   --app-green: #00c578;
@@ -48,7 +68,6 @@
   --app-input-background-hover: #f3f3f4;
   --app-error-message: #f34469;
   --app-pure-white: white;
-  --app-search-select-common: #dbdbdc;
   --app-select-shadow: #dbdbdc;
   --app-linebreak-border: #e2e2ec;
   --app-soliton-blue: #173895;
