@@ -68,9 +68,16 @@
   /* Toast bar colors */
   --app-toastbar-background: rgba(0, 0, 0, 0.8);
   --app-toastbar-text: white;
-
-
   
+  /* user profile */
+  --app-user-profile-vertical-line: #e2e2ec;
+  --app-user-profile-text: #707071;
+  --app-user-profile-text-hover: #f3f3f4;
+  --app-user-profile-dropdown: #ffffff;
+  --app-user-profile-dropdown-shadow: #dbdbdc;
+  --app--user-profile-linebreak: #e2e2ec;
+
+
   --app-green: #00c578;
   --app-form-label: #707071;
   --app-text: #707071;

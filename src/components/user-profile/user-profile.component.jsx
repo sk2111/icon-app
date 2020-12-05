@@ -13,6 +13,7 @@ import { userSignOutStart } from '../../redux/user/user.actions';
 import { UPDATE_PASSWORD_ROUTE_PATH } from '../../utilities/route.paths';
 
 const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
+
     const history = useHistory();
     const [settingsHidden, setSettingsHidden] = useState(true);
 
@@ -23,7 +24,7 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
             <div className={styles.verticalLine}></div>
             <p className={styles.username}>{fullName}</p>
             <div className={styles.profileContainer}>
-                <div className={`${styles.profilePic} perfect-cen`}
+                <div className={styles.profilePic}
                     onClick={() => setSettingsHidden(!settingsHidden)}>{fullName[0]}</div>
                 <div style={containerStyle} className={styles.settingsCon} onClick={() => setSettingsHidden(true)}>
                     <div className={styles.topContainer}>
@@ -35,7 +36,7 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName }) => {
                     </div>
                     <div className={styles.breakLine}></div>
                     <p className={`${styles.label} ${styles.firstLabel}`}
-                        onClick={() => { history.push(UPDATE_PASSWORD_ROUTE_PATH) }}>Update password</p>
+                        onClick={() => history.push(UPDATE_PASSWORD_ROUTE_PATH)}>Update password</p>
                     <p className={`${styles.label} ${styles.signOutLabel}`} onClick={userSignOutStart}>Sign out</p>
                 </div>
             </div>
