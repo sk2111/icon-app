@@ -6,6 +6,9 @@
   --app-submit-button-background: #00c578;
   --app-submit-button-text: #ffffff;
 
+  /* illustration background */
+  --app-illustration-page-background: #f3f3f4;
+
   /* select input colors*/
   --app-select-label: #707071;
   --app-select-selected-text: #707071;
@@ -52,6 +55,7 @@
   /* search select dropdown */
   --app-search-select-background: #f3f3f4;
   --app-search-select-common: #dbdbdc;
+  --app-search-select-text: #707071;
   --app-search-select-list-background: #ffffff;
   --app-search-select-list-shadow: #dbdbdc;
   --app-search-select-list-text: #707071;

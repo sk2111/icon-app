@@ -2,7 +2,7 @@
   background-color: var(--app-search-select-background);
   border: 0px;
   border-radius: 3px;
-  color: var(--app-text);
+  color: var(--app-search-select-text);
   font-size: 14px;
   height: 30px;
   padding: 6px 16px 6px 16px;

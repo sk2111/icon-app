@@ -42,6 +42,7 @@
   align-items: center;
   background-color: var(--app-select-dropdown-option-background);
   color: var(--app-select-dropdown-option-text);
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   height: 28px;
