@@ -14,7 +14,6 @@ const CustomSelect = ({ label, options, defaultSelectValue, handleSelectValueCha
 
     useEffect(() => {
         if (!optionsHidden) {
-            //scroll to selected option whenever options list is open
             matchedOptionRef.current.scrollIntoView();
         }
     }, [matchedOptionRef, optionsHidden]);

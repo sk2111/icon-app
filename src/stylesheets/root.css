@@ -2,6 +2,7 @@
   /* button input colors */
   --app-submit-button-background: #00c578;
   --app-submit-button-text: #ffffff;
+
   /* select input colors*/
   --app-select-label: #707071;
   --app-select-selected-text: #707071;
@@ -15,6 +16,14 @@
   --app-select-selected-option: #ffffff;
   /* select effects */
   --app-select-open-transition: 0.3s;
+
+  /* Form input colors */
+  --app-form-input-background: #f3f3f4;
+  --app-form-input-shadow: #f3f3f4;
+  --app-form-input-text: #707071;
+  --app-form-input-label: #707071;
+  --app-form-input-autofill-background: #f3f3f4;
+
 
   --app-green: #00c578;
   --app-form-label: #707071;

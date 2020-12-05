@@ -1,15 +1,15 @@
 .formInput {
-  background-color: var(--app-input-background);
+  background-color: var(--app-form-input-background);
   border: none;
   border-radius: 3px;
-  box-shadow: 0 0 0px 1000px var(--app-input-background) inset;
-  color: var(--app-form-label);
+  box-shadow: 0 0 0px 1000px var(--app-form-input-shadow) inset;
+  color: var(--app-form-input-text);
   font-size: 14px;
   height: 40px;
   margin-top: 11px;
   margin-bottom: 7px;
   padding-left: 16px;
-  width: var(--app-form-width);
+  width: var(--app-form-width-medium);
 }
 .shortWidth {
   width: var(--app-form-width-short);
@@ -18,7 +18,7 @@
   width: var(--app-form-width-long);
 }
 .formLabel {
-  color: var(--app-form-label);
+  color: var(--app-form-input-label);
   display: block;
   font-size: 14px;
 }
@@ -31,12 +31,13 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  background-color: var(--app-input-background) !important;
+  background-color: var(--app-form-input-autofill-background) !important;
   border: none !important;
-  box-shadow: 0 0 0px 1000px var(--app-input-background) inset;
+  box-shadow: 0 0 0px 1000px var(--app-form-input-autofill-background) inset;
   color: var(--app-form-label) !important;
   font-size: 14px !important;
   font-weight: 400;
-  -webkit-box-shadow: 0 0 0px 1000px var(--app-input-background) inset;
+  -webkit-box-shadow: 0 0 0px 1000px var(--app-form-input-autofill-background)
+    inset;
   -webkit-text-fill-color: var(--app-form-label) !important;
 }
