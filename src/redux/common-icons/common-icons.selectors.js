@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect';
 //constants
 import { DEFAULT_CATEGORY_VALUE } from './common-icons.constants';
+//helpers
+import { trimStr } from '../../utilities/helper.functions';
+
 
 const selectCommonIcons = state => state.commonIcons;
 
@@ -12,23 +15,23 @@ export const selectCommonIconsSearchValue = createSelector([selectCommonIcons], 
 
 export const selectCommonIconsSelectValue = createSelector([selectCommonIcons], (commonIcons) => commonIcons.selectValue);
 
-export const selectCommonIconsMap = createSelector([selectCommonIcons], (commonIcons) => commonIcons.iconsMap);
+const selectCommonIconsMap = createSelector([selectCommonIcons], (commonIcons) => commonIcons.iconsMap);
+
+const selectTrimmedSearchValue = createSelector([selectCommonIconsSearchValue], (searchValue) => trimStr(searchValue));
+
+const selectTrimmedSelectValue = createSelector([selectCommonIconsSelectValue], (selectValue) => trimStr(selectValue));
 
 export const selectCommonIconsToDisplay = createSelector(
-    [selectCommonIconsSearchValue, selectCommonIconsSelectValue, selectCommonIconsMap],
-    (searchValue, selectValue, iconsMap) => {
-        console.log(" Hai I am reselect and I am running", searchValue, selectValue, iconsMap);
+    [selectTrimmedSearchValue, selectTrimmedSelectValue, selectCommonIconsMap],
+    (searchTagValue, classificationValue, iconsMap) => {
+        console.log(" Hai I am reselect group runner", searchTagValue, classificationValue);
         const iconsArray = Object.values(iconsMap);
-        const searchTagValue = String(searchValue).toLowerCase();
-        const classificationValue = String(selectValue).toLowerCase();
-        const defaultValue = String(DEFAULT_CATEGORY_VALUE).toLowerCase();
-        //first filter by classfication if value is other than all     
-        const classificationFiltered = (classificationValue === defaultValue) ? [...iconsArray] :
-            iconsArray.filter((icon) => icon.classification === classificationValue);
-        //filter by search keyword if value is other than empty
-        const searchTagFiltered = (searchTagValue === '') ? [...classificationFiltered] :
-            classificationFiltered.filter((icon) => icon.tags.join(' ').includes(searchTagValue));
-
-        return searchTagFiltered;
+        const defaultValue = trimStr(DEFAULT_CATEGORY_VALUE);
+        const filteredArray = iconsArray.filter((icon) => {
+            const keyWordMatchResult = icon.tags.join(' ').includes(searchTagValue);
+            const classficationMatchResult = icon.classification === classificationValue;
+            return (classificationValue === defaultValue) ? keyWordMatchResult : (classficationMatchResult && keyWordMatchResult);
+        });
+        return filteredArray;
     }
 );

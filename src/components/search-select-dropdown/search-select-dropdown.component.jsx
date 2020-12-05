@@ -13,7 +13,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
 
     const [searchTerm, setSearchTerm] = useState(defaultSearchValue);
     const [listHidden, setListHidden] = useState(true);
-    const debounceTime = useRef({ time: DEFAULT_DEBOUNCE_TIME });
+    const debounceTime = useRef({ time: 0 });
 
 
     const filteredList = searchList.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()));
