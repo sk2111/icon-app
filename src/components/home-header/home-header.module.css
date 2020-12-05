@@ -1,10 +1,12 @@
 .hamsvg {
   cursor: pointer;
 }
-
+.searchAlign {
+  margin-left: 21px;
+}
 .headerContainer {
-  background-color: var(--app-pure-white);
-  box-shadow: 1px 2px 3px 0 var(--app-pure-white-shadow);
+  background-color: var(--app-top-header-background);
+  box-shadow: 1px 2px 3px 0 var(--app-top-header-shadow);
   display: flex;
   flex-direction: row;
   height: 54px;

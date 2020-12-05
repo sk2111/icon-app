@@ -23,6 +23,9 @@
   --app-form-input-text: #707071;
   --app-form-input-label: #707071;
   --app-form-input-autofill-background: #f3f3f4;
+  /* App Header color  */
+  --app-top-header-background: #ffffff;
+  --app-top-header-shadow: #e6e8ed;
 
 
   --app-green: #00c578;

@@ -7,6 +7,7 @@ import styles from './home-header.module.css';
 import SearchSelectDropdown from '../../components/search-select-dropdown/search-select-dropdown.component';
 import CustomSelect from '../custom-select/custom-select.component';
 import UserProfile from '../user-profile/user-profile.component';
+import RenderView from '../render-view/render-view.component';
 //actions
 import { toggleNavigationMenuView } from '../../redux/app-data/app-data.actions';
 //static
@@ -22,23 +23,20 @@ const HomeHeader = ({ toggleNavigationMenuView, hideSelect,
             <div className={styles.headerLeftSec}>
                 <HamSvg className={styles.hamsvg} onClick={toggleNavigationMenuView} />
                 <SearchSelectDropdown
-                    className="ml-24"
+                    className={styles.searchAlign}
                     placeholder={searchPlaceHolder}
                     defaultSearchValue={searchValue}
                     searchList={searchKeywords}
                     handleSearchValueChange={handleSearchValueChange}
                 />
-                {
-                    hideSelect ? null :
-                        (
-                            <CustomSelect
-                                label={selectLabelText}
-                                options={selectOptions}
-                                defaultSelectValue={selectValue}
-                                handleSelectValueChange={handleSelectValueChange}
-                            />
-                        )
-                }
+                <RenderView renderIfFalse={!!hideSelect}>
+                    <CustomSelect
+                        label={selectLabelText}
+                        options={selectOptions}
+                        defaultSelectValue={selectValue}
+                        handleSelectValueChange={handleSelectValueChange}
+                    />
+                </RenderView>
             </div>
             <div className={styles.headerRightSec}>
                 <UserProfile />
