@@ -8,9 +8,11 @@
   width: 70px;
 }
 .dropdown {
+  cursor: pointer;
   font-size: 14px;
   position: relative;
 }
+
 .valueCon:focus {
   outline: none;
 }
@@ -20,7 +22,7 @@
   border: 0px;
   border-radius: 3px;
   color: var(--app-select-selected-text);
-  cursor: default;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   height: 30px;
