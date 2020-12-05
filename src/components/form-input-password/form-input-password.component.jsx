@@ -21,8 +21,7 @@ const FormInputPassword = ({ label, className, name, value, handleValueChange })
     };
 
     const handleViewHidePassword = () => {
-        const newFormType = formType === PASSWORD ? TEXT : PASSWORD;
-        setFormType(newFormType);
+        setFormType((formType === PASSWORD) ? TEXT : PASSWORD);
     };
 
     return (
