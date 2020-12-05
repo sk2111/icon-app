@@ -4,17 +4,26 @@ import React from 'react';
 import styles from './modal.module.css';
 
 
-const Modal = ({ children, isModalOpen, height, width }) => {
-    const contentStyle = { height: `${height || '600px'}`, width: `${width || '600px'}` };
-    const viewClass = isModalOpen ? styles.showModal : styles.hideModal;
+const Modal = ({ children, isModalOpen, heightInPx, widthInPx }) => {
+
+    const modalViewClass = isModalOpen ? styles.showModal : styles.hideModal;
+
+    const contentStyle = { height: heightInPx, width: widthInPx };
+    const modalBackgroundClass = `${styles.shadow} ${modalViewClass}`;
+    const contentClass = `${styles.content} ${modalViewClass}`;
+
     return (
-        <div className={`${styles.shadow} ${viewClass}`}>
-            <div style={contentStyle} className={`${styles.content} ${viewClass}`}>
+        <div className={modalBackgroundClass}>
+            <div style={contentStyle} className={contentClass}>
                 {children}
             </div>
         </div>
     );
 };
 
+Modal.defaultProps = {
+    heightInPx: '600px',
+    widthInPx: '600px'
+}
 
 export default Modal;

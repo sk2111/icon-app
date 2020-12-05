@@ -1,6 +1,6 @@
 .shadow {
   align-items: center;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--app-modal-overlay);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -12,7 +12,7 @@
 }
 .content {
   align-items: center;
-  background: var(--app-pure-white);
+  background: var(--app-modal-content-background);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -38,6 +38,6 @@
   to {
     transform: scale(1);
     opacity: 1;
-    z-index: 2;
+    z-index: 100;
   }
 }
