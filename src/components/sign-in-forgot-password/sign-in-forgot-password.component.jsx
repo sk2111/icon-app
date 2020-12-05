@@ -8,6 +8,7 @@ import styles from './sign-in-forgot-password.module.css';
 //components
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
+import RenderView from '../../components/render-view/render-view.component';
 //actions
 import { sendResetLinkStart, sendResetLinkFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect
@@ -52,11 +53,13 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
             <p className={styles.message}>Enter the Soliton mail address associated with your account to get a reset link.</p>
             <FormInput className="mt-25" name="email" label="Soliton mail address" type="email" value={resetDetails.email}
                 required autoComplete="on" handleInputChange={handleForgotPassEmailChange} />
-            {errorMessage ? <p className={styles.errorMessage}>{errorMessage}</p> : null}
+            <RenderView renderIfTrue={errorMessage}>
+                <p className={styles.errorMessage}>{errorMessage}</p>
+            </RenderView>
             <div className={styles.buttonCon}>
                 <CustomButton loading={fetching} type="submit">Send Reset Link</CustomButton>
             </div>
-            <div className={`${styles.actionLabel} perfect-cen`}>
+            <div className={styles.actionLabel}>
                 Back to
                 <Link to={SIGN_IN_ROUTE_PATH} className={styles.signInLink} onClick={clearAuthErrorMessage}>Sign In?</Link>
             </div>

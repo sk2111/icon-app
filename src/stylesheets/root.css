@@ -58,8 +58,9 @@
   /* search select effects */
   --app-search-select-open-transition: 0.4s;
 
-
-
+  /* Navi link to other pages */
+  --app-navigation-links: #00c578;
+  --app-auth-error-message: #f34469;
 
   --app-green: #00c578;
   --app-form-label: #707071;
