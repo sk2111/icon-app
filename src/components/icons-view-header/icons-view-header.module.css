@@ -2,11 +2,11 @@
   align-items: center;
   display: flex;
   flex-direction: row;
-  height:30px;
+  height: 30px;
   justify-content: space-between;
 }
 .header {
-  color: var(--app-text);
+  color: var(--app-icon-header-text);
   font-size: 18px;
   font-weight: 500;
   margin: 0px;
@@ -32,11 +32,11 @@
   width: 15px;
 }
 .uploadBtn {
-  background-color: var(--app-green);
+  background-color: var(--app-icon-header-button-background);
   border: 0px;
   border-radius: 3px;
   cursor: pointer;
-  color: var(--app-pure-white);
+  color: var(--app-icon-header-button-text);
   font-size: 12px;
   height: 30px;
   outline: none;
