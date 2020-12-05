@@ -16,14 +16,14 @@ const NavigationMenu = () => {
     const getNaviConClass = (pathname, route) => {
         return `${styles.naviLinkCon} ${pathname === route ? styles.highlightNaviCon : styles.notHighlightNaviCon}`;
     };
-    
+
     const getIconClass = (pathname, route) => {
         return `${styles.navLogo} ${pathname === route ? styles.logoHighlight : styles.logoNotHighlight}`;
     };
 
     return (
         <div className={styles.navContainer}>
-            <div className={`${styles.headerCon} flex-row-acen`}>
+            <div className={styles.headerCon}>
                 <AppLogo className={styles.appLogo} />
                 <h2 className={styles.navTitle}>Soliton Icons</h2>
             </div>

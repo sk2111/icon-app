@@ -1,13 +1,16 @@
 .navContainer {
-  background-color: var(--app-soliton-blue);
+  background-color: var(--app-navigation-background);
   height: 100%;
   width: 250px;
 }
 .headerCon {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
   padding: 26px 24px 26px 24px;
 }
 .navTitle {
-  color: var(--app-navi-label);
+  color: var(--app-navigation-label);
   font-size: 19px;
   font-weight: 500;
   margin: 0px;
@@ -24,12 +27,12 @@
   align-items: center;
   background: linear-gradient(
     to right,
-    var(--app-soliton-blue) 50%,
-    var(--app-navi-highlight) 50%
+    var(--app-navigation-background) 50%,
+    var(--app-navigation-highlight) 50%
   );
   background-position: left bottom;
   background-size: 200% 100%;
-  border-left: 4px solid var(--app-soliton-blue);
+  border-left: 4px solid var(--app-navigation-background);
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -46,13 +49,13 @@
   border-left: 4px solid var(--app-green);
   background: linear-gradient(
     to left,
-    var(--app-soliton-blue) 0%,
-    var(--app-navi-highlight) 100%
+    var(--app-navigation-background) 0%,
+    var(--app-navigation-highlight) 100%
   );
-  color: var(--app-navi-label);
+  color: var(--app-navigation-label);
 }
 .notHighlightNaviCon {
-  color: var(--app-navi-link-not-highlight);
+  color: var(--app-navigation-link-not-highlight);
 }
 .navLogo {
   height: 26px;
@@ -61,10 +64,10 @@
   width: 26px;
 }
 .logoHighlight {
-  color: var(--app-navi-link-highlight);
+  color: var(--app-navigation-link-highlight);
 }
 .logoNotHighlight {
-  color: var(--app-navi-link-not-highlight);
+  color: var(--app-navigation-link-not-highlight);
 }
 .navLink {
   font-size: 14px;
@@ -73,7 +76,7 @@
   text-decoration: none;
 }
 .messageContainer {
-  background-color: var(--app-green);
+  background-color: var(--app-navigation-message-background);
   border-radius: 50%;
   bottom: 30px;
   cursor: pointer;
