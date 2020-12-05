@@ -1,8 +1,8 @@
 .toastbar {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--app-toastbar-background);
   bottom: 30px;
   border-radius: 4px;
-  color:var(--app-pure-white);
+  color: var(--app-toastbar-text);
   left: 50%;
   min-width: 250px;
   margin-left: -125px;
@@ -13,7 +13,11 @@
   visibility: hidden;
   z-index: 10;
 }
-
+.toastView {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
 .showToastbar {
   animation: fadein 0.25s linear;
   visibility: visible;
@@ -25,4 +29,49 @@
 .icon {
   height: 35px;
   width: 35px;
+}
+/* animations */
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }

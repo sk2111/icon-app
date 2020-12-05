@@ -63,9 +63,12 @@
 
   /* Auth colors */
   --app-auth-error-message: #f34469;
-  --app-auth-user-message:#00c578;
+  --app-auth-user-message: #00c578;
 
-  
+  /* Toast bar colors */
+  --app-toastbar-background: rgba(0, 0, 0, 0.8);
+  --app-toastbar-text: white;
+
   --app-green: #00c578;
   --app-form-label: #707071;
   --app-text: #707071;

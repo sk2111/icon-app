@@ -15,9 +15,9 @@ import failureImage from '../../assests/flat-cross.png';
 const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToastMessageState }) => {
 
     const toastContainerRef = useRef(null);
-    const animProp = `${showToast ? `fadein 0.5s, fadeout 0.5s ${timeInSeconds - 0.35}s, linear 0.5s` : ''}`;
-    const styleObj = {
-        visibility:`${showToast ? 'visible' : 'hidden'}`,
+    const animProp = showToast ? `fadein 0.5s, fadeout 0.5s ${timeInSeconds - 0.35} s, linear 0.5s` : '';
+    const toastStyle = {
+        visibility: showToast ? 'visible' : 'hidden',
         animation: animProp,
         'WebkitAnimation': animProp
     };
@@ -32,9 +32,9 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
     }, [showToast, timeInSeconds, resetToastMessageState]);
 
     return (
-        <div ref={toastContainerRef} style={styleObj} className={`${styles.toastbar} `}>
-            <div className="flex-row align-cen">
-                <div className={`${styles.round} perfect - cen`}>
+        <div ref={toastContainerRef} style={toastStyle} className={styles.toastbar}>
+            <div className={styles.toastView}>
+                <div className={styles.round}>
                     <img src={(isSuccess ? successImage : failureImage)} key={successImage} className={styles.icon} alt="toast-img" />
                 </div>
                 <div>{message}</div>
