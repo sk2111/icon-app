@@ -10,7 +10,6 @@ import history from './utilities/history';
 import './stylesheets/font.css';
 import './stylesheets/root.css';
 import './stylesheets/reusable.css';
-import './stylesheets/animation.css';
 // React component imports
 import App from './App';
 

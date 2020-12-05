@@ -21,3 +21,6 @@ export const PROJECT_ICONS_HEADER_LABEL = "Project Icons";
 export const FAVORITES_ICONS_HEADER_LABEL = "Favorites Icons";
 export const EDIT_ICON_HEADER_LABEL = "Edit Icon";
 
+
+//saga message constants
+export const SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user options for common icons';

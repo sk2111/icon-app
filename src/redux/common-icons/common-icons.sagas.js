@@ -13,7 +13,7 @@ import {
     fetchCommonIconsUserOptionsFailure
 } from './common-icons.actions';
 //constants
-import { FETCH_USER_OPTIONS_ERROR_MESSAGE } from './common-icons.messages';
+import { SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE } from '../../utilities/app.constants';
 
 
 //Get common icons search keyword and category options to select saga
@@ -25,7 +25,7 @@ function* fetchKeywordAndSelectOptions() {
         return;
     }
     console.error("Failed to fetch user options - empty data received");
-    yield put(fetchCommonIconsUserOptionsFailure({ message: FETCH_USER_OPTIONS_ERROR_MESSAGE }));
+    yield put(fetchCommonIconsUserOptionsFailure({ message: SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE }));
 
 };
 

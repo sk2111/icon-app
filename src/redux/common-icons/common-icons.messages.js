@@ -1,1 +1,0 @@
-export const FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user options for common icons';
