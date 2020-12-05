@@ -47,6 +47,7 @@
   --app-navigation-link-not-highlight: #7488cc;
   --app-navigation-link-highlight: #f3f3f4;
   --app-navigation-message-background: #00c578;
+  --app-navigation-highlight-selected: #00c578;
 
   /* search select dropdown */
   --app-search-select-background: #f3f3f4;
@@ -80,31 +81,19 @@
   /* signup form */
   --app-signup-form-text: #707071;
 
-  --app-green: #00c578;
-  --app-form-label: #707071;
-  --app-text: #707071;
-  --app-input-background: #f3f3f4;
-  --app-input-background-hover: #f3f3f4;
-  --app-error-message: #f34469;
-  --app-pure-white: white;
-  --app-select-shadow: #dbdbdc;
-  --app-linebreak-border: #e2e2ec;
-  --app-soliton-blue: #173895;
-  --app-pure-white-shadow: #e6e8ed;
-  --app-vertical-line: #e2e2ec;
-  --app-navi-label: #e7eaf1;
-  --app-navi-highlight: #0c2b81;
-  --app-navi-link-not-highlight: #7488cc;
-  --app-navi-link-highlight: #f3f3f4;
-  
+  /* pages */
+  --app-icon-page-background: #f3f3f4;
+
   /* scroll bar */
   --app-scroll-thumb: #989899;
   --app-scroll-track: #ffffff;
+
   /* width */
   --app-form-width: 320px;
   --app-form-width-medium: 320px;
   --app-form-width-short: 228px;
   --app-form-width-long: 480px;
+
   /* universal padding */
   --app-icons-view-conatiner-padding: 23px 10px 0px 30px;
 }

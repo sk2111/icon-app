@@ -46,7 +46,7 @@
 }
 .highlightNaviCon {
   background-position: right bottom;
-  border-left: 4px solid var(--app-green);
+  border-left: 4px solid var(--app-navigation-highlight-selected);
   background: linear-gradient(
     to left,
     var(--app-navigation-background) 0%,
