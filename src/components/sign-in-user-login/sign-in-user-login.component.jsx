@@ -9,6 +9,7 @@ import styles from './sign-in-user-login.module.css';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInputPassword from '../form-input-password/form-input-password.component';
+import RenderView from '../render-view/render-view.component';
 //actions 
 import { userLoginStart, userLoginFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect
@@ -23,6 +24,7 @@ import { SIGN_UP_ROUTE_PATH, FORGOT_PASSWORD_ROUTE_PATH } from '../../utilities/
 const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, userLoginFailure, clearAuthError }) => {
 
     const [userDetails, setUserDetails] = useState({ email: '', password: '' });
+
     const { email, password } = userDetails;
 
     const clearAuthErrorMessage = () => {
@@ -49,25 +51,23 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
     };
 
     return (
-        <form className="mt-25 flex-col-cen" autoComplete="on" onSubmit={handleUserLoginSubmit}>
+        <form className={styles.loginForm} autoComplete="on" onSubmit={handleUserLoginSubmit}>
             <p className={styles.userMessage}>{userMessage}</p>
-            <FormInput name="email" label="Soliton mail address" value={email} type="email" required autoComplete="on" handleInputChange={handleInputChange} />
+            <FormInput name="email" label="Soliton mail address" value={email} type="email"
+                required autoComplete="on" handleInputChange={handleInputChange} />
             <FormInputPassword name="password" label="Password" value={password} handleValueChange={handleInputChange} />
-            {errorMessage ?
-                (
-                    <div className="perfect-cen">
-                        <p className={styles.erroMessage}>{errorMessage}</p>
-                    </div>
-                )
-                : null
-            }
-            <div className={`${styles.forgotLabel} flex-jus-end mt-15`}>
+            <RenderView renderIfTrue={errorMessage}>
+                <div className={styles.errorCon}>
+                    <p className={styles.erroMessage}>{errorMessage}</p>
+                </div>
+            </RenderView>
+            <div className={styles.forgotLabel}>
                 <Link to={FORGOT_PASSWORD_ROUTE_PATH} className={styles.actionLabel} onClick={clearAuthErrorMessage}>Forgot your password?</Link>
             </div>
             <div className={styles.buttonCon}>
                 <CustomButton type="submit" loading={fetching}>Sign In</CustomButton>
             </div>
-            <div className="flex-row perfect-cen mt-33">
+            <div className={styles.linkContainer}>
                 <div className={styles.signupLabel}>Don't have an account?</div>
                 <Link to={SIGN_UP_ROUTE_PATH} className={styles.signupLink} onClick={clearAuthErrorMessage}>Sign up</Link>
             </div>

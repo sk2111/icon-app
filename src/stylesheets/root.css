@@ -59,9 +59,13 @@
   --app-search-select-open-transition: 0.4s;
 
   /* Navi link to other pages */
-  --app-navigation-links: #00c578;
-  --app-auth-error-message: #f34469;
+  --app-navigation-link: #00c578;
 
+  /* Auth colors */
+  --app-auth-error-message: #f34469;
+  --app-auth-user-message:#00c578;
+
+  
   --app-green: #00c578;
   --app-form-label: #707071;
   --app-text: #707071;
