@@ -8,6 +8,7 @@ import styles from './sign-up.module.css';
 //components
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
+import FormInputPassword from '../form-input-password/form-input-password.component';
 //actions
 import { userSignUpStart, userSignUpFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect
@@ -17,20 +18,11 @@ import { isValidMail } from '../../utilities/validator.utils';
 import { SIGN_IN_ROUTE_PATH } from '../../utilities/route.paths';
 //constants
 import { SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, SIGN_UP_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities/auth.messages';
-//static
-import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
-import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
 const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, clearAuthError }) => {
 
     const [userDetails, setUserDetails] = useState({ firstname: '', lastname: '', email: '', password: '', confirmPassword: '' });
-    const [passwordViews, setPasswordViews] = useState({ passwordView: true, confirmPasswordView: true });
-
     const { firstname, lastname, email, password, confirmPassword } = userDetails;
-    const { passwordView, confirmPasswordView } = passwordViews;
-
-    const passwordType = passwordView ? 'password' : 'text';
-    const confirmPasswordType = confirmPasswordView ? 'password' : 'text';
 
     const clearAuthErrorMessage = () => {
         if (errorMessage) {
@@ -55,49 +47,42 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
     };
 
     const handleInputChange = (e) => {
-        const { value, name } = e.target;
+        const { value, name } = e.target || e;
         clearAuthErrorMessage();
         setUserDetails({ ...userDetails, [name]: value });
     };
 
-    const handleViewHidePassword = (e) => {
-        const name = e.currentTarget.getAttribute("name");
-        setPasswordViews({ ...passwordViews, [name]: !passwordViews[name] });
-    };
-
-    const renderViewOrHideSvg = (toHideValue, type) => {
-        return (toHideValue ?
-            <HideSvg name={type} className={styles.passwordSvg} onClick={handleViewHidePassword} /> :
-            <ShowSvg name={type} className={styles.passwordSvg} onClick={handleViewHidePassword} />)
-    };
-
     return (
-        <div className={`flex-col align-cen`}>
+        <div className={styles.formContainer}>
             <form autoComplete="on" onSubmit={handleSignUpNewUser}>
-                <div className="flex-row-acen">
-                    <FormInput className="mt-36" inpClass="shortWidth" name="firstname" value={firstname} label="First Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
-                    <FormInput className="ml-24 mt-36" inpClass="shortWidth" name="lastname" value={lastname} label="Last Name" type="text" required autoComplete="on" handleInputChange={handleInputChange} />
+                <div className={styles.viewContainer}>
+                    <FormInput
+                        className={styles.firstName} inpClass="shortWidth" name="firstname"
+                        value={firstname} label="First Name" type="text" required autoComplete="on"
+                        handleInputChange={handleInputChange} />
+                    <FormInput
+                        className={styles.lastName} inpClass="shortWidth" name="lastname"
+                        value={lastname} label="Last Name" type="text" required autoComplete="on"
+                        handleInputChange={handleInputChange} />
                 </div>
-                <div className="flex-row-acen">
-                    <FormInput className="mt-22" inpClass="emailWidth" name="email" value={email} label="Soliton mail address" type="email" required autoComplete="on" handleInputChange={handleInputChange} />
+                <div className={styles.viewContainer}>
+                    <FormInput className={styles.topMargin} inpClass="emailWidth" name="email"
+                        value={email} label="Soliton mail address" type="email" required autoComplete="on"
+                        handleInputChange={handleInputChange} />
                 </div>
-                <div className="flex-row-acen">
-                    <div className="flex-row-acen pos-rel">
-                        <FormInput className="mt-22" inpClass="shortWidth" name="password" value={password} label="Password" type={passwordType} required autoComplete="on" handleInputChange={handleInputChange} />
-                        {renderViewOrHideSvg(passwordView, 'passwordView')}
-                    </div>
-                    <div className="flex-row-acen pos-rel">
-                        <FormInput className="ml-24 mt-22" inpClass="shortWidth" name="confirmPassword" value={confirmPassword} label="Confirm Password" type={confirmPasswordType} required autoComplete="on" handleInputChange={handleInputChange} />
-                        {renderViewOrHideSvg(confirmPasswordView, 'confirmPasswordView')}
-                    </div>
+                <div className={styles.viewContainer}>
+                    <FormInputPassword className={styles.topMargin} inpClass="shortWidth" label="Password"
+                        name="password" value={password} handleValueChange={handleInputChange} />
+                    <FormInputPassword className={styles.confirmPass} inpClass="shortWidth" label="Confirm Password"
+                        name="confirmpassword" value={confirmPassword} handleValueChange={handleInputChange} />
                 </div>
-                <div className={`${styles.errorContainer} perfect-cen`}>
+                <div className={styles.errorContainer}>
                     <span className={styles.errorText}>{errorMessage}</span>
                 </div>
                 <div className={styles.buttonCon}>
                     <CustomButton loading={fetching} type="submit">Sign up</CustomButton>
                 </div>
-                <div className="flex-row perfect-cen mt-33">
+                <div className={styles.navigationCon}>
                     <div className={styles.signinLabel}>Don't have an account?</div>
                     <Link to={SIGN_IN_ROUTE_PATH} className={styles.signinLink} onClick={clearAuthErrorMessage}>Sign in</Link>
                 </div>

@@ -8,7 +8,7 @@ import FormInput from '../form-input/form-input.component';
 import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
 import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
 
-const FormInputPassword = ({ label, className, name, value, handleValueChange }) => {
+const FormInputPassword = ({ label, inpClass, className, name, value, handleValueChange }) => {
 
     const PASSWORD = 'password';
     const TEXT = 'text';
@@ -28,6 +28,7 @@ const FormInputPassword = ({ label, className, name, value, handleValueChange })
         <div className={styles.container}>
             <FormInput
                 className={className}
+                inpClass={inpClass}
                 value={value}
                 label={label}
                 type={formType}
@@ -46,6 +47,7 @@ FormInputPassword.defaultProps = {
     name: '',
     value: '',
     className: '',
+    inpClass: '',
     handleValueChange: () => { },
 };
 

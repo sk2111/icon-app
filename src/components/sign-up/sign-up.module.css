@@ -1,3 +1,26 @@
+.formContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.viewContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-left: 22px;
+}
+.firstName {
+  margin-top: 36px;
+}
+.lastName {
+  margin-left: 24px;
+  margin-top: 36px;
+}
+.passwordCon {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
 .buttonCon {
   align-items: center;
   display: flex;
@@ -5,16 +28,16 @@
   margin-top: 40px;
 }
 .signinLabel {
-  color: var(--app-form-label);
+  color: var(--app-signup-form-text);
   font-size: 16px;
 }
 .signinLink {
-  color: var(--app-green);
+  color: var(--app-navigation-link);
   font-size: 16px;
   font-weight: 500;
   margin-left: 5px;
   text-decoration: none;
-  outline:none;
+  outline: none;
 }
 .passwordSvg {
   bottom: 21px;
@@ -23,14 +46,31 @@
   right: 12px;
   z-index: 2;
 }
+.topMargin {
+  margin-top: 22px;
+}
+.confirmPass {
+  margin-top: 22px;
+  margin-left: 22px;
+}
 .errorContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   margin-bottom: 10px;
   margin-top: 28px;
   width: 100%;
 }
 .errorText {
-  color: var(--app-error-message);
+  color: var(--app-auth-error-message);
   font-size: 14px;
   line-height: 19px;
   max-width: 370px;
+}
+.navigationCon {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 33px;
 }

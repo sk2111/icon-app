@@ -68,7 +68,7 @@
   /* Toast bar colors */
   --app-toastbar-background: rgba(0, 0, 0, 0.8);
   --app-toastbar-text: white;
-  
+
   /* user profile */
   --app-user-profile-vertical-line: #e2e2ec;
   --app-user-profile-text: #707071;
@@ -77,6 +77,8 @@
   --app-user-profile-dropdown-shadow: #dbdbdc;
   --app--user-profile-linebreak: #e2e2ec;
 
+  /* signup form */
+  --app-signup-form-text: #707071;
 
   --app-green: #00c578;
   --app-form-label: #707071;
@@ -94,6 +96,7 @@
   --app-navi-highlight: #0c2b81;
   --app-navi-link-not-highlight: #7488cc;
   --app-navi-link-highlight: #f3f3f4;
+  
   /* scroll bar */
   --app-scroll-thumb: #989899;
   --app-scroll-track: #ffffff;
