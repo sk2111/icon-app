@@ -9,6 +9,7 @@ import styles from './update-password.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInputPassword from '../form-input-password/form-input-password.component';
 import ProtectedRoute from '../protected-route/protected-route.component';
+import RenderView from '../render-view/render-view.component';
 //reselect
 import { selectWaitingForData, selectUserMessage, selectErrorMessage } from '../../redux/auth/auth.selectors';
 //actions
@@ -46,17 +47,22 @@ const UpdatePassword = ({ fetching, userMessage, errorMessage, updateNewPassword
     return (
         <form className={styles.container} autoComplete="on" onSubmit={handleUpdatePasswordSubmit}>
             <h3 className={styles.header}>Update password</h3>
-            {userMessage ? <p className={styles.userMessage}>{userMessage}</p> : null}
-            <FormInputPassword label="Current Password" name="currentPassword" value={currentPassword} handleValueChange={handleValueChange} />
-            <FormInputPassword label="New Password" name="newPassword" value={newPassword} handleValueChange={handleValueChange} />
-            <FormInputPassword label="Confirm New Password" name="confirmNewPassword" value={confirmNewPassword} handleValueChange={handleValueChange} />
-            <div className={`${styles.errorContainer} perfect-cen`}>
+            <RenderView renderIfTrue={userMessage}>
+                <p className={styles.userMessage}>{userMessage}</p>
+            </RenderView>
+            <FormInputPassword label="Current Password" name="currentPassword"
+                value={currentPassword} handleValueChange={handleValueChange} />
+            <FormInputPassword label="New Password" name="newPassword"
+                value={newPassword} handleValueChange={handleValueChange} />
+            <FormInputPassword label="Confirm New Password" name="confirmNewPassword"
+                value={confirmNewPassword} handleValueChange={handleValueChange} />
+            <div className={styles.errorContainer}>
                 <span className={styles.errorText}>{errorMessage}</span>
             </div>
             <div className={styles.buttonCon}>
                 <CustomButton loading={fetching} type="submit">Reset password</CustomButton>
             </div>
-            <div className={`${styles.actionLabel} perfect-cen mt-33`}>
+            <div className={styles.actionLabel}>
                 Back to
                 <Link to={LANDING_ROUTE_PATH} className={styles.homeLink} onClick={clearAuthErrorMessage}>Home Page?</Link>
             </div>
