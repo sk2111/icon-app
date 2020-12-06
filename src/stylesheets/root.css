@@ -40,7 +40,7 @@
   --app-icon-header-button-text: #ffffff;
 
   /* Modal colors */
-  --app-modal-overlay: rgba(0, 0, 0, 0.6);
+  --app-modal-overlay: rgba(0, 0, 0, 0.4);
   --app-modal-content-background: #ffffff;
 
   /* Navigation  */

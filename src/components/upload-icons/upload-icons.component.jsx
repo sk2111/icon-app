@@ -10,6 +10,11 @@ import { ReactComponent as NoFileFoundSvg } from '../../assests/no-files-found.s
 
 
 const UploadIcons = () => {
+
+    const handleSvgFilesUpload = (e) => {
+        console.log("File uploading test", e.target.files);
+    };
+
     return (
         <div className={styles.uploadContainer}>
             <h4 className={styles.headerText}>Upload files to Common Icons</h4>
@@ -18,6 +23,7 @@ const UploadIcons = () => {
                     <UploadSvg />
                     <p className={styles.dropText1}>Drag and drop your files here</p>
                     <p className={styles.dropText2}>or</p>
+                    <input type="file" multiple accept=".svg" onChange={handleSvgFilesUpload} />
                     <CustomButton primary width="85px">Browse</CustomButton>
                 </div>
             </div>
