@@ -23,14 +23,14 @@ export const fetchCommonIconsUserOptionsFailure = (payload) => {
 
 export const setCommonIconsTabSearchValue = (payload) => {
     return {
-        type: commonIconsActionsTypes.SET_COMMON_ICON_TAB_SEARCH_VALUE,
+        type: commonIconsActionsTypes.SET_COMMON_ICONS_TAB_SEARCH_VALUE,
         payload
     }
 };
 
 export const setCommonIconsTabSelectValue = (payload) => {
     return {
-        type: commonIconsActionsTypes.SET_COMMON_ICON_TAB_SELECT_VALUE,
+        type: commonIconsActionsTypes.SET_COMMON_ICONS_TAB_SELECT_VALUE,
         payload
     }
 };
