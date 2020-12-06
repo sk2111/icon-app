@@ -1,0 +1,105 @@
+<svg width="131px" height="74px" viewBox="0 0 131 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#F9F9FB" offset="0%"></stop>
+            <stop stop-color="#DBDBDC" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#EEEEEE" offset="0%"></stop>
+            <stop stop-color="#D8D8D8" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#EEEEEE" offset="0%"></stop>
+            <stop stop-color="#D8D8D8" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#EEEEEE" offset="0%"></stop>
+            <stop stop-color="#D8D8D8" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#EEEEEE" offset="0%"></stop>
+            <stop stop-color="#D8D8D8" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="13.1331779%" x2="50%" y2="100%" id="linearGradient-6">
+            <stop stop-color="#D4D4DB" offset="0%"></stop>
+            <stop stop-color="#727274" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-7" x="0" y="0" width="34" height="23" rx="1"></rect>
+        <rect id="path-9" x="0" y="0" width="34" height="23" rx="1"></rect>
+        <rect id="path-11" x="0" y="0" width="34" height="23" rx="1"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-13">
+            <stop stop-color="#E9E9EA" offset="0%"></stop>
+            <stop stop-color="#CECED1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Home-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HighLevel---Upload-Icon-step-1-without-files" transform="translate(-613.000000, -532.000000)">
+            <g id="Group-5" transform="translate(408.000000, 25.000000)">
+                <g id="Group-8" transform="translate(198.500000, 507.000000)">
+                    <g id="No-files-Illustration" transform="translate(6.500000, 0.000000)">
+                        <ellipse id="Oval" fill="url(#linearGradient-1)" cx="65.5" cy="70.5" rx="42" ry="2.5"></ellipse>
+                        <path d="M24.3132591,43.2696577 L25.6813396,47.0284281 C25.8702321,47.547406 25.6026451,48.1212484 25.0836672,48.3101409 L19.4455114,50.3622618 C18.9265335,50.5511543 18.3526912,50.2835672 18.1637987,49.7645893 L16.7957181,46.0058188 L16.4536979,45.0661262 C16.2648054,44.5471483 16.5323925,43.9733059 17.0513704,43.7844134 L18.9307557,43.1003731 C19.4497336,42.9114806 20.0235759,43.1790677 20.2124684,43.6980456 L23.0315463,42.6719852 C23.5505242,42.4830927 24.1243665,42.7506798 24.3132591,43.2696577 Z" id="Combined-Shape" fill="url(#linearGradient-2)"></path>
+                        <path d="M15.6080716,56.6585293 L18.1628939,63.3527897 C18.3598162,63.8687743 18.101165,64.4466995 17.5851805,64.6436217 C17.5756881,64.6472444 17.5661411,64.6507223 17.5565427,64.654054 L7.47415854,68.1538029 C6.96362221,68.3310179 6.40465571,68.0705558 6.21196437,67.5656572 L3.65714211,60.8713968 L3.11243008,59.4441178 C2.91550783,58.9281332 3.17415893,58.350208 3.6901435,58.1532858 C3.69963588,58.1496631 3.70918293,58.1461853 3.71878131,58.1428535 L7.81482939,56.7210529 C8.32536573,56.543838 8.88433222,56.8043001 9.07702356,57.3091986 L9.27543274,57.8298464 L14.3458775,56.0703836 C14.8564138,55.8931687 15.4153803,56.1536308 15.6080716,56.6585293 Z" id="Combined-Shape" fill="url(#linearGradient-3)" transform="translate(10.637662, 62.112093) rotate(43.000000) translate(-10.637662, -62.112093) "></path>
+                        <path d="M127.313259,64.2696577 L128.68134,68.0284281 C128.870232,68.547406 128.602645,69.1212484 128.083667,69.3101409 L122.445511,71.3622618 C121.926534,71.5511543 121.352691,71.2835672 121.163799,70.7645893 L119.795718,67.0058188 L119.453698,66.0661262 C119.264805,65.5471483 119.532393,64.9733059 120.05137,64.7844134 L121.930756,64.1003731 C122.449734,63.9114806 123.023576,64.1790677 123.212468,64.6980456 L126.031546,63.6719852 C126.550524,63.4830927 127.124367,63.7506798 127.313259,64.2696577 Z" id="Combined-Shape" fill="url(#linearGradient-2)" transform="translate(124.067519, 67.517123) rotate(53.000000) translate(-124.067519, -67.517123) "></path>
+                        <path d="M120.574668,47.1510504 L121.206055,48.8811603 C121.395392,49.3999762 121.128296,49.9740476 120.609481,50.1633845 C120.608945,50.1635801 120.608409,50.1637752 120.607872,50.1639698 L117.663135,51.2329169 C117.144624,51.4211378 116.571627,51.1539454 116.382519,50.6357572 L115.864628,49.2176049 L115.531395,48.3044287 C115.342218,47.7855546 115.60949,47.2115654 116.128364,47.022388 L116.130133,47.0217449 L116.662609,46.8287432 C117.061901,46.6840153 117.493373,46.8092757 117.756966,47.1111406 L119.294052,46.5538907 C119.812563,46.3656698 120.38556,46.6328622 120.574668,47.1510504 Z" id="Combined-Shape" fill="url(#linearGradient-4)" transform="translate(118.368778, 48.893404) rotate(1.000000) translate(-118.368778, -48.893404) "></path>
+                        <path d="M15.5746678,30.1510504 L16.206055,31.8811603 C16.395392,32.3999762 16.1282965,32.9740476 15.6094806,33.1633845 C15.6089447,33.1635801 15.6084087,33.1637752 15.6078725,33.1639698 L12.6631352,34.2329169 C12.1446241,34.4211378 11.5716269,34.1539454 11.3825191,33.6357572 L10.8646275,32.2176049 L10.531395,31.3044287 C10.3422175,30.7855546 10.6094895,30.2115654 11.1283636,30.022388 L11.1301328,30.0217449 L11.6626086,29.8287432 C12.0619012,29.6840153 12.4933729,29.8092757 12.7569661,30.1111406 L14.2940517,29.5538907 C14.8125628,29.3656698 15.38556,29.6328622 15.5746678,30.1510504 Z" id="Combined-Shape" fill="url(#linearGradient-4)" transform="translate(13.368778, 31.893404) rotate(44.000000) translate(-13.368778, -31.893404) "></path>
+                        <path d="M130.281151,39.2923254 L130.440528,39.6886713 C130.646577,40.2010799 130.398223,40.7835043 129.885814,40.9895526 L129.82563,41.011541 L129.82563,41.011541 L128.406204,41.4791598 C127.905267,41.6441895 127.362278,41.3917966 127.165506,40.902457 L127.045393,40.6082527 C127.019532,40.5732379 126.997878,40.5342873 126.981421,40.4918794 L126.651107,39.6406967 C126.551205,39.3832591 126.678913,39.0935778 126.93635,38.9936754 C126.947176,38.9894744 126.958145,38.9856517 126.969237,38.9822144 L127.683804,38.7607747 C127.904336,38.6924333 128.138306,38.7843234 128.256211,38.9738797 L129.040453,38.7156226 C129.54139,38.5505929 130.084379,38.8029857 130.281151,39.2923254 Z" id="Combined-Shape" fill="url(#linearGradient-5)" transform="translate(128.565051, 40.097391) rotate(33.000000) translate(-128.565051, -40.097391) "></path>
+                        <path d="M31.0413813,36 L93.5,36 C95.1568542,36 96.5,37.3431458 96.5,39 L96.5,69 C96.5,70.6568542 95.1568542,72 93.5,72 L36.0413813,72 C34.5748638,72 33.3232935,70.9397609 33.0821995,69.493197 L28.0821995,39.493197 C27.8098143,37.858886 28.9138733,36.3132034 30.5481843,36.0408182 C30.7111786,36.0136525 30.8761387,36 31.0413813,36 Z" id="Rectangle" fill="url(#linearGradient-6)"></path>
+                        <g id="Group-6" transform="translate(89.500000, 38.000000) rotate(15.000000) translate(-89.500000, -38.000000) translate(69.500000, 11.000000)">
+                            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="40" height="54" rx="1"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="30" width="19" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="34" width="19" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="38" width="34" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="42" width="34" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="46" width="34" height="2"></rect>
+                            <g id="Triangle-+-Triangle-+-Oval-Mask" transform="translate(3.000000, 3.000000)">
+                                <mask id="mask-8" fill="white">
+                                    <use xlink:href="#path-7"></use>
+                                </mask>
+                                <use id="Mask" fill="#DBDBDC" xlink:href="#path-7"></use>
+                                <path d="M23.8169679,7.15737114 L35,23 L35,23 L11,23 L22.1830321,7.15737114 C22.5015255,6.70617225 23.1254843,6.59859314 23.5766832,6.91708647 C23.6698999,6.98288648 23.7511679,7.06415447 23.8169679,7.15737114 Z" id="Triangle" fill="#989899" mask="url(#mask-8)"></path>
+                                <path d="M9.291285,13.0240159 L17,23 L17,23 L0,23 L7.708715,13.0240159 C8.04640813,12.5870012 8.67443286,12.5064853 9.1114475,12.8441784 C9.17880305,12.8962259 9.23923753,12.9566603 9.291285,13.0240159 Z" id="Triangle" fill="#B8B8B9" mask="url(#mask-8)"></path>
+                                <circle id="Oval" fill="#F9F9FA" mask="url(#mask-8)" cx="5.5" cy="4.5" r="2.5"></circle>
+                            </g>
+                        </g>
+                        <g id="Group-6" transform="translate(51.500000, 39.000000) rotate(-382.000000) translate(-51.500000, -39.000000) translate(31.500000, 12.000000)">
+                            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="40" height="54" rx="1"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="30" width="19" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="34" width="19" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="38" width="34" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="42" width="34" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="46" width="34" height="2"></rect>
+                            <g id="Triangle-+-Triangle-+-Oval-Mask" transform="translate(3.000000, 3.000000)">
+                                <mask id="mask-10" fill="white">
+                                    <use xlink:href="#path-9"></use>
+                                </mask>
+                                <use id="Mask" fill="#DBDBDC" xlink:href="#path-9"></use>
+                                <path d="M23.8169679,7.15737114 L35,23 L35,23 L11,23 L22.1830321,7.15737114 C22.5015255,6.70617225 23.1254843,6.59859314 23.5766832,6.91708647 C23.6698999,6.98288648 23.7511679,7.06415447 23.8169679,7.15737114 Z" id="Triangle" fill="#989899" mask="url(#mask-10)"></path>
+                                <path d="M9.291285,13.0240159 L17,23 L17,23 L0,23 L7.708715,13.0240159 C8.04640813,12.5870012 8.67443286,12.5064853 9.1114475,12.8441784 C9.17880305,12.8962259 9.23923753,12.9566603 9.291285,13.0240159 Z" id="Triangle" fill="#B8B8B9" mask="url(#mask-10)"></path>
+                                <circle id="Oval" fill="#F9F9FA" mask="url(#mask-10)" cx="5.5" cy="4.5" r="2.5"></circle>
+                            </g>
+                        </g>
+                        <g id="Group-6" transform="translate(70.500000, 29.000000) rotate(-356.000000) translate(-70.500000, -29.000000) translate(50.500000, 2.000000)">
+                            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="40" height="54" rx="1"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="30" width="19" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="34" width="19" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="38" width="34" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="42" width="34" height="2"></rect>
+                            <rect id="Rectangle" fill="#DBDBDC" x="3" y="46" width="34" height="2"></rect>
+                            <g id="Triangle-+-Triangle-+-Oval-Mask" transform="translate(3.000000, 3.000000)">
+                                <mask id="mask-12" fill="white">
+                                    <use xlink:href="#path-11"></use>
+                                </mask>
+                                <use id="Mask" fill="#DBDBDC" xlink:href="#path-11"></use>
+                                <path d="M23.8169679,7.15737114 L35,23 L35,23 L11,23 L22.1830321,7.15737114 C22.5015255,6.70617225 23.1254843,6.59859314 23.5766832,6.91708647 C23.6698999,6.98288648 23.7511679,7.06415447 23.8169679,7.15737114 Z" id="Triangle" fill="#989899" mask="url(#mask-12)"></path>
+                                <path d="M9.291285,13.0240159 L17,23 L17,23 L0,23 L7.708715,13.0240159 C8.04640813,12.5870012 8.67443286,12.5064853 9.1114475,12.8441784 C9.17880305,12.8962259 9.23923753,12.9566603 9.291285,13.0240159 Z" id="Triangle" fill="#B8B8B9" mask="url(#mask-12)"></path>
+                                <circle id="Oval" fill="#F9F9FA" mask="url(#mask-12)" cx="5.5" cy="4.5" r="2.5"></circle>
+                            </g>
+                        </g>
+                        <path d="M66.9648162,34 C67.2991694,34 67.6114008,34.1671011 67.7968665,34.4452998 L69.5000291,37 L98.0409709,37 C99.6978252,37 101.040971,38.3431458 101.040971,40 C101.040971,40.1419566 101.030895,40.2837342 101.010819,40.4242641 L96.8679623,69.4242641 C96.6568271,70.9022103 95.3910649,72 93.8981138,72 L36.9590291,72 C35.3021748,72 33.9590291,70.6568542 33.9590291,69 C33.9590291,68.8580434 33.9691049,68.7162658 33.9891806,68.5757359 L38.1320377,39.5757359 C38.3431729,38.0977897 39.6089351,37 41.1018862,37 L50.4990291,37 L52.2031335,34.4452998 C52.3885992,34.1671011 52.7008306,34 53.0351838,34 L66.9648162,34 Z" id="Combined-Shape" fill="url(#linearGradient-13)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

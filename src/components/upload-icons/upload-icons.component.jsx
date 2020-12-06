@@ -6,6 +6,7 @@ import styles from './upload-icons.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 //static
 import { ReactComponent as UploadSvg } from '../../assests/upload-icons.svg';
+import { ReactComponent as NoFileFoundSvg } from '../../assests/no-files-found.svg';
 
 
 const UploadIcons = () => {
@@ -23,7 +24,10 @@ const UploadIcons = () => {
             <div className={styles.horizonLine}></div>
             <h4 className={styles.viewHeaderText}>Added files</h4>
             <div className={styles.viewZone}>
-
+                <div className={styles.viewContent}>
+                    <NoFileFoundSvg />
+                    <p className={styles.noFileText}>There are no files added yet!</p>
+                </div>
             </div>
             <div className={styles.buttonContainer}>
                 <CustomButton className={styles.nextBtn} primary>Next</CustomButton>
