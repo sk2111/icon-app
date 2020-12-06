@@ -12,10 +12,30 @@
   margin: 0px;
 }
 .dropContainer {
+  align-items: center;
   border: 2px dashed var(--app-upload-modal-border-line);
   border-radius: 3px;
+  display: flex;
   height: 44%;
+  justify-content: center;
   margin: 16px 20px;
+}
+.dropContent {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.dropText1 {
+  color: var(--app-upload-modal-info-text);
+  font-size: 14px;
+  font-weight: 300;
+  margin: 16px 0px 0px 0px;
+}
+.dropText2 {
+  color: var(--app-upload-modal-info-text);
+  font-size: 12px;
+  font-weight: 300;
+  margin: 8px 0px;
 }
 .horizonLine {
   border-bottom: 0.5px solid var(--app-upload-modal-border-line);
@@ -31,7 +51,7 @@
 }
 .viewZone {
   /* background-color: var(--app-upload-modal-view-zone); */
-  background-color: black;
+  background-color: yellow;
   border-radius: 3px;
   height: 36%;
   max-height: 255px;
