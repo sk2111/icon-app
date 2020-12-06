@@ -16,6 +16,7 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  height: 95vh;
   justify-content: center;
 }
 .hideModal {

@@ -1,0 +1,48 @@
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  width: 100%;
+}
+.headerText {
+  color: var(--app-upload-modal-header);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0px;
+}
+.dropContainer {
+  border: 2px dashed var(--app-upload-modal-border-line);
+  border-radius: 3px;
+  height: 44%;
+  margin: 16px 20px;
+}
+.horizonLine {
+  border-bottom: 0.5px solid var(--app-upload-modal-border-line);
+  height: 1px;
+  opacity: 0.5;
+}
+.viewHeaderText {
+  color: var(--app-upload-modal-header);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0px;
+  margin-top: 16px;
+}
+.viewZone {
+  /* background-color: var(--app-upload-modal-view-zone); */
+  background-color: black;
+  border-radius: 3px;
+  height: 36%;
+  margin-top: 8px;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.nextButton {
+}
+.cancelButton {
+}

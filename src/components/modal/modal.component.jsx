@@ -8,7 +8,7 @@ const Modal = ({ children, isModalOpen, heightInPx, widthInPx }) => {
 
     const modalViewClass = isModalOpen ? styles.showModal : styles.hideModal;
 
-    const contentStyle = { height: heightInPx, width: widthInPx };
+    const contentStyle = { maxHeight: heightInPx, width: widthInPx };
     const modalBackgroundClass = `${styles.shadow} ${modalViewClass}`;
     const contentClass = `${styles.content} ${modalViewClass}`;
 
@@ -22,7 +22,7 @@ const Modal = ({ children, isModalOpen, heightInPx, widthInPx }) => {
 };
 
 Modal.defaultProps = {
-    heightInPx: '600px',
+    heightInPx: '750px',
     widthInPx: '600px'
 }
 
