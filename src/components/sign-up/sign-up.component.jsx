@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 //css
 import styles from './sign-up.module.css';
 //components
-import CustomButton from '../custom-button/custom-button.component';
+import LoadingButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 import FormInputPassword from '../form-input-password/form-input-password.component';
 //actions
@@ -80,7 +80,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
                     <span className={styles.errorText}>{errorMessage}</span>
                 </div>
                 <div className={styles.buttonCon}>
-                    <CustomButton loading={fetching} type="submit">Sign up</CustomButton>
+                    <LoadingButton loading={fetching} type="submit">Sign up</LoadingButton>
                 </div>
                 <div className={styles.navigationCon}>
                     <div className={styles.signinLabel}>Don't have an account?</div>

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import styles from './sign-in-user-login.module.css';
 //components
 import FormInput from '../form-input/form-input.component';
-import CustomButton from '../custom-button/custom-button.component';
+import LoadingButton from '../custom-button/custom-button.component';
 import FormInputPassword from '../form-input-password/form-input-password.component';
 import RenderView from '../render-view/render-view.component';
 //actions 
@@ -65,7 +65,7 @@ const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, 
                 <Link to={FORGOT_PASSWORD_ROUTE_PATH} className={styles.actionLabel} onClick={clearAuthErrorMessage}>Forgot your password?</Link>
             </div>
             <div className={styles.buttonCon}>
-                <CustomButton type="submit" loading={fetching}>Sign In</CustomButton>
+                <LoadingButton type="submit" loading={fetching}>Sign In</LoadingButton>
             </div>
             <div className={styles.linkContainer}>
                 <div className={styles.signupLabel}>Don't have an account?</div>

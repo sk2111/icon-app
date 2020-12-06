@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './update-password.module.css';
 //components
-import CustomButton from '../custom-button/custom-button.component';
+import LoadingButton from '../custom-button/custom-button.component';
 import FormInputPassword from '../form-input-password/form-input-password.component';
 import ProtectedRoute from '../protected-route/protected-route.component';
 import RenderView from '../render-view/render-view.component';
@@ -60,7 +60,7 @@ const UpdatePassword = ({ fetching, userMessage, errorMessage, updateNewPassword
                 <span className={styles.errorText}>{errorMessage}</span>
             </div>
             <div className={styles.buttonCon}>
-                <CustomButton loading={fetching} type="submit">Reset password</CustomButton>
+                <LoadingButton loading={fetching} type="submit">Reset password</LoadingButton>
             </div>
             <div className={styles.actionLabel}>
                 Back to

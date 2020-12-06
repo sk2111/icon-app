@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import styles from './sign-in-forgot-password.module.css';
 //components
 import FormInput from '../../components/form-input/form-input.component';
-import CustomButton from '../../components/custom-button/custom-button.component';
+import LoadingButton from '../../components/custom-button/custom-button.component';
 import RenderView from '../../components/render-view/render-view.component';
 //actions
 import { sendResetLinkStart, sendResetLinkFailure, clearAuthError } from '../../redux/auth/auth.actions';
@@ -57,7 +57,7 @@ const SignInForgotPassword = ({ fetching, sendResetLinkStart, clearAuthError,
                 <p className={styles.errorMessage}>{errorMessage}</p>
             </RenderView>
             <div className={styles.buttonCon}>
-                <CustomButton loading={fetching} type="submit">Send Reset Link</CustomButton>
+                <LoadingButton loading={fetching} type="submit">Send Reset Link</LoadingButton>
             </div>
             <div className={styles.actionLabel}>
                 Back to

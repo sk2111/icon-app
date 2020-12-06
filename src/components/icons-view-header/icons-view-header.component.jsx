@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './icons-view-header.module.css';
 //component
 import RenderView from '../render-view/render-view.component';
-import CustomButton from '../custom-button/custom-button.component';
+import LoadingButton from '../custom-button/custom-button.component';
 
 const IconsViewHeader = ({ label, showUploadButton }) => {
 
@@ -13,7 +13,7 @@ const IconsViewHeader = ({ label, showUploadButton }) => {
         <div className={styles.headerContainer}>
             <h4 className={styles.header}>{label}</h4>
             <RenderView renderIfTrue={showUploadButton}>
-                <CustomButton style={buttonStyle}>Upload icon</CustomButton>
+                <LoadingButton style={buttonStyle}>Upload icon</LoadingButton>
             </RenderView>
         </div>
     );
