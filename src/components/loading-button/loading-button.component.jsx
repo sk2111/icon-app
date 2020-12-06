@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './custom-button.module.css';
+import styles from './loading-button.module.css';
 //static
 import { ReactComponent as LoadingSpinner } from '../../assests/loading-for-btn.svg';
 

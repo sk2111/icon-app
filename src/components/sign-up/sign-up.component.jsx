@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 //css
 import styles from './sign-up.module.css';
 //components
-import LoadingButton from '../custom-button/custom-button.component';
+import LoadingButton from '../loading-button/loading-button.component';
 import FormInput from '../form-input/form-input.component';
 import FormInputPassword from '../form-input-password/form-input-password.component';
 //actions

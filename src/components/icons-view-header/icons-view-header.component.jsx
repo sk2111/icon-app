@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './icons-view-header.module.css';
 //component
 import RenderView from '../render-view/render-view.component';
-import LoadingButton from '../custom-button/custom-button.component';
+import LoadingButton from '../loading-button/loading-button.component';
 
 const IconsViewHeader = ({ label, showUploadButton }) => {
 
