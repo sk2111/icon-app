@@ -74,7 +74,7 @@ const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, cl
                     <FormInputPassword className={styles.topMargin} inpClass="shortWidth" label="Password"
                         name="password" value={password} handleValueChange={handleInputChange} />
                     <FormInputPassword className={styles.confirmPass} inpClass="shortWidth" label="Confirm Password"
-                        name="confirmpassword" value={confirmPassword} handleValueChange={handleInputChange} />
+                        name="confirmPassword" value={confirmPassword} handleValueChange={handleInputChange} />
                 </div>
                 <div className={styles.errorContainer}>
                     <span className={styles.errorText}>{errorMessage}</span>
