@@ -1,7 +1,9 @@
 import { appDataActionTypes } from './app-data.types';
+import { getRandomColorTheme } from '../../utilities/helper.functions';
 
 const INITIAL_STATE = {
-    isNavMenuExpanded: true
+    isNavMenuExpanded: true,
+    userProfilePicTheme: getRandomColorTheme()
 };
 
 const appDataReducer = (state = INITIAL_STATE, action) => {
