@@ -1,0 +1,29 @@
+.button {
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  position: relative;
+  top: 0px;
+  transition: top 0.1s;
+  user-select: none;
+}
+.primary {
+  background-color: var(--app-button-primary-background);
+  color: var(--app-button-primary-text);
+}
+.secondary {
+  background-color: var(--app-button-secondary-background);
+  border: 1px solid var(--app-button-secondary-border);
+  color: var(--app-button-secondary-text);
+}
+.primary:hover,
+.secondary:hover {
+  top: -2px;
+}
+.primary:active,
+.secondary:active {
+  top: 0px;
+}

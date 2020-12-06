@@ -105,6 +105,12 @@
   --app-upload-modal-header: #1c1c1d;
   --app-upload-modal-border-line: #dbdbdc;
   --app-upload-modal-view-zone: #f9f9fb;
+  /* Action buttons */
+  --app-button-primary-background: #3254b7;
+  --app-button-primary-text: #ffffff;
+  --app-button-secondary-background: #ffffff;
+  --app-button-secondary-border: #3254b7;
+  --app-button-secondary-text: #3254b7;
 }
 * {
   box-sizing: border-box;

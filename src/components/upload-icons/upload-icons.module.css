@@ -34,6 +34,7 @@
   background-color: black;
   border-radius: 3px;
   height: 36%;
+  max-height: 255px;
   margin-top: 8px;
 }
 .buttonContainer {
@@ -42,7 +43,6 @@
   justify-content: flex-end;
   margin-top: 20px;
 }
-.nextButton {
-}
-.cancelButton {
+.nextBtn {
+  margin-right: 12px;
 }

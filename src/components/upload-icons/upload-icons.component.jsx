@@ -2,7 +2,8 @@
 import React from 'react';
 //styles
 import styles from './upload-icons.module.css';
-
+//components
+import CustomButton from '../custom-button/custom-button.component';
 
 const UploadIcons = () => {
     return (
@@ -16,8 +17,8 @@ const UploadIcons = () => {
 
             </div>
             <div className={styles.buttonContainer}>
-                <button className={styles.nextButton}>Next</button>
-                <button className={styles.cancelButton}>Cancel</button>
+                <CustomButton className={styles.nextBtn} primary>Next</CustomButton>
+                <CustomButton secondary>Cancel</CustomButton>
             </div>
         </div>
     );
