@@ -4,18 +4,16 @@ import React from 'react';
 import styles from './icons-view-header.module.css';
 //component
 import RenderView from '../render-view/render-view.component';
-//static
-import { ReactComponent as ArrowUp } from '../../assests/upload-arrow.svg';
+import CustomButton from '../custom-button/custom-button.component';
 
 const IconsViewHeader = ({ label, showUploadButton }) => {
+
+    const buttonStyle = { fontWeight: '300', height: '30px', width: '108px' };
     return (
         <div className={styles.headerContainer}>
             <h4 className={styles.header}>{label}</h4>
             <RenderView renderIfTrue={showUploadButton}>
-                <div className={styles.btnContainer}>
-                    <ArrowUp className={styles.arrow} />
-                    <button className={styles.uploadBtn}>Upload Icon</button>
-                </div>
+                <CustomButton style={buttonStyle}>Upload icon</CustomButton>
             </RenderView>
         </div>
     );

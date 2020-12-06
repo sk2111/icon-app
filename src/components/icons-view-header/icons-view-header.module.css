@@ -11,35 +11,3 @@
   font-weight: 500;
   margin: 0px;
 }
-.btnContainer {
-  position: relative;
-  top: 0px;
-  transition: top 0.1s;
-}
-.btnContainer:hover,
-.btnContainer:focus {
-  top: -2px;
-}
-.btnContainer:active {
-  top: 0px;
-}
-.arrow {
-  cursor: pointer;
-  height: 15px;
-  left: 9px;
-  position: absolute;
-  top: 7px;
-  width: 15px;
-}
-.uploadBtn {
-  background-color: var(--app-icon-header-button-background);
-  border: 0px;
-  border-radius: 3px;
-  cursor: pointer;
-  color: var(--app-icon-header-button-text);
-  font-size: 12px;
-  height: 30px;
-  outline: none;
-  padding-left: 23px;
-  width: 108px;
-}
