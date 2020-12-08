@@ -10,14 +10,12 @@ import { ReactComponent as UploadSvg } from '../../assests/upload-icons.svg';
 import { readFiles } from '../../utilities/helper.functions';
 
 
-const UploadZone = () => {
+const UploadZone = ({ validFileNameExtension, acceptType }) => {
 
     const uploadFilesInpRef = useRef(null);
     const dragCounter = useRef({ count: 0 });
     const [dragging, setDragging] = useState(false);
 
-    const validFileNameExtension = ".svg";
-    const acceptType = "image/svg+xml";
     const dropContainer = styles.dropContainer + (dragging ? ` ${styles.dragHighlight}` : '');
 
     const handleSvgFilesUpload = (e) => {
