@@ -6,6 +6,9 @@ import styles from './upload-zone.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 //static
 import { ReactComponent as UploadSvg } from '../../assests/upload-icons.svg';
+//helpers
+import { readFiles } from '../../utilities/helper.functions';
+
 
 const UploadZone = () => {
 
@@ -13,22 +16,23 @@ const UploadZone = () => {
     const dragCounter = useRef({ count: 0 });
     const [dragging, setDragging] = useState(false);
 
+    const validFileNameExtension = ".svg";
+    const acceptType = "image/svg+xml";
     const dropContainer = styles.dropContainer + (dragging ? ` ${styles.dragHighlight}` : '');
 
     const handleSvgFilesUpload = (e) => {
-        try {
-            const files = Array.from(e.target.files) || [];
-            files.forEach((icon) => {
-                const reader = new FileReader();
-                reader.onload = ({ target: { result } }) => {
-                    // setUploadedIcons((uploadedIcons) => [...uploadedIcons, result]);
-                };
-                reader.readAsText(icon);
-            });
-        }
-        catch (e) {
-            console.log("Error in file upload", e);
-        }
+        const files = readFiles(e.target.files, acceptType, validFileNameExtension);
+        console.log("Browse files", files);
+        //filter only the required files
+        //
+        // files.forEach((icon) => {
+        //     const reader = new FileReader();
+        //     reader.onload = ({ target: { result } }) => {
+        //         // setUploadedIcons((uploadedIcons) => [...uploadedIcons, result]);
+        //     };
+        //     reader.readAsText(icon);
+        // });
+
         e.target.value = null;
     };
 
@@ -59,7 +63,7 @@ const UploadZone = () => {
         e.preventDefault();
         e.stopPropagation();
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            // this.props.handleDrop(e.dataTransfer.files)
+            // handleDrop(e.dataTransfer.files)
             console.log(" The drop event", e.dataTransfer.files);
             e.dataTransfer.clearData();
             dragCounter.current.count = 0;
@@ -83,7 +87,7 @@ const UploadZone = () => {
                     <UploadSvg />
                     <p className={styles.dropText1}>Drag and drop your files here</p>
                     <p className={styles.dropText2}>or</p>
-                    <input ref={uploadFilesInpRef} type="file" multiple accept=".svg" hidden onChange={handleSvgFilesUpload} />
+                    <input ref={uploadFilesInpRef} type="file" multiple accept={validFileNameExtension} hidden onChange={handleSvgFilesUpload} />
                     <CustomButton primary onClick={triggerFileUpload}>Browse</CustomButton>
                 </div>
             </div>

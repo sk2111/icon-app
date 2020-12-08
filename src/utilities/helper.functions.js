@@ -24,3 +24,20 @@ export const getRandomColorTheme = () => {
     ];
     return themes[getRandomInteger(0, themes.length)];
 };
+
+
+// file reading helpers 
+
+export const readFiles = (fileList, acceptType, fileNameCheck = ".") => {
+    try {
+        if (fileList.length) {
+            const files = Array.from(fileList);
+            const validFiles = files.filter(file => file.type === acceptType && file.name.includes(fileNameCheck));
+            console.log("The valid files are", validFiles);
+        }
+    }
+    catch (e) {
+        console.log("File reading failed", e);
+        return;
+    }
+};
