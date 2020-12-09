@@ -18,7 +18,7 @@ const UploadIcons = () => {
     console.log("Testing uploaded icons", uploadedIcons);
     return (
         <div className={styles.uploadContainer}>
-            <UploadZone />
+            <UploadZone validFileNameExtension=".svg" acceptType="image/svg+xml" />
             <div className={styles.horizonLine}></div>
             <h4 className={styles.viewHeaderText}>Added files</h4>
             <div className={styles.viewZone}>

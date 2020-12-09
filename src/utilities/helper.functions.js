@@ -27,13 +27,31 @@ export const getRandomColorTheme = () => {
 
 
 // file reading helpers 
+export const readAsTextFile = (file) => {
+    return new Promise((resolve, reject) => {
+        try {
+            const reader = new FileReader();
+            reader.onload = ({ target: { result } }) => {
+                resolve(result);
+            };
+            reader.readAsText(file);
+        }
+        catch (e) {
+            reject(e);
+        }
+    });
+}
 
-export const readFiles = (fileList, acceptType, fileNameCheck = ".") => {
+export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg") => {
     try {
         if (fileList.length) {
-            const files = Array.from(fileList);
-            const validFiles = files.filter(file => file.type === acceptType && file.name.includes(fileNameCheck));
-            console.log("The valid files are", validFiles);
+            const fileData = [];
+            const validFiles = Array.from(fileList).filter(file => file.type === acceptType && file.name.includes(validfileNameCheck));
+            for (let i = 0; i < validFiles.length; i++) {
+                const textData = await readAsTextFile(validFiles[i]);
+                fileData.push(textData);
+            }
+            return [...fileData];
         }
     }
     catch (e) {

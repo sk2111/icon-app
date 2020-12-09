@@ -18,19 +18,17 @@ const UploadZone = ({ validFileNameExtension, acceptType }) => {
 
     const dropContainer = styles.dropContainer + (dragging ? ` ${styles.dragHighlight}` : '');
 
-    const handleSvgFilesUpload = (e) => {
-        const files = readFiles(e.target.files, acceptType, validFileNameExtension);
-        console.log("Browse files", files);
-        //filter only the required files
-        //
-        // files.forEach((icon) => {
-        //     const reader = new FileReader();
-        //     reader.onload = ({ target: { result } }) => {
-        //         // setUploadedIcons((uploadedIcons) => [...uploadedIcons, result]);
-        //     };
-        //     reader.readAsText(icon);
-        // });
+    const handleSvgFilesUpload = async (e) => {
+        try {
 
+            const files = await readFiles(e.target.files, acceptType, validFileNameExtension);
+            if (files) {
+                // If files are upload success have a action to store svg string in redux store
+            }
+        }
+        catch (e) {
+            console.log("upload failed", e);
+        }
         e.target.value = null;
     };
 
@@ -61,8 +59,7 @@ const UploadZone = ({ validFileNameExtension, acceptType }) => {
         e.preventDefault();
         e.stopPropagation();
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            // handleDrop(e.dataTransfer.files)
-            console.log(" The drop event", e.dataTransfer.files);
+            handleSvgFilesUpload({ target: { files: e.dataTransfer.files } });
             e.dataTransfer.clearData();
             dragCounter.current.count = 0;
             setDragging(false);
@@ -91,6 +88,12 @@ const UploadZone = ({ validFileNameExtension, acceptType }) => {
             </div>
         </React.Fragment>
     );
+};
+
+
+UploadZone.defaultProps = {
+    validFileNameExtension: '.svg',
+    acceptType: 'image/svg+xml'
 };
 
 
