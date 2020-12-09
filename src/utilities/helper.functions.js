@@ -12,15 +12,19 @@ export const getRandomInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
 };
 
+export default class ColorTheme {
+    constructor(backgroundColor, color) {
+        this.backgroundColor = backgroundColor;
+        this.color = color;
+    }
+}
+
 export const getRandomColorTheme = () => {
     const themes = [
-        { backgroundColor: "red", color: "white" },
-        { backgroundColor: "blue", color: "white" },
-        { backgroundColor: "gray", color: "white" },
-        { backgroundColor: "green", color: "white" },
-        { backgroundColor: "yellow", color: "white" },
-        { backgroundColor: "orange", color: "white" },
-        { backgroundColor: "violet", color: "white" },
+        new ColorTheme("#F23EDC", "white"), new ColorTheme("#9D80E1", "white"), new ColorTheme("#EB5F35", "white"),
+        new ColorTheme("#73A11E", "white"), new ColorTheme("#3254B7", "white"), new ColorTheme("#009ED5", "white"),
+        new ColorTheme("#41A486", "white"), new ColorTheme("#B38E20", "white"), new ColorTheme("#FF5A5F", "white"),
+        new ColorTheme("#95735F", "white"),
     ];
     return themes[getRandomInteger(0, themes.length)];
 };
