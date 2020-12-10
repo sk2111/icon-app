@@ -10,7 +10,7 @@ import { ReactComponent as UploadSvg } from '../../assests/upload-icons.svg';
 import { readFiles } from '../../utilities/helper.functions';
 
 
-const UploadZone = ({ validFileNameExtension, acceptType }) => {
+const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) => {
 
     const uploadFilesInpRef = useRef(null);
     const dragCounter = useRef({ count: 0 });
@@ -23,7 +23,7 @@ const UploadZone = ({ validFileNameExtension, acceptType }) => {
 
             const files = await readFiles(e.target.files, acceptType, validFileNameExtension);
             if (files) {
-                // If files are upload success have a action to store svg string in redux store
+                handleFileUpload(files);
             }
         }
         catch (e) {
@@ -93,7 +93,8 @@ const UploadZone = ({ validFileNameExtension, acceptType }) => {
 
 UploadZone.defaultProps = {
     validFileNameExtension: '.svg',
-    acceptType: 'image/svg+xml'
+    acceptType: 'image/svg+xml',
+    handleFileUpload: () => { }
 };
 
 
