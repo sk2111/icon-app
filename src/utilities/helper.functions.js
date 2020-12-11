@@ -52,8 +52,9 @@ export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg
             const fileData = [];
             const validFiles = Array.from(fileList).filter(file => file.type === acceptType && file.name.includes(validfileNameCheck));
             for (let i = 0; i < validFiles.length; i++) {
+                const fileName = String(validFiles[i].name).replace(validfileNameCheck, '');
                 const textData = await readAsTextFile(validFiles[i]);
-                fileData.push(textData);
+                fileData.push({ name: fileName, textData: textData });
             }
             return [...fileData];
         }
@@ -63,3 +64,20 @@ export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg
         return;
     }
 };
+
+
+// upload normalize data helpers
+
+export const normalizeUploadFileIconsStructure = (files) => {
+    if (!files) return {};
+    const iconDataArr = files.map((file) => {
+        return {
+            iconName: file.name,
+            iconClassification: [],
+            iconTags: [trimStr(file.name)],
+            createdAt: new Date(),
+            iconData: file.textData
+        };
+    });
+    return { ...iconDataArr };
+}
