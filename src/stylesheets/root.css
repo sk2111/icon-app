@@ -106,6 +106,9 @@
   --app-upload-modal-border-line: #dbdbdc;
   --app-upload-modal-view-zone: #f9f9fb;
   --app-upload-modal-info-text: #989899;
+  --app-upload-modal-preview-shadow: #dbdbdc;
+  --app-upload-modal-preview-background: #ffffff;
+  
   /* Action buttons */
   --app-button-primary-background: #3254b7;
   --app-button-primary-text: #ffffff;

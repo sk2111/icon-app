@@ -9,6 +9,7 @@ import { ReactComponent as NoFileFoundSvg } from '../../assests/no-files-found.s
 
 
 const PreviewUploadIcons = ({ iconList }) => {
+    // return <div dangerouslySetInnerHTML={{ __html: iconData }} />
     return (
         <div className={styles.viewZone}>
             <RenderView renderIfFalse={iconList.length}>
@@ -18,16 +19,19 @@ const PreviewUploadIcons = ({ iconList }) => {
                 </div>
             </RenderView>
             <RenderView renderIfTrue={iconList.length}>
-                {
-                    iconList.map(({ iconData }) => {
-                        const buff = Buffer.from(iconData);
-                        const base64data = buff.toString('base64');
-                        // return (<img style={{
-                        //     height: '50px', width: '50px'
-                        // }} src={`data:image/svg+xml;base64,${base64data}`} alt="icon" />);
-                        // return <div dangerouslySetInnerHTML={{ __html: iconData }} />
-                    })
-                }
+                <div className={styles.previewZone}>
+                    {
+                        iconList.map(({ iconData }) => {
+                            const buff = Buffer.from(iconData);
+                            const base64data = buff.toString('base64');
+                            return (
+                                <div className={styles.previewContainer}>
+                                    <img className={styles.previewImage} src={`data:image/svg+xml;base64,${base64data}`} alt="icon" />
+                                </div>
+                            );
+                        })
+                    }
+                </div>
             </RenderView>
         </div>
     );

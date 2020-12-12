@@ -77,11 +77,11 @@ export const normalizeUploadFileIconsStructure = (files) => {
     const normalizedData = {};
     if (!files) return normalizedData;
     files.forEach((file, index) => {
-        const trimmedFileName = trimStr(file.name);
-        const randomProperty = getRandomObjectProperty(trimmedFileName, index);
+        const fileName = ((file.name).split('.'))[0];
+        const randomProperty = getRandomObjectProperty(fileName, index);
         normalizedData[randomProperty] = {
             id: randomProperty,
-            iconName: file.name,
+            iconName: fileName,
             iconClassification: [],
             iconTags: [trimStr(file.name)],
             createdAt: new Date(),
