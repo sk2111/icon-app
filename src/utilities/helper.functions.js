@@ -12,6 +12,11 @@ export const getRandomInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
 };
 
+export const getRandomObjectProperty = (prop, index) => {
+    return prop + getRandomInteger(getRandomInteger(index, 100000 * (index + 1)), getRandomInteger(index, 100000 * (index + 1)))
+        + getRandomInteger(1, 100000000000000);
+};
+
 export default class ColorTheme {
     constructor(backgroundColor, color) {
         this.backgroundColor = backgroundColor;
@@ -73,9 +78,9 @@ export const normalizeUploadFileIconsStructure = (files) => {
     if (!files) return normalizedData;
     files.forEach((file, index) => {
         const trimmedFileName = trimStr(file.name);
-        const uniqueProperty = trimmedFileName + getRandomInteger(getRandomInteger(index, 100000), getRandomInteger(index, 100000))
-            + getRandomInteger(0, 100000000000000);
-        normalizedData[uniqueProperty] = {
+        const randomProperty = getRandomObjectProperty(trimmedFileName, index);
+        normalizedData[randomProperty] = {
+            id: randomProperty,
             iconName: file.name,
             iconClassification: [],
             iconTags: [trimStr(file.name)],

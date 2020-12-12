@@ -1,0 +1,19 @@
+.viewZone {
+  background-color: var(--app-upload-modal-view-zone);
+  border-radius: 3px;
+  height: 36%;
+  max-height: 255px;
+  margin-top: 8px;
+}
+.viewContent {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+.noFileText {
+  color: var(--app-upload-modal-info-text);
+  font-size: 12px;
+  font-weight: 300;
+}

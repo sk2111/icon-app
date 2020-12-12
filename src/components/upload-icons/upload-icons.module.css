@@ -17,27 +17,7 @@
   margin: 0px;
   margin-top: 16px;
 }
-.viewZone {
-  align-items: center;
-  background-color: var(--app-upload-modal-view-zone);
-  border-radius: 3px;
-  display: flex;
-  height: 36%;
-  justify-content: center;
-  max-height: 255px;
-  margin-top: 8px;
-}
-.viewContent {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.noFileText {
-  color: var(--app-upload-modal-info-text);
-  font-size: 12px;
-  font-weight: 300;
-}
+
 .buttonContainer {
   display: flex;
   flex-direction: row;
