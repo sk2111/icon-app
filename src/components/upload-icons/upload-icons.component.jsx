@@ -24,12 +24,12 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons }) => {
     //{base64:'',svgTextData:'',categroy:'',serachKeywords:''}
 
     //Have a props method to return back to parent component 
-    console.log("Testing uploaded icons", uploadedCommonIcons);
+    console.log("Testing preview for uploaded icons", uploadedCommonIcons);
     const handleCommonIconsFileUpload = (uploadedFiles) => {
         console.log("Testing upload files", uploadedFiles);
-        const normalizedFileData = normalizeUploadFileIconsStructure(uploadedFiles);
-        console.log("Testing upload files normalizzed data", normalizedFileData);
-        uploadFilesToCommonIcons(uploadedFiles);
+        const normalizedIconData = normalizeUploadFileIconsStructure(uploadedFiles);
+        console.log("Testing upload files normalizzed data", normalizedIconData);
+        uploadFilesToCommonIcons(normalizedIconData);
 
     };
 

@@ -69,9 +69,13 @@ export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg
 // upload normalize data helpers
 
 export const normalizeUploadFileIconsStructure = (files) => {
-    if (!files) return {};
-    const iconDataArr = files.map((file) => {
-        return {
+    const normalizedData = {};
+    if (!files) return normalizedData;
+    files.forEach((file, index) => {
+        const trimmedFileName = trimStr(file.name);
+        const uniqueProperty = trimmedFileName + getRandomInteger(getRandomInteger(index, 100000), getRandomInteger(index, 100000))
+            + getRandomInteger(0, 100000000000000);
+        normalizedData[uniqueProperty] = {
             iconName: file.name,
             iconClassification: [],
             iconTags: [trimStr(file.name)],
@@ -79,5 +83,5 @@ export const normalizeUploadFileIconsStructure = (files) => {
             iconData: file.textData
         };
     });
-    return { ...iconDataArr };
+    return normalizedData;
 }
