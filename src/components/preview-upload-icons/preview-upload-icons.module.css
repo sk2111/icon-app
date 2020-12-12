@@ -31,8 +31,18 @@
   background-color: var(--app-upload-modal-preview-background);
   border-radius: 3px;
   box-shadow: 0 0 3px 0 var(--app-upload-modal-preview-shadow);
-  height: 66px;
-  width: 66px;
+  height: 75px;
+  padding: 2px 4px 4px 2px;
+  position: relative;
+  width: 75px;
+}
+.remove {
+  cursor: pointer;
+  height: 14px;
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  width: 14px;
 }
 .previewImage {
   height: 30px;

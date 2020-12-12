@@ -77,14 +77,17 @@ export const normalizeUploadFileIconsStructure = (files) => {
     const normalizedData = {};
     if (!files) return normalizedData;
     files.forEach((file, index) => {
-        const fileName = ((file.name).split('.'))[0];
+        const fileName = (String(file.name).split('.'))[0];
         const randomProperty = getRandomObjectProperty(fileName, index);
+        const buff = Buffer.from(file.textData);
+        const base64data = buff.toString('base64');
         normalizedData[randomProperty] = {
             id: randomProperty,
             iconName: fileName,
             iconClassification: [],
             iconTags: [trimStr(file.name)],
             createdAt: new Date(),
+            iconsBase64: base64data,
             iconData: file.textData
         };
     });
