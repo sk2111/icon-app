@@ -73,3 +73,16 @@
   width: 70px;
   white-space: nowrap;
 }
+/* delete animation */
+@keyframes example {
+  from {
+    background-color: red;
+  }
+  to {
+    background-color: yellow;
+  }
+}
+.deleteAnim {
+  animation-name: example;
+  animation-duration: 5s;
+}
