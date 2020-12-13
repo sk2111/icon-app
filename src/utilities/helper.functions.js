@@ -8,6 +8,11 @@ export const trimStr = (toTrimValue) => {
     return String(toTrimValue).replace(/\s/g, '').toLowerCase();
 };
 
+export const getAlphaOnly = (text, replaceChar, toLowerCase = true) => {
+    const alphaString = String(text).replace(/[^a-zA-Z]/g, replaceChar);
+    return toLowerCase ? alphaString.toLowerCase() : alphaString;
+};
+
 export const getRandomInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
 };
@@ -85,7 +90,7 @@ export const normalizeUploadFileIconsStructure = (files) => {
             id: randomProperty,
             iconName: fileName,
             iconClassification: [],
-            iconTags: [trimStr(file.name)],
+            iconTags: [getAlphaOnly(file.name, ' ', true)],
             createdAt: new Date(),
             iconsBase64: base64data,
             iconData: file.textData
