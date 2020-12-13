@@ -9,9 +9,6 @@ import { ReactComponent as NoFileFoundSvg } from '../../assests/no-files-found.s
 import Remove from '../../assests/close.png';
 
 const PreviewUploadIcons = ({ iconList }) => {
-    // return <div dangerouslySetInnerHTML={{ __html: iconData }} />
-    // check firebase minimum upload value
-    // restrick minimum numbers
     return (
         <div className={styles.viewZone}>
             <RenderView renderIfFalse={iconList.length}>
@@ -23,9 +20,9 @@ const PreviewUploadIcons = ({ iconList }) => {
             <RenderView renderIfTrue={iconList.length}>
                 <div className={styles.previewZone}>
                     {
-                        iconList.map(({ iconsBase64, iconName }) => {
+                        iconList.map(({ id, iconsBase64, iconName }) => {
                             return (
-                                <div className={styles.previewContainer}>
+                                <div key={id} className={styles.previewContainer}>
                                     <img className={styles.remove} src={Remove} alt="x" />
                                     <img className={styles.previewImage} src={`data:image/svg+xml;base64,${iconsBase64}`} alt="Invalid" />
                                     <div className={styles.iconName}>{iconName}</div>

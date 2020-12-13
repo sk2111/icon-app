@@ -18,10 +18,6 @@ import { normalizeUploadFileIconsStructure } from '../../utilities/helper.functi
 
 const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons }) => {
 
-
-
-    //Have a props method to return back to parent component 
-    console.log("Testing preview for uploaded icons", uploadedCommonIcons);
     const handleCommonIconsFileUpload = (uploadedFiles) => {
         const normalizedIconData = normalizeUploadFileIconsStructure(uploadedFiles);
         uploadFilesToCommonIcons(normalizedIconData);

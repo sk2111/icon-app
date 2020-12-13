@@ -56,11 +56,13 @@ export const readAsTextFile = (file) => {
     });
 }
 
-export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg") => {
+export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg", maxmimumFiles = 100) => {
     try {
         if (fileList.length) {
             const fileData = [];
-            const validFiles = Array.from(fileList).filter(file => file.type === acceptType && file.name.includes(validfileNameCheck));
+            const validFiles = Array.from(fileList).filter(
+                (file, index) => (index < maxmimumFiles) && (file.type === acceptType) && (file.name.includes(validfileNameCheck))
+            );
             for (let i = 0; i < validFiles.length; i++) {
                 const fileName = String(validFiles[i].name).replace(validfileNameCheck, '');
                 const textData = await readAsTextFile(validFiles[i]);

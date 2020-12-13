@@ -16,12 +16,13 @@ const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) =>
     const dragCounter = useRef({ count: 0 });
     const [dragging, setDragging] = useState(false);
 
+    const MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD = 150;
+
     const dropContainer = styles.dropContainer + (dragging ? ` ${styles.dragHighlight}` : '');
 
     const handleSvgFilesUpload = async (e) => {
         try {
-
-            const files = await readFiles(e.target.files, acceptType, validFileNameExtension);
+            const files = await readFiles(e.target.files, acceptType, validFileNameExtension, MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD);
             if (files) {
                 handleFileUpload(files);
             }
@@ -80,7 +81,7 @@ const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) =>
                 onDrop={handleDrop}>
                 <div className={styles.dropContent}>
                     <UploadSvg />
-                    <p className={styles.dropText1}>Drag and drop your files here</p>
+                    <p className={styles.dropText1}>Drag and drop your files here (Max 150 files)</p>
                     <p className={styles.dropText2}>or</p>
                     <input ref={uploadFilesInpRef} type="file" multiple accept={validFileNameExtension} hidden onChange={handleSvgFilesUpload} />
                     <CustomButton primary onClick={triggerFileUpload}>Browse</CustomButton>

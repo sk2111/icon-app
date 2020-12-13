@@ -18,10 +18,10 @@
   font-weight: 300;
 }
 .previewZone {
+  column-gap: 16px;
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(6, 75px);
   height: 100%;
-  justify-content: space-between;
   overflow-y: scroll;
   padding: 16px;
   row-gap: 15px;
