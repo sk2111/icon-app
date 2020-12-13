@@ -7,3 +7,10 @@ export const uploadFilesToCommonIcons = (payload) => {
         payload
     }
 };
+
+export const deleteCommonIcon = (payload) => {
+    return {
+        type: uploadIconsActionTypes.DELETE_UPLOADED_COMMON_ICON,
+        payload
+    }
+};

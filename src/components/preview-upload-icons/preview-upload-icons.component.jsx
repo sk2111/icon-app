@@ -8,7 +8,7 @@ import RenderView from '../render-view/render-view.component';
 import { ReactComponent as NoFileFoundSvg } from '../../assests/no-files-found.svg';
 import Remove from '../../assests/close.png';
 
-const PreviewUploadIcons = ({ iconList }) => {
+const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
     return (
         <div className={styles.viewZone}>
             <RenderView renderIfFalse={iconList.length}>
@@ -23,7 +23,7 @@ const PreviewUploadIcons = ({ iconList }) => {
                         iconList.map(({ id, iconsBase64, iconName }) => {
                             return (
                                 <div key={id} className={styles.previewContainer}>
-                                    <img className={styles.remove} src={Remove} alt="x" />
+                                    <img className={styles.remove} src={Remove} alt="x" onClick={() => deleteIcon(id)} />
                                     <img className={styles.previewImage} src={`data:image/svg+xml;base64,${iconsBase64}`} alt="Invalid" />
                                     <div className={styles.iconName}>{iconName}</div>
                                 </div>
@@ -36,5 +36,9 @@ const PreviewUploadIcons = ({ iconList }) => {
     );
 };
 
+PreviewUploadIcons.defaultProps = {
+    iconList: [],
+    deleteIcon: () => { }
+}
 
 export default PreviewUploadIcons;
