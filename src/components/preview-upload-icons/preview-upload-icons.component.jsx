@@ -28,7 +28,7 @@ const PreviewUploadIcons = ({ iconList }) => {
                                 <div className={styles.previewContainer}>
                                     <img className={styles.remove} src={Remove} alt="x" />
                                     <img className={styles.previewImage} src={`data:image/svg+xml;base64,${iconsBase64}`} alt="Invalid" />
-                                    <div>{iconName}</div>
+                                    <div className={styles.iconName}>{iconName}</div>
                                 </div>
                             );
                         })

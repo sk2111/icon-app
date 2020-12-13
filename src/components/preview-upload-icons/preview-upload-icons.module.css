@@ -28,10 +28,14 @@
   width: 100%;
 }
 .previewContainer {
+  align-items: center;
   background-color: var(--app-upload-modal-preview-background);
   border-radius: 3px;
   box-shadow: 0 0 3px 0 var(--app-upload-modal-preview-shadow);
+  display: flex;
+  flex-direction: column;
   height: 75px;
+  justify-content: flex-end;
   padding: 2px 4px 4px 2px;
   position: relative;
   width: 75px;
@@ -46,6 +50,7 @@
 }
 .previewImage {
   height: 30px;
+  margin-bottom: 4px;
   width: 30px;
 }
 .previewZone::-webkit-scrollbar {
@@ -56,4 +61,15 @@
 }
 .previewZone::-webkit-scrollbar-thumb {
   border: 3px solid var(--app-scroll-thumb);
+}
+.iconName {
+  color: var(--app-upload-modal-text);
+  font-size: 10px;
+  height: 20px;
+  overflow: hidden;
+  padding-top: 7px;
+  padding-left: 4px;
+  text-overflow: ellipsis;
+  width: 70px;
+  white-space: nowrap;
 }
