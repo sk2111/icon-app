@@ -9,6 +9,7 @@ import HomeHeader from '../../components/home-header/home-header.component';
 import IconsViewHeader from '../../components/icons-view-header/icons-view-header.component';
 //actions
 import { setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../../redux/common-icons/common-icons.actions';
+import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
 import {
@@ -20,7 +21,7 @@ import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS
 
 
 const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue,
-    selectOptions, selectValue, setSelectValue, icons }) => {
+    selectOptions, selectValue, setSelectValue, openUploadModal, icons }) => {
 
     return (
         <div className={styles.pageContainer}>
@@ -35,7 +36,11 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                 handleSelectValueChange={setSelectValue}
             />
             <div className={styles.viewContainer}>
-                <IconsViewHeader label={COMMON_ICONS_HEADER_LABEL} showUploadButton={isCurrentUserAdmin} />
+                <IconsViewHeader
+                    label={COMMON_ICONS_HEADER_LABEL}
+                    showUploadButton={isCurrentUserAdmin}
+                    handleUploadIcon={openUploadModal}
+                />
                 <div>
                     {
                         icons.map((icon) => {
@@ -63,6 +68,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setSearchValue: (searchValue) => dispatch(setCommonIconsTabSearchValue(searchValue)),
         setSelectValue: (selectValue) => dispatch(setCommonIconsTabSelectValue(selectValue)),
+        openUploadModal: (tabName) => dispatch(openUploadModal(tabName))
     }
 };
 

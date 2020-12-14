@@ -45,7 +45,7 @@ const HomePage = ({ isNavMenuExpanded }) => {
                     <Route component={RouteNotFound} />
                 </Switch>
             </section>
-            <Modal isModalOpen={true}>
+            <Modal isModalOpen={false}>
                 <UploadIcons />
             </Modal>
         </div>

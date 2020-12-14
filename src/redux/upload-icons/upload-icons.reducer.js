@@ -2,18 +2,23 @@ import { uploadIconsActionTypes } from './upload-icons.type';
 //helpers
 import { removeObjectPropertyImmutably } from '../../utilities/reducer.helperfunctions';
 
-const UPLOADED_COMMON_ICONS = 'uploadedCommonIcons';
 
 const INITIAL_STATE = {
-    [UPLOADED_COMMON_ICONS]: {}
+    uploadedCommonIcons: {},
+    openUploadModal: false,
+    uploadModalViewType: null
 };
 
 const uploadIconsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case uploadIconsActionTypes.SET_UPLOADED_COMMON_ICONS:
-            return { ...state, [UPLOADED_COMMON_ICONS]: { ...state[UPLOADED_COMMON_ICONS], ...action.payload } };
+            return { ...state, uploadedCommonIcons: { ...state.uploadedCommonIcons, ...action.payload } };
         case uploadIconsActionTypes.DELETE_UPLOADED_COMMON_ICON:
-            return { ...state, [UPLOADED_COMMON_ICONS]: { ...removeObjectPropertyImmutably(state[UPLOADED_COMMON_ICONS], action.payload) } };
+            return { ...state, uploadedCommonIcons: { ...removeObjectPropertyImmutably(state.uploadedCommonIcons, action.payload) } };
+        case uploadIconsActionTypes.OPEN_UPLOAD_MODAL_VIEW:
+            return { ...state, openUploadModal: true, uploadModalViewType: action.payload };
+        case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL_VIEW:
+            return { ...state, openUploadModal: false, uploadModalViewType: null };
         default:
             return state;
     };
