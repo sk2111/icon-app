@@ -6,7 +6,7 @@ import styles from './modal.module.css';
 
 const Modal = ({ children, isModalOpen, heightInPx, widthInPx }) => {
 
-    const modalViewClass = isModalOpen ? styles.showModal : styles.hideModal;
+    const modalViewClass = isModalOpen ? styles.showModal : ((isModalOpen === null) ? styles.hide : styles.hideModal);
 
     const contentStyle = { maxHeight: heightInPx, width: widthInPx };
     const modalBackgroundClass = `${styles.shadow} ${modalViewClass}`;

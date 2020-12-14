@@ -5,7 +5,7 @@ import { removeObjectPropertyImmutably } from '../../utilities/reducer.helperfun
 
 const INITIAL_STATE = {
     uploadedCommonIcons: {},
-    isUploadModalOpen: false,
+    isUploadModalOpen: null, // null beacause first time animation close flicker condition
     uploadModalViewType: null
 };
 
