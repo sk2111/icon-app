@@ -19,11 +19,7 @@
   border: 1px solid var(--app-button-secondary-border);
   color: var(--app-button-secondary-text);
 }
-.primary:hover,
-.secondary:hover {
-  top: -2px;
-}
 .primary:active,
 .secondary:active {
-  top: 0px;
+  top: 2px;
 }

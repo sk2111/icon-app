@@ -23,12 +23,8 @@
   user-select: none;
   width: var(--app-form-width-medium);
 }
-.button:hover,
-.button:focus {
-  top: -2px;
-}
 .button:active {
-  top: 0px;
+  top: 2px;
 }
 .loading {
   height: 23px;
