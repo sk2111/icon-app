@@ -39,8 +39,8 @@ const HomePage = ({ isNavMenuExpanded }) => {
                 <Switch>
                     <Route path={COMMON_ROUTE_PATH} render={() => <CommonIconsPage />} />
                     <Route exact path={PROJECTS_ROUTE_PATH} render={() => <ProjectIconsPage />} />
-                    <Route exact path={FAVORITES_ROUTE_PATH} component={() => <FavoritesIconsPage />} />
-                    <Route exact path={EDIT_ROUTE_PATH} component={() => <EditIconPage />} />
+                    <Route exact path={FAVORITES_ROUTE_PATH} render={() => <FavoritesIconsPage />} />
+                    <Route exact path={EDIT_ROUTE_PATH} render={() => <EditIconPage />} />
                     <Route exact path={MESSAGES_ROUTE_PATH} render={() => <div>I am messages page</div>} />
                     <Route component={RouteNotFound} />
                 </Switch>
