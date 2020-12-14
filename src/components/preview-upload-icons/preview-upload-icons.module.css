@@ -74,15 +74,18 @@
   white-space: nowrap;
 }
 /* delete animation */
-@keyframes example {
-  from {
-    background-color: red;
+@keyframes deleteAnim {
+  0% {
+    transform: rotate(10deg) scale(1, 1);
+    opacity: 1;
   }
-  to {
-    background-color: yellow;
+  100% {
+    opacity: 0.25;
+    transform: rotate(10deg) scale(0.05, 0.05);
   }
 }
 .deleteAnim {
-  animation-name: example;
-  animation-duration: 5s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-name: deleteAnim;
 }

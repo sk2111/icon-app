@@ -13,9 +13,7 @@ import Remove from '../../assests/close.png';
 const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
 
     const forceUpdate = useForceUpdate();
-
     const deleteAnimation = useRef([]);
-    console.log("I am render cycle", deleteAnimation.current);
 
     const handleDeleteIcon = (iconId) => {
         deleteAnimation.current.push(iconId);
@@ -26,9 +24,7 @@ const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
             if (index > -1) {
                 deleteAnimation.current.splice(index, 1);
             }
-            console.log("The memory testing", deleteAnimation.current);
-        }, 5000);
-
+        }, 400);
     };
 
     return (
