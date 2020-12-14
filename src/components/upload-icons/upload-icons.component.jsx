@@ -9,14 +9,14 @@ import CustomButton from '../custom-button/custom-button.component';
 import UploadZone from '../upload-zone/upload-zone.component';
 import PreviewUploadIcons from '../preview-upload-icons/preview-upload-icons.component';
 //actions
-import { uploadFilesToCommonIcons, deleteCommonIcon } from '../../redux/upload-icons/upload-icons.actions';
+import { uploadFilesToCommonIcons, deleteCommonIcon, closeUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectUploadedCommonIcons } from '../../redux/upload-icons/upload-icons.selectors';
 //helpers
 import { normalizeUploadFileIconsStructure } from '../../utilities/helper.functions';
 
 
-const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteCommonIcon }) => {
+const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteCommonIcon, closeUploadModal }) => {
 
     const handleCommonIconsFileUpload = (uploadedFiles) => {
         const normalizedIconData = normalizeUploadFileIconsStructure(uploadedFiles);
@@ -31,7 +31,7 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
             <PreviewUploadIcons iconList={uploadedCommonIcons} deleteIcon={deleteCommonIcon} />
             <div className={styles.buttonContainer}>
                 <CustomButton className={styles.nextBtn} primary>Next</CustomButton>
-                <CustomButton secondary>Cancel</CustomButton>
+                <CustomButton secondary onClick={closeUploadModal}>Cancel</CustomButton>
             </div>
         </div>
     );
@@ -47,6 +47,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         uploadFilesToCommonIcons: (icons) => { dispatch(uploadFilesToCommonIcons(icons)) },
         deleteCommonIcon: (iconId) => { dispatch(deleteCommonIcon(iconId)) },
+        closeUploadModal: () => dispatch(closeUploadModal())
     }
 };
 
