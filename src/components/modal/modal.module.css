@@ -22,7 +22,6 @@
 .hideModal {
   z-index: -1;
   opacity: 0;
-  animation: hide 0.2s;
   transform: scale(0);
 }
 .hide {
