@@ -5,7 +5,7 @@ import { removeObjectPropertyImmutably } from '../../utilities/reducer.helperfun
 
 const INITIAL_STATE = {
     uploadedCommonIcons: {},
-    openUploadModal: false,
+    isUploadModalOpen: false,
     uploadModalViewType: null
 };
 
@@ -16,9 +16,9 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
         case uploadIconsActionTypes.DELETE_UPLOADED_COMMON_ICON:
             return { ...state, uploadedCommonIcons: { ...removeObjectPropertyImmutably(state.uploadedCommonIcons, action.payload) } };
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL_VIEW:
-            return { ...state, openUploadModal: true, uploadModalViewType: action.payload };
+            return { ...state, isUploadModalOpen: true, uploadModalViewType: action.payload };
         case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL_VIEW:
-            return { ...state, openUploadModal: false, uploadModalViewType: null };
+            return { ...state, isUploadModalOpen: false, uploadModalViewType: null };
         default:
             return state;
     };

@@ -9,4 +9,4 @@ export const selectUploadedCommonIconsObj = createSelector([selectUploadIcons], 
 export const selectUploadedCommonIcons = createSelector([selectUploadedCommonIconsObj],
     (uploadedCommonIcons) => Object.values(uploadedCommonIcons));
 
-export const selectOpenUploadModal = createSelector([selectUploadIcons], (state) => state.openUploadModal);
+export const selectIsUploadModalOpen = createSelector([selectUploadIcons], (state) => state.isUploadModalOpen);
