@@ -24,3 +24,8 @@ export const EDIT_ICON_HEADER_LABEL = "Edit Icon";
 
 //saga message constants
 export const SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user options for common icons';
+
+
+//Upload Modal view constants
+export const MODAL_IN_UPLOAD_VIEW = 'MODAL_IN_UPLOAD_VIEW';
+export const MODAL_IN_CONFIGURE_VIEW = 'MODAL_IN_CONFIGURE_VIEW';

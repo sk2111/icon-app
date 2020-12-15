@@ -14,7 +14,13 @@ export const closeUploadModal = (payload) => {
     }
 };
 
-
+// Modal view changing actions
+export const changeModalView = (payload) => {
+    return {
+        type: uploadIconsActionTypes.SET_UPLOAD_MODAL_VIEW,
+        payload
+    }
+};
 //upload and delete actions
 export const uploadFilesToCommonIcons = (payload) => {
     return {

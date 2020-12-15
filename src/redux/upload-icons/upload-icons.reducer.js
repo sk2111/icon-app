@@ -1,12 +1,14 @@
 import { uploadIconsActionTypes } from './upload-icons.type';
 //helpers
 import { removeObjectPropertyImmutably } from '../../utilities/reducer.helperfunctions';
-
+//constants
+import { MODAL_IN_UPLOAD_VIEW } from '../../utilities/app.constants';
 
 const INITIAL_STATE = {
     uploadedCommonIcons: {},
     isUploadModalOpen: null, // null beacause first time animation close flicker condition
-    uploadModalViewType: null
+    uploadModalTabViewType: null,
+    uploadModalCurrentView: MODAL_IN_UPLOAD_VIEW
 };
 
 const uploadIconsReducer = (state = INITIAL_STATE, action) => {
@@ -16,9 +18,11 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
         case uploadIconsActionTypes.DELETE_UPLOADED_COMMON_ICON:
             return { ...state, uploadedCommonIcons: { ...removeObjectPropertyImmutably(state.uploadedCommonIcons, action.payload) } };
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL_VIEW:
-            return { ...state, isUploadModalOpen: true, uploadModalViewType: action.payload };
+            return { ...state, isUploadModalOpen: true, uploadModalTabViewType: action.payload };
+        case uploadIconsActionTypes.SET_UPLOAD_MODAL_VIEW:
+            return { ...state, uploadModalCurrentView: action.payload };
         case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL_VIEW:
-            return { ...state, isUploadModalOpen: false, uploadModalViewType: null };
+            return { ...state, isUploadModalOpen: false, uploadModalTabViewType: null };
         default:
             return state;
     };

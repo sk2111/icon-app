@@ -9,14 +9,18 @@ import CustomButton from '../custom-button/custom-button.component';
 import UploadZone from '../upload-zone/upload-zone.component';
 import PreviewUploadIcons from '../preview-upload-icons/preview-upload-icons.component';
 //actions
-import { uploadFilesToCommonIcons, deleteCommonIcon, closeUploadModal } from '../../redux/upload-icons/upload-icons.actions';
+import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
-import { selectUploadedCommonIcons } from '../../redux/upload-icons/upload-icons.selectors';
+import { selectUploadedCommonIcons, selectCurrentModalView } from '../../redux/upload-icons/upload-icons.selectors';
 //helpers
 import { normalizeUploadFileIconsStructure } from '../../utilities/helper.functions';
+//constants
+import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../utilities/app.constants';
 
+const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteCommonIcon,
+    closeUploadModal, currentModalView, changeModalView }) => {
 
-const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteCommonIcon, closeUploadModal }) => {
+    console.log("Current Modal view", currentModalView);
 
     const handleCommonIconsFileUpload = (uploadedFiles) => {
         const normalizedIconData = normalizeUploadFileIconsStructure(uploadedFiles);
@@ -30,7 +34,7 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
             <h4 className={styles.viewHeaderText}>Added files</h4>
             <PreviewUploadIcons iconList={uploadedCommonIcons} deleteIcon={deleteCommonIcon} />
             <div className={styles.buttonContainer}>
-                <CustomButton className={styles.nextBtn} primary>Next</CustomButton>
+                <CustomButton className={styles.nextBtn} primary onClick={() => changeModalView(MODAL_IN_CONFIGURE_VIEW)}>Next</CustomButton>
                 <CustomButton secondary onClick={closeUploadModal}>Cancel</CustomButton>
             </div>
         </div>
@@ -40,13 +44,15 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
 
 
 const mapStateToProps = createStructuredSelector({
-    uploadedCommonIcons: selectUploadedCommonIcons
+    uploadedCommonIcons: selectUploadedCommonIcons,
+    currentModalView: selectCurrentModalView
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         uploadFilesToCommonIcons: (icons) => { dispatch(uploadFilesToCommonIcons(icons)) },
         deleteCommonIcon: (iconId) => { dispatch(deleteCommonIcon(iconId)) },
+        changeModalView: (view) => { dispatch(changeModalView(view)) },
         closeUploadModal: () => dispatch(closeUploadModal())
     }
 };
