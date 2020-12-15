@@ -1,0 +1,31 @@
+.headerContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.configHeaderText {
+  color: var(--app-upload-modal-header);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0px;
+}
+.backBtn {
+  color: var(--app-upload-modal-back-btn);
+  font-size: 14px;
+  font-weight: 500;
+}
+.classification {
+  align-items: center;
+  display: flex;
+  margin-top: 14px;
+}
+.classficationLabel {
+  color: var(--app-upload-modal-text);
+  font-size: 14px;
+  margin-right: 41px;
+}
+.createNew {
+  height: 24px;
+  margin-left: 12px;
+  width: 24px;
+}

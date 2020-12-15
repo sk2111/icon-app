@@ -8,6 +8,7 @@ import styles from './upload-icons.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 import UploadZone from '../upload-zone/upload-zone.component';
 import PreviewUploadIcons from '../preview-upload-icons/preview-upload-icons.component';
+import ConfigureUploadIcons from '../configure-upload-icons/configure-upload-icons.component';
 import RenderView from '../render-view/render-view.component';
 //actions
 import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal } from '../../redux/upload-icons/upload-icons.actions';
@@ -39,14 +40,19 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
 
     return (
         <div className={styles.uploadContainer}>
-            <UploadZone validFileNameExtension=".svg" acceptType="image/svg+xml" handleFileUpload={handleCommonIconsFileUpload} />
-            <div className={styles.horizonLine}></div>
-            <h4 className={styles.viewHeaderText}>Added files</h4>
-            <PreviewUploadIcons iconList={uploadedCommonIcons} deleteIcon={deleteCommonIcon} />
-            <div className={styles.buttonContainer}>
-                <CustomButton className={nextBtnClass} primary onClick={handleNextBtnView}>Next</CustomButton>
-                <CustomButton secondary onClick={closeUploadModal}>Cancel</CustomButton>
-            </div>
+            <RenderView renderIfTrue={currentModalView === MODAL_IN_UPLOAD_VIEW}>
+                <UploadZone validFileNameExtension=".svg" acceptType="image/svg+xml" handleFileUpload={handleCommonIconsFileUpload} />
+                <div className={styles.horizonLine}></div>
+                <h4 className={styles.viewHeaderText}>Added files</h4>
+                <PreviewUploadIcons iconList={uploadedCommonIcons} deleteIcon={deleteCommonIcon} />
+                <div className={styles.buttonContainer}>
+                    <CustomButton className={nextBtnClass} primary onClick={handleNextBtnView}>Next</CustomButton>
+                    <CustomButton secondary onClick={closeUploadModal}>Cancel</CustomButton>
+                </div>
+            </RenderView>
+            <RenderView renderIfTrue={currentModalView === MODAL_IN_CONFIGURE_VIEW}>
+                <ConfigureUploadIcons />
+            </RenderView>
         </div>
     );
 };

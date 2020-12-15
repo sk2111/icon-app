@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 //css
 import styles from './custom-select.module.css';
+//component
+import RenderView from '../render-view/render-view.component';
 //static 
 import { ReactComponent as ArrowDownLogo } from '../../assests/arrow-down.svg';
 
@@ -24,7 +26,9 @@ const CustomSelect = ({ label, options, defaultSelectValue, handleSelectValueCha
 
     return (
         <React.Fragment>
-            <span className={styles.dropLabel}>{label}</span>
+            <RenderView renderIfTrue={label}>
+                <span className={styles.dropLabel}>{label}</span>
+            </RenderView>
             <div className={styles.dropdown}>
                 <div
                     className={styles.valueCon}
