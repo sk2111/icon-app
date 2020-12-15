@@ -9,6 +9,11 @@
   font-weight: 500;
   margin: 0px;
 }
+.backContainer {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+}
 .backBtn {
   color: var(--app-upload-modal-back-btn);
   font-size: 14px;
@@ -19,13 +24,24 @@
   display: flex;
   margin-top: 14px;
 }
-.classficationLabel {
+.label {
   color: var(--app-upload-modal-text);
   font-size: 14px;
-  margin-right: 41px;
+  width: 100px;
+}
+.labelTags {
+  color: var(--app-upload-modal-text);
+  font-size: 14px;
+  width: 100px;
 }
 .createNew {
+  cursor: pointer;
   height: 24px;
   margin-left: 12px;
   width: 24px;
+}
+.tagsContainer {
+  align-items: center;
+  margin-top: 10px;
+  display: flex;
 }

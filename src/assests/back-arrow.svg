@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="10px" viewBox="0 0 11 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Home-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HighLevel---Upload-Icon-step-2" transform="translate(-897.000000, -51.000000)">
+            <g id="Group-5" transform="translate(408.000000, 25.000000)">
+                <g id="Back" transform="translate(489.000000, 23.000000)">
+                    <g id="Chevron/down" transform="translate(5.500000, 8.250000) rotate(-270.000000) translate(-5.500000, -8.250000) translate(1.000000, 3.000000)">
+                        <rect id="Rectangle" x="0" y="1.5" width="9" height="9"></rect>
+                        <path d="M2.232452,1.68197889 L2.28019602,1.68360607 L6.68880077,1.698339 C7.11736216,1.69971131 7.46366871,2.04867037 7.46230993,2.47776088 C7.46102538,2.87620207 7.16041733,3.20363188 6.77434958,3.24727595 L6.68383733,3.2522132 L3.01893184,3.23981903 L3.04680583,6.89927777 C3.04995979,7.32835885 2.70510657,7.67875775 2.2765546,7.68195827 C1.87861348,7.6848479 1.54843201,7.3873423 1.5007683,7.00128021 L1.49488184,6.91071339 L1.46230993,2.45277773 L1.47125892,2.34183095 L1.46812985,2.36215309 C1.51539904,1.98110713 1.83857427,1.68488124 2.232452,1.68197889 Z" id="Combined-Shape" fill="#173895" fill-rule="nonzero" transform="translate(4.462312, 4.681979) scale(1, -1) rotate(-315.000000) translate(-4.462312, -4.681979) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,24 @@
+.tagContainer {
+  background-color: var(--app-custom-tags-background);
+  border-radius: 3px;
+  padding: 8px;
+  height: 64px;
+  width: 413px;
+}
+.inputField {
+  width: 100%;
+}
+.tagLabel {
+  border: 1px solid var(--app-custom-tags-border);
+  border-radius: 3px;
+  color: var(--app-custom-tags-text);
+  font-size: 12px;
+  font-weight: 500;
+  height: 21px;
+  margin-right: 8px;
+  padding: 3.5px 6.5px 3.5px 8.5px;
+}
+.deleteTag {
+  height: 10px;
+  width: 10px;
+}
