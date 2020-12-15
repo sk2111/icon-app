@@ -8,6 +8,7 @@ import styles from './upload-icons.module.css';
 import CustomButton from '../custom-button/custom-button.component';
 import UploadZone from '../upload-zone/upload-zone.component';
 import PreviewUploadIcons from '../preview-upload-icons/preview-upload-icons.component';
+import RenderView from '../render-view/render-view.component';
 //actions
 import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
@@ -22,9 +23,18 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
 
     console.log("Current Modal view", currentModalView);
 
+    const isUserUploadedIcons = !!uploadedCommonIcons.length;
+    const nextBtnClass = styles.nextBtn + ' ' + (isUserUploadedIcons ? '' : styles.disabled);
+
     const handleCommonIconsFileUpload = (uploadedFiles) => {
         const normalizedIconData = normalizeUploadFileIconsStructure(uploadedFiles);
         uploadFilesToCommonIcons(normalizedIconData);
+    };
+
+    const handleNextBtnView = () => {
+        if (uploadedCommonIcons.length) {
+            changeModalView(MODAL_IN_CONFIGURE_VIEW);
+        }
     };
 
     return (
@@ -34,7 +44,7 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
             <h4 className={styles.viewHeaderText}>Added files</h4>
             <PreviewUploadIcons iconList={uploadedCommonIcons} deleteIcon={deleteCommonIcon} />
             <div className={styles.buttonContainer}>
-                <CustomButton className={styles.nextBtn} primary onClick={() => changeModalView(MODAL_IN_CONFIGURE_VIEW)}>Next</CustomButton>
+                <CustomButton className={nextBtnClass} primary onClick={handleNextBtnView}>Next</CustomButton>
                 <CustomButton secondary onClick={closeUploadModal}>Cancel</CustomButton>
             </div>
         </div>

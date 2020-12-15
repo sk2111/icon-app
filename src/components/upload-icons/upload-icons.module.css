@@ -27,3 +27,8 @@
 .nextBtn {
   margin-right: 12px;
 }
+.disabled {
+  opacity: 0.5;
+  cursor: none;
+  pointer-events: none;
+}
