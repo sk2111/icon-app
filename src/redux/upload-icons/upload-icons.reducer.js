@@ -1,8 +1,8 @@
 import { uploadIconsActionTypes } from './upload-icons.type';
 //helpers
-import { removeObjectPropertyImmutably } from '../../utilities/reducer.helperfunctions';
+import { removeObjectPropertiesImmutably } from '../../utilities/reducer.helperfunctions';
 //constants
-import { MODAL_IN_UPLOAD_VIEW } from '../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../utilities/app.constants';
 
 const INITIAL_STATE = {
     uploadedCommonIcons: {},
@@ -16,7 +16,7 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
         case uploadIconsActionTypes.SET_UPLOADED_COMMON_ICONS:
             return { ...state, uploadedCommonIcons: { ...state.uploadedCommonIcons, ...action.payload } };
         case uploadIconsActionTypes.DELETE_UPLOADED_COMMON_ICON:
-            return { ...state, uploadedCommonIcons: { ...removeObjectPropertyImmutably(state.uploadedCommonIcons, action.payload) } };
+            return { ...state, uploadedCommonIcons: { ...removeObjectPropertiesImmutably(state.uploadedCommonIcons, action.payload) } };
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL_VIEW:
             return { ...state, isUploadModalOpen: true, uploadModalTabViewType: action.payload };
         case uploadIconsActionTypes.SET_UPLOAD_MODAL_VIEW:

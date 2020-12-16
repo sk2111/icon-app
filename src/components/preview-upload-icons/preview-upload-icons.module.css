@@ -22,6 +22,7 @@
   display: grid;
   grid-template-columns: repeat(6, 75px);
   height: 100%;
+  overflow-x: hidden;
   overflow-y: scroll;
   padding: 16px;
   row-gap: 15px;

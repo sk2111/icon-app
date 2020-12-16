@@ -1,30 +1,29 @@
 //libs
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 //css
 import styles from './preview-upload-icons.module.css';
 //components
 import RenderView from '../render-view/render-view.component';
-// custom hooks
-import { useForceUpdate } from '../../hooks/force-update';
 //static
 import { ReactComponent as NoFileFoundSvg } from '../../assests/no-files-found.svg';
 import Remove from '../../assests/close.png';
 
 const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
 
-    const forceUpdate = useForceUpdate();
-    const deleteAnimation = useRef([]);
+    const [deleteIconList, setDeleteIconList] = useState([]);
+
+    useEffect(() => {
+        if (deleteIconList.length) {
+            const timerId = setTimeout(() => {
+                deleteIcon([...deleteIconList]);
+                setDeleteIconList([]);
+            }, 400);
+            return () => clearTimeout(timerId);
+        }
+    }, [deleteIconList, deleteIcon]);
 
     const handleDeleteIcon = (iconId) => {
-        deleteAnimation.current.push(iconId);
-        forceUpdate();
-        setTimeout(() => {
-            deleteIcon(iconId);
-            const index = deleteAnimation.current.indexOf(iconId);
-            if (index > -1) {
-                deleteAnimation.current.splice(index, 1);
-            }
-        }, 400);
+        setDeleteIconList([...deleteIconList, iconId]);
     };
 
     return (
@@ -39,7 +38,7 @@ const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
                 <div className={styles.previewZone}>
                     {
                         iconList.map(({ id, iconsBase64, iconName }) => {
-                            const containerClass = styles.previewContainer + ' ' + ((deleteAnimation.current.includes(id)) ? styles.deleteAnim : '');
+                            const containerClass = styles.previewContainer + ' ' + ((deleteIconList.includes(id)) ? styles.deleteAnim : '');
                             return (
                                 <div key={id} className={containerClass}>
                                     <img className={styles.remove} src={Remove} alt="x" onClick={() => handleDeleteIcon(id)} />
