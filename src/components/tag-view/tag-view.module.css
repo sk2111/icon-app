@@ -1,0 +1,19 @@
+.tagLabel {
+  align-items: center;
+  border: 1px solid var(--app-custom-tags-border);
+  border-radius: 3px;
+  color: var(--app-custom-tags-text);
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  height: 21px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  padding: 3.5px 6.5px 3.5px 8.5px;
+}
+.deleteTag {
+  cursor: pointer;
+  height: 10px;
+  margin-left: 8px;
+  width: 10px;
+}
