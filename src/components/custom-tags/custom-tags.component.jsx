@@ -16,7 +16,7 @@ const CustomTags = () => {
 
     const handleInputKeyPress = (eve) => {
         if (eve.key === ENTER_KEYCODE) {
-            if (!tags.includes(tagInputValue)) {
+            if (!tags.includes(tagInputValue) && tagInputValue) {
                 setTags([...tags, tagInputValue]);
                 setTagInputValue('');
             }
@@ -32,15 +32,17 @@ const CustomTags = () => {
             {
                 tags.map((tagLabel) => {
                     return (
-                        <span key={tagLabel} className={styles.tagLabel}>
-                            <span>{tagLabel}</span>
+                        <div key={tagLabel} className={styles.tagLabel}>
+                            <div>{tagLabel}</div>
                             <DeleteTag className={styles.deleteTag} />
-                        </span>
+                        </div>
                     );
                 })
             }
-            <input className={styles.inputField} type="text" value={tagInputValue}
-                onKeyPress={handleInputKeyPress} onChange={handeInputChange} />
+            <div className={styles.inputContainer}>
+                <input className={styles.inputField} type="text" value={tagInputValue}
+                    onKeyPress={handleInputKeyPress} onChange={handeInputChange} />
+            </div>
         </div>
     );
 };
