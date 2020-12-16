@@ -25,7 +25,7 @@ const CustomTags = ({ suggestionOptions }) => {
         if (inpRef) {
             const inputWidth = inpRef.current.getBoundingClientRect().width;
             if (inputWidth) {
-                setTagSuggestionAlignLeft(inputWidth < 220);
+                setTagSuggestionAlignLeft(inputWidth < 208);
             }
             inpRef.current.scrollIntoView();
         }

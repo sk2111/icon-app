@@ -18,7 +18,10 @@
   width: 50px;
 }
 .inputField {
+  background-color: var(--app-custom-tags-background);
+  border: none;
   height: 21px;
+  outline: none;
   width: 100%;
 }
 .tagContainer::-webkit-scrollbar {
