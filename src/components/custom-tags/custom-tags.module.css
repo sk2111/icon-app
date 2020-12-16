@@ -20,6 +20,7 @@
 .inputField {
   background-color: var(--app-custom-tags-background);
   border: none;
+  color: var(--app-upload-modal-text);
   height: 21px;
   outline: none;
   width: 100%;
