@@ -5,12 +5,13 @@
   flex-wrap: wrap;
   overflow: scroll;
   overflow-x: hidden;
-  padding: 8px;
-  max-height: 112px;
+  max-height: 120px;
+  padding: 0 8px 8px 8px;
   width: 413px;
 }
 .inputContainer {
   flex-grow: 2;
+  margin-top: 8px;
   width: 50px;
 }
 .inputField {
@@ -35,7 +36,6 @@
   overflow-y: scroll;
   position: absolute;
   transition: max-height var(--app-search-select-open-transition);
-  width: 100%;
   z-index: 1;
   width: 200px;
 }

@@ -6,7 +6,7 @@ import styles from './tag-view.module.css';
 import { ReactComponent as DeleteTag } from '../../assests/delete-tag.svg';
 
 
-const TagView = ({ tags }) => {
+const TagView = ({ tags, deleteTag }) => {
     return (
         <React.Fragment>
             {
@@ -14,7 +14,7 @@ const TagView = ({ tags }) => {
                     return (
                         <div key={tagLabel} className={styles.tagLabel}>
                             <div>{tagLabel}</div>
-                            <DeleteTag className={styles.deleteTag} />
+                            <DeleteTag className={styles.deleteTag} onClick={() => deleteTag(tagLabel)} />
                         </div>
                     );
                 })
