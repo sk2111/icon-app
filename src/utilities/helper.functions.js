@@ -4,6 +4,16 @@ export const frameCurrentUserObject = (userObj) => {
     };
 };
 
+export const compareProps = (a, b, aKey, bKey) => {
+    if (a[aKey] < b[bKey]) {
+        return -1;
+    }
+    if (a[aKey] > b[bKey]) {
+        return 1;
+    }
+    return 0;
+}
+
 export const trimStr = (toTrimValue) => {
     return String(toTrimValue).replace(/\s/g, '').toLowerCase();
 };
