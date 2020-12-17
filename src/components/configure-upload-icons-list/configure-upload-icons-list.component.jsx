@@ -7,6 +7,8 @@ import styles from './configure-upload-icons-list.module.css';
 //component
 import CustomSelect from '../custom-select/custom-select.component';
 import RenderView from '../render-view/render-view.component';
+//actions
+import { editUploadIconName } from '../../redux/upload-icons/upload-icons.actions';
 //reselect selectors
 import { selectUploadedCommonIcons } from '../../redux/upload-icons/upload-icons.selectors';
 //static
@@ -14,7 +16,7 @@ import { ReactComponent as EditSvg } from '../../assests/edit-name.svg';
 
 
 
-const ConfigureUploadIconsList = ({ uploadedIcons }) => {
+const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName }) => {
 
     const [createNewNameOpen, setCreateNewNameOpen] = useState(false);
     const [newName, setNewName] = useState({ name: '', id: '' });
@@ -27,9 +29,16 @@ const ConfigureUploadIconsList = ({ uploadedIcons }) => {
         setNewName({ name, id });
         setCreateNewNameOpen(true);
     };
+
     const handleNewNameChange = (eve) => {
         const name = eve.target.value;
-        setNewName(name);
+        setNewName({ ...newName, name });
+    };
+
+    const handleNewNameUpdate = () => {
+        const { id, name } = newName;
+        editUploadIconName({ id, value: name, key: "iconName" });
+        setCreateNewNameOpen(false);
     };
 
     return (
@@ -60,7 +69,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons }) => {
                     <input className={styles.nameInput} type="text" value={newName.name} onChange={handleNewNameChange} />
                     <div className={styles.actionCon}>
                         <button className={cancelBtnClass} onClick={() => setCreateNewNameOpen(false)}>Cancel</button>
-                        <button className={okayBtnClass}>Ok</button>
+                        <button className={okayBtnClass} onClick={() => handleNewNameUpdate()}>Ok</button>
                     </div>
                 </div>
             </RenderView>
@@ -74,7 +83,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        uploadFilesToCommonIcons: (icons) => { dispatch((icons)) },
+        editUploadIconName: (config) => { dispatch(editUploadIconName(config)) },
     }
 };
 

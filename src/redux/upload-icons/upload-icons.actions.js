@@ -21,6 +21,7 @@ export const changeModalView = (payload) => {
         payload
     }
 };
+
 //upload and delete actions
 export const uploadFilesToCommonIcons = (payload) => {
     return {
@@ -36,3 +37,10 @@ export const deleteCommonIcon = (payload) => {
     }
 };
 
+//Edit Icon properties
+export const editUploadIconName = (payload) => {
+    return {
+        type: uploadIconsActionTypes.EDIT_UPLOAD_ICON_NAME,
+        payload
+    }
+};

@@ -9,3 +9,15 @@ export const removeObjectPropertiesImmutably = (obj, keys) => {
     }
     return obj;
 };
+
+export const editObjectPropertiesImmutably = (obj, { key, value, id }) => {
+    if (key && value && id) {
+        const { [id]: objToEdit, ...otherObj } = obj;
+        if (objToEdit) {
+            const editedObj = { ...objToEdit, [key]: value };
+            return { ...otherObj, [id]: { ...editedObj } };
+        }
+        return obj;
+    }
+    return obj;
+};
