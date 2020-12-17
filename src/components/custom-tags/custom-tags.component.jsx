@@ -28,7 +28,6 @@ const CustomTags = ({ suggestionOptions }) => {
                 setTagSuggestionAlignLeft(inputWidth < 208);
             }
             inpRef.current.scrollIntoView();
-            inpRef.current.focus();
         }
     }, [tagInputValue, tags]);
 
@@ -41,9 +40,6 @@ const CustomTags = ({ suggestionOptions }) => {
     };
 
     const handleInputKeyPress = (eve) => {
-        if (!tagInputFocussed) {
-            setTagInputFocussed(true);
-        }
         if (eve.key === ENTER_KEYCODE) {
             setTagsValue(tagInputValue);
         }
@@ -87,7 +83,7 @@ const CustomTags = ({ suggestionOptions }) => {
 
 
 CustomTags.defaultProps = {
-    suggestionOptions: ["Mock","test",'NewData',"oldData"]
+    suggestionOptions: ["Mock", "test", 'NewData', "oldData"]
 }
 
 export default CustomTags;
