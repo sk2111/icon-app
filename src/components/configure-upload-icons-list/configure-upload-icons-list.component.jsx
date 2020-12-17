@@ -8,16 +8,19 @@ import styles from './configure-upload-icons-list.module.css';
 import CustomSelect from '../custom-select/custom-select.component';
 //reselect selectors
 import { selectUploadedCommonIcons } from '../../redux/upload-icons/upload-icons.selectors';
-
+//static
+import { ReactComponent as EditSvg } from '../../assests/edit-name.svg';
 
 
 
 const ConfigureUploadIconsList = ({ uploadedIcons }) => {
 
-    const selectStyles = { height: "26px", width: "108px" };
+    const selectStyles = { height: "27px", width: "160px" };
+    const okayBtnClass = styles.okayBtn + ' ' + styles.button;
+    const cancelBtnClass = styles.cancelBtn + ' ' + styles.button;
 
     return (
-        <React.Fragment>
+        <div className={styles.topContainer}>
             {
                 uploadedIcons.map(({ id, iconsBase64, iconTags, iconName, iconClassfication }) => {
 
@@ -27,8 +30,9 @@ const ConfigureUploadIconsList = ({ uploadedIcons }) => {
                                 <img className={styles.previewImage} src={`data:image/svg+xml;base64,${iconsBase64}`} alt="Invalid" />
                             </div>
                             <div className={styles.selectionZone}>
-                                <div className={styles.iconName}>
-                                    <div>{iconName}</div>
+                                <div className={styles.iconNameCon}>
+                                    <div className={styles.iconName}>{iconName}</div>
+                                    <EditSvg className={styles.editSvg} />
                                 </div>
                                 <CustomSelect style={selectStyles} options={["All", "1", "2", "3"]} defaultSelectValue={"1"} />
                             </div>
@@ -37,7 +41,15 @@ const ConfigureUploadIconsList = ({ uploadedIcons }) => {
                     )
                 })
             }
-        </React.Fragment>
+            <div className={styles.popupView}>
+                <h6 className={styles.popupHeader}>Create New Name</h6>
+                <input className={styles.nameInput} type="text" />
+                <div className={styles.actionCon}>
+                    <button className={cancelBtnClass}>Cancel</button>
+                    <button className={okayBtnClass}>Ok</button>
+                </div>
+            </div>
+        </div>
     );
 };
 
