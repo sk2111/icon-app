@@ -22,13 +22,6 @@
   height: 30px;
   width: 30px;
 }
-.iconNameCon {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-}
-
 .iconName {
   color: #707071;
   font-size: 14px;
@@ -36,10 +29,6 @@
   text-overflow: ellipsis;
   max-width: 140px;
   white-space: nowrap;
-}
-.editSvg {
-  cursor: pointer;
-  margin-left: 5px;
 }
 .popupView {
   background-color: #ffffff;

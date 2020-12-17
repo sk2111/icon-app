@@ -43,9 +43,9 @@ const ConfigureUploadIconsList = ({ uploadedIcons }) => {
                                 <img className={styles.previewImage} src={`data:image/svg+xml;base64,${iconsBase64}`} alt="Invalid" />
                             </div>
                             <div className={styles.selectionZone}>
-                                <div className={styles.iconNameCon}>
+                                <div className="re-uploadname-container">
                                     <div className={styles.iconName}>{iconName}</div>
-                                    <EditSvg className={styles.editSvg} onClick={() => handleEditName(iconName, id)} />
+                                    <EditSvg className="re-upload-editSvg" onClick={() => handleEditName(iconName, id)} />
                                 </div>
                                 <CustomSelect style={selectStyles} options={["All", "1", "2", "3"]} defaultSelectValue={"1"} />
                             </div>
