@@ -87,7 +87,7 @@ const CustomTags = ({ suggestionOptions }) => {
 
 
 CustomTags.defaultProps = {
-    suggestionOptions: []
+    suggestionOptions: ["Mock","test",'NewData',"oldData"]
 }
 
 export default CustomTags;

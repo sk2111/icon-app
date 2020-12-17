@@ -6,16 +6,17 @@ import RenderView from '../render-view/render-view.component';
 //static 
 import { ReactComponent as ArrowDownLogo } from '../../assests/arrow-down.svg';
 
-const CustomSelect = ({ label, options, defaultSelectValue, handleSelectValueChange }) => {
+const CustomSelect = ({ label, style, options, defaultSelectValue, handleSelectValueChange }) => {
 
     const matchedOptionRef = useRef(null);
     const [selectValue, setSelectValue] = useState(defaultSelectValue);
     const [optionsHidden, setOptionsHidden] = useState(true);
 
     const containerStyle = optionsHidden ? { maxHeight: '0px', transition: 'none' } : {};
+    const selectStyles = style ? style : {};
 
     useEffect(() => {
-        if (!optionsHidden) {
+        if (!optionsHidden && matchedOptionRef.current) {
             matchedOptionRef.current.scrollIntoView();
         }
     }, [matchedOptionRef, optionsHidden]);
@@ -35,7 +36,7 @@ const CustomSelect = ({ label, options, defaultSelectValue, handleSelectValueCha
                     tabIndex="0"
                     onBlur={() => setOptionsHidden(true)}
                     onClick={() => setOptionsHidden(!optionsHidden)}>
-                    <div className={styles.selectedValue}>{selectValue}</div>
+                    <div style={selectStyles} className={styles.selectedValue}>{selectValue}</div>
                     <ArrowDownLogo className={styles.arrowDown} />
                 </div>
                 <div style={containerStyle} className={styles.optionsCon}>

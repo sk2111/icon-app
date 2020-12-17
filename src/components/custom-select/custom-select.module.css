@@ -39,6 +39,7 @@
   position: absolute;
   transition: max-height var(--app-select-open-transition);
   width: 100%;
+  z-index: 10;
 }
 .option {
   align-items: center;
