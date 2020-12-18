@@ -109,6 +109,10 @@
   --app-upload-modal-text: #707071;
   --app-upload-modal-preview-shadow: #dbdbdc;
   --app-upload-modal-preview-background: #ffffff;
+  --app-upload-modal-background: #ffffff;
+  --app-upload-modal-input-background: #f3f3f4;
+  --app-upload-modal-button-color: #989899;
+  --app-upload-modal-button-background: #ffffff;
   --app-upload-modal-back-btn: #173895;
 
   /* Action buttons */
