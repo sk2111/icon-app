@@ -25,32 +25,36 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
 
     return (
         <React.Fragment>
-            <div className={styles.headerContainer}>
-                <h4 className={styles.configHeaderText}>Upload files to Common Icons</h4>
-                <div className={styles.backContainer} onClick={() => changeModalView(MODAL_IN_UPLOAD_VIEW)}>
-                    <BackArrow className={styles.backArrow} />
-                    <div className={styles.backBtn}>Back</div>
+            <div className={styles.container}>
+                <div className={styles.viewContainer}>
+                    <div className={styles.headerContainer}>
+                        <h4 className={styles.configHeaderText}>Upload files to Common Icons</h4>
+                        <div className={styles.backContainer} onClick={() => changeModalView(MODAL_IN_UPLOAD_VIEW)}>
+                            <BackArrow className={styles.backArrow} />
+                            <div className={styles.backBtn}>Back</div>
+                        </div>
+                    </div>
+                    <div className={styles.classification}>
+                        <div className={styles.label}>Category</div>
+                        <CustomSelect
+                            options={filteredCommonIconsSelectOptions}
+                            defaultSelectValue="1"
+                            handleSelectValueChange={() => { }}
+                        />
+                        <CreateNewClassfication className={styles.createNew} />
+                    </div>
+                    <div className={styles.tagsContainer}>
+                        <div className={styles.labelTags}>Common tags</div>
+                        <CustomTags />
+                    </div>
+                    <div className={styles.configPreview}>
+                        <ConfigureUploadIconsList filteredSelectOptions={filteredCommonIconsSelectOptions} />
+                    </div>
                 </div>
-            </div>
-            <div className={styles.classification}>
-                <div className={styles.label}>Category</div>
-                <CustomSelect
-                    options={filteredCommonIconsSelectOptions}
-                    defaultSelectValue="1"
-                    handleSelectValueChange={() => { }}
-                />
-                <CreateNewClassfication className={styles.createNew} />
-            </div>
-            <div className={styles.tagsContainer}>
-                <div className={styles.labelTags}>Common tags</div>
-                <CustomTags />
-            </div>
-            <div className={styles.configPreview}>
-                <ConfigureUploadIconsList filteredSelectOptions={filteredCommonIconsSelectOptions} />
-            </div>
-            <div className={styles.btnContainer}>
-                <CustomButton className={styles.uploadBtn} primary onClick={''}>Upload</CustomButton>
-                <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
+                <div className={styles.btnContainer}>
+                    <CustomButton className={styles.uploadBtn} primary onClick={''}>Upload</CustomButton>
+                    <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
+                </div>
             </div>
         </React.Fragment>
     );
