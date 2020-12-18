@@ -15,6 +15,10 @@ export const FAVORITES_ICONS_INPUT_PLACEHOLDER = 'Search for your favorites icon
 export const COMMON_ICONS_SELECT_LABEL = 'Categories';
 export const PROJECT_ICONS_SELECT_LABEL = 'Projects';
 
+//default select value for common icons in display UI
+export const COMMON_ICON_DEFAULT_CATEGORY_VALUE = 'All';
+export const UPLOAD_ICONS_DEFAULT_CLASSIFICATION_VALUE = 'Not Selected';
+
 // Page Names to display in Icon view header
 export const COMMON_ICONS_HEADER_LABEL = "Common Icons";
 export const PROJECT_ICONS_HEADER_LABEL = "Project Icons";
@@ -29,3 +33,4 @@ export const SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user optio
 //Upload Modal view constants
 export const MODAL_IN_UPLOAD_VIEW = 'MODAL_IN_UPLOAD_VIEW';
 export const MODAL_IN_CONFIGURE_VIEW = 'MODAL_IN_CONFIGURE_VIEW';
+

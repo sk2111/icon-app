@@ -1,3 +1,6 @@
+//constants
+import { UPLOAD_ICONS_DEFAULT_CLASSIFICATION_VALUE } from './app.constants';
+
 export const frameCurrentUserObject = (userObj) => {
     return {
         ...userObj, isAdmin: false
@@ -102,7 +105,7 @@ export const normalizeUploadFileIconsStructure = (files) => {
         normalizedData[randomProperty] = {
             id: randomProperty,
             iconName: fileName,
-            iconClassification: [],
+            iconClassification: [UPLOAD_ICONS_DEFAULT_CLASSIFICATION_VALUE],
             iconTags: [getAlphaOnly(file.name, ' ', true)],
             createdAt: new Date(),
             iconsBase64: base64data,
