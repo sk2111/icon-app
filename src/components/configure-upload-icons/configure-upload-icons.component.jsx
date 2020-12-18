@@ -13,13 +13,14 @@ import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-u
 import { changeModalView } from '../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsSelectOptions } from '../../redux/common-icons/common-icons.selectors';
+import { selectDefaultClassification } from '../../redux/upload-icons/upload-icons.selectors';
 //constants
 import { MODAL_IN_UPLOAD_VIEW, COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../utilities/app.constants';
 //static 
 import { ReactComponent as BackArrow } from '../../assests/back-arrow.svg';
 import { ReactComponent as CreateNewClassfication } from '../../assests/create-new-classification.svg';
 
-const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions }) => {
+const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions, defaultSelectValue }) => {
 
     const filteredCommonIconsSelectOptions = commonIconsSelectOptions.filter(option => option !== COMMON_ICON_DEFAULT_CATEGORY_VALUE);
 
@@ -38,7 +39,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                         <div className={styles.label}>Category</div>
                         <CustomSelect
                             options={filteredCommonIconsSelectOptions}
-                            defaultSelectValue="1"
+                            defaultSelectValue={defaultSelectValue}
                             handleSelectValueChange={() => { }}
                         />
                         <CreateNewClassfication className={styles.createNew} />
@@ -61,7 +62,8 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
 };
 
 const mapStateToProps = createStructuredSelector({
-    commonIconsSelectOptions: selectCommonIconsSelectOptions
+    commonIconsSelectOptions: selectCommonIconsSelectOptions,
+    defaultSelectValue: selectDefaultClassification
 });
 
 const mapDispatchToProps = (dispatch) => {
