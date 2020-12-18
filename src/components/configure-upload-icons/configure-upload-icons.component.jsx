@@ -1,6 +1,7 @@
 //libs
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 //css
 import styles from './configure-upload-icons.module.css';
 //components
@@ -9,13 +10,18 @@ import CustomTags from '../custom-tags/custom-tags.component';
 import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-upload-icons-list.component';
 //actions
 import { changeModalView } from '../../redux/upload-icons/upload-icons.actions';
+//reselect 
+import { selectCommonIconsSelectOptions } from '../../redux/common-icons/common-icons.selectors';
 //constants
-import { MODAL_IN_UPLOAD_VIEW } from '../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW, COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../utilities/app.constants';
 //static 
 import { ReactComponent as BackArrow } from '../../assests/back-arrow.svg';
 import { ReactComponent as CreateNewClassfication } from '../../assests/create-new-classification.svg';
 
-const ConfigureUploadIcons = ({ changeModalView }) => {
+const ConfigureUploadIcons = ({ changeModalView, commonIconsSelectOptions }) => {
+
+    const filteredCommonIconsSelectOptions = commonIconsSelectOptions.filter(option => option !== COMMON_ICON_DEFAULT_CATEGORY_VALUE);
+
     return (
         <React.Fragment>
             <div className={styles.headerContainer}>
@@ -28,7 +34,7 @@ const ConfigureUploadIcons = ({ changeModalView }) => {
             <div className={styles.classification}>
                 <div className={styles.label}>Category</div>
                 <CustomSelect
-                    options={['1', '2', '3']}
+                    options={filteredCommonIconsSelectOptions}
                     defaultSelectValue="1"
                     handleSelectValueChange={() => { }}
                 />
@@ -39,11 +45,15 @@ const ConfigureUploadIcons = ({ changeModalView }) => {
                 <CustomTags />
             </div>
             <div className={styles.configPreview}>
-                <ConfigureUploadIconsList />
+                <ConfigureUploadIconsList filteredSelectOptions={filteredCommonIconsSelectOptions} />
             </div>
         </React.Fragment>
     );
 };
+
+const mapStateToProps = createStructuredSelector({
+    commonIconsSelectOptions: selectCommonIconsSelectOptions
+});
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -52,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(null, mapDispatchToProps)(ConfigureUploadIcons);
+export default connect(mapStateToProps, mapDispatchToProps)(ConfigureUploadIcons);

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 //constants
-import { DEFAULT_CATEGORY_VALUE } from './common-icons.constants';
+import { COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../utilities/app.constants';
 //helpers
 import { trimStr } from '../../utilities/helper.functions';
 
@@ -26,7 +26,7 @@ export const selectCommonIconsToDisplay = createSelector(
     (searchTagValue, classificationValue, iconsMap) => {
         console.log(" Hai I am reselect group runner", searchTagValue, classificationValue);
         const iconsArray = Object.values(iconsMap);
-        const defaultValue = trimStr(DEFAULT_CATEGORY_VALUE);
+        const defaultValue = trimStr(COMMON_ICON_DEFAULT_CATEGORY_VALUE);
         const filteredArray = iconsArray.filter((icon) => {
             const keyWordMatchResult = icon.tags.join(' ').includes(searchTagValue);
             const classficationMatchResult = icon.classification === classificationValue;

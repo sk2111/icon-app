@@ -1,4 +1,3 @@
-export const DEFAULT_CATEGORY_VALUE = 'All';
 
 export const MOCK_DATA = {
     1: { name: 'name arrow', classification: 'arrow', tags: ["a", "arr", "arrow", "left"] },

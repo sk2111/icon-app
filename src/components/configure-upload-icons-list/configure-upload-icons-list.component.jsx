@@ -11,17 +11,18 @@ import RenderView from '../render-view/render-view.component';
 import { editUploadIconName } from '../../redux/upload-icons/upload-icons.actions';
 //reselect selectors
 import { selectUploadedCommonIcons } from '../../redux/upload-icons/upload-icons.selectors';
+import { selectCommonIconsSelectOptions } from '../../redux/common-icons/common-icons.selectors';
 //static
 import { ReactComponent as EditSvg } from '../../assests/edit-name.svg';
 
 
 
-const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName }) => {
+const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, filteredSelectOptions, commonIconsSelectOptions }) => {
 
     const [createNewNameOpen, setCreateNewNameOpen] = useState(false);
     const [newName, setNewName] = useState({ name: '', id: '' });
 
-    const selectStyles = { height: "27px", width: "160px" };
+    const selectStyles = { fontSize: "13px", height: "27px", width: "160px" };
     const okayBtnClass = styles.okayBtn + ' ' + styles.button;
     const cancelBtnClass = styles.cancelBtn + ' ' + styles.button;
 
@@ -44,8 +45,8 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName }) => {
     return (
         <div className={styles.topContainer}>
             {
-                uploadedIcons.map(({ id, iconsBase64, iconTags, iconName, iconClassfication }) => {
-
+                uploadedIcons.map(({ id, iconsBase64, iconTags, iconName, iconClassification }) => {
+                    const defaultSelectValue = iconClassification[0];
                     return (
                         <div key={id} className={styles.listContainer}>
                             <div className={styles.imgContainer}>
@@ -56,7 +57,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName }) => {
                                     <div className={styles.iconName}>{iconName}</div>
                                     <EditSvg className="re-upload-editSvg" onClick={() => handleEditName(iconName, id)} />
                                 </div>
-                                <CustomSelect style={selectStyles} options={["All", "1", "2", "3"]} defaultSelectValue={"1"} />
+                                <CustomSelect style={selectStyles} options={filteredSelectOptions} defaultSelectValue={defaultSelectValue} />
                             </div>
                             <div></div>
                         </div>
@@ -79,6 +80,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName }) => {
 
 const mapStateToProps = createStructuredSelector({
     uploadedIcons: selectUploadedCommonIcons,
+    commonIconsSelectOptions: selectCommonIconsSelectOptions
 });
 
 const mapDispatchToProps = (dispatch) => {
