@@ -37,9 +37,9 @@
     0 20px 15px 0 rgba(219, 219, 220, 0.31);
   height: 143px;
   padding: 16px 20px 16px 20px;
-  position: absolute;
-  right: 115px;
-  top: 100px;
+  position: fixed;
+  right: 145px;
+  top: 260px;
   width: 300px;
   z-index: 10;
 }
