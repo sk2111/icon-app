@@ -19,25 +19,27 @@ import { ReactComponent as EditSvg } from '../../assests/edit-name.svg';
 const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, filteredSelectOptions, editUploadIconClassification }) => {
 
     const [createNewNameOpen, setCreateNewNameOpen] = useState(false);
-    const [newName, setNewName] = useState({ name: '', id: '' });
+    const [iconName, setIconName] = useState({ newName: '', oldName: '', id: '' });
 
     const selectStyles = { fontSize: "13px", height: "27px", width: "160px" };
     const okayBtnClass = styles.okayBtn + ' ' + styles.button;
     const cancelBtnClass = styles.cancelBtn + ' ' + styles.button;
 
-    const handleEditName = (name, id) => {
-        setNewName({ name, id });
+    const handleEditName = (oldName, id) => {
+        setIconName({ newName: oldName, oldName, id });
         setCreateNewNameOpen(true);
     };
 
-    const handleNewNameChange = (eve) => {
-        const name = eve.target.value;
-        setNewName({ ...newName, name });
+    const handleIconNameChange = (eve) => {
+        const newNameValue = eve.target.value;
+        setIconName({ ...iconName, newName: newNameValue });
     };
 
-    const handleNewNameUpdate = () => {
-        const { id, name } = newName;
-        editUploadIconName({ id, value: name, key: "iconName" });
+    const handleIconNameUpdate = () => {
+        const { id, newName, oldName } = iconName;
+        if (newName !== oldName) {
+            editUploadIconName({ id, value: newName, key: "iconName" });
+        }
         setCreateNewNameOpen(false);
     };
 
@@ -76,10 +78,10 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, filteredS
             <RenderView renderIfTrue={createNewNameOpen}>
                 <div className={styles.popupView}>
                     <h6 className={styles.popupHeader}>Create New Name</h6>
-                    <input className={styles.nameInput} type="text" value={newName.name} onChange={handleNewNameChange} />
+                    <input className={styles.nameInput} type="text" value={iconName.newName} onChange={handleIconNameChange} />
                     <div className={styles.actionCon}>
                         <button className={cancelBtnClass} onClick={() => setCreateNewNameOpen(false)}>Cancel</button>
-                        <button className={okayBtnClass} onClick={() => handleNewNameUpdate()}>Ok</button>
+                        <button className={okayBtnClass} onClick={() => handleIconNameUpdate()}>Ok</button>
                     </div>
                 </div>
             </RenderView>
