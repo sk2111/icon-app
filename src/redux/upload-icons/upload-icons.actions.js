@@ -44,3 +44,10 @@ export const editUploadIconName = (payload) => {
         payload
     }
 };
+
+export const editUploadIconClassification = (payload) => {
+    return {
+        type: uploadIconsActionTypes.EDIT_UPLOAD_ICON_CLASSIFICATION,
+        payload
+    }
+};

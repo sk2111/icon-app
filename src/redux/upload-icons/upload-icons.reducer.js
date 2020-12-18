@@ -25,6 +25,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, isUploadModalOpen: false, uploadModalTabViewType: null };
         case uploadIconsActionTypes.EDIT_UPLOAD_ICON_NAME:
             return { ...state, uploadedCommonIcons: { ...editObjectPropertiesImmutably(state.uploadedCommonIcons, action.payload) } };
+        case uploadIconsActionTypes.EDIT_UPLOAD_ICON_CLASSIFICATION:
+            return { ...state, uploadedCommonIcons: { ...editObjectPropertiesImmutably(state.uploadedCommonIcons, action.payload) } };
         default:
             return state;
     };
