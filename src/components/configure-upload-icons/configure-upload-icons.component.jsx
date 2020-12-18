@@ -25,6 +25,12 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
 
     const filteredCommonIconsSelectOptions = commonIconsSelectOptions.filter(option => option !== COMMON_ICON_DEFAULT_CATEGORY_VALUE);
 
+    const handleRootClassificationChange = (currentValue) => {
+        if (currentValue !== defaultSelectValue) {
+            changeRootClassfication({ key: 'iconClassification', newValue: currentValue, value: [currentValue] });
+        }
+    };
+
     return (
         <React.Fragment>
             <div className={styles.container}>
@@ -41,7 +47,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                         <CustomSelect
                             options={filteredCommonIconsSelectOptions}
                             defaultSelectValue={defaultSelectValue}
-                            handleSelectValueChange={changeRootClassfication}
+                            handleSelectValueChange={handleRootClassificationChange}
                         />
                         <CreateNewClassfication className={styles.createNew} />
                     </div>
