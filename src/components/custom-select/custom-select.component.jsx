@@ -8,6 +8,7 @@ import { ReactComponent as ArrowDownLogo } from '../../assests/arrow-down.svg';
 
 const CustomSelect = ({ label, style, options, defaultSelectValue, handleSelectValueChange }) => {
 
+    const parentContainerRef = useRef(null);
     const matchedOptionRef = useRef(null);
     const [selectValue, setSelectValue] = useState(defaultSelectValue);
     const [optionsHidden, setOptionsHidden] = useState(true);
@@ -16,10 +17,10 @@ const CustomSelect = ({ label, style, options, defaultSelectValue, handleSelectV
     const selectStyles = style ? style : {};
 
     useEffect(() => {
-        if (!optionsHidden && matchedOptionRef.current) {
-            matchedOptionRef.current.scrollIntoView();
+        if (!optionsHidden && matchedOptionRef.current && parentContainerRef.current) {
+            parentContainerRef.current.scrollBy(0, matchedOptionRef.current.offsetTop);
         }
-    }, [matchedOptionRef, optionsHidden]);
+    }, [parentContainerRef, matchedOptionRef, optionsHidden]);
 
     useEffect(() => {
         handleSelectValueChange(selectValue);
@@ -39,7 +40,7 @@ const CustomSelect = ({ label, style, options, defaultSelectValue, handleSelectV
                     <div style={selectStyles} className={styles.selectedValue}>{selectValue}</div>
                     <ArrowDownLogo className={styles.arrowDown} />
                 </div>
-                <div style={containerStyle} className={styles.optionsCon}>
+                <div ref={parentContainerRef} style={containerStyle} className={styles.optionsCon}>
                     {
                         options.map((option) => {
                             const matchedOption = ((option === selectValue) && (!optionsHidden)) ? styles.selectedOption : '';
