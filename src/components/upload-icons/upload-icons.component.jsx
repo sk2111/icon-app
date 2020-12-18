@@ -38,6 +38,10 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
         }
     };
 
+    const closeUploadModalView = () => {
+        closeUploadModal();
+    };
+
     return (
         <div className={styles.uploadContainer}>
             <RenderView renderIfTrue={currentModalView === MODAL_IN_UPLOAD_VIEW}>
@@ -47,11 +51,11 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
                 <PreviewUploadIcons iconList={uploadedCommonIcons} deleteIcon={deleteCommonIcon} />
                 <div className={styles.buttonContainer}>
                     <CustomButton className={nextBtnClass} primary onClick={handleNextBtnView}>Next</CustomButton>
-                    <CustomButton secondary onClick={closeUploadModal}>Cancel</CustomButton>
+                    <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
                 </div>
             </RenderView>
             <RenderView renderIfTrue={currentModalView === MODAL_IN_CONFIGURE_VIEW}>
-                <ConfigureUploadIcons />
+                <ConfigureUploadIcons closeUploadModalView={closeUploadModalView} />
             </RenderView>
         </div>
     );
