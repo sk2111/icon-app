@@ -10,7 +10,7 @@ import CustomSelect from '../custom-select/custom-select.component';
 import CustomTags from '../custom-tags/custom-tags.component';
 import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-upload-icons-list.component';
 //actions
-import { changeModalView } from '../../redux/upload-icons/upload-icons.actions';
+import { changeModalView, changeRootClassfication } from '../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsSelectOptions } from '../../redux/common-icons/common-icons.selectors';
 import { selectDefaultClassification } from '../../redux/upload-icons/upload-icons.selectors';
@@ -20,7 +20,8 @@ import { MODAL_IN_UPLOAD_VIEW, COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../
 import { ReactComponent as BackArrow } from '../../assests/back-arrow.svg';
 import { ReactComponent as CreateNewClassfication } from '../../assests/create-new-classification.svg';
 
-const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions, defaultSelectValue }) => {
+const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions,
+    defaultSelectValue, changeRootClassfication }) => {
 
     const filteredCommonIconsSelectOptions = commonIconsSelectOptions.filter(option => option !== COMMON_ICON_DEFAULT_CATEGORY_VALUE);
 
@@ -40,7 +41,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                         <CustomSelect
                             options={filteredCommonIconsSelectOptions}
                             defaultSelectValue={defaultSelectValue}
-                            handleSelectValueChange={() => { }}
+                            handleSelectValueChange={changeRootClassfication}
                         />
                         <CreateNewClassfication className={styles.createNew} />
                     </div>
@@ -69,6 +70,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => {
     return {
         changeModalView: (view) => { dispatch(changeModalView(view)) },
+        changeRootClassfication: (val) => { dispatch(changeRootClassfication(val)) },
     }
 };
 

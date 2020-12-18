@@ -36,7 +36,13 @@ export const deleteCommonIcon = (payload) => {
         payload
     }
 };
-
+//calssification change actions
+export const changeRootClassfication = (payload) => {
+    return {
+        type: uploadIconsActionTypes.SET_DEFAULT_CLASSIFICATION,
+        payload
+    }
+};
 //Edit Icon properties
 export const editUploadIconName = (payload) => {
     return {
