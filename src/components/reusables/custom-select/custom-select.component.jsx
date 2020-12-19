@@ -6,20 +6,20 @@ import RenderView from '../../render-view/render-view.component';
 //static 
 import { ReactComponent as ArrowDownLogo } from '../../assests/arrow-down.svg';
 
-const CustomSelect = ({ label, style, options, value, handleSelectValueChange }) => {
+const CustomSelect = ({ label, style, options, value, handleValueChange }) => {
 
     const parentContainerRef = useRef(null);
-    const matchedOptionRef = useRef(null);
+    const selectedOptionRef = useRef(null);
     const [optionsHidden, setOptionsHidden] = useState(true);
 
     const containerStyle = optionsHidden ? { maxHeight: '0px', transition: 'none' } : {};
     const selectStyles = style ? style : {};
 
     useEffect(() => {
-        if (!optionsHidden && matchedOptionRef.current && parentContainerRef.current) {
-            parentContainerRef.current.scrollBy(0, matchedOptionRef.current.offsetTop);
+        if (!optionsHidden && selectedOptionRef.current && parentContainerRef.current) {
+            parentContainerRef.current.scrollBy(0, selectedOptionRef.current.offsetTop);
         }
-    }, [parentContainerRef, matchedOptionRef, optionsHidden]);
+    }, [parentContainerRef, selectedOptionRef, optionsHidden]);
 
     return (
         <React.Fragment>
@@ -39,11 +39,11 @@ const CustomSelect = ({ label, style, options, value, handleSelectValueChange })
                     {
                         options.map((option) => {
                             const matchedOption = ((option === value) && (!optionsHidden)) ? styles.selectedOption : '';
-                            const otherProps = (option === value) ? { ref: matchedOptionRef } : {};
+                            const otherProps = (option === value) ? { ref: selectedOptionRef } : {};
                             return (
                                 <p key={option}
                                     className={`${matchedOption} ${styles.option}`}
-                                    onMouseDown={() => { handleSelectValueChange(option) }}
+                                    onMouseDown={() => { handleValueChange(option) }}
                                     {...otherProps}>
                                     {option}
                                 </p>
@@ -60,7 +60,7 @@ CustomSelect.defaultProps = {
     label: '',
     options: [],
     value: '',
-    handleSelectValueChange: () => { }
+    handleValueChange: () => { }
 };
 
 export default CustomSelect;

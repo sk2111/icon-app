@@ -12,7 +12,6 @@
   font-size: 14px;
   position: relative;
 }
-
 .valueCon:focus {
   outline: none;
 }
