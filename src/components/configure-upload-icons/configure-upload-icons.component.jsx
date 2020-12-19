@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import styles from './configure-upload-icons.module.css';
 //components
 import CustomButton from '../custom-button/custom-button.component';
-import CustomSelect from '../custom-select/custom-select.component';
+import CustomSelect from '../reusables/custom-select/custom-select.component';
 import CustomTags from '../custom-tags/custom-tags.component';
 import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-upload-icons-list.component';
 //actions

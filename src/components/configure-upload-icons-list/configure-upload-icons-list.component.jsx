@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './configure-upload-icons-list.module.css';
 //component
-import CustomSelect from '../custom-select/custom-select.component';
+import CustomSelect from '../reusables/custom-select/custom-select.component';
 import RenderView from '../render-view/render-view.component';
 //actions
 import { editUploadIconName, editUploadIconClassification } from '../../redux/upload-icons/upload-icons.actions';
