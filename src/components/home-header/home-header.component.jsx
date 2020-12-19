@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import styles from './home-header.module.css';
 //components
 import SearchSelectDropdown from '../../components/search-select-dropdown/search-select-dropdown.component';
-import CustomSelect from '../custom-select/custom-select.component';
+import CustomSelect from '../reusables/custom-select/custom-select.component';
 import UserProfile from '../user-profile/user-profile.component';
 import RenderView from '../render-view/render-view.component';
 //actions
@@ -34,7 +34,7 @@ const HomeHeader = ({ toggleNavigationMenuView, hideSelect,
                         label={selectLabelText}
                         options={selectOptions}
                         value={selectValue}
-                        handleSelectValueChange={handleSelectValueChange}
+                        handleValueChange={handleSelectValueChange}
                     />
                 </RenderView>
             </div>

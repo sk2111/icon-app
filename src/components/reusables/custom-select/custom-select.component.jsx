@@ -4,7 +4,7 @@ import styles from './custom-select.module.css';
 //component
 import RenderView from '../../render-view/render-view.component';
 //static 
-import { ReactComponent as ArrowDownLogo } from '../../assests/arrow-down.svg';
+import { ReactComponent as ArrowDownLogo } from '../../../assests/arrow-down.svg';
 
 const CustomSelect = ({ label, style, options, value, handleValueChange }) => {
 

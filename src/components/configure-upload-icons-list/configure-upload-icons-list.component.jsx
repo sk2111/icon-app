@@ -68,7 +68,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, filteredS
                                     style={selectStyles}
                                     options={filteredSelectOptions}
                                     value={defaultSelectValue}
-                                    handleSelectValueChange={(val) => handleClassificationChange(id, defaultSelectValue, val)} />
+                                    handleValueChange={(val) => handleClassificationChange(id, defaultSelectValue, val)} />
                             </div>
                             <div></div>
                         </div>
