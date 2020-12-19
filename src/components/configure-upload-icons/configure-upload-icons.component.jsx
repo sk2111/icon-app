@@ -46,7 +46,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                         <div className={styles.label}>Category</div>
                         <CustomSelect
                             options={filteredCommonIconsSelectOptions}
-                            defaultSelectValue={defaultSelectValue}
+                            value={defaultSelectValue}
                             handleSelectValueChange={handleRootClassificationChange}
                         />
                         <CreateNewClassfication className={styles.createNew} />

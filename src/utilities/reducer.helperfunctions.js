@@ -25,11 +25,11 @@ export const editObjectPropertiesImmutably = (obj, { key, value, id }) => {
 export const editAllIconsObjectPropertiesImmutably = (obj, { key, value }) => {
     if (key && value && obj) {
         const array = Object.values(obj);
-
-        console.log("The value array", array);
-
-
-        return obj;
+        let returnObj = {};
+        array.forEach((item) => {
+            returnObj = { ...returnObj, [item.id]: { ...item, [key]: [...value] } }
+        });
+        return returnObj;
     }
     return obj;
 };

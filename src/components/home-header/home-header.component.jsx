@@ -33,7 +33,7 @@ const HomeHeader = ({ toggleNavigationMenuView, hideSelect,
                     <CustomSelect
                         label={selectLabelText}
                         options={selectOptions}
-                        defaultSelectValue={selectValue}
+                        value={selectValue}
                         handleSelectValueChange={handleSelectValueChange}
                     />
                 </RenderView>
