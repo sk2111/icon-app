@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 //css
 import styles from './upload-zone.module.css';
 //components
-import CustomButton from '../custom-button/custom-button.component';
+import CustomButton from '../reusables/custom-button/custom-button.component';
 //static
 import { ReactComponent as UploadSvg } from '../../assests/upload-icons.svg';
 //helpers
