@@ -1,0 +1,55 @@
+.popupView {
+  background-color: var(--app-upload-modal-background);
+  box-shadow: 0 6.67px 12.04px 0 rgba(219, 219, 220, 0.51),
+    0 13.33px 13.83px 0 rgba(219, 219, 220, 0.61),
+    0 20px 15px 0 rgba(219, 219, 220, 0.31);
+  height: 143px;
+  padding: 16px 20px 16px 20px;
+  position: fixed;
+  right: 145px;
+  top: 260px;
+  width: 300px;
+  z-index: 10;
+}
+.popupHeader {
+  color: var(--app-upload-modal-text);
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 16px;
+}
+.nameInput {
+  background-color: var(--app-upload-modal-input-background);
+  border: none;
+  border-radius: 3px;
+  color: var(--app-upload-modal-text);
+  height: 30px;
+  margin-bottom: 32px;
+  outline: none;
+  padding-left: 16px;
+  width: 260px;
+}
+.actionCon {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.button {
+  border: none;
+  background-color: var(--app-upload-modal-button-background);
+  color: var(--app-upload-modal-button-color);
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+}
+.button:hover {
+  font-weight: bold;
+}
+.submitBtn {
+  margin-right: 12px;
+  width: 30px;
+}
+.cancelBtn {
+  margin-right: 25px;
+  width: 80px;
+}
