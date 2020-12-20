@@ -9,7 +9,7 @@ export const openUploadModal = (payload) => {
 };
 export const closeUploadModal = (payload) => {
     return {
-        type: uploadIconsActionTypes.CLOSE_UPLOAD_MODAL_VIEW,
+        type: uploadIconsActionTypes.CLOSE_UPLOAD_MODAL,
         payload
     }
 };
@@ -17,7 +17,7 @@ export const closeUploadModal = (payload) => {
 // Modal view changing actions
 export const changeModalView = (payload) => {
     return {
-        type: uploadIconsActionTypes.SET_UPLOAD_MODAL_VIEW,
+        type: uploadIconsActionTypes.CHANGE_UPLOAD_MODAL_VIEW,
         payload
     }
 };
@@ -39,7 +39,7 @@ export const deleteCommonIcon = (payload) => {
 //calssification change actions
 export const changeRootClassfication = (payload) => {
     return {
-        type: uploadIconsActionTypes.CHANGE_CLASSIFICATION_FOR_ALL_ICONS,
+        type: uploadIconsActionTypes.CHANGE_CLASSIFICATION_FOR_ALL_UPLOADED_ICONS,
         payload
     }
 };
