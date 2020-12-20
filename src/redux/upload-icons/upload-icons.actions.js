@@ -3,7 +3,7 @@ import { uploadIconsActionTypes } from './upload-icons.type';
 //Modal open close actions
 export const openUploadModal = (payload) => {
     return {
-        type: uploadIconsActionTypes.OPEN_UPLOAD_MODAL_VIEW,
+        type: uploadIconsActionTypes.OPEN_UPLOAD_MODAL,
         payload
     }
 };
@@ -39,21 +39,21 @@ export const deleteCommonIcon = (payload) => {
 //calssification change actions
 export const changeRootClassfication = (payload) => {
     return {
-        type: uploadIconsActionTypes.SET_DEFAULT_CLASSIFICATION,
+        type: uploadIconsActionTypes.CHANGE_CLASSIFICATION_FOR_ALL_ICONS,
         payload
     }
 };
 //Edit Icon properties
 export const editUploadIconName = (payload) => {
     return {
-        type: uploadIconsActionTypes.EDIT_UPLOAD_ICON_NAME,
+        type: uploadIconsActionTypes.CHANGE_UPLOAD_ICON_NAME,
         payload
     }
 };
 
 export const editUploadIconClassification = (payload) => {
     return {
-        type: uploadIconsActionTypes.EDIT_UPLOAD_ICON_CLASSIFICATION,
+        type: uploadIconsActionTypes.CHNAGE_UPLOAD_ICON_CLASSIFICATION,
         payload
     }
 };

@@ -14,4 +14,4 @@ export const selectIsUploadModalOpen = createSelector([selectUploadIcons], (stat
 
 export const selectCurrentModalView = createSelector([selectUploadIcons], (state) => state.uploadModalCurrentView);
 
-export const selectDefaultClassification = createSelector([selectUploadIcons], (state) => state.defaultClassification);
+export const selectRootClassification = createSelector([selectUploadIcons], (state) => state.rootClassification);

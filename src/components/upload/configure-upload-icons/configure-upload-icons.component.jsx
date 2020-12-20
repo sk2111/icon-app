@@ -13,7 +13,7 @@ import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-u
 import { changeModalView, changeRootClassfication } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsSelectOptions } from '../../../redux/common-icons/common-icons.selectors';
-import { selectDefaultClassification } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectRootClassification } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
 import { MODAL_IN_UPLOAD_VIEW, COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../../utilities/app.constants';
 //static 
@@ -70,7 +70,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
 
 const mapStateToProps = createStructuredSelector({
     commonIconsSelectOptions: selectCommonIconsSelectOptions,
-    defaultSelectValue: selectDefaultClassification
+    defaultSelectValue: selectRootClassification
 });
 
 const mapDispatchToProps = (dispatch) => {
