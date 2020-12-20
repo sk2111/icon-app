@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 //css
 import styles from './home-header.module.css';
 //components
-import SearchSelectDropdown from '../../components/search-select-dropdown/search-select-dropdown.component';
+import SearchSelectDropdown from '../reusables/search-select-dropdown/search-select-dropdown.component';
 import CustomSelect from '../reusables/custom-select/custom-select.component';
 import UserProfile from '../user-profile/user-profile.component';
 import RenderView from '../render-view/render-view.component';

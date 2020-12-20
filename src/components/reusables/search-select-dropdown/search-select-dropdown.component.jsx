@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 //css
 import styles from './search-select-dropdown.module.css';
 //static
-import { ReactComponent as SearchLens } from '../../assests/searchLogo.svg';
+import { ReactComponent as SearchLens } from '../../../assests/searchLogo.svg';
 
 const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
     handleSearchValueChange, searchList }) => {
