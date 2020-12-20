@@ -7,17 +7,17 @@ import { Link } from 'react-router-dom';
 import styles from './sign-up.module.css';
 //components
 import LoadingButton from '../loading-button/loading-button.component';
-import FormInput from '../reusables/form-input/form-input.component';
-import FormInputPassword from '../reusables/form-input-password/form-input-password.component';
+import FormInput from '../../reusables/form-input/form-input.component';
+import FormInputPassword from '../../reusables/form-input-password/form-input-password.component';
 //actions
-import { userSignUpStart, userSignUpFailure, clearAuthError } from '../../redux/auth/auth.actions';
+import { userSignUpStart, userSignUpFailure, clearAuthError } from '../../../redux/auth/auth.actions';
 //reselect
-import { selectWaitingForData, selectErrorMessage } from '../../redux/auth/auth.selectors';
+import { selectWaitingForData, selectErrorMessage } from '../../../redux/auth/auth.selectors';
 //utilities
-import { isValidMail } from '../../utilities/validator.utils';
-import { SIGN_IN_ROUTE_PATH } from '../../utilities/route.paths';
+import { isValidMail } from '../../../utilities/validator.utils';
+import { SIGN_IN_ROUTE_PATH } from '../../../utilities/route.paths';
 //constants
-import { SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, SIGN_UP_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities/auth.messages';
+import { SIGN_UP_INVALID_ERROR_MAIL_MESSAGE, SIGN_UP_PASSWORD_NOT_MATCH_MESSAGE } from '../../../utilities/auth.messages';
 
 const SignUp = ({ userSignUpStart, userSignUpFailure, fetching, errorMessage, clearAuthError }) => {
 

@@ -1,4 +1,4 @@
-import { COMMON_ROUTE_PATH, EDIT_ROUTE_PATH, FAVORITES_ROUTE_PATH, MESSAGES_ROUTE_PATH, PROJECTS_ROUTE_PATH } from '../../utilities/route.paths';
+import { COMMON_ROUTE_PATH, EDIT_ROUTE_PATH, FAVORITES_ROUTE_PATH, MESSAGES_ROUTE_PATH, PROJECTS_ROUTE_PATH } from '../../../utilities/route.paths';
 
 import { ReactComponent as CommonIconsLogo } from '../../assests/navigation/common-icons-menu.svg';
 import { ReactComponent as ProjectsLogo } from '../../assests/navigation/projects-menu.svg';

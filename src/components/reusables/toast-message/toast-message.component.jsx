@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 //css
 import styles from './toast-message.module.css';
 //actions
-import { resetToastMessageState } from '../../redux/toast-message/toast-message.actions';
+import { resetToastMessageState } from '../../../redux/toast-message/toast-message.actions';
 //reselect
 import { createStructuredSelector } from 'reselect';
-import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSeconds } from '../../redux/toast-message/toast-message.selectors';
+import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSeconds } from '../../../redux/toast-message/toast-message.selectors';
 //static Image
 import successImage from '../../assests/flat-tick.png';
 import failureImage from '../../assests/flat-cross.png';

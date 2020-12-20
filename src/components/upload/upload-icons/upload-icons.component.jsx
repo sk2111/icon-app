@@ -5,19 +5,19 @@ import { createStructuredSelector } from 'reselect';
 //styles
 import styles from './upload-icons.module.css';
 //components
-import CustomButton from '../reusables/custom-button/custom-button.component';
-import UploadZone from '../upload-zone/upload-zone.component';
-import PreviewUploadIcons from '../preview-upload-icons/preview-upload-icons.component';
-import ConfigureUploadIcons from '../configure-upload-icons/configure-upload-icons.component';
-import RenderView from '../render-view/render-view.component';
+import CustomButton from '../../reusables/custom-button/custom-button.component';
+import UploadZone from '../../upload-zone/upload-zone.component';
+import PreviewUploadIcons from '../../preview-upload-icons/preview-upload-icons.component';
+import ConfigureUploadIcons from '../../configure-upload-icons/configure-upload-icons.component';
+import RenderView from '../../render-view/render-view.component';
 //actions
-import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal } from '../../redux/upload-icons/upload-icons.actions';
+import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
-import { selectUploadedCommonIcons, selectCurrentModalView } from '../../redux/upload-icons/upload-icons.selectors';
+import { selectUploadedCommonIcons, selectCurrentModalView } from '../../../redux/upload-icons/upload-icons.selectors';
 //helpers
-import { normalizeUploadFileIconsStructure } from '../../utilities/helper.functions';
+import { normalizeUploadFileIconsStructure } from '../../../utilities/helper.functions';
 //constants
-import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilities/app.constants';
 
 const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteCommonIcon,
     closeUploadModal, currentModalView, changeModalView }) => {

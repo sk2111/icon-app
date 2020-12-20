@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 //css
 import styles from './home-header.module.css';
 //components
-import SearchSelectDropdown from '../reusables/search-select-dropdown/search-select-dropdown.component';
-import CustomSelect from '../reusables/custom-select/custom-select.component';
-import UserProfile from '../user-profile/user-profile.component';
+import SearchSelectDropdown from '../../reusables/search-select-dropdown/search-select-dropdown.component';
+import CustomSelect from '../../reusables/custom-select/custom-select.component';
+import UserProfile from '../../user-profile/user-profile.component';
 import RenderView from '../render-view/render-view.component';
 //actions
-import { toggleNavigationMenuView } from '../../redux/app-data/app-data.actions';
+import { toggleNavigationMenuView } from '../../../redux/app-data/app-data.actions';
 //static
 import { ReactComponent as HamSvg } from '../../assests/ham-menu.svg';
 

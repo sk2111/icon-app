@@ -6,19 +6,19 @@ import { Link } from 'react-router-dom';
 //styles
 import styles from './sign-in-user-login.module.css';
 //components
-import FormInput from '../reusables/form-input/form-input.component';
+import FormInput from '../../reusables/form-input/form-input.component';
 import LoadingButton from '../loading-button/loading-button.component';
-import FormInputPassword from '../reusables/form-input-password/form-input-password.component';
+import FormInputPassword from '../../reusables/form-input-password/form-input-password.component';
 import RenderView from '../render-view/render-view.component';
 //actions 
-import { userLoginStart, userLoginFailure, clearAuthError } from '../../redux/auth/auth.actions';
+import { userLoginStart, userLoginFailure, clearAuthError } from '../../../redux/auth/auth.actions';
 //reselect
-import { selectWaitingForData, selectErrorMessage, selectUserMessage } from '../../redux/auth/auth.selectors';
+import { selectWaitingForData, selectErrorMessage, selectUserMessage } from '../../../redux/auth/auth.selectors';
 //constants
-import { USER_LOGIN_INVALID_ERROR_MAIL_MESSAGE } from '../../utilities/auth.messages';
+import { USER_LOGIN_INVALID_ERROR_MAIL_MESSAGE } from '../../../utilities/auth.messages';
 //utilities
-import { isValidMail } from '../../utilities/validator.utils';
-import { SIGN_UP_ROUTE_PATH, FORGOT_PASSWORD_ROUTE_PATH } from '../../utilities/route.paths';
+import { isValidMail } from '../../../utilities/validator.utils';
+import { SIGN_UP_ROUTE_PATH, FORGOT_PASSWORD_ROUTE_PATH } from '../../../utilities/route.paths';
 
 
 const SignInUserLogin = ({ fetching, errorMessage, userMessage, userLoginStart, userLoginFailure, clearAuthError }) => {

@@ -7,17 +7,17 @@ import { createStructuredSelector } from 'reselect';
 import styles from './update-password.module.css';
 //components
 import LoadingButton from '../loading-button/loading-button.component';
-import FormInputPassword from '../reusables/form-input-password/form-input-password.component';
+import FormInputPassword from '../../reusables/form-input-password/form-input-password.component';
 import ProtectedRoute from '../protected-route/protected-route.component';
 import RenderView from '../render-view/render-view.component';
 //reselect
-import { selectWaitingForData, selectUserMessage, selectErrorMessage } from '../../redux/auth/auth.selectors';
+import { selectWaitingForData, selectUserMessage, selectErrorMessage } from '../../../redux/auth/auth.selectors';
 //actions
-import { clearAuthError, updateNewPasswordStart, updateNewPasswordFailure } from '../../redux/auth/auth.actions';
+import { clearAuthError, updateNewPasswordStart, updateNewPasswordFailure } from '../../../redux/auth/auth.actions';
 //route constants
-import { LANDING_ROUTE_PATH } from '../../utilities/route.paths';
+import { LANDING_ROUTE_PATH } from '../../../utilities/route.paths';
 //constants
-import { UPDATE_PASSWORD_NOT_MATCH_MESSAGE } from '../../utilities//auth.messages';
+import { UPDATE_PASSWORD_NOT_MATCH_MESSAGE } from '../../../utilities/auth.messages';
 
 
 const UpdatePassword = ({ fetching, userMessage, errorMessage, updateNewPasswordStart, updateNewPasswordFailure, clearAuthErrorMessage }) => {
