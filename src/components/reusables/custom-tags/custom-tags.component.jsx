@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 //css
 import styles from './custom-tags.module.css';
 //component
-import TagView from '../../tag-view/tag-view.component';
+import TagView from './tag-view.component';
 
 const CustomTags = ({ suggestionOptions }) => {
 
