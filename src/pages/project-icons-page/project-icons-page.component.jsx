@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './project-icons-page.module.css';
 //components
-import IconsViewHeader from '../../components/icons-view-header/icons-view-header.component';
+import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
 //constants

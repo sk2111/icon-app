@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 //css
 import styles from './preview-upload-icons.module.css';
 //components
-import RenderView from '../render-view/render-view.component';
+import RenderView from '../../reusables/render-view/render-view.component';
 //static
 import { ReactComponent as NoFileFoundSvg } from '../../assests/no-files-found.svg';
 import Remove from '../../assests/close.png';

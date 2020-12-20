@@ -9,7 +9,7 @@ import CustomButton from '../../reusables/custom-button/custom-button.component'
 import UploadZone from '../../upload-zone/upload-zone.component';
 import PreviewUploadIcons from '../../preview-upload-icons/preview-upload-icons.component';
 import ConfigureUploadIcons from '../../configure-upload-icons/configure-upload-icons.component';
-import RenderView from '../../render-view/render-view.component';
+import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect

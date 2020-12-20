@@ -3,7 +3,7 @@ import React from 'react';
 //css
 import styles from './icons-view-header.module.css';
 //component
-import RenderView from '../render-view/render-view.component';
+import RenderView from '../../reusables/render-view/render-view.component';
 import LoadingButton from '../loading-button/loading-button.component';
 
 const IconsViewHeader = ({ label, showUploadButton, handleUploadIcon }) => {

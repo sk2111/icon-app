@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './favorites-icons-page.module.css';
 //components
-import IconsViewHeader from '../../components/icons-view-header/icons-view-header.component';
+import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
 //constants
 import { FAVORITES_ICONS_HEADER_LABEL } from '../../utilities/app.constants';
 
