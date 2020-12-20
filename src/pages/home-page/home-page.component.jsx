@@ -14,7 +14,7 @@ import EditIconPage from '../edit-icon-page/edit-icon-page.component';
 import ProtectedRoute from '../../components/protected-route/protected-route.component';
 import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
 import RouteNotFound from '../../components/route-not-found/route-not-found.component';
-import Modal from '../../components/modal/modal.component';
+import Modal from '../../components/reusables/modal/modal.component';
 import UploadIcons from '../../components/upload-icons/upload-icons.component';
 //reselect
 import { selectIsNavMenuExpanded } from '../../redux/app-data/app-data.selectors';
