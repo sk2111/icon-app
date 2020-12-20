@@ -3,7 +3,7 @@ import React from 'react';
 //css
 import styles from './tag-view.module.css';
 //static
-import { ReactComponent as DeleteTag } from '../../assests/delete-tag.svg';
+import { ReactComponent as DeleteTag } from '../../../assests/delete-tag.svg';
 
 
 const TagView = ({ tags, deleteTag }) => {
