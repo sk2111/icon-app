@@ -5,8 +5,8 @@ import styles from './preview-upload-icons.module.css';
 //components
 import RenderView from '../../reusables/render-view/render-view.component';
 //static
-import { ReactComponent as NoFileFoundSvg } from '../../assests/no-files-found.svg';
-import Remove from '../../assests/close.png';
+import { ReactComponent as NoFileFoundSvg } from '../../../assests/no-files-found.svg';
+import Remove from '../../../assests/close.png';
 
 const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
 

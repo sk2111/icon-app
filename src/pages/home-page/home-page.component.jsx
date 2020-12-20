@@ -15,7 +15,7 @@ import ProtectedRoute from '../../components/containers/protected-route/protecte
 import NavigationMenu from '../../components/containers/navigation-menu/navigation-menu.component';
 import RouteNotFound from '../../components/containers/route-not-found/route-not-found.component';
 import Modal from '../../components/reusables/modal/modal.component';
-import UploadIcons from '../../components/upload-icons/upload-icons.component';
+import UploadIcons from '../../components/upload/upload-icons/upload-icons.component';
 //reselect
 import { selectIsNavMenuExpanded } from '../../redux/app-data/app-data.selectors';
 import { selectIsUploadModalOpen } from '../../redux/upload-icons/upload-icons.selectors';

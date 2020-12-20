@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 //selectors
-import { selectCurrentUserEmail, selectCurrentUserFullName } from '../../redux/user/user.selectors';
-import { selectUserProfilePicTheme } from '../../redux/app-data/app-data.selectors';
+import { selectCurrentUserEmail, selectCurrentUserFullName } from '../../../redux/user/user.selectors';
+import { selectUserProfilePicTheme } from '../../../redux/app-data/app-data.selectors';
 //css
 import styles from './user-profile.module.css';
 //actions
-import { userSignOutStart } from '../../redux/user/user.actions';
+import { userSignOutStart } from '../../../redux/user/user.actions';
 //Route constants
-import { UPDATE_PASSWORD_ROUTE_PATH } from '../../utilities/route.paths';
+import { UPDATE_PASSWORD_ROUTE_PATH } from '../../../utilities/route.paths';
 
 const UserProfile = ({ userSignOutStart, curentUserEmail, fullName, userProfilePicTheme }) => {
 

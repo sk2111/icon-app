@@ -3,7 +3,7 @@ import React from 'react';
 //css
 import styles from './login-header.module.css';
 //static
-import appLogo from '../../assests/applogo.svg';
+import appLogo from '../../../assests/applogo.svg';
 
 const LoginHeader = () => {
     return (

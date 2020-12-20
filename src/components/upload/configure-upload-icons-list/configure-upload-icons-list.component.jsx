@@ -5,14 +5,14 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './configure-upload-icons-list.module.css';
 //component
-import CustomSelect from '../reusables/custom-select/custom-select.component';
+import CustomSelect from '../../reusables/custom-select/custom-select.component';
 import RenderView from '../../reusables/render-view/render-view.component';
 //actions
-import { editUploadIconName, editUploadIconClassification } from '../../redux/upload-icons/upload-icons.actions';
+import { editUploadIconName, editUploadIconClassification } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect selectors
-import { selectUploadedCommonIcons } from '../../redux/upload-icons/upload-icons.selectors';
+import { selectUploadedCommonIcons } from '../../../redux/upload-icons/upload-icons.selectors';
 //static
-import { ReactComponent as EditSvg } from '../../assests/edit-name.svg';
+import { ReactComponent as EditSvg } from '../../../assests/edit-name.svg';
 
 
 

@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 //css
 import styles from './navigation-menu.module.css';
 //static
-import { ReactComponent as AppLogo } from '../../assests/applogo.svg';
+import { ReactComponent as AppLogo } from '../../../assests/applogo.svg';
 //constants
 import { NAVI_LINKS, MESSAGE_LINK } from './navigation-menu.utilities';
 

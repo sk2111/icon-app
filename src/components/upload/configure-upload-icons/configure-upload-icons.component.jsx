@@ -5,20 +5,20 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './configure-upload-icons.module.css';
 //components
-import CustomButton from '../reusables/custom-button/custom-button.component';
-import CustomSelect from '../reusables/custom-select/custom-select.component';
-import CustomTags from '../reusables/custom-tags/custom-tags.component';
+import CustomButton from '../../reusables/custom-button/custom-button.component';
+import CustomSelect from '../../reusables/custom-select/custom-select.component';
+import CustomTags from '../../reusables/custom-tags/custom-tags.component';
 import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-upload-icons-list.component';
 //actions
-import { changeModalView, changeRootClassfication } from '../../redux/upload-icons/upload-icons.actions';
+import { changeModalView, changeRootClassfication } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
-import { selectCommonIconsSelectOptions } from '../../redux/common-icons/common-icons.selectors';
-import { selectDefaultClassification } from '../../redux/upload-icons/upload-icons.selectors';
+import { selectCommonIconsSelectOptions } from '../../../redux/common-icons/common-icons.selectors';
+import { selectDefaultClassification } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
-import { MODAL_IN_UPLOAD_VIEW, COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW, COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../../utilities/app.constants';
 //static 
-import { ReactComponent as BackArrow } from '../../assests/back-arrow.svg';
-import { ReactComponent as CreateNewClassfication } from '../../assests/create-new-classification.svg';
+import { ReactComponent as BackArrow } from '../../../assests/back-arrow.svg';
+import { ReactComponent as CreateNewClassfication } from '../../../assests/create-new-classification.svg';
 
 const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions,
     defaultSelectValue, changeRootClassfication }) => {

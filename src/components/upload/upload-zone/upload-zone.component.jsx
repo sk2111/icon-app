@@ -3,11 +3,11 @@ import React, { useRef, useState } from 'react';
 //css
 import styles from './upload-zone.module.css';
 //components
-import CustomButton from '../reusables/custom-button/custom-button.component';
+import CustomButton from '../../reusables/custom-button/custom-button.component';
 //static
-import { ReactComponent as UploadSvg } from '../../assests/upload-icons.svg';
+import { ReactComponent as UploadSvg } from '../../../assests/upload-icons.svg';
 //helpers
-import { readFiles } from '../../utilities/helper.functions';
+import { readFiles } from '../../../utilities/helper.functions';
 
 
 const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) => {
