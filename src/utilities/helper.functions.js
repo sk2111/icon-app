@@ -106,7 +106,7 @@ export const normalizeUploadFileIconsStructure = (files) => {
             id: randomProperty,
             iconName: fileName,
             iconClassification: [UPLOAD_ICONS_DEFAULT_CLASSIFICATION],
-            iconTags: [getAlphaOnly(file.name, ' ', true)],
+            iconTags: [],
             createdAt: new Date(),
             iconsBase64: base64data,
             iconData: file.textData
