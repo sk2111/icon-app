@@ -5,10 +5,10 @@ import { compareProps } from '../../utilities/helper.functions';
 
 const selectUploadIcons = (state) => state.uploadIcons;
 
-export const selectUploadedCommonIconsObj = createSelector([selectUploadIcons], (state) => state.uploadedCommonIcons);
+export const selectUploadedIconsObj = createSelector([selectUploadIcons], (state) => state.uploadedIcons);
 
-export const selectUploadedCommonIcons = createSelector([selectUploadedCommonIconsObj],
-    (uploadedCommonIcons) => Object.values(uploadedCommonIcons).sort((a, b) => compareProps(a, b, "id", "id")));
+export const selectUploadedIcons = createSelector([selectUploadedIconsObj],
+    (uploadedIcons) => Object.values(uploadedIcons).sort((a, b) => compareProps(a, b, "id", "id")));
 
 export const selectIsUploadModalOpen = createSelector([selectUploadIcons], (state) => state.isUploadModalOpen);
 

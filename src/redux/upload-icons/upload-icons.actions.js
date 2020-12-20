@@ -53,7 +53,7 @@ export const editUploadIconName = (payload) => {
 
 export const editUploadIconClassification = (payload) => {
     return {
-        type: uploadIconsActionTypes.CHNAGE_UPLOAD_ICON_CLASSIFICATION,
+        type: uploadIconsActionTypes.CHANGE_UPLOAD_ICON_CLASSIFICATION,
         payload
     }
 };

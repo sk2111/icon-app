@@ -13,18 +13,18 @@ import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
-import { selectUploadedCommonIcons, selectCurrentModalView } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectUploadedIcons, selectCurrentModalView } from '../../../redux/upload-icons/upload-icons.selectors';
 //helpers
 import { normalizeUploadFileIconsStructure } from '../../../utilities/helper.functions';
 //constants
 import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilities/app.constants';
 
-const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteCommonIcon,
+const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon,
     closeUploadModal, currentModalView, changeModalView }) => {
 
     console.log("Current Modal view", currentModalView);
 
-    const isUserUploadedIcons = !!uploadedCommonIcons.length;
+    const isUserUploadedIcons = !!uploadedIcons.length;
     const nextBtnClass = styles.nextBtn + ' ' + (isUserUploadedIcons ? '' : styles.disabled);
 
     const handleCommonIconsFileUpload = (uploadedFiles) => {
@@ -33,7 +33,7 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
     };
 
     const handleNextBtnView = () => {
-        if (uploadedCommonIcons.length) {
+        if (uploadedIcons.length) {
             changeModalView(MODAL_IN_CONFIGURE_VIEW);
         }
     };
@@ -48,7 +48,7 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
                 <UploadZone validFileNameExtension=".svg" acceptType="image/svg+xml" handleFileUpload={handleCommonIconsFileUpload} />
                 <div className={styles.horizonLine}></div>
                 <h4 className={styles.viewHeaderText}>Added files</h4>
-                <PreviewUploadIcons iconList={uploadedCommonIcons} deleteIcon={deleteCommonIcon} />
+                <PreviewUploadIcons iconList={uploadedIcons} deleteIcon={deleteCommonIcon} />
                 <div className={styles.buttonContainer}>
                     <CustomButton className={nextBtnClass} primary onClick={handleNextBtnView}>Next</CustomButton>
                     <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
@@ -64,7 +64,7 @@ const UploadIcons = ({ uploadedCommonIcons, uploadFilesToCommonIcons, deleteComm
 
 
 const mapStateToProps = createStructuredSelector({
-    uploadedCommonIcons: selectUploadedCommonIcons,
+    uploadedIcons: selectUploadedIcons,
     currentModalView: selectCurrentModalView
 });
 

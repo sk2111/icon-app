@@ -10,7 +10,7 @@ import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import { editUploadIconName, editUploadIconClassification } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect selectors
-import { selectUploadedCommonIcons } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectUploadedIcons } from '../../../redux/upload-icons/upload-icons.selectors';
 //static
 import { ReactComponent as EditSvg } from '../../../assests/edit-name.svg';
 
@@ -90,7 +90,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
 };
 
 const mapStateToProps = createStructuredSelector({
-    uploadedIcons: selectUploadedCommonIcons,
+    uploadedIcons: selectUploadedIcons,
 });
 
 const mapDispatchToProps = (dispatch) => {
