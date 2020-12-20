@@ -16,7 +16,7 @@ import { ReactComponent as EditSvg } from '../../../assests/edit-name.svg';
 
 
 
-const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, filteredSelectOptions, editUploadIconClassification }) => {
+const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classificationOptions, editUploadIconClassification }) => {
 
     const [createNewNameOpen, setCreateNewNameOpen] = useState(false);
     const [iconName, setIconName] = useState({ newName: '', oldName: '', id: '' });
@@ -66,7 +66,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, filteredS
                                 </div>
                                 <CustomSelect
                                     style={selectStyles}
-                                    options={filteredSelectOptions}
+                                    options={classificationOptions}
                                     value={defaultSelectValue}
                                     handleValueChange={(val) => handleClassificationChange(id, defaultSelectValue, val)} />
                             </div>

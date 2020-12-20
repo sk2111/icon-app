@@ -11,6 +11,9 @@ export const selectCommonIconsSearchKeywords = createSelector([selectCommonIcons
 
 export const selectCommonIconsSelectOptions = createSelector([selectCommonIcons], (commonIcons) => commonIcons.selectOptionsList);
 
+export const selectCommonIconsClassification = createSelector([selectCommonIconsSelectOptions],
+    (commonIconsSelectOptions) => commonIconsSelectOptions.filter(option => option !== COMMON_ICON_DEFAULT_CATEGORY_VALUE));
+
 export const selectCommonIconsSearchValue = createSelector([selectCommonIcons], (commonIcons) => commonIcons.searchValue);
 
 export const selectCommonIconsSelectValue = createSelector([selectCommonIcons], (commonIcons) => commonIcons.selectValue);

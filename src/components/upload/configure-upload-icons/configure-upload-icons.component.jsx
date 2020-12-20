@@ -12,21 +12,19 @@ import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-u
 //actions
 import { changeModalView, changeRootClassfication } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
-import { selectCommonIconsSelectOptions } from '../../../redux/common-icons/common-icons.selectors';
+import { selectCommonIconsClassification } from '../../../redux/common-icons/common-icons.selectors';
 import { selectRootClassification } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
-import { MODAL_IN_UPLOAD_VIEW, COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW } from '../../../utilities/app.constants';
 //static 
 import { ReactComponent as BackArrow } from '../../../assests/back-arrow.svg';
 import { ReactComponent as CreateNewClassfication } from '../../../assests/create-new-classification.svg';
 
 const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions,
-    defaultSelectValue, changeRootClassfication }) => {
-
-    const filteredCommonIconsSelectOptions = commonIconsSelectOptions.filter(option => option !== COMMON_ICON_DEFAULT_CATEGORY_VALUE);
+    rootClassificationValue, changeRootClassfication }) => {
 
     const handleRootClassificationChange = (currentValue) => {
-        if (currentValue !== defaultSelectValue) {
+        if (currentValue !== rootClassificationValue) {
             changeRootClassfication({ key: 'iconClassification', newValue: currentValue, value: [currentValue] });
         }
     };
@@ -45,8 +43,8 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                     <div className={styles.classification}>
                         <div className={styles.label}>Category</div>
                         <CustomSelect
-                            options={filteredCommonIconsSelectOptions}
-                            value={defaultSelectValue}
+                            options={commonIconsSelectOptions}
+                            value={rootClassificationValue}
                             handleValueChange={handleRootClassificationChange}
                         />
                         <CreateNewClassfication className={styles.createNew} />
@@ -56,7 +54,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                         <CustomTags />
                     </div>
                     <div className={styles.configPreview}>
-                        <ConfigureUploadIconsList filteredSelectOptions={filteredCommonIconsSelectOptions} />
+                        <ConfigureUploadIconsList classificationOptions={commonIconsSelectOptions} />
                     </div>
                 </div>
                 <div className={styles.btnContainer}>
@@ -69,8 +67,8 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
 };
 
 const mapStateToProps = createStructuredSelector({
-    commonIconsSelectOptions: selectCommonIconsSelectOptions,
-    defaultSelectValue: selectRootClassification
+    commonIconsSelectOptions: selectCommonIconsClassification,
+    rootClassificationValue: selectRootClassification
 });
 
 const mapDispatchToProps = (dispatch) => {
