@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import styles from './sign-up.module.css';
 //components
 import LoadingButton from '../loading-button/loading-button.component';
-import FormInput from '../form-input/form-input.component';
-import FormInputPassword from '../form-input-password/form-input-password.component';
+import FormInput from '../reusables/form-input/form-input.component';
+import FormInputPassword from '../reusables/form-input-password/form-input-password.component';
 //actions
 import { userSignUpStart, userSignUpFailure, clearAuthError } from '../../redux/auth/auth.actions';
 //reselect

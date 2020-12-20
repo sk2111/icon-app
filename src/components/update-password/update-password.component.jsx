@@ -7,7 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import styles from './update-password.module.css';
 //components
 import LoadingButton from '../loading-button/loading-button.component';
-import FormInputPassword from '../form-input-password/form-input-password.component';
+import FormInputPassword from '../reusables/form-input-password/form-input-password.component';
 import ProtectedRoute from '../protected-route/protected-route.component';
 import RenderView from '../render-view/render-view.component';
 //reselect

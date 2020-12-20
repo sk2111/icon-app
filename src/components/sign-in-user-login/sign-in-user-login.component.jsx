@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 //styles
 import styles from './sign-in-user-login.module.css';
 //components
-import FormInput from '../form-input/form-input.component';
+import FormInput from '../reusables/form-input/form-input.component';
 import LoadingButton from '../loading-button/loading-button.component';
-import FormInputPassword from '../form-input-password/form-input-password.component';
+import FormInputPassword from '../reusables/form-input-password/form-input-password.component';
 import RenderView from '../render-view/render-view.component';
 //actions 
 import { userLoginStart, userLoginFailure, clearAuthError } from '../../redux/auth/auth.actions';

@@ -5,8 +5,8 @@ import styles from './form-input-password.module.css';
 //components
 import FormInput from '../form-input/form-input.component';
 //static
-import { ReactComponent as HideSvg } from '../../assests/hide-password.svg';
-import { ReactComponent as ShowSvg } from '../../assests/show-password.svg';
+import { ReactComponent as HideSvg } from '../../../assests/hide-password.svg';
+import { ReactComponent as ShowSvg } from '../../../assests/show-password.svg';
 
 const FormInputPassword = ({ label, inpClass, className, name, value, handleValueChange }) => {
 

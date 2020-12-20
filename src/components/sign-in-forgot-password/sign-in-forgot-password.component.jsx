@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 //css
 import styles from './sign-in-forgot-password.module.css';
 //components
-import FormInput from '../../components/form-input/form-input.component';
+import FormInput from '../../components/reusables/form-input/form-input.component';
 import LoadingButton from '../../components/loading-button/loading-button.component';
 import RenderView from '../../components/render-view/render-view.component';
 //actions
