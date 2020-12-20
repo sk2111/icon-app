@@ -39,7 +39,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
         }
     };
 
-    const handleListSelect = (listVal) => {
+    const handleOptionsListSelect = (listVal) => {
         debounceTime.current.time = 0;
         setListHidden(true);
         setSearchTerm(listVal);
@@ -68,7 +68,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
                             return (
                                 <p key={listVal}
                                     className={styles.searchItem}
-                                    onMouseDown={() => handleListSelect(listVal)}>{listVal}</p>
+                                    onMouseDown={() => handleOptionsListSelect(listVal)}>{listVal}</p>
                             );
                         })
                     }
