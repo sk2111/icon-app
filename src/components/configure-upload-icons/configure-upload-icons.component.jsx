@@ -7,7 +7,7 @@ import styles from './configure-upload-icons.module.css';
 //components
 import CustomButton from '../reusables/custom-button/custom-button.component';
 import CustomSelect from '../reusables/custom-select/custom-select.component';
-import CustomTags from '../custom-tags/custom-tags.component';
+import CustomTags from '../reusables/custom-tags/custom-tags.component';
 import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-upload-icons-list.component';
 //actions
 import { changeModalView, changeRootClassfication } from '../../redux/upload-icons/upload-icons.actions';
