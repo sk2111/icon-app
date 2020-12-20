@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './loading-button.module.css';
 //static
-import { ReactComponent as LoadingSpinner } from '../../assests/loading-for-btn.svg';
+import { ReactComponent as LoadingSpinner } from '../../../assests/loading-for-btn.svg';
 
 const LoadingButton = ({ children, loading, ...otherProps }) => {
 

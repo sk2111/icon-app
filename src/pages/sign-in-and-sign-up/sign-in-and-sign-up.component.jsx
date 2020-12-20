@@ -5,10 +5,10 @@ import { Route, Switch } from 'react-router-dom';
 import styles from './sign-in-and-sign-up.module.css';
 //components
 import LoginHeader from '../../components/login-header/login-header.component';
-import SignInUserLogin from '../../components/sign-in-user-login/sign-in-user-login.component';
-import SignInForgotPassword from '../../components/sign-in-forgot-password/sign-in-forgot-password.component';
-import SignUp from '../../components/sign-up/sign-up.component';
-import RouteNotFound from '../../components/route-not-found/route-not-found.component';
+import SignInUserLogin from '../../components/containers/sign-in-user-login/sign-in-user-login.component';
+import SignInForgotPassword from '../../components/containers/sign-in-forgot-password/sign-in-forgot-password.component';
+import SignUp from '../../components/containers/sign-up/sign-up.component';
+import RouteNotFound from '../../components/containers/route-not-found/route-not-found.component';
 //constants
 import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
 import { LOADING_ANIM_LOGO_TIME } from '../../utilities/app.constants';

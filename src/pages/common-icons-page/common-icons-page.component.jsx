@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './common-icons-page.module.css';
 //components
-import HomeHeader from '../../components/home-header/home-header.component';
+import HomeHeader from '../../components/containers/home-header/home-header.component';
 import IconsViewHeader from '../../components/icons-view-header/icons-view-header.component';
 //actions
 import { setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../../redux/common-icons/common-icons.actions';

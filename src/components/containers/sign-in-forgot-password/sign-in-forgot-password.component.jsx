@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import styles from './sign-in-forgot-password.module.css';
 //components
 import FormInput from '../../reusables/form-input/form-input.component';
-import LoadingButton from '../../components/loading-button/loading-button.component';
-import RenderView from '../../components/render-view/render-view.component';
+import LoadingButton from '../../reusables/loading-button/loading-button.component';
+import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import { sendResetLinkStart, sendResetLinkFailure, clearAuthError } from '../../../redux/auth/auth.actions';
 //reselect

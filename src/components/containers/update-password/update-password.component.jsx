@@ -6,10 +6,10 @@ import { createStructuredSelector } from 'reselect';
 //css
 import styles from './update-password.module.css';
 //components
-import LoadingButton from '../loading-button/loading-button.component';
+import LoadingButton from '../../reusables/loading-button/loading-button.component';
 import FormInputPassword from '../../reusables/form-input-password/form-input-password.component';
 import ProtectedRoute from '../protected-route/protected-route.component';
-import RenderView from '../render-view/render-view.component';
+import RenderView from '../../reusables/render-view/render-view.component';
 //reselect
 import { selectWaitingForData, selectUserMessage, selectErrorMessage } from '../../../redux/auth/auth.selectors';
 //actions

@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //component
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import SignOut from './components/sign-out/sign-out.component';
-import ProtectedUpdatePassword from './components/update-password/update-password.component';
+import SignOut from './components/containers/sign-out/sign-out.component';
+import ProtectedUpdatePassword from './components/containers/update-password/update-password.component';
 import ProtectedRouteHomePage from './pages/home-page/home-page.component';
-import ToastMessage from './components/toast-message/toast-message.component';
-import RouteNotFound from './components/route-not-found/route-not-found.component';
+import ToastMessage from './components/reusables/toast-message/toast-message.component';
+import RouteNotFound from './components/containers/route-not-found/route-not-found.component';
 //actions
 import { checkUserPersistanceStart } from './redux/user/user.actions';
 //Reselect

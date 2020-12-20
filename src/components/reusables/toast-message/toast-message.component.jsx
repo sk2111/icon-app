@@ -9,8 +9,8 @@ import { resetToastMessageState } from '../../../redux/toast-message/toast-messa
 import { createStructuredSelector } from 'reselect';
 import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSeconds } from '../../../redux/toast-message/toast-message.selectors';
 //static Image
-import successImage from '../../assests/flat-tick.png';
-import failureImage from '../../assests/flat-cross.png';
+import successImage from '../../../assests/flat-tick.png';
+import failureImage from '../../../assests/flat-cross.png';
 
 const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToastMessageState }) => {
 

@@ -11,9 +11,9 @@ import ProjectIconsPage from '../project-icons-page/project-icons-page.component
 import FavoritesIconsPage from '../favorites-icons-page/favorites-icons-page.component';
 import EditIconPage from '../edit-icon-page/edit-icon-page.component';
 //component
-import ProtectedRoute from '../../components/protected-route/protected-route.component';
-import NavigationMenu from '../../components/navigation-menu/navigation-menu.component';
-import RouteNotFound from '../../components/route-not-found/route-not-found.component';
+import ProtectedRoute from '../../components/containers/protected-route/protected-route.component';
+import NavigationMenu from '../../components/containers/navigation-menu/navigation-menu.component';
+import RouteNotFound from '../../components/containers/route-not-found/route-not-found.component';
 import Modal from '../../components/reusables/modal/modal.component';
 import UploadIcons from '../../components/upload-icons/upload-icons.component';
 //reselect

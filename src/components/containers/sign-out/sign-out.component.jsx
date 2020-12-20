@@ -9,7 +9,7 @@ import { userSignOutSuccess } from '../../../redux/user/user.actions';
 //Route constants
 import { SIGN_IN_ROUTE_PATH } from '../../../utilities/route.paths';
 //static
-import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
+import { ReactComponent as AnimAppLogo } from '../../../assests/anim-applogo.svg';
 //constants
 import { SIGNOUT_ANIMATION_LOADING_TIME } from '../../../utilities/app.constants';
 
