@@ -13,13 +13,13 @@ import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal, showCloseConfirmationModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
-import { selectUploadedIcons, selectCurrentModalView } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectUploadedIcons, selectCurrentModalView, selectIsUserEditedUploadedIcons } from '../../../redux/upload-icons/upload-icons.selectors';
 //helpers
 import { normalizeUploadFileIconsStructure } from '../../../utilities/helper.functions';
 //constants
 import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilities/app.constants';
 
-const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon,
+const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon, isUserEditedIcons,
     closeUploadModal, currentModalView, changeModalView, showCloseConfirmationModal }) => {
 
     console.log("Current Modal view", currentModalView);
@@ -39,9 +39,9 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
     };
 
     const closeUploadModalView = () => {
-        //TODO : check whether user edit is done if so show confirmation popup or else close
-        if (true) {
+        if (isUserEditedIcons) {
             showCloseConfirmationModal();
+            return;
         }
         closeUploadModal();
     };
@@ -69,14 +69,15 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
 
 const mapStateToProps = createStructuredSelector({
     uploadedIcons: selectUploadedIcons,
-    currentModalView: selectCurrentModalView
+    currentModalView: selectCurrentModalView,
+    isUserEditedIcons: selectIsUserEditedUploadedIcons
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        uploadFilesToCommonIcons: (icons) => dispatch(uploadFilesToCommonIcons(icons)) ,
-        deleteCommonIcon: (iconId) =>  dispatch(deleteCommonIcon(iconId)),
-        changeModalView: (view) =>  dispatch(changeModalView(view)) ,
+        uploadFilesToCommonIcons: (icons) => dispatch(uploadFilesToCommonIcons(icons)),
+        deleteCommonIcon: (iconId) => dispatch(deleteCommonIcon(iconId)),
+        changeModalView: (view) => dispatch(changeModalView(view)),
         showCloseConfirmationModal: () => dispatch(showCloseConfirmationModal()),
         closeUploadModal: () => dispatch(closeUploadModal())
     }

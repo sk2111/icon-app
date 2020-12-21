@@ -19,3 +19,5 @@ export const selectRootClassification = createSelector([selectUploadIcons], (sta
 export const selectUploadIconDBPath = createSelector([selectUploadIcons], (state) => state.uploadIconDBPath);
 
 export const selectCommonRootTags = createSelector([selectUploadIcons], (state) => state.commonRootTags);
+
+export const selectIsUserEditedUploadedIcons = createSelector([selectUploadIcons], (state) => state.isUserEditedUploadedIcons);
