@@ -5,10 +5,9 @@ import styles from './custom-tags.module.css';
 //component
 import TagView from './tag-view.component';
 
-const CustomTags = ({ suggestionOptions }) => {
+const CustomTags = ({ suggestionOptions, tags, handleTagsUpdate }) => {
 
     const inpRef = useRef(null);
-    const [tags, setTags] = useState([]);
     const [tagInputValue, setTagInputValue] = useState('');
     const [tagInputFocussed, setTagInputFocussed] = useState(false);
     const [tagSuggestionAlignLeft, setTagSuggestionAlignLeft] = useState(false);
@@ -34,7 +33,7 @@ const CustomTags = ({ suggestionOptions }) => {
     const setTagsValue = (tagInputValue) => {
         const isMatchFound = tags.find(existingValue => existingValue.toLowerCase() === tagInputValue.toLowerCase());
         if (!isMatchFound && tagInputValue) {
-            setTags([...tags, tagInputValue]);
+            handleTagsUpdate([...tags, tagInputValue]);
             setTagInputValue('');
         }
     };
@@ -47,7 +46,7 @@ const CustomTags = ({ suggestionOptions }) => {
 
     const handleTagDelete = (deleteTagName) => {
         const filteredTags = tags.filter((tagName) => tagName !== deleteTagName);
-        setTags([...filteredTags]);
+        handleTagsUpdate([...filteredTags]);
     };
 
     return (
@@ -83,7 +82,9 @@ const CustomTags = ({ suggestionOptions }) => {
 
 
 CustomTags.defaultProps = {
-    suggestionOptions: ["Mock", "test", 'NewData', "oldData"]
+    suggestionOptions: [],
+    tags: [],
+    handleTagsUpdate: () => { }
 }
 
 export default CustomTags;

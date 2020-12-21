@@ -36,13 +36,21 @@ export const deleteCommonIcon = (payload) => {
         payload
     }
 };
-//calssification change actions
+//classification change actions
 export const changeRootClassfication = (payload) => {
     return {
         type: uploadIconsActionTypes.CHANGE_CLASSIFICATION_FOR_ALL_UPLOADED_ICONS,
         payload
     }
 };
+//Tags change
+export const changeRootTags = (payload) => {
+    return {
+        type: uploadIconsActionTypes.CHANGE_COMMON_ROOT_TAGS,
+        payload
+    }
+}
+
 //Edit Icon properties
 export const editUploadIconName = (payload) => {
     return {

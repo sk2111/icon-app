@@ -17,3 +17,5 @@ export const selectCurrentModalView = createSelector([selectUploadIcons], (state
 export const selectRootClassification = createSelector([selectUploadIcons], (state) => state.rootClassification);
 
 export const selectUploadIconDBPath = createSelector([selectUploadIcons], (state) => state.uploadIconDBPath);
+
+export const selectCommonRootTags = createSelector([selectUploadIcons], (state) => state.commonRootTags);

@@ -9,7 +9,8 @@ const INITIAL_STATE = {
     isUploadModalOpen: null, // null beacause first time animation close flicker condition
     uploadIconDBPath: null,
     uploadModalCurrentView: MODAL_IN_UPLOAD_VIEW,
-    rootClassification: UPLOAD_ICONS_DEFAULT_CLASSIFICATION
+    rootClassification: UPLOAD_ICONS_DEFAULT_CLASSIFICATION,
+    commonRootTags: []
 };
 
 const uploadIconsReducer = (state = INITIAL_STATE, action) => {
@@ -20,6 +21,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, uploadModalCurrentView: action.payload };
         case uploadIconsActionTypes.CHANGE_CLASSIFICATION_FOR_ALL_UPLOADED_ICONS:
             return { ...state, rootClassification: action.payload.newValue, uploadedIcons: { ...editAllIconsObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
+        case uploadIconsActionTypes.CHANGE_COMMON_ROOT_TAGS:
+            return { ...state, commonRootTags: [...action.payload] };
         case uploadIconsActionTypes.DELETE_UPLOADED_COMMON_ICON:
             return { ...state, uploadedIcons: { ...removeObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL:
