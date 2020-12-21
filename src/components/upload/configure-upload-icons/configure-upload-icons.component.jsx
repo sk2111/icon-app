@@ -16,7 +16,7 @@ import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-u
 import { changeModalView, changeRootClassfication, addNewClassfication } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsClassification } from '../../../redux/common-icons/common-icons.selectors';
-import { selectRootClassification } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectRootClassification, selectUploadIconDBPath } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
 import { MODAL_IN_UPLOAD_VIEW } from '../../../utilities/app.constants';
 //static 
@@ -24,7 +24,7 @@ import { ReactComponent as BackArrow } from '../../../assests/back-arrow.svg';
 import { ReactComponent as CreateNewClassfication } from '../../../assests/create-new-classification.svg';
 
 const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions,
-    rootClassificationValue, changeRootClassfication, addNewClassfication }) => {
+    rootClassificationValue, changeRootClassfication, uploadIconDBPath, addNewClassfication }) => {
 
     const [showCreateNewCategory, setShowCreateNewCategory] = useState(false);
 
@@ -36,7 +36,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
 
     const handleAddNewClassification = (classification) => {
         if (classification) {
-            addNewClassfication(classification);
+            addNewClassfication({ classification, uploadIconDBPath });
             setShowCreateNewCategory(false);
         }
     };
@@ -88,7 +88,8 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
 
 const mapStateToProps = createStructuredSelector({
     commonIconsSelectOptions: selectCommonIconsClassification,
-    rootClassificationValue: selectRootClassification
+    rootClassificationValue: selectRootClassification,
+    uploadIconDBPath: selectUploadIconDBPath
 });
 
 const mapDispatchToProps = (dispatch) => {

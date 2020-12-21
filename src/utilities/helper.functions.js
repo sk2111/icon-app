@@ -26,6 +26,10 @@ export const getAlphaOnly = (text, replaceChar, toLowerCase = true) => {
     return toLowerCase ? alphaString.toLowerCase() : alphaString;
 };
 
+export const capitalizeFirstLetter = (stringVal) => {
+    return stringVal.charAt(0).toUpperCase() + stringVal.slice(1);
+};
+
 export const getRandomInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
 };

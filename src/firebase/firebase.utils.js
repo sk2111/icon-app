@@ -4,7 +4,7 @@ import 'firebase/auth';
 //helpers
 import { createUserProileDocObj } from './firebase.helpers';
 // constants
-import { FIREBASE_CONFIG, USERS_COLLECTION_PATH, GET_ACCESS_ROLE_PATH } from './firebase.constants';
+import { FIREBASE_CONFIG, USERS_COLLECTION_PATH, GET_ACCESS_ROLE_PATH, CLASSIFICATION_SELECT_OPTIONS_LIST } from './firebase.constants';
 
 //init
 firebase.initializeApp(FIREBASE_CONFIG);
@@ -84,5 +84,29 @@ export const getDocDataFromFireStore = async (dbDocPath) => {
     }
     catch (e) {
         console.log("Reading from firestore for Ui display data failed", e);
+    }
+};
+
+export const CreateNewClassfication = async ({ classification, dbDocPath }) => {
+    const docRef = firestore.doc(dbDocPath);
+    try {
+        console.log("DocRef", docRef, classification);
+        const latestData = await getDocDataFromFireStore(dbDocPath);
+        const classificationOptionsList = latestData[CLASSIFICATION_SELECT_OPTIONS_LIST];
+        if (classificationOptionsList) {
+            const newClassificationList = [classification, ...classificationOptionsList];
+            docRef.update({
+                [CLASSIFICATION_SELECT_OPTIONS_LIST]: [...newClassificationList.sort()]
+            });
+        }
+        else {
+            await docRef.update({
+                [CLASSIFICATION_SELECT_OPTIONS_LIST]: firebase.firestore.FieldValue.arrayUnion(classification)
+            });
+        }
+        return true;
+    }
+    catch (e) {
+        console.log("create new classification failed", e);
     }
 };

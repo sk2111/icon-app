@@ -13,3 +13,7 @@ export const FIREBASE_CONFIG = {
 export const USERS_COLLECTION_PATH = 'users';
 export const GET_ACCESS_ROLE_PATH = 'appData/adminPanel/adminUsers/';
 export const COMMON_ICONS_USER_OPTIONS_DATA_PATH = 'appData/commonIconsTab';
+
+//Db Propertie name consatnts
+export const CLASSIFICATION_SELECT_OPTIONS_LIST = 'selectOptionsList';
+
