@@ -51,6 +51,10 @@
   margin: 0px;
   padding-left: 16px;
 }
+.optionConHide {
+  max-height: 0px;
+  transition: none;
+}
 .selectedOption {
   background-color: var(--app-select-selected-option-background) !important;
   color: var(--app-select-selected-option) !important;

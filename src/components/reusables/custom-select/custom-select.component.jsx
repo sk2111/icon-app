@@ -12,7 +12,7 @@ const CustomSelect = ({ label, className, options, value, handleValueChange }) =
     const selectedOptionRef = useRef(null);
     const [optionsHidden, setOptionsHidden] = useState(true);
 
-    const containerStyle = optionsHidden ? { maxHeight: '0px', transition: 'none' } : {};
+    const optionsContainer = styles.optionsCon + ' ' + (optionsHidden ? styles.optionConHide : '');
     const selectStyleClass = styles.selectedValue + ' ' + className;
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const CustomSelect = ({ label, className, options, value, handleValueChange }) =
                     <div className={selectStyleClass}>{value}</div>
                     <ArrowDownLogo className={styles.arrowDown} />
                 </div>
-                <div ref={parentContainerRef} style={containerStyle} className={styles.optionsCon}>
+                <div ref={parentContainerRef} className={optionsContainer}>
                     {
                         options.map((option) => {
                             const matchedOption = ((option === value) && (!optionsHidden)) ? styles.selectedOption : '';
