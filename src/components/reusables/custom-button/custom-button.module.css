@@ -4,11 +4,13 @@
   box-shadow: none;
   cursor: pointer;
   font-size: 14px;
+  height: 28px;
   outline: none;
   position: relative;
   top: 0px;
   transition: top 0.1s;
   user-select: none;
+  width: 100px;
 }
 .primary {
   background-color: var(--app-button-primary-background);
