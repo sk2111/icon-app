@@ -24,16 +24,14 @@ import {
     COMMON_ROUTE_PATH, PROJECTS_ROUTE_PATH, FAVORITES_ROUTE_PATH,
     EDIT_ROUTE_PATH, MESSAGES_ROUTE_PATH
 } from '../../utilities/route.paths';
-//constants
-import { NAV_MENU_EXPANDED_WIDTH, NAV_MENU_COLLAPSED_WIDTH } from '../../utilities/app.constants';
 
 const HomePage = ({ isNavMenuExpanded, isUploadModalOpen }) => {
 
-    const navigationStyle = { width: (isNavMenuExpanded ? NAV_MENU_EXPANDED_WIDTH : NAV_MENU_COLLAPSED_WIDTH) };
-
+    const navigationStyle = isNavMenuExpanded ? styles.navMenuExpanded : styles.navMenuCollapsed;
+    const navigationContainerClass = styles.leftContainer + ' ' + navigationStyle;
     return (
         <div className={styles.rootContainer}>
-            <section style={navigationStyle} className={styles.leftContainer}>
+            <section className={navigationContainerClass}>
                 <NavigationMenu />
             </section>
             <section className={styles.rightContainer}>

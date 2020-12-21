@@ -8,9 +8,14 @@
   height: 100%;
   overflow: hidden;
   transition: width 0.5s;
-  width: 250px;
 }
 .rightContainer {
   height: 100%;
   width: inherit;
+}
+.navMenuExpanded {
+  width: 250px;
+}
+.navMenuCollapsed {
+  width: 80px;
 }
