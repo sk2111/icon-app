@@ -57,3 +57,12 @@ export const editUploadIconClassification = (payload) => {
         payload
     }
 };
+
+// Add new classfication in db
+export const addNewClassfication = (payload) => {
+    return {
+        type: uploadIconsActionTypes.ADD_NEW_CLASSIFICATION,
+        payload
+    }
+};
+

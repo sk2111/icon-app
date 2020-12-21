@@ -1,5 +1,5 @@
 //libs
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //css
@@ -8,9 +8,12 @@ import styles from './configure-upload-icons.module.css';
 import CustomButton from '../../reusables/custom-button/custom-button.component';
 import CustomSelect from '../../reusables/custom-select/custom-select.component';
 import CustomTags from '../../reusables/custom-tags/custom-tags.component';
+import RenderView from '../../reusables/render-view/render-view.component';
+import CreateModalCard from '../../reusables/create-modal-card/create-modal-card.component';
 import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-upload-icons-list.component';
+
 //actions
-import { changeModalView, changeRootClassfication } from '../../../redux/upload-icons/upload-icons.actions';
+import { changeModalView, changeRootClassfication, addNewClassfication } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsClassification } from '../../../redux/common-icons/common-icons.selectors';
 import { selectRootClassification } from '../../../redux/upload-icons/upload-icons.selectors';
@@ -21,11 +24,20 @@ import { ReactComponent as BackArrow } from '../../../assests/back-arrow.svg';
 import { ReactComponent as CreateNewClassfication } from '../../../assests/create-new-classification.svg';
 
 const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions,
-    rootClassificationValue, changeRootClassfication }) => {
+    rootClassificationValue, changeRootClassfication, addNewClassfication }) => {
+
+    const [showCreateNewCategory, setShowCreateNewCategory] = useState(false);
 
     const handleRootClassificationChange = (currentValue) => {
         if (currentValue !== rootClassificationValue) {
             changeRootClassfication({ key: 'iconClassification', newValue: currentValue, value: [currentValue] });
+        }
+    };
+
+    const handleAddNewClassification = (classification) => {
+        if (classification) {
+            addNewClassfication(classification);
+            setShowCreateNewCategory(false);
         }
     };
 
@@ -47,7 +59,15 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                             value={rootClassificationValue}
                             handleValueChange={handleRootClassificationChange}
                         />
-                        <CreateNewClassfication className={styles.createNew} />
+                        <CreateNewClassfication className={styles.createNew} onClick={() => setShowCreateNewCategory(true)} />
+                        <RenderView renderIfTrue={showCreateNewCategory}>
+                            <CreateModalCard
+                                heading="Create new category"
+                                inputType="text"
+                                defaultValue=""
+                                handleSubmit={handleAddNewClassification}
+                                handleCancel={() => setShowCreateNewCategory(false)} />
+                        </RenderView>
                     </div>
                     <div className={styles.tagsContainer}>
                         <div className={styles.labelTags}>Common tags</div>
@@ -58,7 +78,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                     </div>
                 </div>
                 <div className={styles.btnContainer}>
-                    <CustomButton className={styles.uploadBtn} primary onClick={''}>Upload</CustomButton>
+                    <CustomButton className={styles.uploadBtn} primary onClick={() => { }}>Upload</CustomButton>
                     <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
                 </div>
             </div>
@@ -75,6 +95,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeModalView: (view) => { dispatch(changeModalView(view)) },
         changeRootClassfication: (val) => { dispatch(changeRootClassfication(val)) },
+        addNewClassfication: (val) => { dispatch(addNewClassfication(val)) }
     }
 };
 
