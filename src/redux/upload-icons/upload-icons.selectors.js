@@ -20,4 +20,6 @@ export const selectUploadIconDBPath = createSelector([selectUploadIcons], (state
 
 export const selectCommonRootTags = createSelector([selectUploadIcons], (state) => state.commonRootTags);
 
+export const selectShowCloseConfirmation = createSelector([selectUploadIcons], (state) => state.showCloseConfirmationModal);
+
 export const selectIsUserEditedUploadedIcons = createSelector([selectUploadIcons], (state) => state.isUserEditedUploadedIcons);

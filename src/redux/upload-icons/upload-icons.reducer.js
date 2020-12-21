@@ -29,8 +29,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, isUserEditedUploadedIcons: true, uploadedIcons: { ...removeObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL:
             return { ...state, isUploadModalOpen: true, uploadIconDBPath: action.payload };
-        case uploadIconsActionTypes.SHOW_CLOSE_CONFIRMAION:
-            return { ...state, showCloseConfirmationModal: true };
+        case uploadIconsActionTypes.SHOW_CLOSE_CONFIRMATION_MODAL:
+            return { ...state, showCloseConfirmationModal: action.payload.show };
         case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL:
             return { ...INITIAL_STATE };
         case uploadIconsActionTypes.CHANGE_UPLOAD_ICON_NAME:

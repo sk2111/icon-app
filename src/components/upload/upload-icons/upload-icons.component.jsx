@@ -11,16 +11,17 @@ import PreviewUploadIcons from '../preview-upload-icons/preview-upload-icons.com
 import ConfigureUploadIcons from '../configure-upload-icons/configure-upload-icons.component';
 import RenderView from '../../reusables/render-view/render-view.component';
 //actions
-import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal, showCloseConfirmationModal } from '../../../redux/upload-icons/upload-icons.actions';
+import { uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal, showHideCloseConfirmationModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
-import { selectUploadedIcons, selectCurrentModalView, selectIsUserEditedUploadedIcons } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectUploadedIcons, selectCurrentModalView, selectIsUserEditedUploadedIcons, selectShowCloseConfirmation } from '../../../redux/upload-icons/upload-icons.selectors';
 //helpers
 import { normalizeUploadFileIconsStructure } from '../../../utilities/helper.functions';
 //constants
 import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilities/app.constants';
+import CreateModalCard from '../../reusables/create-modal-card/create-modal-card.component';
 
 const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon, isUserEditedIcons,
-    closeUploadModal, currentModalView, changeModalView, showCloseConfirmationModal }) => {
+    closeUploadModal, currentModalView, changeModalView, closeConfirmation, showHideCloseConfirmationModal }) => {
 
     console.log("Current Modal view", currentModalView);
 
@@ -40,7 +41,7 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
 
     const closeUploadModalView = () => {
         if (isUserEditedIcons) {
-            showCloseConfirmationModal();
+            showHideCloseConfirmationModal({ show: true });
             return;
         }
         closeUploadModal();
@@ -61,6 +62,16 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
             <RenderView renderIfTrue={currentModalView === MODAL_IN_CONFIGURE_VIEW}>
                 <ConfigureUploadIcons closeUploadModalView={closeUploadModalView} />
             </RenderView>
+            <RenderView renderIfTrue={closeConfirmation}>
+                <CreateModalCard>
+                    <h6 className={styles.confirmHeader}>Warning !</h6>
+                    <p className={styles.confirmDetails}>Your Updates will be lost.</p>
+                    <div className={styles.confirmBtnContainer}>
+                        <button className={styles.proceedButton} onClick={() => showHideCloseConfirmationModal({ show: false })}>Cancel</button>
+                        <button className={styles.cancelButton} onClick={() => closeUploadModal()}>Proceed</button>
+                    </div>
+                </CreateModalCard>
+            </RenderView>
         </div>
     );
 };
@@ -70,7 +81,8 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
 const mapStateToProps = createStructuredSelector({
     uploadedIcons: selectUploadedIcons,
     currentModalView: selectCurrentModalView,
-    isUserEditedIcons: selectIsUserEditedUploadedIcons
+    isUserEditedIcons: selectIsUserEditedUploadedIcons,
+    closeConfirmation: selectShowCloseConfirmation
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -78,7 +90,7 @@ const mapDispatchToProps = (dispatch) => {
         uploadFilesToCommonIcons: (icons) => dispatch(uploadFilesToCommonIcons(icons)),
         deleteCommonIcon: (iconId) => dispatch(deleteCommonIcon(iconId)),
         changeModalView: (view) => dispatch(changeModalView(view)),
-        showCloseConfirmationModal: () => dispatch(showCloseConfirmationModal()),
+        showHideCloseConfirmationModal: (view) => dispatch(showHideCloseConfirmationModal(view)),
         closeUploadModal: () => dispatch(closeUploadModal())
     }
 };

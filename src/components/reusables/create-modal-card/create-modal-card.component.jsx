@@ -6,13 +6,21 @@ import styles from './create-modal-card.module.css';
 
 
 
-const CreateModalCard = ({ heading, className, inputType, defaultValue, handleSubmit, handleCancel }) => {
+const CreateModalCard = ({ heading, className, children, inputType, defaultValue, handleSubmit, handleCancel }) => {
 
     const [input, setInput] = useState(defaultValue);
 
     const containerClass = styles.popupView + ' ' + className;
     const submitBtnClass = styles.submitBtn + ' ' + styles.button;
     const cancelBtnClass = styles.cancelBtn + ' ' + styles.button;
+
+    if (children) {
+        return (
+            <div className={containerClass}>
+                {children}
+            </div>
+        );
+    }
 
     return (
         <div className={containerClass}>

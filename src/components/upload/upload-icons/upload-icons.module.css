@@ -28,7 +28,45 @@
   margin-right: 12px;
 }
 .disabled {
-  opacity: 0.5;
   cursor: none;
+  opacity: 0.5;
   pointer-events: none;
+}
+.confirmHeader {
+  color: var(--app-upload-modal-text);
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0px;
+}
+.confirmDetails {
+  color: var(--app-upload-modal-text);
+  font-size: 13px;
+  margin-top: 25px;
+}
+.confirmBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+.proceedButton {
+  border: none;
+  background-color: var(--app-upload-modal-button-background);
+  color: var(--app-upload-modal-button-color);
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  width: 70px;
+}
+.cancelButton {
+  border: none;
+  background-color: var(--app-upload-modal-button-background);
+  color: var(--app-upload-modal-button-color);
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  width: 70px;
+}
+.cancelButton:hover,
+.proceedButton:hover {
+  font-weight: bold;
 }

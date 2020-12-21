@@ -7,7 +7,7 @@ export const openUploadModal = (payload) => {
         payload
     }
 };
-export const showCloseConfirmationModal = (payload) => {
+export const showHideCloseConfirmationModal = (payload) => {
     return {
         type: uploadIconsActionTypes.SHOW_CLOSE_CONFIRMATION_MODAL,
         payload
