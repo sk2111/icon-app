@@ -21,7 +21,7 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, uploadModalCurrentView: action.payload };
         case uploadIconsActionTypes.CHANGE_CLASSIFICATION_FOR_ALL_UPLOADED_ICONS:
             return { ...state, rootClassification: action.payload.newValue, uploadedIcons: { ...editAllIconsObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
-        case uploadIconsActionTypes.CHANGE_COMMON_ROOT_TAGS:
+        case uploadIconsActionTypes.UPDATE_COMMON_ROOT_TAGS:
             return { ...state, commonRootTags: [...action.payload] };
         case uploadIconsActionTypes.DELETE_UPLOADED_COMMON_ICON:
             return { ...state, uploadedIcons: { ...removeObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
@@ -32,6 +32,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
         case uploadIconsActionTypes.CHANGE_UPLOAD_ICON_NAME:
             return { ...state, uploadedIcons: { ...editObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.CHANGE_UPLOAD_ICON_CLASSIFICATION:
+            return { ...state, uploadedIcons: { ...editObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
+        case uploadIconsActionTypes.UPDATE_ICON_TAGS:
             return { ...state, uploadedIcons: { ...editObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         default:
             return state;

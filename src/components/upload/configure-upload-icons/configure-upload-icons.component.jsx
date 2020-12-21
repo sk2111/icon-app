@@ -13,7 +13,7 @@ import CreateModalCard from '../../reusables/create-modal-card/create-modal-card
 import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-upload-icons-list.component';
 
 //actions
-import { changeModalView, changeRootClassfication, addNewClassfication, changeRootTags } from '../../../redux/upload-icons/upload-icons.actions';
+import { changeModalView, changeRootClassfication, addNewClassfication, updateRootTags } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsClassification, selectCommonIconsSearchKeywords } from '../../../redux/common-icons/common-icons.selectors';
 import { selectRootClassification, selectUploadIconDBPath, selectCommonRootTags } from '../../../redux/upload-icons/upload-icons.selectors';
@@ -23,7 +23,7 @@ import { MODAL_IN_UPLOAD_VIEW } from '../../../utilities/app.constants';
 import { ReactComponent as BackArrow } from '../../../assests/back-arrow.svg';
 import { ReactComponent as CreateNewClassfication } from '../../../assests/create-new-classification.svg';
 
-const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions, changeRootTags, commonTags,
+const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions, updateRootTags, commonTags,
     rootClassificationValue, changeRootClassfication, uploadIconDBPath, addNewClassfication, commonIconsSearchKeywords }) => {
 
     const [showCreateNewCategory, setShowCreateNewCategory] = useState(false);
@@ -71,10 +71,10 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                     </div>
                     <div className={styles.tagsContainer}>
                         <div className={styles.labelTags}>Common tags</div>
-                        <CustomTags suggestionOptions={commonIconsSearchKeywords} tags={commonTags} handleTagsUpdate={changeRootTags} />
+                        <CustomTags suggestionOptions={commonIconsSearchKeywords} tags={commonTags} handleTagsUpdate={updateRootTags} />
                     </div>
                     <div className={styles.configPreview}>
-                        <ConfigureUploadIconsList classificationOptions={commonIconsSelectOptions} />
+                        <ConfigureUploadIconsList classificationOptions={commonIconsSelectOptions} tagSuggestionOptions={commonIconsSearchKeywords} />
                     </div>
                 </div>
                 <div className={styles.btnContainer}>
@@ -99,7 +99,7 @@ const mapDispatchToProps = (dispatch) => {
         changeModalView: (view) => { dispatch(changeModalView(view)) },
         changeRootClassfication: (val) => { dispatch(changeRootClassfication(val)) },
         addNewClassfication: (val) => { dispatch(addNewClassfication(val)) },
-        changeRootTags: (tags) => { dispatch(changeRootTags(tags)) },
+        updateRootTags: (tags) => { dispatch(updateRootTags(tags)) },
 
     }
 };

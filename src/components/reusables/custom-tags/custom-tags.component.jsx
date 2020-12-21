@@ -5,7 +5,7 @@ import styles from './custom-tags.module.css';
 //component
 import TagView from './tag-view.component';
 
-const CustomTags = ({ suggestionOptions, tags, handleTagsUpdate }) => {
+const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) => {
 
     const inpRef = useRef(null);
     const [tagInputValue, setTagInputValue] = useState('');
@@ -13,7 +13,7 @@ const CustomTags = ({ suggestionOptions, tags, handleTagsUpdate }) => {
     const [tagSuggestionAlignLeft, setTagSuggestionAlignLeft] = useState(false);
 
     const ENTER_KEYCODE = 'Enter';
-
+    const containerClass = styles.tagContainer + ' ' + className;
     const filteredList = suggestionOptions.filter(
         (item) => (item.toLowerCase().includes(tagInputValue.toLowerCase()) && !tags.includes(item))
     );
@@ -51,7 +51,7 @@ const CustomTags = ({ suggestionOptions, tags, handleTagsUpdate }) => {
 
     return (
         <div className={styles.tagOuterContainer}>
-            <div className={styles.tagContainer}>
+            <div className={containerClass}>
                 <TagView tags={tags} deleteTag={handleTagDelete} />
                 <div className={styles.inputContainer}>
                     <input

@@ -6,9 +6,11 @@ import { createStructuredSelector } from 'reselect';
 import styles from './configure-upload-icons-list.module.css';
 //component
 import CustomSelect from '../../reusables/custom-select/custom-select.component';
+import CustomTags from '../../reusables/custom-tags/custom-tags.component';
 import RenderView from '../../reusables/render-view/render-view.component';
+import CreateModalCard from '../../reusables/create-modal-card/create-modal-card.component';
 //actions
-import { editUploadIconName, editUploadIconClassification } from '../../../redux/upload-icons/upload-icons.actions';
+import { editUploadIconName, editUploadIconClassification, updateIconTags } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect selectors
 import { selectUploadedIcons } from '../../../redux/upload-icons/upload-icons.selectors';
 //static
@@ -16,27 +18,21 @@ import { ReactComponent as EditSvg } from '../../../assests/edit-name.svg';
 
 
 
-const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classificationOptions, editUploadIconClassification }) => {
+const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classificationOptions,
+    tagSuggestionOptions, editUploadIconClassification, updateIconTags }) => {
 
     const [createNewNameOpen, setCreateNewNameOpen] = useState(false);
     const [iconName, setIconName] = useState({ newName: '', oldName: '', id: '' });
 
     const selectStyles = { fontSize: "13px", height: "27px", width: "160px" };
-    const okayBtnClass = styles.okayBtn + ' ' + styles.button;
-    const cancelBtnClass = styles.cancelBtn + ' ' + styles.button;
 
     const handleEditName = (oldName, id) => {
         setIconName({ newName: oldName, oldName, id });
         setCreateNewNameOpen(true);
     };
 
-    const handleIconNameChange = (eve) => {
-        const newNameValue = eve.target.value;
-        setIconName({ ...iconName, newName: newNameValue });
-    };
-
-    const handleIconNameUpdate = () => {
-        const { id, newName, oldName } = iconName;
+    const handleIconNameUpdate = (newName) => {
+        const { id, oldName } = iconName;
         if (newName !== oldName) {
             editUploadIconName({ id, value: newName, key: "iconName" });
         }
@@ -46,6 +42,13 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
     const handleClassificationChange = (id, oldVal, newVal) => {
         if (oldVal !== newVal) {
             editUploadIconClassification({ id, value: [newVal], key: "iconClassification" });
+        }
+    };
+
+    const handleIconTagsUpdate = (id, tags) => {
+        console.log("Test update", id, tags);
+        if (id && tags) {
+            updateIconTags({ id, value: tags, key: "iconTags" });
         }
     };
 
@@ -70,20 +73,24 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
                                     value={defaultSelectValue}
                                     handleValueChange={(val) => handleClassificationChange(id, defaultSelectValue, val)} />
                             </div>
-                            <div></div>
+                            <div className={styles.tagSection}>
+                                <CustomTags
+                                    className={styles.tagsContainer}
+                                    suggestionOptions={tagSuggestionOptions}
+                                    tags={iconTags}
+                                    handleTagsUpdate={(tags) => handleIconTagsUpdate(id, tags)} />
+                            </div>
                         </div>
                     )
                 })
             }
             <RenderView renderIfTrue={createNewNameOpen}>
-                <div className={styles.popupView}>
-                    <h6 className={styles.popupHeader}>Create New Name</h6>
-                    <input className={styles.nameInput} type="text" value={iconName.newName} onChange={handleIconNameChange} />
-                    <div className={styles.actionCon}>
-                        <button className={cancelBtnClass} onClick={() => setCreateNewNameOpen(false)}>Cancel</button>
-                        <button className={okayBtnClass} onClick={() => handleIconNameUpdate()}>Ok</button>
-                    </div>
-                </div>
+                <CreateModalCard
+                    heading="Create new name"
+                    inputType="text"
+                    defaultValue={iconName.newName}
+                    handleSubmit={handleIconNameUpdate}
+                    handleCancel={() => setCreateNewNameOpen(false)} />
             </RenderView>
         </div>
     );
@@ -97,6 +104,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         editUploadIconName: (config) => { dispatch(editUploadIconName(config)) },
         editUploadIconClassification: (config) => { dispatch(editUploadIconClassification(config)) },
+        updateIconTags: (config) => { dispatch(updateIconTags(config)) },
     }
 };
 

@@ -44,9 +44,9 @@ export const changeRootClassfication = (payload) => {
     }
 };
 //Tags change
-export const changeRootTags = (payload) => {
+export const updateRootTags = (payload) => {
     return {
-        type: uploadIconsActionTypes.CHANGE_COMMON_ROOT_TAGS,
+        type: uploadIconsActionTypes.UPDATE_COMMON_ROOT_TAGS,
         payload
     }
 }
@@ -66,6 +66,12 @@ export const editUploadIconClassification = (payload) => {
     }
 };
 
+export const updateIconTags = (payload) => {
+    return {
+        type: uploadIconsActionTypes.UPDATE_ICON_TAGS,
+        payload
+    }
+};
 // Add new classfication in db
 export const addNewClassfication = (payload) => {
     return {
