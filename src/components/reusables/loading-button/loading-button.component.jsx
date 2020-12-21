@@ -3,13 +3,14 @@ import styles from './loading-button.module.css';
 //static
 import { ReactComponent as LoadingSpinner } from '../../../assests/loading-for-btn.svg';
 
-const LoadingButton = ({ children, loading, ...otherProps }) => {
+const LoadingButton = ({ children, className, loading, ...otherProps }) => {
 
     const containerClass = loading ? styles.containerLoading : styles.container;
+    const buttonClass = styles.button + ' ' + className;
 
     return (
         <div className={containerClass}>
-            <button className={styles.button} {...otherProps}>{children}</button>
+            <button className={buttonClass} {...otherProps}>{children}</button>
             {loading ? <LoadingSpinner className={styles.loading} /> : null}
         </div>
     );

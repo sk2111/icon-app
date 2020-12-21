@@ -11,3 +11,8 @@
   font-weight: 500;
   margin: 0px;
 }
+.uploadBtn {
+  font-weight: 300;
+  height: 30px;
+  width: 108px;
+}

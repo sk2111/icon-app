@@ -8,13 +8,11 @@ import LoadingButton from '../../reusables/loading-button/loading-button.compone
 
 const IconsViewHeader = ({ label, showUploadButton, handleUploadIcon }) => {
 
-    const buttonStyle = { fontWeight: '300', height: '30px', width: '108px' };
-
     return (
         <div className={styles.headerContainer}>
             <h4 className={styles.header}>{label}</h4>
             <RenderView renderIfTrue={showUploadButton}>
-                <LoadingButton style={buttonStyle} onClick={() => handleUploadIcon(label)}>Upload icon</LoadingButton>
+                <LoadingButton className={styles.uploadBtn} onClick={() => handleUploadIcon(label)}>Upload icon</LoadingButton>
             </RenderView>
         </div>
     );
