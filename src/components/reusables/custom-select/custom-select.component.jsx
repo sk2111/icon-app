@@ -6,14 +6,14 @@ import RenderView from '../render-view/render-view.component';
 //static 
 import { ReactComponent as ArrowDownLogo } from '../../../assests/arrow-down.svg';
 
-const CustomSelect = ({ label, style, options, value, handleValueChange }) => {
+const CustomSelect = ({ label, className, options, value, handleValueChange }) => {
 
     const parentContainerRef = useRef(null);
     const selectedOptionRef = useRef(null);
     const [optionsHidden, setOptionsHidden] = useState(true);
 
     const containerStyle = optionsHidden ? { maxHeight: '0px', transition: 'none' } : {};
-    const selectStyles = style ? style : {};
+    const selectStyleClass = styles.selectedValue + ' ' + className;
 
     useEffect(() => {
         if (!optionsHidden && selectedOptionRef.current && parentContainerRef.current) {
@@ -32,7 +32,7 @@ const CustomSelect = ({ label, style, options, value, handleValueChange }) => {
                     tabIndex="0"
                     onBlur={() => setOptionsHidden(true)}
                     onClick={() => setOptionsHidden(!optionsHidden)}>
-                    <div style={selectStyles} className={styles.selectedValue}>{value}</div>
+                    <div className={selectStyleClass}>{value}</div>
                     <ArrowDownLogo className={styles.arrowDown} />
                 </div>
                 <div ref={parentContainerRef} style={containerStyle} className={styles.optionsCon}>

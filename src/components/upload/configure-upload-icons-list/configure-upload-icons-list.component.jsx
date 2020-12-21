@@ -22,12 +22,10 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
     tagSuggestionOptions, editUploadIconClassification, updateIconTags }) => {
 
     const [createNewNameOpen, setCreateNewNameOpen] = useState(false);
-    const [iconName, setIconName] = useState({ newName: '', oldName: '', id: '' });
-
-    const selectStyles = { fontSize: "13px", height: "27px", width: "160px" };
+    const [iconName, setIconName] = useState({ oldName: '', id: '' });
 
     const handleEditName = (oldName, id) => {
-        setIconName({ newName: oldName, oldName, id });
+        setIconName({ oldName, id });
         setCreateNewNameOpen(true);
     };
 
@@ -68,7 +66,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
                                     <EditSvg className="re-upload-editSvg" onClick={() => handleEditName(iconName, id)} />
                                 </div>
                                 <CustomSelect
-                                    style={selectStyles}
+                                    className={styles.dropdown}
                                     options={classificationOptions}
                                     value={defaultSelectValue}
                                     handleValueChange={(val) => handleClassificationChange(id, defaultSelectValue, val)} />
@@ -88,7 +86,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
                 <CreateModalCard
                     heading="Create new name"
                     inputType="text"
-                    defaultValue={iconName.newName}
+                    defaultValue={iconName.oldName}
                     handleSubmit={handleIconNameUpdate}
                     handleCancel={() => setCreateNewNameOpen(false)} />
             </RenderView>

@@ -1,6 +1,11 @@
 .topContainer {
   position: relative;
 }
+.dropdown {
+  font-size: 13px;
+  height: 27px;
+  width: 160px;
+}
 .listContainer {
   align-items: center;
   border-radius: 3px;
