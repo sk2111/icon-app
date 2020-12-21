@@ -17,7 +17,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
 
 
     const filteredList = searchList.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()));
-    const searchListStyle = (listHidden || !filteredList.length) ? { maxHeight: '0px', transition: 'none', border: 'none' } : {};
+    const searchListClass = styles.searchListContainer + ' ' + ((listHidden || !filteredList.length) ? styles.hideList : '');
 
     useEffect(() => {
         const timerId = setTimeout(() => {
@@ -62,7 +62,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
                     />
                     <SearchLens className={styles.SearchLens} />
                 </div>
-                <div style={searchListStyle} className={styles.searchListContainer}>
+                <div className={searchListClass}>
                     {
                         filteredList.map((listVal) => {
                             return (

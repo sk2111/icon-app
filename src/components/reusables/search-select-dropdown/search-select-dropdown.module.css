@@ -46,6 +46,11 @@
   z-index: 1;
   width: 330px;
 }
+.hideList {
+  border: none;
+  max-height: 0px;
+  transition: none;
+}
 .searchItem {
   align-items: center;
   color: var(--app-search-select-list-text);
