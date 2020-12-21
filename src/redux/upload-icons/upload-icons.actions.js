@@ -7,6 +7,12 @@ export const openUploadModal = (payload) => {
         payload
     }
 };
+export const showCloseConfirmationModal = (payload) => {
+    return {
+        type: uploadIconsActionTypes.SHOW_CLOSE_CONFIRMATION_MODAL,
+        payload
+    }
+};
 export const closeUploadModal = (payload) => {
     return {
         type: uploadIconsActionTypes.CLOSE_UPLOAD_MODAL,

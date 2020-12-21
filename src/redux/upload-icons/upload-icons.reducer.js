@@ -7,6 +7,7 @@ import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW, UPLOAD_ICONS_DEFAULT_CLA
 const INITIAL_STATE = {
     uploadedIcons: {},
     isUploadModalOpen: null, // null beacause first time animation close flicker condition
+    showCloseConfirmationModal: false,
     uploadIconDBPath: null,
     uploadModalCurrentView: MODAL_IN_UPLOAD_VIEW,
     rootClassification: UPLOAD_ICONS_DEFAULT_CLASSIFICATION,
@@ -27,6 +28,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, uploadedIcons: { ...removeObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL:
             return { ...state, isUploadModalOpen: true, uploadIconDBPath: action.payload };
+        case uploadIconsActionTypes.SHOW_CLOSE_CONFIRMAION:
+            return { ...state, showCloseConfirmationModal: true };
         case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL:
             return { ...state, isUploadModalOpen: false, uploadIconDBPath: null };
         case uploadIconsActionTypes.CHANGE_UPLOAD_ICON_NAME:

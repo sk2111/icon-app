@@ -96,11 +96,10 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeModalView: (view) => { dispatch(changeModalView(view)) },
-        changeRootClassfication: (val) => { dispatch(changeRootClassfication(val)) },
-        addNewClassfication: (val) => { dispatch(addNewClassfication(val)) },
-        updateRootTags: (tags) => { dispatch(updateRootTags(tags)) },
-
+        changeModalView: (view) => dispatch(changeModalView(view)),
+        changeRootClassfication: (val) => dispatch(changeRootClassfication(val)),
+        addNewClassfication: (val) => dispatch(addNewClassfication(val)),
+        updateRootTags: (tags) => dispatch(updateRootTags(tags)),
     }
 };
 
