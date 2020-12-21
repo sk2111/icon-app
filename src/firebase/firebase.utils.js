@@ -90,7 +90,6 @@ export const getDocDataFromFireStore = async (dbDocPath) => {
 export const CreateNewClassfication = async ({ classification, dbDocPath }) => {
     const docRef = firestore.doc(dbDocPath);
     try {
-        console.log("DocRef", docRef, classification);
         const latestData = await getDocDataFromFireStore(dbDocPath);
         const classificationOptionsList = latestData[CLASSIFICATION_SELECT_OPTIONS_LIST];
         if (classificationOptionsList) {

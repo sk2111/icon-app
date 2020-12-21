@@ -1,5 +1,9 @@
 //libs
-import { takeLatest, all, call } from 'redux-saga/effects';
+import {
+    takeLatest, all, call, put
+} from 'redux-saga/effects';
+//actions
+import { fetchCommonIconsUserOptionsStart } from '../common-icons/common-icons.actions';
 //action type
 import { uploadIconsActionTypes } from './upload-icons.type';
 //firebase 
@@ -13,14 +17,13 @@ import { capitalizeFirstLetter } from '../../utilities/helper.functions';
 
 //create new category or classfication in firebase
 function* addNewClassficationInFirebase({ payload: { classification, uploadIconDBPath } }) {
-    if (uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) {
-        const capitalizedValue = yield call(capitalizeFirstLetter, classification);
+    const capitalizedValue = yield call(capitalizeFirstLetter, classification);
+    if ((uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) && capitalizedValue) {
         const isSuccess = yield call(CreateNewClassfication, { classification: capitalizedValue, dbDocPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH });
         if (isSuccess) {
-            // call actions to fetch optiosn from firestore
+            yield put(fetchCommonIconsUserOptionsStart());
             return;
         }
-        //perform failed condition
     }
 };
 
