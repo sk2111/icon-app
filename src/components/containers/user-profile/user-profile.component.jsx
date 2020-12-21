@@ -17,9 +17,7 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName, userProfileP
 
     const history = useHistory();
     const [settingsHidden, setSettingsHidden] = useState(true);
-
-    const containerStyle = settingsHidden ? { maxHeight: '0px' } : {};
-
+    const containerList = styles.settingsCon + ' ' + (settingsHidden ? styles.hide : '');
     return (
         <React.Fragment>
             <div className={styles.verticalLine}></div>
@@ -27,7 +25,7 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName, userProfileP
             <div className={styles.profileContainer}>
                 <div style={userProfilePicTheme} className={styles.profilePic}
                     onClick={() => setSettingsHidden(!settingsHidden)}>{fullName[0]}</div>
-                <div style={containerStyle} className={styles.settingsCon} onClick={() => setSettingsHidden(true)}>
+                <div className={containerList} onClick={() => setSettingsHidden(true)}>
                     <div className={styles.topContainer}>
                         <div style={userProfilePicTheme} className={styles.profilePicDropdown}>{fullName[0]}</div>
                         <div className={styles.nameContainer}>

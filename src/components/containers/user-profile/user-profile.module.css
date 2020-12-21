@@ -17,6 +17,9 @@
 .profileContainer {
   position: relative;
 }
+.hide {
+  max-height: 0px !important;
+}
 
 .profilePic {
   align-items: center;
