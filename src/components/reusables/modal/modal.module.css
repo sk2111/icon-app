@@ -18,6 +18,8 @@
   flex-direction: column;
   height: 95vh;
   justify-content: center;
+  max-height: 750px;
+  width: 600px;
 }
 .hideModal {
   z-index: -1;
