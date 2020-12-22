@@ -23,3 +23,9 @@ export const selectCommonRootTags = createSelector([selectUploadIcons], (state) 
 export const selectShowCloseConfirmation = createSelector([selectUploadIcons], (state) => state.showCloseConfirmationModal);
 
 export const selectIsUserEditedUploadedIcons = createSelector([selectUploadIcons], (state) => state.isUserEditedUploadedIcons);
+
+export const selectIsUploadingModalOpen = createSelector([selectUploadIcons], (state) => state.isUploadingModalOpen);
+
+export const selectIsUploading = createSelector([selectUploadIcons], (state) => state.isUploading);
+
+export const selectUploadErrorMessage = createSelector([selectUploadIcons], (state) => state.uploadErrorMessage);

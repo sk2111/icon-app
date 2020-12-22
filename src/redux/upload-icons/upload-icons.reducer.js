@@ -46,6 +46,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...INITIAL_STATE, isUploading: false, uploadIconDBPath: state.uploadIconDBPath, isUploadModalOpen: true };
         case uploadIconsActionTypes.UPLOAD_ICONS_FAILURE:
             return { ...state, isUploading: false, uploadErrorMessage: action.payload };
+        case uploadIconsActionTypes.CLOSE_UPLOAD_FAILED_MODAL:
+            return { ...state, isUploading: false, uploadErrorMessage: '', isUploadingModalOpen: false };
         case uploadIconsActionTypes.SHOW_CLOSE_CONFIRMATION_MODAL:
             return { ...state, showCloseConfirmationModal: action.payload?.show };
         default:
