@@ -6,7 +6,7 @@ import { createUserProileDocObj } from './firebase.helpers';
 // constants
 import {
     FIREBASE_CONFIG, USERS_COLLECTION_PATH, GET_ACCESS_ROLE_PATH,
-    CLASSIFICATION_SELECT_OPTIONS_LIST, CLASSIFICATION_SEARCH_KEYWORD_LIST
+    CLASSIFICATION_SELECT_OPTIONS_LIST
 } from './firebase.constants';
 
 //init
@@ -126,6 +126,22 @@ export const updateDocPropInFirestore = async (dbDocPath, { property, value }) =
     }
     catch (e) {
         console.log("updating doc failed", e);
+        throw e;
+    }
+};
+
+export const performUploadIconsInBatchedMode = async (docPath, iconList) => {
+    try {
+        const batch = firestore.batch();
+        iconList.forEach((icon) => {
+            const newIconRef = firestore.collection(docPath).doc();
+            batch.set(newIconRef, { ...icon });
+        });
+        await batch.commit();
+        return true;
+    }
+    catch (e) {
+        console.log("Batched write Mode failed", e);
         throw e;
     }
 };

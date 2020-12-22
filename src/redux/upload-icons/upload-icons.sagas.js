@@ -4,12 +4,12 @@ import {
 } from 'redux-saga/effects';
 //actions
 import { fetchCommonIconsUserOptionsStart } from '../common-icons/common-icons.actions';
-import { uploadIconsFailure } from '../upload-icons/upload-icons.actions';
+import { uploadIconsSuccess, uploadIconsFailure } from '../upload-icons/upload-icons.actions';
 //action type
 import { uploadIconsActionTypes } from './upload-icons.type';
 //firebase 
-import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, CLASSIFICATION_SEARCH_KEYWORD_LIST } from '../../firebase/firebase.constants';
-import { CreateNewClassfication, updateDocPropInFirestore } from '../../firebase/firebase.utils';
+import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, CLASSIFICATION_SEARCH_KEYWORD_LIST, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
+import { CreateNewClassfication, updateDocPropInFirestore, performUploadIconsInBatchedMode } from '../../firebase/firebase.utils';
 //constants
 import {
     COMMON_ICONS_HEADER_LABEL,
@@ -63,11 +63,13 @@ function* uploadIconsToDb() {
                     updateDocPropInFirestore,
                     COMMON_ICONS_USER_OPTIONS_DATA_PATH, { property: CLASSIFICATION_SEARCH_KEYWORD_LIST, value: allTagValues }
                 );
-                yield put(fetchCommonIconsUserOptionsStart());
+                //uplaod to firestire
+                const isUploadSuccess = yield call(performUploadIconsInBatchedMode, COMMON_ICONS_LIST_PATH, clonedIconsList);
+                if (isUploadSuccess) {
+                    yield put(fetchCommonIconsUserOptionsStart());
+                    yield put(uploadIconsSuccess());
+                }
             }
-
-            //uplaod to firestire
-
         }
     }
     catch (e) {
