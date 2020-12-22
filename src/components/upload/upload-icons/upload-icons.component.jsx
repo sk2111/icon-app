@@ -27,6 +27,7 @@ import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilitie
 import CreateModalCard from '../../reusables/create-modal-card/create-modal-card.component';
 //static
 import { ReactComponent as FailedSvg } from '../../../assests/failed-cross.svg';
+import { ReactComponent as SuccessSvg } from '../../../assests/success-tick.svg';
 
 const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon, isUserEditedIcons,
     closeUploadModal, currentModalView, changeModalView, closeConfirmation, showHideCloseConfirmationModal,
@@ -99,9 +100,9 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
                 </RenderView>
                 <RenderView renderIfTrue={(!uploadErrorMessage && !isUploading)}>
                     <CreateModalCard>
-                        <div className={styles.failedHeader}><FailedSvg className={styles.failedSvg} /></div>
-                        <p className={styles.errorText}>Upload Success</p>
-                        <div className={styles.uploadFailedbtn}>
+                        <div className={styles.successHeader}><SuccessSvg className={styles.successSvg} /></div>
+                        <p className={styles.successText}>Upload Success</p>
+                        <div className={styles.uploadSuccessbtn}>
                             <button className={styles.cancelButton} onClick={() => closeUploadStatusModal()}>Cancel</button>
                         </div>
                     </CreateModalCard>

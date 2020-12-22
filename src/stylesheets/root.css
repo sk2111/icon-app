@@ -126,6 +126,10 @@
   --app-custom-tags-background: #f3f3f4;
   --app-custom-tags-text: #3254b7;
   --app-custom-tags-border: #3254b7;
+
+  /* upload */
+  --app-upload-success-background: #00c578;
+  --app-upload-failed-background: #f34469;
 }
 * {
   box-sizing: border-box;

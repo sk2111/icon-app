@@ -77,7 +77,7 @@
 }
 .failedHeader {
   align-items: center;
-  background-color: #f34469;
+  background-color: var(--app-upload-failed-background);
   border-radius: 50%;
   display: flex;
   height: 35px;
@@ -98,4 +98,29 @@
 .uploadFailedbtn {
   display: flex;
   justify-content: flex-end;
+}
+.successHeader {
+  align-items: center;
+  background-color: var(--app-upload-success-background);
+  border-radius: 50%;
+  display: flex;
+  height: 35px;
+  justify-content: center;
+  margin: auto;
+  width: 35px;
+}
+.successSvg {
+  height: 18px;
+  width: 18px;
+}
+.successText {
+  color: var(--app-upload-modal-text);
+  font-size: 13px;
+  margin-top: 22px;
+  text-align: center;
+}
+.uploadSuccessbtn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
