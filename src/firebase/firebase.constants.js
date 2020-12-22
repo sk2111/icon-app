@@ -16,4 +16,5 @@ export const COMMON_ICONS_USER_OPTIONS_DATA_PATH = 'appData/commonIconsTab';
 
 //Db Propertie name consatnts
 export const CLASSIFICATION_SELECT_OPTIONS_LIST = 'selectOptionsList';
+export const CLASSIFICATION_SEARCH_KEYWORD_LIST = 'searchKeywordsList';
 

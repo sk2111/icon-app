@@ -95,14 +95,14 @@ export const uploadIconsStart = () => {
 
 export const uploadIconsSuccess = (payload) => {
     return {
-        type: uploadIconsActionTypes.UPLOAD_ICONS_START,
+        type: uploadIconsActionTypes.UPLOAD_ICONS_SUCCESS,
         payload
     }
 };
 
 export const uploadIconsFailure = (payload) => {
     return {
-        type: uploadIconsActionTypes.UPLOAD_ICONS_START,
+        type: uploadIconsActionTypes.UPLOAD_ICONS_FAILURE,
         payload
     }
 };

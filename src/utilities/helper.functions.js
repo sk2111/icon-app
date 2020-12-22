@@ -116,4 +116,38 @@ export const normalizeUploadFileIconsStructure = (files) => {
         };
     });
     return normalizedData;
-}
+};
+
+export const extractNeededPropsForUpload = (list) => {
+    return list.map((icon) => {
+        const { [ICON_PROP.ICON_NAME]: iconName, [ICON_PROP.ICON_CLASSIFICATION]: iconClassification, [ICON_PROP.ICON_TAGS]: iconTags,
+            [ICON_PROP.CREATED_AT]: createdAt, [ICON_PROP.ICON_DATA]: iconData } = icon;
+        return {
+            [ICON_PROP.ICON_NAME]: iconName,
+            [ICON_PROP.ICON_CLASSIFICATION]: [...iconClassification],
+            [ICON_PROP.ICON_TAGS]: [...iconTags],
+            [ICON_PROP.CREATED_AT]: createdAt,
+            [ICON_PROP.ICON_DATA]: iconData,
+        }
+    });
+};
+
+export const isIconsAllowedToUpload = (list) => {
+    const isNotValid = list.filter((icon) => icon[ICON_PROP.ICON_CLASSIFICATION].includes(UPLOAD_ICONS_DEFAULT_CLASSIFICATION));
+    return !!isNotValid.length;
+};
+
+export const appendCommonTagsAndIconName = (list, commonRootTags) => {
+    return list.map((icon) => ({
+        ...icon,
+        [ICON_PROP.ICON_TAGS]: [...commonRootTags, icon[ICON_PROP.ICON_NAME], ...icon[ICON_PROP.ICON_TAGS]]
+    }));
+};
+
+export const getAllTagValuesFromIcons = (list) => {
+    const tags = [];
+    list.forEach((icon) => {
+        tags.push(...icon[ICON_PROP.ICON_TAGS]);
+    });
+    return [...new Set(tags)];
+};

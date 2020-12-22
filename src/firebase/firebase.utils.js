@@ -4,7 +4,10 @@ import 'firebase/auth';
 //helpers
 import { createUserProileDocObj } from './firebase.helpers';
 // constants
-import { FIREBASE_CONFIG, USERS_COLLECTION_PATH, GET_ACCESS_ROLE_PATH, CLASSIFICATION_SELECT_OPTIONS_LIST } from './firebase.constants';
+import {
+    FIREBASE_CONFIG, USERS_COLLECTION_PATH, GET_ACCESS_ROLE_PATH,
+    CLASSIFICATION_SELECT_OPTIONS_LIST, CLASSIFICATION_SEARCH_KEYWORD_LIST
+} from './firebase.constants';
 
 //init
 firebase.initializeApp(FIREBASE_CONFIG);
@@ -107,5 +110,22 @@ export const CreateNewClassfication = async ({ classification, dbDocPath }) => {
     }
     catch (e) {
         console.log("create new classification failed", e);
+    }
+};
+
+export const updateDocPropInFirestore = async (dbDocPath, { property, value }) => {
+    const docRef = firestore.doc(dbDocPath);
+    try {
+        const latestData = await getDocDataFromFireStore(dbDocPath);
+        const dataToUpdate = latestData[property];
+        let finalValueToUpload = Array.isArray(dataToUpdate) ? [...new Set([...dataToUpdate, ...value])] : value;
+        await docRef.update({
+            [property]: finalValueToUpload
+        });
+        return true;
+    }
+    catch (e) {
+        console.log("updating doc failed", e);
+        throw e;
     }
 };
