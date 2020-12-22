@@ -56,6 +56,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
                 uploadedIcons.map((icon) => {
                     const selectValue = icon[ICON_PROP.ICON_CLASSIFICATION][0];
                     const iconId = icon[ICON_PROP.ICON_ID];
+                    const iconName = icon[ICON_PROP.ICON_NAME];
                     return (
                         <div key={iconId} className={styles.listContainer}>
                             <div className={styles.imgContainer}>
