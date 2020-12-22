@@ -13,7 +13,7 @@ import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import {
     uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal,
-    showHideCloseConfirmationModal, closeFailedModal
+    showHideCloseConfirmationModal, closeUploadStatusModal
 } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
 import {
@@ -30,7 +30,7 @@ import { ReactComponent as FailedSvg } from '../../../assests/failed-cross.svg';
 
 const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon, isUserEditedIcons,
     closeUploadModal, currentModalView, changeModalView, closeConfirmation, showHideCloseConfirmationModal,
-    isUploadingToDbModalOpen, isUploading, uploadErrorMessage, closeFailedModal }) => {
+    isUploadingToDbModalOpen, isUploading, uploadErrorMessage, closeUploadStatusModal }) => {
 
     console.log("Current Modal view", currentModalView);
 
@@ -93,7 +93,16 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
                         <div className={styles.failedHeader}><FailedSvg className={styles.failedSvg} /></div>
                         <p className={styles.errorText}>Upload failed.{uploadErrorMessage}</p>
                         <div className={styles.uploadFailedbtn}>
-                            <button className={styles.cancelButton} onClick={() => closeFailedModal()}>Cancel</button>
+                            <button className={styles.cancelButton} onClick={() => closeUploadStatusModal()}>Cancel</button>
+                        </div>
+                    </CreateModalCard>
+                </RenderView>
+                <RenderView renderIfTrue={(!uploadErrorMessage && !isUploading)}>
+                    <CreateModalCard>
+                        <div className={styles.failedHeader}><FailedSvg className={styles.failedSvg} /></div>
+                        <p className={styles.errorText}>Upload Success</p>
+                        <div className={styles.uploadFailedbtn}>
+                            <button className={styles.cancelButton} onClick={() => closeUploadStatusModal()}>Cancel</button>
                         </div>
                     </CreateModalCard>
                 </RenderView>
@@ -121,7 +130,7 @@ const mapDispatchToProps = (dispatch) => {
         changeModalView: (view) => dispatch(changeModalView(view)),
         showHideCloseConfirmationModal: (view) => dispatch(showHideCloseConfirmationModal(view)),
         closeUploadModal: () => dispatch(closeUploadModal()),
-        closeFailedModal: () => dispatch(closeFailedModal())
+        closeUploadStatusModal: () => dispatch(closeUploadStatusModal())
     }
 };
 

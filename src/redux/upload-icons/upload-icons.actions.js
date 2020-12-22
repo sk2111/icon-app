@@ -107,8 +107,8 @@ export const uploadIconsFailure = (payload) => {
     }
 };
 // card modal for upload success and fail
-export const closeFailedModal = () => {
+export const closeUploadStatusModal = () => {
     return {
-        type: uploadIconsActionTypes.CLOSE_UPLOAD_FAILED_MODAL
+        type: uploadIconsActionTypes.CLOSE_UPLOAD_STATUS_MODAL
     }
 }
