@@ -100,9 +100,9 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editUploadIconName: (config) => { dispatch(editUploadIconName(config)) },
-        editUploadIconClassification: (config) => { dispatch(editUploadIconClassification(config)) },
-        updateIconTags: (config) => { dispatch(updateIconTags(config)) },
+        editUploadIconName: (config) => dispatch(editUploadIconName(config)),
+        editUploadIconClassification: (config) => dispatch(editUploadIconClassification(config)),
+        updateIconTags: (config) => dispatch(updateIconTags(config))
     }
 };
 

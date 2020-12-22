@@ -86,3 +86,24 @@ export const addNewClassfication = (payload) => {
     }
 };
 
+//upload to db actions
+export const uploadIconsStart = () => {
+    return {
+        type: uploadIconsActionTypes.UPLOAD_ICONS_START
+    }
+};
+
+export const uploadIconsSuccess = (payload) => {
+    return {
+        type: uploadIconsActionTypes.UPLOAD_ICONS_START,
+        payload
+    }
+};
+
+export const uploadIconsFailure = (payload) => {
+    return {
+        type: uploadIconsActionTypes.UPLOAD_ICONS_START,
+        payload
+    }
+};
+

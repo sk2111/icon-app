@@ -13,7 +13,7 @@ import CreateModalCard from '../../reusables/create-modal-card/create-modal-card
 import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-upload-icons-list.component';
 
 //actions
-import { changeModalView, changeRootClassfication, addNewClassfication, updateRootTags } from '../../../redux/upload-icons/upload-icons.actions';
+import { changeModalView, changeRootClassfication, addNewClassfication, updateRootTags, uploadIconsStart } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsClassification, selectCommonIconsSearchKeywords } from '../../../redux/common-icons/common-icons.selectors';
 import { selectRootClassification, selectUploadIconDBPath, selectCommonRootTags } from '../../../redux/upload-icons/upload-icons.selectors';
@@ -24,7 +24,8 @@ import { ReactComponent as BackArrow } from '../../../assests/back-arrow.svg';
 import { ReactComponent as CreateNewClassfication } from '../../../assests/create-new-classification.svg';
 
 const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions, updateRootTags, commonTags,
-    rootClassificationValue, changeRootClassfication, uploadIconDBPath, addNewClassfication, commonIconsSearchKeywords }) => {
+    rootClassificationValue, changeRootClassfication, uploadIconDBPath, addNewClassfication, commonIconsSearchKeywords,
+    uploadIconsStart }) => {
 
     const [showCreateNewCategory, setShowCreateNewCategory] = useState(false);
 
@@ -78,7 +79,7 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                     </div>
                 </div>
                 <div className={styles.btnContainer}>
-                    <CustomButton className={styles.uploadBtn} primary onClick={() => { }}>Upload</CustomButton>
+                    <CustomButton className={styles.uploadBtn} primary onClick={() => uploadIconsStart()}>Upload</CustomButton>
                     <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
                 </div>
             </div>
@@ -100,6 +101,7 @@ const mapDispatchToProps = (dispatch) => {
         changeRootClassfication: (val) => dispatch(changeRootClassfication(val)),
         addNewClassfication: (val) => dispatch(addNewClassfication(val)),
         updateRootTags: (tags) => dispatch(updateRootTags(tags)),
+        uploadIconsStart: (config) => dispatch(uploadIconsStart(config)),
     }
 };
 

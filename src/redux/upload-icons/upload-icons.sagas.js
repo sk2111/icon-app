@@ -31,10 +31,20 @@ function* addNewClassfication() {
     yield takeLatest(uploadIconsActionTypes.ADD_NEW_CLASSIFICATION, addNewClassficationInFirebase);
 };
 
+
+//upload icons to firestore db
+function* uploadIconsToDb({ payload }) {
+    yield console.log("Testing Icons upload stsrt", payload);
+};
+
+function* uploadIcons() {
+    yield takeLatest(uploadIconsActionTypes.UPLOAD_ICONS_START, uploadIconsToDb);
+};
 //Group all sagas
 export function* uploadIconsSaga() {
     yield all([
         call(addNewClassfication),
+        call(uploadIcons),
     ]);
 };
 
