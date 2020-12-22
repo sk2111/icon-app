@@ -29,4 +29,13 @@ export const SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user optio
 //Upload Modal view constants
 export const MODAL_IN_UPLOAD_VIEW = 'MODAL_IN_UPLOAD_VIEW';
 export const MODAL_IN_CONFIGURE_VIEW = 'MODAL_IN_CONFIGURE_VIEW';
-
+//upload Icon property constants
+export const ICON_PROP = {
+    ICON_ID: 'id',
+    ICON_NAME: 'iconName',
+    ICON_CLASSIFICATION: 'iconClassification',
+    ICON_TAGS: 'iconTags',
+    CREATED_AT: 'createdAt',
+    ICON_BASE_64: 'iconBase64',
+    ICON_DATA: 'iconData'
+};

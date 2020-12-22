@@ -1,5 +1,5 @@
 //constants
-import { UPLOAD_ICONS_DEFAULT_CLASSIFICATION } from './app.constants';
+import { UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP } from './app.constants';
 
 export const frameCurrentUserObject = (userObj) => {
     return {
@@ -97,7 +97,6 @@ export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg
 
 
 // upload normalize data helpers
-
 export const normalizeUploadFileIconsStructure = (files) => {
     const normalizedData = {};
     if (!files) return normalizedData;
@@ -107,13 +106,13 @@ export const normalizeUploadFileIconsStructure = (files) => {
         const buff = Buffer.from(file.textData);
         const base64data = buff.toString('base64');
         normalizedData[randomProperty] = {
-            id: randomProperty,
-            iconName: fileName,
-            iconClassification: [UPLOAD_ICONS_DEFAULT_CLASSIFICATION],
-            iconTags: [],
-            createdAt: new Date(),
-            iconsBase64: base64data,
-            iconData: file.textData
+            [ICON_PROP.ICON_ID]: randomProperty,
+            [ICON_PROP.ICON_NAME]: fileName,
+            [ICON_PROP.ICON_CLASSIFICATION]: [UPLOAD_ICONS_DEFAULT_CLASSIFICATION],
+            [ICON_PROP.ICON_TAGS]: [],
+            [ICON_PROP.CREATED_AT]: new Date(),
+            [ICON_PROP.ICON_BASE_64]: base64data,
+            [ICON_PROP.ICON_DATA]: file.textData
         };
     });
     return normalizedData;

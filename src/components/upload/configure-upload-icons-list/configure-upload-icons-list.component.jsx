@@ -15,7 +15,8 @@ import { editUploadIconName, editUploadIconClassification, updateIconTags } from
 import { selectUploadedIcons } from '../../../redux/upload-icons/upload-icons.selectors';
 //static
 import { ReactComponent as EditSvg } from '../../../assests/edit-name.svg';
-
+//contants 
+import { ICON_PROP } from '../../../utilities/app.constants';
 
 
 const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classificationOptions,
@@ -32,51 +33,51 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
     const handleIconNameUpdate = (newName) => {
         const { id, oldName } = iconName;
         if (newName !== oldName) {
-            editUploadIconName({ id, value: newName, key: "iconName" });
+            editUploadIconName({ [ICON_PROP.ICON_ID]: id, value: newName, key: ICON_PROP.ICON_NAME });
         }
         setCreateNewNameOpen(false);
     };
 
     const handleClassificationChange = (id, oldVal, newVal) => {
         if (oldVal !== newVal) {
-            editUploadIconClassification({ id, value: [newVal], key: "iconClassification" });
+            editUploadIconClassification({ [ICON_PROP.ICON_ID]: id, value: [newVal], key: ICON_PROP.ICON_CLASSIFICATION });
         }
     };
 
     const handleIconTagsUpdate = (id, tags) => {
-        console.log("Test update", id, tags);
         if (id && tags) {
-            updateIconTags({ id, value: tags, key: "iconTags" });
+            updateIconTags({ [ICON_PROP.ICON_ID]: id, value: tags, key: ICON_PROP.ICON_TAGS });
         }
     };
 
     return (
         <div className={styles.topContainer}>
             {
-                uploadedIcons.map(({ id, iconsBase64, iconTags, iconName, iconClassification }) => {
-                    const defaultSelectValue = iconClassification[0];
+                uploadedIcons.map((icon) => {
+                    const selectValue = icon[ICON_PROP.ICON_CLASSIFICATION][0];
+                    const iconId = icon[ICON_PROP.ICON_ID];
                     return (
-                        <div key={id} className={styles.listContainer}>
+                        <div key={iconId} className={styles.listContainer}>
                             <div className={styles.imgContainer}>
-                                <img className={styles.previewImage} src={`data:image/svg+xml;base64,${iconsBase64}`} alt="Invalid" />
+                                <img className={styles.previewImage} src={`data:image/svg+xml;base64,${icon[ICON_PROP.ICON_BASE_64]}`} alt="Invalid" />
                             </div>
                             <div className={styles.selectionZone}>
                                 <div className="re-uploadname-container">
                                     <div className={styles.iconName}>{iconName}</div>
-                                    <EditSvg className="re-upload-editSvg" onClick={() => handleEditName(iconName, id)} />
+                                    <EditSvg className="re-upload-editSvg" onClick={() => handleEditName(iconName, iconId)} />
                                 </div>
                                 <CustomSelect
                                     className={styles.dropdown}
                                     options={classificationOptions}
-                                    value={defaultSelectValue}
-                                    handleValueChange={(val) => handleClassificationChange(id, defaultSelectValue, val)} />
+                                    value={selectValue}
+                                    handleValueChange={(val) => handleClassificationChange(iconId, selectValue, val)} />
                             </div>
                             <div className={styles.tagSection}>
                                 <CustomTags
                                     className={styles.tagsContainer}
                                     suggestionOptions={tagSuggestionOptions}
-                                    tags={iconTags}
-                                    handleTagsUpdate={(tags) => handleIconTagsUpdate(id, tags)} />
+                                    tags={icon[ICON_PROP.ICON_TAGS]}
+                                    handleTagsUpdate={(tags) => handleIconTagsUpdate(iconId, tags)} />
                             </div>
                         </div>
                     )

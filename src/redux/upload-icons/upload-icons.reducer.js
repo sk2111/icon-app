@@ -13,6 +13,8 @@ const INITIAL_STATE = {
     uploadModalCurrentView: MODAL_IN_UPLOAD_VIEW,
     rootClassification: UPLOAD_ICONS_DEFAULT_CLASSIFICATION,
     commonRootTags: [],
+    isUploadingModalOpen: false,
+    isUploading: false,
     uploadErrorMessage: ''
 };
 
@@ -38,6 +40,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, isUserEditedUploadedIcons: true, uploadedIcons: { ...editObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.UPDATE_ICON_TAGS:
             return { ...state, isUserEditedUploadedIcons: true, uploadedIcons: { ...editObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
+        case uploadIconsActionTypes.UPLOAD_ICONS_START:
+            return { ...state, isUploadingModalOpen: true, isUploading: true };
         case uploadIconsActionTypes.UPLOAD_ICONS_SUCCESS:
             return { ...INITIAL_STATE, uploadIconDBPath: state.uploadIconDBPath, isUploadModalOpen: true };
         case uploadIconsActionTypes.UPLOAD_ICONS_FAILURE:

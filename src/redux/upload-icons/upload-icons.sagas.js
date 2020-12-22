@@ -1,6 +1,6 @@
 //libs
 import {
-    takeLatest, all, call, put
+    takeLatest, all, call, put, select
 } from 'redux-saga/effects';
 //actions
 import { fetchCommonIconsUserOptionsStart } from '../common-icons/common-icons.actions';
@@ -33,8 +33,30 @@ function* addNewClassfication() {
 
 
 //upload icons to firestore db
-function* uploadIconsToDb({ payload }) {
-    yield console.log("Testing Icons upload stsrt", payload);
+function* uploadIconsToDb() {
+    try {
+        const uploadIcons = yield select((state) => state.uploadIcons);
+        const uploadedIcons = uploadIcons.uploadedIcons;
+        if (uploadedIcons) {
+            console.log(uploadedIcons);
+            const uploadIconsList = Object.values(uploadedIcons);
+            console.log(uploadIconsList);
+            //step 1 : check whether all icons have classification than Not selected
+
+            // step 2 : Append common tags to all icons and icon name as one of the tag to all icos
+
+            // step 3 : check the path to upload to db
+
+            // append tags values to search keyword options in firestore
+
+            //uplaod to firestire
+
+        }
+    }
+    catch (e) {
+
+    }
+
 };
 
 function* uploadIcons() {
