@@ -13,12 +13,11 @@ import { CreateNewClassfication, updateDocPropInFirestore, performUploadIconsInB
 //constants
 import {
     COMMON_ICONS_HEADER_LABEL,
-    SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE, ICON_PROP
+    SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE
 } from '../../utilities/app.constants';
 //helpers
 import {
-    capitalizeFirstLetter, extractNeededPropsForUpload, isIconsAllowedToUpload,
-    appendCommonTagsAndIconName, getAllTagValuesFromIcons
+    capitalizeFirstLetter, prepareIconDataForUpload,
 } from '../../utilities/helper.functions';
 
 
@@ -62,13 +61,10 @@ function* uploadIconsValidCheck() {
     try {
         const { uploadedIcons, uploadIconDBPath, commonRootTags } = yield select((state) => state.uploadIcons);
         if (uploadedIcons) {
-            const clonedIconsList = yield call(extractNeededPropsForUpload, Object.values(uploadedIcons));
-            const isNotAllowed = yield call(isIconsAllowedToUpload, clonedIconsList);
+            const { isNotAllowed, iconsWithAppendedTagsList, allTagValues } = yield call(prepareIconDataForUpload, uploadedIcons, commonRootTags);
             if (isNotAllowed) {
                 throw new Error(SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE);
             }
-            const iconsWithAppendedTagsList = yield call(appendCommonTagsAndIconName, clonedIconsList, commonRootTags);
-            const allTagValues = yield call(getAllTagValuesFromIcons, iconsWithAppendedTagsList);
             if (uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) {
                 yield put(readyToUploadIcons({
                     keywordPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH,

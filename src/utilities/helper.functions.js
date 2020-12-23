@@ -118,6 +118,14 @@ export const normalizeUploadFileIconsStructure = (files) => {
     return normalizedData;
 };
 
+export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
+    const clonedIconsList = extractNeededPropsForUpload(Object.values(uploadedIcons));
+    const isNotAllowed = isIconsAllowedToUpload(clonedIconsList);
+    const iconsWithAppendedTagsList = appendCommonTagsAndIconName(clonedIconsList, commonRootTags);
+    const allTagValues = getAllTagValuesFromIcons(iconsWithAppendedTagsList);
+    return { isNotAllowed, iconsWithAppendedTagsList, allTagValues };
+};
+
 export const extractNeededPropsForUpload = (list) => {
     return list.map((icon) => {
         const { [ICON_PROP.ICON_NAME]: iconName, [ICON_PROP.ICON_CLASSIFICATION]: iconClassification, [ICON_PROP.ICON_TAGS]: iconTags,
