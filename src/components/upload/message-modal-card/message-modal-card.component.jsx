@@ -19,6 +19,7 @@ import { ReactComponent as SuccessSvg } from '../../../assests/success-tick.svg'
 
 const MessageModalCard = ({ closeConfirmation, isUploadingToDbModalOpen, isUploading, uploadErrorMessage,
     showHideCloseConfirmationModal, closeUploadModal, closeUploadStatusModal }) => {
+        
     return (
         <React.Fragment>
             <RenderView renderIfTrue={closeConfirmation}>

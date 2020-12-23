@@ -16,7 +16,7 @@ import ConfigureUploadIconsList from '../configure-upload-icons-list/configure-u
 import { changeModalView, changeRootClassfication, addNewClassfication, updateRootTags, uploadIconsStart } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsClassification, selectCommonIconsSearchKeywords } from '../../../redux/common-icons/common-icons.selectors';
-import { selectRootClassification, selectUploadIconDBPath, selectCommonRootTags } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectRootClassification, selectUploadIconDBPath, selectCommonRootTags, selectIsUploading } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
 import { MODAL_IN_UPLOAD_VIEW } from '../../../utilities/app.constants';
 //static 
@@ -25,7 +25,7 @@ import { ReactComponent as CreateNewClassfication } from '../../../assests/creat
 
 const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIconsSelectOptions, updateRootTags, commonTags,
     rootClassificationValue, changeRootClassfication, uploadIconDBPath, addNewClassfication, commonIconsSearchKeywords,
-    uploadIconsStart }) => {
+    uploadIconsStart, isUploading }) => {
 
     const [showCreateNewCategory, setShowCreateNewCategory] = useState(false);
 
@@ -79,8 +79,10 @@ const ConfigureUploadIcons = ({ changeModalView, closeUploadModalView, commonIco
                     </div>
                 </div>
                 <div className={styles.btnContainer}>
-                    <CustomButton className={styles.uploadBtn} primary onClick={() => uploadIconsStart()}>Upload</CustomButton>
-                    <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
+                    <RenderView renderIfFalse={isUploading}>
+                        <CustomButton className={styles.uploadBtn} primary onClick={() => uploadIconsStart()}>Upload</CustomButton>
+                        <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
+                    </RenderView>
                 </div>
             </div>
         </React.Fragment>
@@ -92,7 +94,8 @@ const mapStateToProps = createStructuredSelector({
     commonIconsSearchKeywords: selectCommonIconsSearchKeywords,
     rootClassificationValue: selectRootClassification,
     commonTags: selectCommonRootTags,
-    uploadIconDBPath: selectUploadIconDBPath
+    uploadIconDBPath: selectUploadIconDBPath,
+    isUploading: selectIsUploading,
 });
 
 const mapDispatchToProps = (dispatch) => {
