@@ -39,6 +39,6 @@
   margin-left: 20px;
 }
 .tagsContainer {
-  max-height: 62px;
-  width: 270px;
+  max-height: 62px !important;
+  width: 270px !important;
 }
