@@ -22,7 +22,7 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL:
             return { ...state, isUploadModalOpen: true, uploadIconDBPath: action.payload };
-        case uploadIconsActionTypes.SET_UPLOADED_COMMON_ICONS:
+        case uploadIconsActionTypes.SET_UPLOADED_ICONS:
             return { ...state, uploadedIcons: { ...state.uploadedIcons, ...action.payload } };
         case uploadIconsActionTypes.DELETE_UPLOADED_ICON:
             return { ...state, isUserEditedUploadedIcons: true, uploadedIcons: { ...removeObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };

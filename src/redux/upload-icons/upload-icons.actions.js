@@ -29,9 +29,9 @@ export const changeModalView = (payload) => {
 };
 
 //upload and delete actions
-export const uploadFilesToCommonIcons = (payload) => {
+export const uploadFilesToStore = (payload) => {
     return {
-        type: uploadIconsActionTypes.SET_UPLOADED_COMMON_ICONS,
+        type: uploadIconsActionTypes.SET_UPLOADED_ICONS,
         payload
     }
 };

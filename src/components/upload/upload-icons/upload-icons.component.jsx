@@ -13,7 +13,7 @@ import ConfigureUploadIcons from '../configure-upload-icons/configure-upload-ico
 import MessageModalCard from '../message-modal-card/message-modal-card.component';
 //actions
 import {
-    uploadFilesToCommonIcons, deleteUploadedIcon, changeModalView, closeUploadModal,
+    uploadFilesToStore, deleteUploadedIcon, changeModalView, closeUploadModal,
     showHideCloseConfirmationModal
 } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
@@ -24,7 +24,7 @@ import { normalizeUploadFileIconsStructure } from '../../../utilities/helper.fun
 import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilities/app.constants';
 
 
-const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteUploadedIcon, isUserEditedIcons,
+const UploadIcons = ({ uploadedIcons, uploadFilesToStore, deleteUploadedIcon, isUserEditedIcons,
     closeUploadModal, currentModalView, changeModalView, showHideCloseConfirmationModal }) => {
 
     console.log("Current Modal view", currentModalView);
@@ -32,9 +32,9 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteUploadedIc
     const isUserUploadedIcons = !!uploadedIcons.length;
     const nextBtnClass = styles.nextBtn + ' ' + (isUserUploadedIcons ? '' : styles.disabled);
 
-    const handleCommonIconsFileUpload = (uploadedFiles) => {
+    const handleIconsFileUpload = (uploadedFiles) => {
         const normalizedIconData = normalizeUploadFileIconsStructure(uploadedFiles);
-        uploadFilesToCommonIcons(normalizedIconData);
+        uploadFilesToStore(normalizedIconData);
     };
 
     const handleNextBtnView = () => {
@@ -54,7 +54,7 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteUploadedIc
     return (
         <div className={styles.uploadContainer}>
             <RenderView renderIfTrue={currentModalView === MODAL_IN_UPLOAD_VIEW}>
-                <UploadZone validFileNameExtension=".svg" acceptType="image/svg+xml" handleFileUpload={handleCommonIconsFileUpload} />
+                <UploadZone validFileNameExtension=".svg" acceptType="image/svg+xml" handleFileUpload={handleIconsFileUpload} />
                 <div className={styles.horizonLine}></div>
                 <h4 className={styles.viewHeaderText}>Added files</h4>
                 <PreviewUploadIcons iconList={uploadedIcons} deleteIcon={deleteUploadedIcon} />
@@ -79,7 +79,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        uploadFilesToCommonIcons: (icons) => dispatch(uploadFilesToCommonIcons(icons)),
+        uploadFilesToStore: (icons) => dispatch(uploadFilesToStore(icons)),
         deleteUploadedIcon: (iconId) => dispatch(deleteUploadedIcon(iconId)),
         changeModalView: (view) => dispatch(changeModalView(view)),
         showHideCloseConfirmationModal: (view) => dispatch(showHideCloseConfirmationModal(view)),
