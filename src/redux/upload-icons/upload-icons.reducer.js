@@ -20,20 +20,18 @@ const INITIAL_STATE = {
 
 const uploadIconsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case uploadIconsActionTypes.OPEN_UPLOAD_MODAL:
+            return { ...state, isUploadModalOpen: true, uploadIconDBPath: action.payload };
         case uploadIconsActionTypes.SET_UPLOADED_COMMON_ICONS:
             return { ...state, uploadedIcons: { ...state.uploadedIcons, ...action.payload } };
+        case uploadIconsActionTypes.DELETE_UPLOADED_ICON:
+            return { ...state, isUserEditedUploadedIcons: true, uploadedIcons: { ...removeObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.CHANGE_UPLOAD_MODAL_VIEW:
             return { ...state, uploadModalCurrentView: action.payload };
         case uploadIconsActionTypes.CHANGE_CLASSIFICATION_FOR_ALL_UPLOADED_ICONS:
             return { ...state, rootClassification: action.payload.newValue, isUserEditedUploadedIcons: true, uploadedIcons: { ...editAllIconsObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.UPDATE_COMMON_ROOT_TAGS:
             return { ...state, isUserEditedUploadedIcons: true, commonRootTags: [...action.payload] };
-        case uploadIconsActionTypes.DELETE_UPLOADED_ICON:
-            return { ...state, isUserEditedUploadedIcons: true, uploadedIcons: { ...removeObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
-        case uploadIconsActionTypes.OPEN_UPLOAD_MODAL:
-            return { ...state, isUploadModalOpen: true, uploadIconDBPath: action.payload };
-        case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL:
-            return { ...INITIAL_STATE };
         case uploadIconsActionTypes.CHANGE_UPLOAD_ICON_NAME:
             return { ...state, isUserEditedUploadedIcons: true, uploadedIcons: { ...editObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.CHANGE_UPLOAD_ICON_CLASSIFICATION:
@@ -48,6 +46,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, isUploading: false, uploadErrorMessage: action.payload };
         case uploadIconsActionTypes.CLOSE_UPLOAD_STATUS_MODAL:
             return { ...state, isUploading: false, uploadErrorMessage: '', isUploadingModalOpen: false };
+        case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL:
+            return { ...INITIAL_STATE };
         case uploadIconsActionTypes.SHOW_CLOSE_CONFIRMATION_MODAL:
             return { ...state, showCloseConfirmationModal: action.payload?.show };
         default:
