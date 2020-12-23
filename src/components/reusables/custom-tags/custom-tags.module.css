@@ -71,3 +71,12 @@
 .suggestionListContainer::-webkit-scrollbar-thumb {
   border: 3px solid var(--app-scroll-thumb);
 }
+
+.hideSuggestionList {
+  max-height: 0px;
+  transition: none;
+  border: none;
+}
+.rightAlign{
+  right: 8px;
+}

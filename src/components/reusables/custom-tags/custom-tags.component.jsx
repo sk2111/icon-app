@@ -13,18 +13,21 @@ const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) =>
     const [tagSuggestionAlignLeft, setTagSuggestionAlignLeft] = useState(false);
 
     const ENTER_KEYCODE = 'Enter';
-    const containerClass = styles.tagContainer + ' ' + className;
+    const ALIGN_LEFT_ON_INPUT_WIDTH = 208;
     const filteredList = suggestionOptions.filter(
         (item) => (item.toLowerCase().includes(tagInputValue.toLowerCase()) && !tags.includes(item))
     );
-    const showHideSuggestionList = (tagInputFocussed && (filteredList.length)) ? {} : { maxHeight: '0px', transition: 'none', border: 'none' };
-    const suggestionListStyle = tagSuggestionAlignLeft ? { ...showHideSuggestionList, "right": "8px" } : showHideSuggestionList;
+
+    const containerClass = styles.tagContainer + ' ' + className;
+    const showHideSuggestionList = (tagInputFocussed && (filteredList.length)) ? ' ' : styles.hideSuggestionList;
+    const suggestionListStyle = showHideSuggestionList + ' ' + (tagSuggestionAlignLeft ? styles.rightAlign : ' ');
+    const suggestionContainerClass = styles.suggestionListContainer + ' ' + suggestionListStyle;
 
     useEffect(() => {
-        if (inpRef) {
+        if (inpRef && tags.length) {
             const inputWidth = inpRef.current.getBoundingClientRect().width;
             if (inputWidth) {
-                setTagSuggestionAlignLeft(inputWidth < 208);
+                setTagSuggestionAlignLeft(inputWidth < ALIGN_LEFT_ON_INPUT_WIDTH);
             }
             inpRef.current.scrollIntoView();
         }
@@ -63,7 +66,7 @@ const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) =>
                         onFocus={() => setTagInputFocussed(true)}
                         onBlur={() => setTagInputFocussed(false)}
                         onChange={(eve) => setTagInputValue(eve.target.value)} />
-                    <div style={suggestionListStyle} className={styles.suggestionListContainer}>
+                    <div className={suggestionContainerClass}>
                         {
                             filteredList.map((listVal) => {
                                 return (
