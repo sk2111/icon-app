@@ -7,7 +7,7 @@ import CustomButton from '../../reusables/custom-button/custom-button.component'
 //static
 import { ReactComponent as UploadSvg } from '../../../assests/upload-icons.svg';
 //helpers
-import { readFiles } from '../../../utilities/helper.functions';
+import { readFilesAsync } from '../../../utilities/helper.functions';
 
 
 const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) => {
@@ -22,10 +22,7 @@ const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) =>
 
     const handleSvgFilesUpload = async (e) => {
         try {
-            const files = await readFiles(e.target.files, acceptType, validFileNameExtension, MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD);
-            if (files) {
-                handleFileUpload(files);
-            }
+            await readFilesAsync(e.target.files, acceptType, validFileNameExtension, MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD, handleFileUpload);
         }
         catch (e) {
             console.log("upload failed", e);

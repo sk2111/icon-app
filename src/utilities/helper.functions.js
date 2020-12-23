@@ -73,10 +73,9 @@ export const readAsTextFile = (file) => {
     });
 }
 
-export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg", maxmimumFiles = 100) => {
+export const readFilesAsync = async (fileList, acceptType, validfileNameCheck = ".svg", maxmimumFiles = 100, handleFileUpload) => {
     try {
         if (fileList.length) {
-            const fileData = [];
             const maxFileSizeInBytes = 800000; // 800kb
             const validFiles = Array.from(fileList).filter((file, index) => {
                 return (index < maxmimumFiles) && (file.type === acceptType) && (file.name.includes(validfileNameCheck) && (file.size <= maxFileSizeInBytes))
@@ -84,9 +83,8 @@ export const readFiles = async (fileList, acceptType, validfileNameCheck = ".svg
             for (let i = 0; i < validFiles.length; i++) {
                 const fileName = String(validFiles[i].name).replace(validfileNameCheck, '');
                 const textData = await readAsTextFile(validFiles[i]);
-                fileData.push({ name: fileName, textData: textData });
+                handleFileUpload([{ name: fileName, textData: textData }]);
             }
-            return [...fileData];
         }
     }
     catch (e) {
