@@ -36,20 +36,22 @@ const CustomSelect = ({ label, className, options, value, handleValueChange }) =
                     <ArrowDownLogo className={styles.arrowDown} />
                 </div>
                 <div ref={parentContainerRef} className={optionsContainer}>
-                    {
-                        options.map((option) => {
-                            const matchedOption = ((option === value) && (!optionsHidden)) ? styles.selectedOption : '';
-                            const otherProps = (option === value) ? { ref: selectedOptionRef } : {};
-                            return (
-                                <p key={option}
-                                    className={`${matchedOption} ${styles.option}`}
-                                    onMouseDown={() => { handleValueChange(option) }}
-                                    {...otherProps}>
-                                    {option}
-                                </p>
-                            );
-                        })
-                    }
+                    <RenderView renderIfFalse={optionsHidden}>
+                        {
+                            options.map((option) => {
+                                const matchedOption = ((option === value) && (!optionsHidden)) ? styles.selectedOption : '';
+                                const otherProps = (option === value) ? { ref: selectedOptionRef } : {};
+                                return (
+                                    <p key={option}
+                                        className={`${matchedOption} ${styles.option}`}
+                                        onMouseDown={() => { handleValueChange(option) }}
+                                        {...otherProps}>
+                                        {option}
+                                    </p>
+                                );
+                            })
+                        }
+                    </RenderView>
                 </div>
             </div>
         </React.Fragment>
