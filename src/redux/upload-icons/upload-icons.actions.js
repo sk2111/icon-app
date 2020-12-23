@@ -106,6 +106,13 @@ export const uploadIconsFailure = (payload) => {
         payload
     }
 };
+
+export const readyToUploadIcons = (payload) => {
+    return {
+        type: uploadIconsActionTypes.UPLOADING_ICONS_TO_DB,
+        payload
+    }
+};
 // card modal for upload success and fail
 export const closeUploadStatusModal = () => {
     return {
