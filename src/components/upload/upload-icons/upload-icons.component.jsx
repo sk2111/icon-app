@@ -24,7 +24,7 @@ import { normalizeUploadFileIconsStructure } from '../../../utilities/helper.fun
 import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilities/app.constants';
 
 
-const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon, isUserEditedIcons,
+const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteUploadedIcon, isUserEditedIcons,
     closeUploadModal, currentModalView, changeModalView, showHideCloseConfirmationModal }) => {
 
     console.log("Current Modal view", currentModalView);
@@ -57,7 +57,7 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
                 <UploadZone validFileNameExtension=".svg" acceptType="image/svg+xml" handleFileUpload={handleCommonIconsFileUpload} />
                 <div className={styles.horizonLine}></div>
                 <h4 className={styles.viewHeaderText}>Added files</h4>
-                <PreviewUploadIcons iconList={uploadedIcons} deleteIcon={deleteCommonIcon} />
+                <PreviewUploadIcons iconList={uploadedIcons} deleteIcon={deleteUploadedIcon} />
                 <div className={styles.buttonContainer}>
                     <CustomButton className={nextBtnClass} primary onClick={handleNextBtnView}>Next</CustomButton>
                     <CustomButton secondary onClick={closeUploadModalView}>Cancel</CustomButton>
