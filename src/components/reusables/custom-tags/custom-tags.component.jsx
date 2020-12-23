@@ -4,9 +4,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './custom-tags.module.css';
 //component
 import TagView from './tag-view.component';
+import RenderView from '../render-view/render-view.component';
 
 const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) => {
 
+    const parentContainerRef = useRef(null);
     const inpRef = useRef(null);
     const [tagInputValue, setTagInputValue] = useState('');
     const [tagInputFocussed, setTagInputFocussed] = useState(false);
@@ -14,22 +16,21 @@ const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) =>
 
     const ENTER_KEYCODE = 'Enter';
     const ALIGN_LEFT_ON_INPUT_WIDTH = 208;
-    const filteredList = suggestionOptions.filter(
+    const filteredList = tagInputFocussed ? suggestionOptions.filter(
         (item) => (item.toLowerCase().includes(tagInputValue.toLowerCase()) && !tags.includes(item))
-    );
+    ) : suggestionOptions;
 
     const containerClass = styles.tagContainer + ' ' + className;
-    const showHideSuggestionList = (tagInputFocussed && (filteredList.length)) ? ' ' : styles.hideSuggestionList;
-    const suggestionListStyle = showHideSuggestionList + ' ' + (tagSuggestionAlignLeft ? styles.rightAlign : ' ');
-    const suggestionContainerClass = styles.suggestionListContainer + ' ' + suggestionListStyle;
+    const showHideSuggestionList = (filteredList.length) ? ' ' : styles.hideSuggestionList;
+    const suggestionContainerClass = `${styles.suggestionListContainer} ${showHideSuggestionList} ` + (tagSuggestionAlignLeft ? styles.rightAlign : ' ');
 
     useEffect(() => {
-        if (inpRef && tags.length) {
+        if (inpRef && tags.length && parentContainerRef.current) {
             const inputWidth = inpRef.current.getBoundingClientRect().width;
             if (inputWidth) {
                 setTagSuggestionAlignLeft(inputWidth < ALIGN_LEFT_ON_INPUT_WIDTH);
+                parentContainerRef.current.scrollBy(0, inpRef.current.offsetTop);
             }
-            inpRef.current.scrollIntoView();
         }
     }, [tagInputValue, tags]);
 
@@ -54,7 +55,7 @@ const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) =>
 
     return (
         <div className={styles.tagOuterContainer}>
-            <div className={containerClass}>
+            <div ref={parentContainerRef} className={containerClass}>
                 <TagView tags={tags} deleteTag={handleTagDelete} />
                 <div className={styles.inputContainer}>
                     <input
@@ -66,17 +67,19 @@ const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) =>
                         onFocus={() => setTagInputFocussed(true)}
                         onBlur={() => setTagInputFocussed(false)}
                         onChange={(eve) => setTagInputValue(eve.target.value)} />
-                    <div className={suggestionContainerClass}>
-                        {
-                            filteredList.map((listVal) => {
-                                return (
-                                    <p key={listVal}
-                                        className={styles.suggestionItem}
-                                        onMouseDown={() => setTagsValue(listVal)}>{listVal}</p>
-                                );
-                            })
-                        }
-                    </div>
+                    <RenderView renderIfTrue={tagInputFocussed}>
+                        <div className={suggestionContainerClass}>
+                            {
+                                filteredList.map((listVal) => {
+                                    return (
+                                        <p key={listVal}
+                                            className={styles.suggestionItem}
+                                            onMouseDown={() => setTagsValue(listVal)}>{listVal}</p>
+                                    );
+                                })
+                            }
+                        </div>
+                    </RenderView>
                 </div>
             </div>
         </div>
