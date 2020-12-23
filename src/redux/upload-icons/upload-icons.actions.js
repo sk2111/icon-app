@@ -36,9 +36,9 @@ export const uploadFilesToCommonIcons = (payload) => {
     }
 };
 
-export const deleteCommonIcon = (payload) => {
+export const deleteUploadedIcon = (payload) => {
     return {
-        type: uploadIconsActionTypes.DELETE_UPLOADED_COMMON_ICON,
+        type: uploadIconsActionTypes.DELETE_UPLOADED_ICON,
         payload
     }
 };

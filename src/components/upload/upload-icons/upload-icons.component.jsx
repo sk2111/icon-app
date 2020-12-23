@@ -13,7 +13,7 @@ import ConfigureUploadIcons from '../configure-upload-icons/configure-upload-ico
 import MessageModalCard from '../message-modal-card/message-modal-card.component';
 //actions
 import {
-    uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal,
+    uploadFilesToCommonIcons, deleteUploadedIcon, changeModalView, closeUploadModal,
     showHideCloseConfirmationModal
 } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
@@ -80,7 +80,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => {
     return {
         uploadFilesToCommonIcons: (icons) => dispatch(uploadFilesToCommonIcons(icons)),
-        deleteCommonIcon: (iconId) => dispatch(deleteCommonIcon(iconId)),
+        deleteUploadedIcon: (iconId) => dispatch(deleteUploadedIcon(iconId)),
         changeModalView: (view) => dispatch(changeModalView(view)),
         showHideCloseConfirmationModal: (view) => dispatch(showHideCloseConfirmationModal(view)),
         closeUploadModal: () => dispatch(closeUploadModal()),
