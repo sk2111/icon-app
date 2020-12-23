@@ -8,15 +8,14 @@ import CustomButton from '../../reusables/custom-button/custom-button.component'
 import { ReactComponent as UploadSvg } from '../../../assests/upload-icons.svg';
 //helpers
 import { readFilesAsync } from '../../../utilities/helper.functions';
-
+//constants
+import { MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD } from '../../../utilities/app.constants';
 
 const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) => {
 
     const uploadFilesInpRef = useRef(null);
     const dragCounter = useRef({ count: 0 });
     const [dragging, setDragging] = useState(false);
-
-    const MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD = 150;
 
     const dropContainer = styles.dropContainer + (dragging ? ` ${styles.dragHighlight}` : '');
 
