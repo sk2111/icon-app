@@ -6,32 +6,26 @@ import { createStructuredSelector } from 'reselect';
 import styles from './upload-icons.module.css';
 //components
 import CustomButton from '../../reusables/custom-button/custom-button.component';
+import RenderView from '../../reusables/render-view/render-view.component';
 import UploadZone from '../upload-zone/upload-zone.component';
 import PreviewUploadIcons from '../preview-upload-icons/preview-upload-icons.component';
 import ConfigureUploadIcons from '../configure-upload-icons/configure-upload-icons.component';
-import RenderView from '../../reusables/render-view/render-view.component';
+import MessageModalCard from '../message-modal-card/message-modal-card.component';
 //actions
 import {
     uploadFilesToCommonIcons, deleteCommonIcon, changeModalView, closeUploadModal,
-    showHideCloseConfirmationModal, closeUploadStatusModal
+    showHideCloseConfirmationModal
 } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
-import {
-    selectUploadedIcons, selectCurrentModalView, selectIsUserEditedUploadedIcons, selectShowCloseConfirmation
-    , selectIsUploadingModalOpen, selectIsUploading, selectUploadErrorMessage
-} from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectUploadedIcons, selectCurrentModalView, selectIsUserEditedUploadedIcons } from '../../../redux/upload-icons/upload-icons.selectors';
 //helpers
 import { normalizeUploadFileIconsStructure } from '../../../utilities/helper.functions';
 //constants
 import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilities/app.constants';
-import CreateModalCard from '../../reusables/create-modal-card/create-modal-card.component';
-//static
-import { ReactComponent as FailedSvg } from '../../../assests/failed-cross.svg';
-import { ReactComponent as SuccessSvg } from '../../../assests/success-tick.svg';
+
 
 const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon, isUserEditedIcons,
-    closeUploadModal, currentModalView, changeModalView, closeConfirmation, showHideCloseConfirmationModal,
-    isUploadingToDbModalOpen, isUploading, uploadErrorMessage, closeUploadStatusModal }) => {
+    closeUploadModal, currentModalView, changeModalView, showHideCloseConfirmationModal }) => {
 
     console.log("Current Modal view", currentModalView);
 
@@ -72,56 +66,15 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToCommonIcons, deleteCommonIcon
             <RenderView renderIfTrue={currentModalView === MODAL_IN_CONFIGURE_VIEW}>
                 <ConfigureUploadIcons closeUploadModalView={closeUploadModalView} />
             </RenderView>
-            <RenderView renderIfTrue={closeConfirmation}>
-                <CreateModalCard>
-                    <h6 className={styles.confirmHeader}>Warning !</h6>
-                    <p className={styles.confirmDetails}>Your Updates will be lost.</p>
-                    <div className={styles.confirmBtnContainer}>
-                        <button className={styles.cancelButton} onClick={() => showHideCloseConfirmationModal({ show: false })}>Cancel</button>
-                        <button className={styles.proceedButton} onClick={() => closeUploadModal()}>Proceed</button>
-                    </div>
-                </CreateModalCard>
-            </RenderView>
-            <RenderView renderIfTrue={isUploadingToDbModalOpen}>
-                <RenderView renderIfTrue={isUploading}>
-                    <CreateModalCard>
-                        <h6 className={styles.confirmHeader}>Uploading </h6>
-                        <p className={styles.details}>Icons are uploading to database...</p>
-                    </CreateModalCard>
-                </RenderView>
-                <RenderView renderIfTrue={uploadErrorMessage}>
-                    <CreateModalCard>
-                        <div className={styles.failedHeader}><FailedSvg className={styles.failedSvg} /></div>
-                        <p className={styles.errorText}>Upload failed.{uploadErrorMessage}</p>
-                        <div className={styles.uploadFailedbtn}>
-                            <button className={styles.cancelButton} onClick={() => closeUploadStatusModal()}>Cancel</button>
-                        </div>
-                    </CreateModalCard>
-                </RenderView>
-                <RenderView renderIfTrue={(!uploadErrorMessage && !isUploading)}>
-                    <CreateModalCard>
-                        <div className={styles.successHeader}><SuccessSvg className={styles.successSvg} /></div>
-                        <p className={styles.successText}>Upload Success</p>
-                        <div className={styles.uploadSuccessbtn}>
-                            <button className={styles.cancelButton} onClick={() => closeUploadStatusModal()}>Cancel</button>
-                        </div>
-                    </CreateModalCard>
-                </RenderView>
-            </RenderView>
+            <MessageModalCard closeUploadModal={closeUploadModal} showHideCloseConfirmationModal={showHideCloseConfirmationModal} />
         </div>
     );
 };
-
-
 
 const mapStateToProps = createStructuredSelector({
     uploadedIcons: selectUploadedIcons,
     currentModalView: selectCurrentModalView,
     isUserEditedIcons: selectIsUserEditedUploadedIcons,
-    closeConfirmation: selectShowCloseConfirmation,
-    isUploadingToDbModalOpen: selectIsUploadingModalOpen,
-    isUploading: selectIsUploading,
-    uploadErrorMessage: selectUploadErrorMessage
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -131,7 +84,6 @@ const mapDispatchToProps = (dispatch) => {
         changeModalView: (view) => dispatch(changeModalView(view)),
         showHideCloseConfirmationModal: (view) => dispatch(showHideCloseConfirmationModal(view)),
         closeUploadModal: () => dispatch(closeUploadModal()),
-        closeUploadStatusModal: () => dispatch(closeUploadStatusModal())
     }
 };
 
