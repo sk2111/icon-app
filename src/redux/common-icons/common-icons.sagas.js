@@ -6,6 +6,7 @@ import { COMMON_ICONS_USER_OPTIONS_DATA_PATH } from '../../firebase/firebase.con
 //action types
 import { commonIconsActionsTypes } from './common-icons.type';
 import { userActionTypes } from '../user/user.type';
+import { uploadIconsActionTypes } from '../upload-icons/upload-icons.type';
 //actions
 import {
     fetchCommonIconsUserOptionsStart,
@@ -30,7 +31,10 @@ function* fetchKeywordAndSelectOptions() {
 };
 
 function* onFetchKeywordAndSelectOptions() {
-    yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START, fetchKeywordAndSelectOptions);
+    yield takeLatest([
+        commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START,
+        uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_SUCCESS
+    ], fetchKeywordAndSelectOptions);
 };
 
 // on user auth completion success trigger fetch actions for common icons

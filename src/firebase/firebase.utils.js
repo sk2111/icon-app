@@ -87,6 +87,7 @@ export const getDocDataFromFireStore = async (dbDocPath) => {
     }
     catch (e) {
         console.log("Reading from firestore for Ui display data failed", e);
+        throw e;
     }
 };
 

@@ -4,7 +4,7 @@ import {
 } from 'redux-saga/effects';
 //actions
 import { fetchCommonIconsUserOptionsStart } from '../common-icons/common-icons.actions';
-import { uploadIconsSuccess, uploadIconsFailure, readyToUploadIcons } from '../upload-icons/upload-icons.actions';
+import { uploadIconsSuccess, uploadIconsFailure, readyToUploadIcons, addNewClassficationSuccess, addNewClassficationFailed } from '../upload-icons/upload-icons.actions';
 //action type
 import { uploadIconsActionTypes } from './upload-icons.type';
 //firebase 
@@ -27,16 +27,16 @@ function* addNewClassficationInFirebase({ payload: { classification, uploadIconD
         const capitalizedValue = yield call(capitalizeFirstLetter, classification);
         if ((uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) && capitalizedValue) {
             yield call(CreateNewClassfication, { classification: capitalizedValue, dbDocPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH });
-            yield put(fetchCommonIconsUserOptionsStart());
+            yield put(addNewClassficationSuccess());
         }
     }
     catch (e) {
-        yield put(uploadIconsFailure(e?.message));
+        yield put(addNewClassficationFailed(e?.message));
     }
 };
 
 function* addNewClassfication() {
-    yield takeLatest(uploadIconsActionTypes.ADD_NEW_CLASSIFICATION, addNewClassficationInFirebase);
+    yield takeLatest(uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_START, addNewClassficationInFirebase);
 };
 
 //upload icons to db
