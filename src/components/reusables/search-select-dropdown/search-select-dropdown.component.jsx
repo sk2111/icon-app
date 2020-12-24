@@ -16,7 +16,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
     const debounceTime = useRef({ time: 0 });
 
 
-    const filteredList = searchList.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredList = (listHidden || !searchTerm) ? searchList : searchList.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()));
     const searchListClass = styles.searchListContainer + ' ' + ((listHidden || !filteredList.length) ? styles.hideList : '');
 
     useEffect(() => {
