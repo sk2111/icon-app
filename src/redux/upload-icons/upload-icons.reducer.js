@@ -13,7 +13,7 @@ const INITIAL_STATE = {
     uploadModalCurrentView: MODAL_IN_UPLOAD_VIEW,
     rootClassification: UPLOAD_ICONS_DEFAULT_CLASSIFICATION,
     commonRootTags: [],
-    isUploadingModalOpen: false,
+    isUserMessageCardOpen: false,
     isUploading: false,
     errorMessage: ''
 };
@@ -39,15 +39,15 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
         case uploadIconsActionTypes.UPDATE_ICON_TAGS:
             return { ...state, isUserEditedUploadedIcons: true, uploadedIcons: { ...editObjectPropertiesImmutably(state.uploadedIcons, action.payload) } };
         case uploadIconsActionTypes.UPLOAD_ICONS_START:
-            return { ...state, isUploadingModalOpen: true, isUploading: true };
+            return { ...state, isUserMessageCardOpen: true, isUploading: true };
         case uploadIconsActionTypes.UPLOAD_ICONS_SUCCESS:
-            return { ...INITIAL_STATE, isUploading: false, isUploadModalOpen: true, isUploadingModalOpen: true, uploadIconDBPath: state.uploadIconDBPath };
+            return { ...INITIAL_STATE, isUploading: false, isUploadModalOpen: true, isUserMessageCardOpen: true, uploadIconDBPath: state.uploadIconDBPath };
         case uploadIconsActionTypes.UPLOAD_ICONS_FAILURE:
             return { ...state, isUploading: false, errorMessage: action.payload };
         case uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_FAILURE:
-            return { ...state, isUploadingModalOpen: true, errorMessage: action.payload };
+            return { ...state, isUserMessageCardOpen: true, errorMessage: action.payload };
         case uploadIconsActionTypes.CLOSE_UPLOAD_STATUS_MODAL:
-            return { ...state, isUploading: false, errorMessage: '', isUploadingModalOpen: false };
+            return { ...state, isUploading: false, errorMessage: '', isUserMessageCardOpen: false };
         case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL:
             return { ...INITIAL_STATE };
         case uploadIconsActionTypes.SHOW_CLOSE_CONFIRMATION_MODAL:

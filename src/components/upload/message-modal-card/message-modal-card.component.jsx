@@ -10,14 +10,14 @@ import CreateModalCard from '../../reusables/create-modal-card/create-modal-card
 //actions
 import { closeUploadStatusModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
-import { selectShowCloseConfirmation, selectIsUploadingModalOpen, selectIsUploading, selectUploadErrorMessage } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectShowCloseConfirmation, selectIsUserMessageCardOpen, selectIsUploading, selectUploadErrorMessage } from '../../../redux/upload-icons/upload-icons.selectors';
 //static
 import { ReactComponent as FailedSvg } from '../../../assests/failed-cross.svg';
 import { ReactComponent as SuccessSvg } from '../../../assests/success-tick.svg';
 
 
 
-const MessageModalCard = ({ closeConfirmation, isUploadingToDbModalOpen, isUploading, uploadErrorMessage,
+const MessageModalCard = ({ closeConfirmation, isUserMesssageCardOpen, isUploading, uploadErrorMessage,
     showHideCloseConfirmationModal, closeUploadModal, closeUploadStatusModal }) => {
 
     return (
@@ -32,7 +32,7 @@ const MessageModalCard = ({ closeConfirmation, isUploadingToDbModalOpen, isUploa
                     </div>
                 </CreateModalCard>
             </RenderView>
-            <RenderView renderIfTrue={isUploadingToDbModalOpen}>
+            <RenderView renderIfTrue={isUserMesssageCardOpen}>
                 <RenderView renderIfTrue={isUploading}>
                     <CreateModalCard>
                         <h6 className={styles.confirmHeader}>Uploading </h6>
@@ -64,7 +64,7 @@ const MessageModalCard = ({ closeConfirmation, isUploadingToDbModalOpen, isUploa
 
 const mapStateToProps = createStructuredSelector({
     closeConfirmation: selectShowCloseConfirmation,
-    isUploadingToDbModalOpen: selectIsUploadingModalOpen,
+    isUserMesssageCardOpen: selectIsUserMessageCardOpen,
     isUploading: selectIsUploading,
     uploadErrorMessage: selectUploadErrorMessage,
 });

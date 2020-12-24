@@ -24,7 +24,7 @@ export const selectShowCloseConfirmation = createSelector([selectUploadIcons], (
 
 export const selectIsUserEditedUploadedIcons = createSelector([selectUploadIcons], (state) => state.isUserEditedUploadedIcons);
 
-export const selectIsUploadingModalOpen = createSelector([selectUploadIcons], (state) => state.isUploadingModalOpen);
+export const selectIsUserMessageCardOpen = createSelector([selectUploadIcons], (state) => state.isUserMessageCardOpen);
 
 export const selectIsUploading = createSelector([selectUploadIcons], (state) => state.isUploading);
 
