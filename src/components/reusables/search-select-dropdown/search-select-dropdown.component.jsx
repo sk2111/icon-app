@@ -29,7 +29,10 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
 
     const handleValueChange = (e) => {
         debounceTime.current.time = DEFAULT_DEBOUNCE_TIME;
-        setSearchTerm(e.target.value)
+        setSearchTerm(e.target.value);
+        if (listHidden) {
+            setListHidden(false);
+        };
     };
 
     const handleInputKeyPress = (e) => {
@@ -68,7 +71,10 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
                             return (
                                 <p key={listVal}
                                     className={styles.searchItem}
-                                    onMouseDown={() => handleOptionsListSelect(listVal)}>{listVal}</p>
+                                    onMouseDown={(e) => e.preventDefault()}
+                                    onClick={() => handleOptionsListSelect(listVal)}>
+                                    {listVal}
+                                </p>
                             );
                         })
                     }
