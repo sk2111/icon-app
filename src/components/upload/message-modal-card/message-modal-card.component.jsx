@@ -19,7 +19,7 @@ import { ReactComponent as SuccessSvg } from '../../../assests/success-tick.svg'
 
 const MessageModalCard = ({ closeConfirmation, isUploadingToDbModalOpen, isUploading, uploadErrorMessage,
     showHideCloseConfirmationModal, closeUploadModal, closeUploadStatusModal }) => {
-        
+
     return (
         <React.Fragment>
             <RenderView renderIfTrue={closeConfirmation}>
@@ -42,7 +42,7 @@ const MessageModalCard = ({ closeConfirmation, isUploadingToDbModalOpen, isUploa
                 <RenderView renderIfTrue={uploadErrorMessage}>
                     <CreateModalCard>
                         <div className={styles.failedHeader}><FailedSvg className={styles.failedSvg} /></div>
-                        <p className={styles.errorText}>Upload failed.{uploadErrorMessage}</p>
+                        <p className={styles.errorText}>{uploadErrorMessage}</p>
                         <div className={styles.uploadFailedbtn}>
                             <button className={styles.cancelButton} onClick={() => closeUploadStatusModal()}>Cancel</button>
                         </div>

@@ -23,13 +23,15 @@ import {
 
 //create new category or classfication in firebase
 function* addNewClassficationInFirebase({ payload: { classification, uploadIconDBPath } }) {
-    const capitalizedValue = yield call(capitalizeFirstLetter, classification);
-    if ((uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) && capitalizedValue) {
-        const isSuccess = yield call(CreateNewClassfication, { classification: capitalizedValue, dbDocPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH });
-        if (isSuccess) {
+    try {
+        const capitalizedValue = yield call(capitalizeFirstLetter, classification);
+        if ((uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) && capitalizedValue) {
+            yield call(CreateNewClassfication, { classification: capitalizedValue, dbDocPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH });
             yield put(fetchCommonIconsUserOptionsStart());
-            return;
         }
+    }
+    catch (e) {
+        yield put(uploadIconsFailure(e?.message));
     }
 };
 

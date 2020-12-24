@@ -24,7 +24,7 @@ export const EDIT_ICON_HEADER_LABEL = "Edit Icon";
 
 //saga message constants
 export const SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user options for common icons';
-export const SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE = 'Icon Classification value cannot be Not Selected';
+export const SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE = 'Upload failed...Invalid Icon classification found';
 
 //FIle upload Max limi
 export const MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD = 150;

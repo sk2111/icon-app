@@ -98,7 +98,7 @@
   color: var(--app-user-profile-text);
   cursor: pointer;
   display: flex;
-  font-size: 12px;
+  font-size: 13px;
   height: 30px;
   padding-left: 20px;
 }

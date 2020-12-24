@@ -110,6 +110,7 @@ export const CreateNewClassfication = async ({ classification, dbDocPath }) => {
     }
     catch (e) {
         console.log("create new classification failed", e);
+        throw e;
     }
 };
 
