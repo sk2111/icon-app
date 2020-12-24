@@ -23,9 +23,14 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName, userProfileP
             <div className={styles.verticalLine}></div>
             <p className={styles.username}>{fullName}</p>
             <div className={styles.profileContainer}>
-                <div style={userProfilePicTheme} className={styles.profilePic}
+                <div style={userProfilePicTheme}
+                    className={styles.profilePic}
+                    tabindex="0"
+                    onBlur={() => setSettingsHidden(true)}
                     onClick={() => setSettingsHidden(!settingsHidden)}>{fullName[0]}</div>
-                <div className={containerList} onClick={() => setSettingsHidden(true)}>
+                <div className={containerList}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => setSettingsHidden(true)}>
                     <div className={styles.topContainer}>
                         <div style={userProfilePicTheme} className={styles.profilePicDropdown}>{fullName[0]}</div>
                         <div className={styles.nameContainer}>
