@@ -12,8 +12,9 @@
   box-shadow: 0 0 3px 0 var(--app-upload-modal-preview-shadow);
   display: flex;
   flex-direction: row;
-  height: 66px;
   margin-bottom: 8px;
+  min-height: 66px;
+  padding: 8px;
   width: 100%;
 }
 .imgContainer {
@@ -39,6 +40,6 @@
   margin-left: 20px;
 }
 .tagsContainer {
-  max-height: 62px !important;
+  max-height: 80px !important;
   width: 270px !important;
 }
