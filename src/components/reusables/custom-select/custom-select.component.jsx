@@ -42,9 +42,11 @@ const CustomSelect = ({ label, className, options, value, handleValueChange }) =
                                 const matchedOption = ((option === value) && (!optionsHidden)) ? styles.selectedOption : '';
                                 const otherProps = (option === value) ? { ref: selectedOptionRef } : {};
                                 return (
-                                    <p key={option}
-                                        className={`${matchedOption} ${styles.option}`}
-                                        onMouseDown={() => { handleValueChange(option) }}
+                                    <p key={option} className={`${matchedOption} ${styles.option}`} onMouseDown={(e) => e.preventDefault()}
+                                        onClick={() => {
+                                            handleValueChange(option)
+                                            setOptionsHidden(true)
+                                        }}
                                         {...otherProps}>
                                         {option}
                                     </p>
