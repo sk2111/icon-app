@@ -28,4 +28,4 @@ export const selectIsUploadingModalOpen = createSelector([selectUploadIcons], (s
 
 export const selectIsUploading = createSelector([selectUploadIcons], (state) => state.isUploading);
 
-export const selectUploadErrorMessage = createSelector([selectUploadIcons], (state) => state.uploadErrorMessage);
+export const selectUploadErrorMessage = createSelector([selectUploadIcons], (state) => state.errorMessage);

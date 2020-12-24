@@ -15,7 +15,7 @@ const INITIAL_STATE = {
     commonRootTags: [],
     isUploadingModalOpen: false,
     isUploading: false,
-    uploadErrorMessage: ''
+    errorMessage: ''
 };
 
 const uploadIconsReducer = (state = INITIAL_STATE, action) => {
@@ -43,9 +43,11 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
         case uploadIconsActionTypes.UPLOAD_ICONS_SUCCESS:
             return { ...INITIAL_STATE, isUploading: false, isUploadModalOpen: true, isUploadingModalOpen: true, uploadIconDBPath: state.uploadIconDBPath };
         case uploadIconsActionTypes.UPLOAD_ICONS_FAILURE:
-            return { ...state, isUploading: false, uploadErrorMessage: action.payload };
+            return { ...state, isUploading: false, errorMessage: action.payload };
+        case uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_FAILURE:
+            return { ...state, isUploadingModalOpen: true, errorMessage: action.payload };
         case uploadIconsActionTypes.CLOSE_UPLOAD_STATUS_MODAL:
-            return { ...state, isUploading: false, uploadErrorMessage: '', isUploadingModalOpen: false };
+            return { ...state, isUploading: false, errorMessage: '', isUploadingModalOpen: false };
         case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL:
             return { ...INITIAL_STATE };
         case uploadIconsActionTypes.SHOW_CLOSE_CONFIRMATION_MODAL:
