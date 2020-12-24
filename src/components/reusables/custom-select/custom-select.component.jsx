@@ -19,7 +19,7 @@ const CustomSelect = ({ label, className, options, value, handleValueChange }) =
         if (!optionsHidden && selectedOptionRef.current && parentContainerRef.current) {
             parentContainerRef.current.scrollBy(0, selectedOptionRef.current.offsetTop);
         }
-    }, [parentContainerRef, selectedOptionRef, optionsHidden]);
+    }, [optionsHidden]);
 
     return (
         <React.Fragment>
