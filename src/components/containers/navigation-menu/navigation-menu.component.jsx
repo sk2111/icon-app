@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 //css
 import styles from './navigation-menu.module.css';
 //static
-import { ReactComponent as AppLogo } from '../../../assests/applogo.svg';
+import AppLogoImg from '../../../assests/webp/applogo.webp';
 //constants
 import { NAVI_LINKS, MESSAGE_LINK } from './navigation-menu.utilities';
 
@@ -24,7 +24,7 @@ const NavigationMenu = () => {
     return (
         <div className={styles.navContainer}>
             <div className={styles.headerCon}>
-                <AppLogo className={styles.appLogo} />
+                <img className={styles.appLogo} src={AppLogoImg} alt="" />
                 <h2 className={styles.navTitle}>Soliton Icons</h2>
             </div>
             <div className={styles.routeLinks}>
