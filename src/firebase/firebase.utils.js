@@ -94,19 +94,9 @@ export const getDocDataFromFireStore = async (dbDocPath) => {
 export const CreateNewClassfication = async ({ classification, dbDocPath }) => {
     const docRef = firestore.doc(dbDocPath);
     try {
-        const latestData = await getDocDataFromFireStore(dbDocPath);
-        const classificationOptionsList = latestData[CLASSIFICATION_SELECT_OPTIONS_LIST];
-        if (classificationOptionsList) {
-            const newClassificationList = [classification, ...classificationOptionsList];
-            docRef.update({
-                [CLASSIFICATION_SELECT_OPTIONS_LIST]: [...newClassificationList.sort()]
-            });
-        }
-        else {
-            await docRef.update({
-                [CLASSIFICATION_SELECT_OPTIONS_LIST]: firebase.firestore.FieldValue.arrayUnion(classification)
-            });
-        }
+        docRef.update({
+            [CLASSIFICATION_SELECT_OPTIONS_LIST]: firebase.firestore.FieldValue.arrayUnion(classification)
+        });
         return true;
     }
     catch (e) {
