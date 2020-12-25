@@ -12,8 +12,8 @@ import { closeUploadStatusModal } from '../../../redux/upload-icons/upload-icons
 //reselect 
 import { selectShowCloseConfirmation, selectIsUserMessageCardOpen, selectIsUploading, selectUploadErrorMessage } from '../../../redux/upload-icons/upload-icons.selectors';
 //static
-import { ReactComponent as FailedSvg } from '../../../assests/failed-cross.svg';
-import { ReactComponent as SuccessSvg } from '../../../assests/success-tick.svg';
+import FailedImg from '../../../assests/webp/failed-cross.webp';
+import SuccessImg from '../../../assests/webp/success-tick.webp';
 
 
 
@@ -41,7 +41,7 @@ const MessageModalCard = ({ closeConfirmation, isUserMesssageCardOpen, isUploadi
                 </RenderView>
                 <RenderView renderIfTrue={uploadErrorMessage}>
                     <CreateModalCard>
-                        <div className={styles.failedHeader}><FailedSvg className={styles.failedSvg} /></div>
+                        <div className={styles.failedHeader}><img className={styles.failedSvg} src={FailedImg} alt="x" /></div>
                         <p className={styles.errorText}>{uploadErrorMessage}</p>
                         <div className={styles.uploadFailedbtn}>
                             <button className={styles.cancelButton} onClick={() => closeUploadStatusModal()}>Cancel</button>
@@ -50,7 +50,7 @@ const MessageModalCard = ({ closeConfirmation, isUserMesssageCardOpen, isUploadi
                 </RenderView>
                 <RenderView renderIfTrue={(!uploadErrorMessage && !isUploading)}>
                     <CreateModalCard>
-                        <div className={styles.successHeader}><SuccessSvg className={styles.successSvg} /></div>
+                        <div className={styles.successHeader}><img className={styles.successSvg} src={SuccessImg} alt="-" /></div>
                         <p className={styles.successText}>Upload Success</p>
                         <div className={styles.uploadSuccessbtn}>
                             <button className={styles.cancelButton} onClick={() => closeUploadStatusModal()}>Cancel</button>

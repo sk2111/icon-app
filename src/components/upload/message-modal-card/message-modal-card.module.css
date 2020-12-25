@@ -52,8 +52,8 @@
   width: 35px;
 }
 .failedSvg {
-  height: 18px;
-  width: 18px;
+  height: 14px;
+  width: 13px;
 }
 .errorText {
   color: var(--app-upload-modal-text);
@@ -76,8 +76,8 @@
   width: 35px;
 }
 .successSvg {
-  height: 18px;
-  width: 18px;
+  height: 13px;
+  width: 13px;
 }
 .successText {
   color: var(--app-upload-modal-text);
