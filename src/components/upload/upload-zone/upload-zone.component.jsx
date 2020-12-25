@@ -5,7 +5,7 @@ import styles from './upload-zone.module.css';
 //components
 import CustomButton from '../../reusables/custom-button/custom-button.component';
 //static
-import { ReactComponent as UploadSvg } from '../../../assests/upload-icons.svg';
+import UploadImg from '../../../assests/webp/upload-icons.webp';
 //helpers
 import { readFilesAsync } from '../../../utilities/helper.functions';
 //constants
@@ -76,7 +76,7 @@ const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) =>
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}>
                 <div className={styles.dropContent}>
-                    <UploadSvg />
+                    <img src={UploadImg} alt="upload" />
                     <p className={styles.dropText1}>Drag and drop your files here (Max 150 files)</p>
                     <p className={styles.dropText2}>or</p>
                     <input ref={uploadFilesInpRef} type="file" multiple accept={validFileNameExtension} hidden onChange={handleSvgFilesUpload} />

@@ -5,7 +5,7 @@ import styles from './preview-upload-icons.module.css';
 //components
 import RenderView from '../../reusables/render-view/render-view.component';
 //static
-import { ReactComponent as NoFileFoundSvg } from '../../../assests/no-files-found.svg';
+import NoFileFoundImg from '../../../assests/webp/no-files-found.webp';
 import Remove from '../../../assests/close.png';
 //constants
 import { ICON_PROP } from '../../../utilities/app.constants';
@@ -32,7 +32,7 @@ const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
         <div className={styles.viewZone}>
             <RenderView renderIfFalse={iconList.length}>
                 <div className={styles.viewContent}>
-                    <NoFileFoundSvg />
+                    <img src={NoFileFoundImg} alt="No Files uploaded" />
                     <p className={styles.noFileText}>There are no files added yet!</p>
                 </div>
             </RenderView>
