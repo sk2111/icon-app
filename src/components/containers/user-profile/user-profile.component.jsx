@@ -25,7 +25,7 @@ const UserProfile = ({ userSignOutStart, curentUserEmail, fullName, userProfileP
             <div className={styles.profileContainer}>
                 <div style={userProfilePicTheme}
                     className={styles.profilePic}
-                    tabindex="0"
+                    tabIndex="0"
                     onBlur={() => setSettingsHidden(true)}
                     onClick={() => setSettingsHidden(!settingsHidden)}>{fullName[0]}</div>
                 <div className={containerList}

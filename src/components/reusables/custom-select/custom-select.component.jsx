@@ -4,7 +4,7 @@ import styles from './custom-select.module.css';
 //component
 import RenderView from '../render-view/render-view.component';
 //static 
-import { ReactComponent as ArrowDownLogo } from '../../../assests/arrow-down.svg';
+import ArrowDownLogo from '../../../assests/webp/arrow-down.webp';
 
 const CustomSelect = ({ label, className, options, value, handleValueChange }) => {
 
@@ -33,7 +33,7 @@ const CustomSelect = ({ label, className, options, value, handleValueChange }) =
                     onBlur={() => setOptionsHidden(true)}
                     onClick={() => setOptionsHidden(!optionsHidden)}>
                     <div className={selectStyleClass}>{value}</div>
-                    <ArrowDownLogo className={styles.arrowDown} />
+                    <img className={styles.arrowDown} src={ArrowDownLogo} alt="v" />
                 </div>
                 <div ref={parentContainerRef} className={optionsContainer}>
                     <RenderView renderIfFalse={optionsHidden}>
