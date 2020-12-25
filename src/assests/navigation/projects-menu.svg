@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Home-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="HighLevel---Search-hover" transform="translate(-24.000000, -183.000000)">
-            <g id="Group-6" transform="translate(24.000000, 183.000000)">
-                <rect id="Rectangle" x="0" y="0" width="26" height="26"></rect>
-                <path d="M10.0222074,5 L12.2525692,7.61498089 L22,7.61538462 C22.2761424,7.61538462 22.5261424,7.72731343 22.7071068,7.90827783 C22.8880712,8.08924224 23,8.33924224 23,8.61538462 L23,8.61538462 L23,19 C23,19.2761424 22.8880712,19.5261424 22.7071068,19.7071068 C22.5261424,19.8880712 22.2761424,20 22,20 L22,20 L3,20 C2.72385763,20 2.47385763,19.8880712 2.29289322,19.7071068 C2.11192881,19.5261424 2,19.2761424 2,19 L2,19 L2,6 C2,5.72385763 2.11192881,5.47385763 2.29289322,5.29289322 C2.47385763,5.11192881 2.72385763,5 3,5 L3,5 L10.0222074,5 Z" id="Combined-Shape" stroke="currentColor" stroke-width="2"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="26" height="26" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h26v26H0z"/><path d="M10.022 5l2.23 2.615H22a.997.997 0 011 1h0V19a.997.997 0 01-1 1h0H3a.997.997 0 01-1-1h0V6a.997.997 0 011-1h7.022z" stroke="currentColor" stroke-width="2"/></g></svg>

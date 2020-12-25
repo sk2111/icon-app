@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Home-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="HighLevel---Search-hover" transform="translate(-24.000000, -718.000000)">
-            <g id="Group-11" transform="translate(22.000000, 716.000000)">
-                <g id="Group-10" transform="translate(2.000000, 2.000000)">
-                    <rect id="Rectangle" x="0" y="0" width="26" height="26"></rect>
-                    <path d="M18.5,4 C20.1568542,4 21.5,5.34314575 21.5,7 L21.5,16.508294 C21.5,18.1651483 20.1568542,19.508294 18.5,19.508294 L9.93246823,19.509713 C9.91262248,19.5236868 9.89223693,19.5369598 9.87134559,19.5494981 L6.01460052,21.864186 C5.54105498,22.1483921 4.92677596,21.994902 4.64256994,21.5213565 C4.54928037,21.3659169 4.5,21.1880414 4.5,21.006756 L4.5,7 C4.5,5.34314575 5.84314575,4 7.5,4 L18.5,4 Z M16.4,11.346034 L7.9,11.346034 L7.9,12.978486 L16.4,12.978486 L16.4,11.346034 Z M18.1,8.08113001 L7.9,8.08113001 L7.9,9.71358201 L18.1,9.71358201 L18.1,8.08113001 Z" id="Combined-Shape" fill="#E7EAF1"></path>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="26" height="26" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h26v26H0z"/><path d="M18.5 4a3 3 0 013 3v9.508a3 3 0 01-3 3l-8.568.002a1 1 0 01-.06.04l-3.857 2.314a1 1 0 01-1.515-.857V7a3 3 0 013-3h11zm-2.1 7.346H7.9v1.632h8.5v-1.632zm1.7-3.265H7.9v1.633h10.2V8.08z" fill="#E7EAF1"/></g></svg>
