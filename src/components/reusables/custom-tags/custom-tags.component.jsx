@@ -11,24 +11,24 @@ const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) =>
     const parentContainerRef = useRef(null);
     const inpRef = useRef(null);
     const [tagInputValue, setTagInputValue] = useState('');
-    const [tagInputFocussed, setTagInputFocussed] = useState(false);
-    const [tagSuggestionAlignLeft, setTagSuggestionAlignLeft] = useState(false);
+    const [showSuggestionList, setShowSuggestionList] = useState(false);
+    const [suggestionTagAlignLeft, setSuggestionTagAlignLeft] = useState(false);
 
     const ENTER_KEYCODE = 'Enter';
     const ALIGN_LEFT_ON_INPUT_WIDTH = 208;
-    const filteredList = tagInputFocussed ? suggestionOptions.filter(
+    const filteredList = showSuggestionList ? suggestionOptions.filter(
         (item) => (item.toLowerCase().includes(tagInputValue.toLowerCase()) && !tags.includes(item))
     ) : suggestionOptions;
 
     const containerClass = styles.tagContainer + ' ' + className;
     const showHideSuggestionList = (filteredList.length) ? ' ' : styles.hideSuggestionList;
-    const suggestionContainerClass = `${styles.suggestionListContainer} ${showHideSuggestionList} ` + (tagSuggestionAlignLeft ? styles.rightAlign : ' ');
+    const suggestionContainerClass = `${styles.suggestionListContainer} ${showHideSuggestionList} ` + (suggestionTagAlignLeft ? styles.rightAlign : ' ');
 
     useEffect(() => {
-        if (inpRef && tags.length && parentContainerRef.current) {
+        if (inpRef && parentContainerRef.current) {
             const inputWidth = inpRef.current.getBoundingClientRect().width;
             if (inputWidth) {
-                setTagSuggestionAlignLeft(inputWidth < ALIGN_LEFT_ON_INPUT_WIDTH);
+                setSuggestionTagAlignLeft(inputWidth < ALIGN_LEFT_ON_INPUT_WIDTH);
                 parentContainerRef.current.scrollBy(0, inpRef.current.offsetTop);
             }
         }
@@ -64,17 +64,23 @@ const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) =>
                         type="text"
                         value={tagInputValue}
                         onKeyPress={handleInputKeyPress}
-                        onFocus={() => setTagInputFocussed(true)}
-                        onBlur={() => setTagInputFocussed(false)}
+                        onFocus={() => setShowSuggestionList(true)}
+                        onBlur={() => setShowSuggestionList(false)}
                         onChange={(eve) => setTagInputValue(eve.target.value)} />
-                    <RenderView renderIfTrue={tagInputFocussed}>
+                    <RenderView renderIfTrue={showSuggestionList}>
                         <div className={suggestionContainerClass}>
                             {
                                 filteredList.map((listVal) => {
                                     return (
                                         <p key={listVal}
                                             className={styles.suggestionItem}
-                                            onMouseDown={() => setTagsValue(listVal)}>{listVal}</p>
+                                            onMouseDown={(e) => e.preventDefault()}
+                                            onClick={() => {
+                                                setShowSuggestionList(false);
+                                                setTagsValue(listVal);
+                                            }}>
+                                            {listVal}
+                                        </p>
                                     );
                                 })
                             }
