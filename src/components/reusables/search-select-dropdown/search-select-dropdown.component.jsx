@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 //css
 import styles from './search-select-dropdown.module.css';
 //static
-import { ReactComponent as SearchLens } from '../../../assests/searchLogo.svg';
+import SearchLens from '../../../assests/webp/searchLogo.webp';
 
 const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
     handleSearchValueChange, searchList }) => {
@@ -63,7 +63,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
                         onClick={() => setListHidden(false)}
                         onChange={handleValueChange}
                     />
-                    <SearchLens className={styles.SearchLens} />
+                    <img className={styles.SearchLens} src={SearchLens} alt="" />
                 </div>
                 <div className={searchListClass}>
                     {
