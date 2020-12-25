@@ -14,7 +14,7 @@ import { editUploadIconName, editUploadIconClassification, updateIconTags } from
 //reselect selectors
 import { selectUploadedIcons } from '../../../redux/upload-icons/upload-icons.selectors';
 //static
-import { ReactComponent as EditSvg } from '../../../assests/edit-name.svg';
+import PencilImg from '../../../assests/webp/edit-pencil.webp';
 //contants 
 import { ICON_PROP } from '../../../utilities/app.constants';
 
@@ -65,7 +65,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
                             <div className={styles.selectionZone}>
                                 <div className="re-uploadname-container">
                                     <div className={styles.iconName}>{iconName}</div>
-                                    <EditSvg className="re-upload-editSvg" onClick={() => handleEditName(iconName, iconId)} />
+                                    <img className="re-upload-editPencil" src={PencilImg} alt="edit" onClick={() => handleEditName(iconName, iconId)} />
                                 </div>
                                 <CustomSelect
                                     className={styles.dropdown}
