@@ -11,7 +11,7 @@ import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import { toggleNavigationMenuView } from '../../../redux/app-data/app-data.actions';
 //static
-import { ReactComponent as HamSvg } from '../../../assests/ham-menu.svg';
+import HamMenu from '../../../assests/webp/ham-menu.webp';
 
 
 const HomeHeader = ({ toggleNavigationMenuView, hideSelect,
@@ -21,7 +21,7 @@ const HomeHeader = ({ toggleNavigationMenuView, hideSelect,
     return (
         <div className={styles.headerContainer}>
             <div className={styles.headerLeftSec}>
-                <HamSvg className={styles.hamsvg} onClick={toggleNavigationMenuView} />
+                <img className={styles.hamsvg} src={HamMenu} alt="-" onClick={toggleNavigationMenuView} />
                 <SearchSelectDropdown
                     className={styles.searchAlign}
                     placeholder={searchPlaceHolder}
