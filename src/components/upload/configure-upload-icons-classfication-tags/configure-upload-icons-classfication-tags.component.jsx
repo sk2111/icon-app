@@ -16,8 +16,8 @@ import { selectRootClassification, selectUploadIconDBPath, selectCommonRootTags 
 //constants
 import { MODAL_IN_UPLOAD_VIEW } from '../../../utilities/app.constants';
 //static 
-import { ReactComponent as BackArrow } from '../../../assests/back-arrow.svg';
-import { ReactComponent as CreateNewClassfication } from '../../../assests/create-new-classification.svg';
+import BackArrowImg from '../../../assests/webp/back-arrow.webp';
+import CreateNewClassficationImg from '../../../assests/webp/create-new-classification.webp';
 
 
 const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootClassfication, updateRootTags, addNewClassfication,
@@ -43,7 +43,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
             <div className={styles.headerContainer}>
                 <h4 className={styles.configHeaderText}>Upload files to Common Icons</h4>
                 <div className={styles.backContainer} onClick={() => changeModalView(MODAL_IN_UPLOAD_VIEW)}>
-                    <BackArrow className={styles.backArrow} />
+                    <img className={styles.backArrow} src={BackArrowImg} alt="<" />
                     <div className={styles.backBtn}>Back</div>
                 </div>
             </div>
@@ -54,7 +54,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
                     value={classificationValue}
                     handleValueChange={handleClassficationChange}
                 />
-                <CreateNewClassfication className={styles.createNew} onClick={() => setShowCreateNewCategory(true)} />
+                <img className={styles.createNew} src={CreateNewClassficationImg} alt="+" onClick={() => setShowCreateNewCategory(true)} />
                 <RenderView renderIfTrue={showCreateNewCategory}>
                     <CreateModalCard
                         heading="Create new category"
