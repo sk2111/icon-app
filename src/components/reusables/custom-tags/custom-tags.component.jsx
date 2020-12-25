@@ -66,7 +66,11 @@ const CustomTags = ({ suggestionOptions, className, tags, handleTagsUpdate }) =>
                         onKeyPress={handleInputKeyPress}
                         onFocus={() => setShowSuggestionList(true)}
                         onBlur={() => setShowSuggestionList(false)}
-                        onChange={(eve) => setTagInputValue(eve.target.value)} />
+                        onClick={() => setShowSuggestionList(true)}
+                        onChange={(eve) => {
+                            setTagInputValue(eve.target.value);
+                            setShowSuggestionList(true);
+                        }} />
                     <RenderView renderIfTrue={showSuggestionList}>
                         <div className={suggestionContainerClass}>
                             {
