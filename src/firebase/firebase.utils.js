@@ -108,11 +108,8 @@ export const CreateNewClassfication = async ({ classification, dbDocPath }) => {
 export const updateDocPropInFirestore = async (dbDocPath, { property, value }) => {
     const docRef = firestore.doc(dbDocPath);
     try {
-        const latestData = await getDocDataFromFireStore(dbDocPath);
-        const dataToUpdate = latestData[property];
-        let finalValueToUpload = Array.isArray(dataToUpdate) ? [...new Set([...dataToUpdate, ...value])] : value;
         await docRef.update({
-            [property]: finalValueToUpload
+            [property]: (Array.isArray(value) ? firebase.firestore.FieldValue.arrayUnion(...value) : value)
         });
         return true;
     }
