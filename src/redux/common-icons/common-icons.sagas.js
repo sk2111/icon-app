@@ -22,7 +22,10 @@ function* fetchKeywordAndSelectOptions() {
     const userOptions = yield call(getDocDataFromFireStore, COMMON_ICONS_USER_OPTIONS_DATA_PATH);
     if (userOptions) {
         const { searchKeywordsList, selectOptionsList } = userOptions;
-        yield put(fetchCommonIconsUserOptionsSuccess({ searchKeywordsList, selectOptionsList }));
+        yield put(fetchCommonIconsUserOptionsSuccess({
+            searchKeywordsList: searchKeywordsList.sort(),
+            selectOptionsList: selectOptionsList.sort()
+        }));
         return;
     }
     console.error("Failed to fetch user options - empty data received");
