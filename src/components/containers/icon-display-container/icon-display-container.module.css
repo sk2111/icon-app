@@ -1,0 +1,13 @@
+.container {
+  height: 100%;
+  overflow: scroll;
+  width: 100%;
+}
+/* scroll bar width */
+.container::-webkit-scrollbar {
+  width: 3px;
+}
+/* Handle */
+.container::-webkit-scrollbar-thumb {
+  border: 3px solid var(--app-scroll-thumb);
+}

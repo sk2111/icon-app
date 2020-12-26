@@ -6,3 +6,6 @@
   height: calc(100% - 54px);
   padding: var(--app-icons-view-conatiner-padding);
 }
+.iconsContainer {
+  height: calc(100% - 30px);
+}

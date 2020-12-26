@@ -14,5 +14,6 @@
 .uploadBtn {
   font-weight: 300;
   height: 30px;
+  margin-right: 8px;
   width: 108px;
 }

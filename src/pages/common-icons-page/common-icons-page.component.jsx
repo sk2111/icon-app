@@ -7,7 +7,7 @@ import styles from './common-icons-page.module.css';
 //components
 import HomeHeader from '../../components/containers/home-header/home-header.component';
 import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
-import IconCard from '../../components/containers/icon-card/icon-card.component';
+import IconDisplayContainer from '../../components/containers/icon-display-container/icon-display-container.component';
 //actions
 import { setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../../redux/common-icons/common-icons.actions';
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
@@ -15,14 +15,14 @@ import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
 import {
     selectCommonIconsSearchKeywords, selectCommonIconsSelectOptions,
-    selectCommonIconsSearchValue, selectCommonIconsSelectValue, selectCommonIconsToDisplay
+    selectCommonIconsSearchValue, selectCommonIconsSelectValue, selectCommonIconsListToDisplay
 } from '../../redux/common-icons/common-icons.selectors';
 //constants
 import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS_SELECT_LABEL } from '../../utilities/app.constants';
 
 
 const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue,
-    selectOptions, selectValue, setSelectValue, openUploadModal, icons }) => {
+    selectOptions, selectValue, setSelectValue, openUploadModal, iconsList }) => {
 
     return (
         <div className={styles.pageContainer}>
@@ -42,12 +42,8 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                     showUploadButton={isCurrentUserAdmin}
                     handleUploadIcon={openUploadModal}
                 />
-                <div>
-                    {
-                        icons.map((icon) => {
-                            return <IconCard iconName={icon.name} />
-                        })
-                    }
+                <div className={styles.iconsContainer}>
+                    <IconDisplayContainer iconList={iconsList} />
                 </div>
             </div>
 
@@ -62,7 +58,7 @@ const mapStateToProps = createStructuredSelector({
     selectValue: selectCommonIconsSelectValue,
     searchKeywords: selectCommonIconsSearchKeywords,
     selectOptions: selectCommonIconsSelectOptions,
-    icons: selectCommonIconsToDisplay
+    iconsList: selectCommonIconsListToDisplay
 });
 
 const mapDispatchToProps = (dispatch) => {
