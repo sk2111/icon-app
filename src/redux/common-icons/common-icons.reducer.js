@@ -3,10 +3,14 @@ import { commonIconsActionsTypes } from './common-icons.type';
 import { MOCK_DATA } from './common-icons.constants';
 import { COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../utilities/app.constants';
 
+
 const CLEAR_VALUE = '';
 
 const INITIAL_STATE = {
     iconsMap: { ...MOCK_DATA },
+    paginationMap: {
+
+    },
     searchKeywordsList: [],
     selectOptionsList: [],
     searchValue: CLEAR_VALUE,
