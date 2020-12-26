@@ -130,6 +130,9 @@
   /* upload */
   --app-upload-success-background: #00c578;
   --app-upload-failed-background: #f34469;
+
+  /* User view Icon card */
+  --app-user-display-icon-name: #989899;
 }
 * {
   box-sizing: border-box;
