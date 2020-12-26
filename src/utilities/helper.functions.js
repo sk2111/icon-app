@@ -146,7 +146,7 @@ export const isIconsAllowedToUpload = (list) => {
 export const appendCommonTagsAndIconName = (list, commonRootTags) => {
     return list.map((icon) => ({
         ...icon,
-        [ICON_PROP.ICON_TAGS]: [...commonRootTags, icon[ICON_PROP.ICON_NAME], ...icon[ICON_PROP.ICON_TAGS]]
+        [ICON_PROP.ICON_TAGS]: [...commonRootTags, icon[ICON_PROP.ICON_NAME], ...icon[ICON_PROP.ICON_TAGS]].map((tag) => getAlphaOnly(tag, ''))
     }));
 };
 
