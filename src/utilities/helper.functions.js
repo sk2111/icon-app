@@ -21,8 +21,8 @@ export const trimStr = (toTrimValue) => {
     return String(toTrimValue).replace(/\s/g, '').toLowerCase();
 };
 
-export const getAlphaOnly = (text, replaceChar, toLowerCase = true) => {
-    const alphaString = String(text).replace(/[^a-zA-Z]/g, replaceChar);
+export const getAlphaOnly = (text, replaceChar, allowSpace = true, toLowerCase = true) => {
+    const alphaString = allowSpace ? String(text).replace(/[^a-zA-Z\s]/g, replaceChar) : String(text).replace(/[^a-zA-Z]/g, replaceChar);
     return toLowerCase ? alphaString.toLowerCase() : alphaString;
 };
 
