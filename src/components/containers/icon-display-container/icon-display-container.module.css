@@ -1,6 +1,11 @@
 .container {
+  column-gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 130px));
   height: 100%;
   overflow: scroll;
+  padding-top: 18px;
+  row-gap: 6px;
   width: 100%;
 }
 /* scroll bar width */
