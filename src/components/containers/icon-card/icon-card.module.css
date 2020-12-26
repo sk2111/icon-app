@@ -4,10 +4,9 @@
   height: 130px;
   width: 130px;
 }
-.icon {
-  margin: 43px auto 24px auto;
-}
 .iconImg {
+  display: block;
+  margin: 43px auto 24px auto;
   height: 45px;
   width: 45px;
 }

@@ -7,6 +7,7 @@ import styles from './common-icons-page.module.css';
 //components
 import HomeHeader from '../../components/containers/home-header/home-header.component';
 import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
+import IconCard from '../../components/containers/icon-card/icon-card.component';
 //actions
 import { setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../../redux/common-icons/common-icons.actions';
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
@@ -44,7 +45,7 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                 <div>
                     {
                         icons.map((icon) => {
-                            return <div key={icon.name}>{icon.name}</div>;
+                            return <IconCard iconName={icon.name} />
                         })
                     }
                 </div>
