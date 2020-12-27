@@ -55,21 +55,16 @@ function* fetchCommonIconsFromDatabase() {
     try {
         const { paginationMap, searchValue, selectValue } = yield select(selectCommonIcons);
         const paginationKey = yield call(framePaginateKey, selectValue, searchValue);
-        if (paginationMap[paginationKey]) {
-            // if key exist
-
-        }
-        else {
-            const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
-                collectionPath: COMMON_ICONS_LIST_PATH,
-                orderBy: CREATED_AT,
-                listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
-                previousEndDoc: null
-            });
-            const iconsMap = yield call(frameIconObjFromDocObj, docList);
-            yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
-            yield put(setCommonIconsPaginationMap({ key: paginationKey, isMoreIconsAvailable: isMoreDocsAvailable, lastQueryEndRef: newEndDocRef }));
-        }
+        const existingPaginationMap = paginationMap[paginationKey];
+        const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
+            collectionPath: COMMON_ICONS_LIST_PATH,
+            orderBy: CREATED_AT,
+            listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
+            previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
+        });
+        const iconsMap = yield call(frameIconObjFromDocObj, docList);
+        yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
+        yield put(setCommonIconsPaginationMap({ key: paginationKey, isMoreIconsAvailable: isMoreDocsAvailable, lastQueryEndRef: newEndDocRef }));
     }
     catch (e) {
         console.log(e);

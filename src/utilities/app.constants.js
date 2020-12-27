@@ -29,7 +29,7 @@ export const SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE = 'Upload fa
 //FIle upload Max limi
 export const MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD = 150;
 // Icon read maixmium limit at a time
-export const MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD = 150;
+export const MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD = 10;
 //Upload Modal view constants
 export const MODAL_IN_UPLOAD_VIEW = 'MODAL_IN_UPLOAD_VIEW';
 export const MODAL_IN_CONFIGURE_VIEW = 'MODAL_IN_CONFIGURE_VIEW';

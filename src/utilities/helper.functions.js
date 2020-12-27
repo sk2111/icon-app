@@ -162,19 +162,6 @@ export const getAllTagValuesFromIcons = (list) => {
 };
 
 //pagination helpers
-//maintain a seperate class for simplicity
-export const PAGINATE = {
-    IS_ALL_ICONS_FETCHED: 'isAllIconsFetched',
-    PREVIOUS_QUERY_END_DOC_REF: 'previousQueryEndDocRef'
-};
-
-export const PagniateClass = class {
-    constructor(isAllIconsFetched, previousQueryEndDocRef) {
-        this[PAGINATE.IS_ALL_ICONS_FETCHED] = isAllIconsFetched;
-        this[PAGINATE.PREVIOUS_QUERY_END_DOC_REF] = previousQueryEndDocRef;
-    }
-};
-
 export const framePaginateKey = (classficationValue, searchKeywordValue) => {
     return (getAlphaOnly(classficationValue, '', false, true) + '-' + getAlphaOnly(searchKeywordValue, '', false, true));
 };
