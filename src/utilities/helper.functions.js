@@ -1,5 +1,5 @@
 //constants
-import { UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP } from './app.constants';
+import { UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP, NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY } from './app.constants';
 // destructure icon prop
 const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_DATA, ICON_TAGS, CREATED_AT } = ICON_PROP;
 
@@ -19,6 +19,8 @@ export const compareProps = (a, b, aKey, bKey) => {
     }
     return 0;
 }
+
+export const integerArray = len => Array.from(Array(len ?? NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY), (x, i) => i);
 
 export const trimStr = (toTrimValue) => {
     return String(toTrimValue).replace(/\s/g, '').toLowerCase();

@@ -90,7 +90,7 @@
 
   /* scroll bar */
   --app-scroll-thumb: #989899;
-  --app-scroll-thumb-light: #DBDBDC;
+  --app-scroll-thumb-light: #dbdbdc;
   --app-scroll-track: #ffffff;
 
   /* width */
@@ -133,6 +133,8 @@
   --app-upload-failed-background: #f34469;
 
   /* User view Icon card */
+  --app-user-display-icon-card-background: #ffffff;
+  --app-user-display-icon-card-lazy-background: #ebebec;
   --app-user-display-icon-name: #989899;
 }
 * {

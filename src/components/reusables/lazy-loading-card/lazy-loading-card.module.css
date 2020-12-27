@@ -7,18 +7,20 @@
   width: 130px;
 }
 .iconImg {
+  background-color: var(--app-user-display-icon-card-lazy-background);
+  border-radius: 3px;
   display: block;
-  margin: 43px auto 24px auto;
+  margin: 34px auto 24px auto;
   height: 45px;
   width: 45px;
 }
 .iconName {
+  background-color: var(--app-user-display-icon-card-lazy-background);
+  border-radius: 3px;
   color: var(--app-user-display-icon-name);
   font-size: 12px;
-  height: 15px;
+  margin-bottom: 6px;
   margin-left: 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 117px;
+  height: 14px;
+  width: 114px;
 }
