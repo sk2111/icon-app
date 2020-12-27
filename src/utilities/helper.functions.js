@@ -182,7 +182,15 @@ export const framePaginateKey = (classficationValue, searchKeywordValue) => {
 export const frameIconObjFromDocObj = (iconDocList) => {
     const returnObj = {};
     iconDocList.forEach((iconDoc) => {
-        returnObj[iconDoc.id] = { id: iconDoc.id, ...iconDoc.data() };
+        const iconId = iconDoc.id;
+        const { [ICON_DATA]: iconData } = iconDoc.data();
+        const buff = Buffer.from(iconData);
+        const base64data = buff.toString('base64');
+        returnObj[iconDoc.id] = {
+            [ICON_ID]: iconId,
+            [ICON_BASE_64]: base64data,
+            ...iconDoc.data()
+        };
     });
     return { ...returnObj };
 }; 
