@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
 //constants
-import { COMMON_ICON_DEFAULT_CATEGORY_VALUE } from '../../utilities/app.constants';
+import { COMMON_ICON_DEFAULT_CATEGORY_VALUE, ICON_PROP } from '../../utilities/app.constants';
 //helpers
 import { trimStr } from '../../utilities/helper.functions';
 
 
-const selectCommonIcons = state => state.commonIcons;
+export const selectCommonIcons = state => state.commonIcons;
 
 export const selectCommonIconsSearchKeywords = createSelector([selectCommonIcons], (commonIcons) => commonIcons.searchKeywordsList);
 
@@ -31,8 +31,8 @@ export const selectCommonIconsListToDisplay = createSelector(
         const iconsArray = Object.values(iconsMap);
         const defaultValue = trimStr(COMMON_ICON_DEFAULT_CATEGORY_VALUE);
         const filteredArray = iconsArray.filter((icon) => {
-            const keyWordMatchResult = icon.tags.join(' ').includes(searchTagValue);
-            const classficationMatchResult = icon.classification === classificationValue;
+            const keyWordMatchResult = icon[ICON_PROP.ICON_TAGS].join(' ').includes(searchTagValue);
+            const classficationMatchResult = icon[ICON_PROP.ICON_CLASSIFICATION].includes(classificationValue);
             return (classificationValue === defaultValue) ? keyWordMatchResult : (classficationMatchResult && keyWordMatchResult);
         });
         return filteredArray;

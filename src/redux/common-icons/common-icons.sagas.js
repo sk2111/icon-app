@@ -1,8 +1,8 @@
 //libs
 import { takeLatest, put, call, all, select } from 'redux-saga/effects';
 //firesbase
-import { getDocDataFromFireStore } from '../../firebase/firebase.utils';
-import { COMMON_ICONS_USER_OPTIONS_DATA_PATH } from '../../firebase/firebase.constants';
+import { getDocDataFromFireStore, getDocListByPagination } from '../../firebase/firebase.utils';
+import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 //action types
 import { commonIconsActionsTypes } from './common-icons.type';
 import { userActionTypes } from '../user/user.type';
@@ -12,10 +12,16 @@ import {
     fetchCommonIconsUserOptionsStart,
     fetchCommonIconsUserOptionsSuccess,
     fetchCommonIconsUserOptionsFailure,
-    fetchCommonIconsFromDatabaseStart
+    fetchCommonIconsFromDatabaseStart,
+    fetchCommonIconsFromDatabaseFailure,
+    fetchCommonIconsFromDatabaseSuccess
 } from './common-icons.actions';
+//selectors
+import { selectCommonIcons } from './common-icons.selectors';
 //constants
-import { SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE } from '../../utilities/app.constants';
+import { SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD } from '../../utilities/app.constants';
+//helpers
+import { framePaginateKey, frameIconObjFromDocObj } from '../../utilities/helper.functions';
 
 
 //Get common icons search keyword and category options to select saga
@@ -43,14 +49,31 @@ function* onFetchKeywordAndSelectOptions() {
 
 // get common icons from database 
 function* fetchCommonIconsFromDatabase() {
-    //get common search and seletc value from db
-    yield
-    // look inside pagination for the key
+    try {
+        const { paginationMap, searchValue, selectValue } = yield select(selectCommonIcons);
+        const paginationKey = yield call(framePaginateKey, selectValue, searchValue);
+        if (paginationMap[paginationKey]) {
+            // if key exist
 
-    // if no key exists 
+        }
+        else {
+            const { docList, isMoreDocsAvaliable, newEndDocRef } = yield call(getDocListByPagination, {
+                collectionPath: COMMON_ICONS_LIST_PATH,
+                orderBy: ICON_PROP.CREATED_AT,
+                listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
+                previousEndDoc: null
+            });
+            const iconsMap = yield call(frameIconObjFromDocObj, docList);
+            console.log("testing in firebase", docList, isMoreDocsAvaliable, newEndDocRef);
+            console.log("New Icons Map is", iconsMap);
+            yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
+        }
+    }
+    catch (e) {
+        console.log(e);
+        yield put(fetchCommonIconsFromDatabaseFailure(e?.message));
+    }
 
-
-    // if key exist
 };
 
 function* onFetchCommonIconsFromDatabase() {

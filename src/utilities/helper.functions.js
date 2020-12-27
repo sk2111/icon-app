@@ -1,6 +1,9 @@
 //constants
 import { UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP } from './app.constants';
+// destructure icon prop
+const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_DATA, ICON_TAGS, CREATED_AT } = ICON_PROP;
 
+//helper functions
 export const frameCurrentUserObject = (userObj) => {
     return {
         ...userObj, isAdmin: false
@@ -104,13 +107,13 @@ export const normalizeUploadFileIconsStructure = (files) => {
         const buff = Buffer.from(file.textData);
         const base64data = buff.toString('base64');
         normalizedData[randomProperty] = {
-            [ICON_PROP.ICON_ID]: randomProperty,
-            [ICON_PROP.ICON_NAME]: fileName,
-            [ICON_PROP.ICON_CLASSIFICATION]: [UPLOAD_ICONS_DEFAULT_CLASSIFICATION],
-            [ICON_PROP.ICON_TAGS]: [],
-            [ICON_PROP.CREATED_AT]: new Date(),
-            [ICON_PROP.ICON_BASE_64]: base64data,
-            [ICON_PROP.ICON_DATA]: file.textData
+            [ICON_ID]: randomProperty,
+            [ICON_NAME]: fileName,
+            [ICON_CLASSIFICATION]: [UPLOAD_ICONS_DEFAULT_CLASSIFICATION],
+            [ICON_TAGS]: [],
+            [CREATED_AT]: new Date(),
+            [ICON_BASE_64]: base64data,
+            [ICON_DATA]: file.textData
         };
     });
     return normalizedData;
@@ -126,34 +129,34 @@ export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
 
 export const extractNeededPropsForUpload = (list) => {
     return list.map((icon) => {
-        const { [ICON_PROP.ICON_NAME]: iconName, [ICON_PROP.ICON_CLASSIFICATION]: iconClassification, [ICON_PROP.ICON_TAGS]: iconTags,
-            [ICON_PROP.CREATED_AT]: createdAt, [ICON_PROP.ICON_DATA]: iconData } = icon;
+        const { [ICON_NAME]: iconName, [ICON_CLASSIFICATION]: iconClassification, [ICON_TAGS]: iconTags,
+            [CREATED_AT]: createdAt, [ICON_DATA]: iconData } = icon;
         return {
-            [ICON_PROP.ICON_NAME]: iconName,
-            [ICON_PROP.ICON_CLASSIFICATION]: [...iconClassification],
-            [ICON_PROP.ICON_TAGS]: [...iconTags],
-            [ICON_PROP.CREATED_AT]: createdAt,
-            [ICON_PROP.ICON_DATA]: iconData,
+            [ICON_NAME]: iconName,
+            [ICON_CLASSIFICATION]: [...iconClassification],
+            [ICON_TAGS]: [...iconTags],
+            [CREATED_AT]: createdAt,
+            [ICON_DATA]: iconData,
         }
     });
 };
 
 export const isIconsAllowedToUpload = (list) => {
-    const isNotValid = list.filter((icon) => icon[ICON_PROP.ICON_CLASSIFICATION].includes(UPLOAD_ICONS_DEFAULT_CLASSIFICATION));
+    const isNotValid = list.filter((icon) => icon[ICON_CLASSIFICATION].includes(UPLOAD_ICONS_DEFAULT_CLASSIFICATION));
     return !!isNotValid.length;
 };
 
 export const appendCommonTagsAndIconName = (list, commonRootTags) => {
     return list.map((icon) => ({
         ...icon,
-        [ICON_PROP.ICON_TAGS]: [...commonRootTags, icon[ICON_PROP.ICON_NAME], ...icon[ICON_PROP.ICON_TAGS]].map((tag) => getAlphaOnly(tag, ''))
+        [ICON_TAGS]: [...commonRootTags, icon[ICON_NAME], ...icon[ICON_TAGS]].map((tag) => getAlphaOnly(tag, ''))
     }));
 };
 
 export const getAllTagValuesFromIcons = (list) => {
     const tags = [];
     list.forEach((icon) => {
-        tags.push(...icon[ICON_PROP.ICON_TAGS]);
+        tags.push(...icon[ICON_TAGS]);
     });
     return [...new Set(tags)];
 };
@@ -171,3 +174,15 @@ export const PagniateClass = class {
         this[PAGINATE.PREVIOUS_QUERY_END_DOC_REF] = previousQueryEndDocRef;
     }
 };
+
+export const framePaginateKey = (classficationValue, searchKeywordValue) => {
+    return (getAlphaOnly(classficationValue, '', false, true) + '-' + getAlphaOnly(searchKeywordValue, '', false, true));
+};
+//reading data from firestore to redux helpers
+export const frameIconObjFromDocObj = (iconDocList) => {
+    const returnObj = {};
+    iconDocList.forEach((iconDoc) => {
+        returnObj[iconDoc.id] = { id: iconDoc.id, ...iconDoc.data() };
+    });
+    return { ...returnObj };
+}; 
