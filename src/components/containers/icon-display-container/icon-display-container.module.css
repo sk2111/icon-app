@@ -14,5 +14,5 @@
 }
 /* Handle */
 .container::-webkit-scrollbar-thumb {
-  border: 3px solid var(--app-scroll-thumb);
+  border: 3px solid var(--app-scroll-thumb-light);
 }
