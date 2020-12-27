@@ -34,3 +34,23 @@ export const setCommonIconsTabSelectValue = (payload) => {
         payload
     }
 };
+
+// fetch icons from db
+
+export const fetchCommonIconsFromDatabaseStart = () => {
+    return {
+        type: commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START
+    }
+};
+export const fetchCommonIconsFromDatabaseSuccess = (payload) => {
+    return {
+        type: commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_SUCCESS,
+        payload
+    }
+};
+export const fetchCommonIconsFromDatabaseFailure = (payload) => {
+    return {
+        type: commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_FAILURE,
+        payload
+    }
+}; 

@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 import { compareProps } from '../../utilities/helper.functions';
 
 
-const selectUploadIcons = (state) => state.uploadIcons;
+export const selectUploadIcons = (state) => state.uploadIcons;
 
 export const selectUploadedIconsObj = createSelector([selectUploadIcons], (state) => state.uploadedIcons);
 

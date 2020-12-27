@@ -7,6 +7,8 @@ import { fetchCommonIconsUserOptionsStart } from '../common-icons/common-icons.a
 import { uploadIconsSuccess, uploadIconsFailure, readyToUploadIcons, addNewClassficationSuccess, addNewClassficationFailed } from '../upload-icons/upload-icons.actions';
 //action type
 import { uploadIconsActionTypes } from './upload-icons.type';
+//selectors
+import { selectUploadIcons } from './upload-icons.selectors';
 //firebase 
 import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, CLASSIFICATION_SEARCH_KEYWORD_LIST, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 import { CreateNewClassfication, updateDocPropInFirestore, performUploadIconsInBatchedMode } from '../../firebase/firebase.utils';
@@ -61,7 +63,7 @@ function* uploadIcons() {
 //upload icons valid check
 function* uploadIconsValidCheck() {
     try {
-        const { uploadedIcons, uploadIconDBPath, commonRootTags } = yield select((state) => state.uploadIcons);
+        const { uploadedIcons, uploadIconDBPath, commonRootTags } = yield select(selectUploadIcons);
         if (uploadedIcons) {
             const { isNotAllowed, iconsWithAppendedTagsList, allTagValues } = yield call(prepareIconDataForUpload, uploadedIcons, commonRootTags);
             if (isNotAllowed) {
