@@ -7,5 +7,6 @@
   padding: var(--app-icons-view-conatiner-padding);
 }
 .iconsContainer {
-  height: calc(100% - 30px);
+  height: calc(100% - 30px - 18px);
+  margin-top: 18px;
 }
