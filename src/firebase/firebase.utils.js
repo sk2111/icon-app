@@ -137,21 +137,20 @@ export const performUploadIconsInBatchedMode = async (docPath, iconList) => {
 
 export const getDocListByPagination = async ({ collectionPath, orderBy, listLimit, previousEndDoc }) => {
     try {
-        let docList, isMoreDocsAvaliable, newEndDocRef;
+        let docList, isMoreDocsAvailable, newEndDocRef;
         if (previousEndDoc) {
 
         }
         else {
             const query = firestore.collection(collectionPath).orderBy(orderBy).limit(listLimit);
             docList = await query.get();
-            
-            isMoreDocsAvaliable = docList.size === listLimit;
-            newEndDocRef = null;
-            console.log("docList testing", docList);
+            isMoreDocsAvailable = docList.size === listLimit;
+            newEndDocRef = isMoreDocsAvailable ? docList.docs[docList.docs.length - 1] : null;
+            console.log("docList testing", docList, isMoreDocsAvailable, newEndDocRef);
         }
         return {
             docList,
-            isMoreDocsAvaliable,
+            isMoreDocsAvailable,
             newEndDocRef,
         }
     }

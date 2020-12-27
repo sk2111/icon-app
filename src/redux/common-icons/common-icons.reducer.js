@@ -29,6 +29,9 @@ const commonIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, searchValue: action.payload };
         case commonIconsActionsTypes.SET_COMMON_ICONS_TAB_SELECT_VALUE:
             return { ...state, selectValue: action.payload };
+        case commonIconsActionsTypes.SET_COMMON_ICONS_PAGINATION:
+            const { key, ...values } = action.payload;
+            return { ...state, paginationMap: { ...state.paginationMap, [key]: { ...values } } };
         default:
             return state;
     }

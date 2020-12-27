@@ -9,7 +9,7 @@ import { ICON_PROP } from '../../../utilities/app.constants';
 
 const { ICON_ID, ICON_NAME, ICON_BASE_64 } = ICON_PROP;
 
-const IconDisplayContainer = ({ iconList }) => {
+const IconDisplayContainer = ({ iconList, fetchMoreIcons }) => {
     return (
         <div className={styles.container}>
             {
@@ -19,6 +19,9 @@ const IconDisplayContainer = ({ iconList }) => {
                     );
                 })
             }
+            <div onClick={fetchMoreIcons}>
+                Fetch More +
+            </div>
         </div>
     );
 };

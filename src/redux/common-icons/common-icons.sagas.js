@@ -14,7 +14,8 @@ import {
     fetchCommonIconsUserOptionsFailure,
     fetchCommonIconsFromDatabaseStart,
     fetchCommonIconsFromDatabaseFailure,
-    fetchCommonIconsFromDatabaseSuccess
+    fetchCommonIconsFromDatabaseSuccess,
+    setCommonIconsPaginationMap
 } from './common-icons.actions';
 //selectors
 import { selectCommonIcons } from './common-icons.selectors';
@@ -59,16 +60,15 @@ function* fetchCommonIconsFromDatabase() {
 
         }
         else {
-            const { docList, isMoreDocsAvaliable, newEndDocRef } = yield call(getDocListByPagination, {
+            const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
                 collectionPath: COMMON_ICONS_LIST_PATH,
                 orderBy: CREATED_AT,
                 listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
                 previousEndDoc: null
             });
             const iconsMap = yield call(frameIconObjFromDocObj, docList);
-            console.log("testing in firebase", docList, isMoreDocsAvaliable, newEndDocRef);
-            console.log("New Icons Map is", iconsMap);
             yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
+            yield put(setCommonIconsPaginationMap({ key: paginationKey, isMoreIconsAvailable: isMoreDocsAvailable, lastQueryEndRef: newEndDocRef }));
         }
     }
     catch (e) {

@@ -53,4 +53,12 @@ export const fetchCommonIconsFromDatabaseFailure = (payload) => {
         type: commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_FAILURE,
         payload
     }
-}; 
+};
+
+// setCommon icons pagination map action
+export const setCommonIconsPaginationMap = (payload) => {
+    return {
+        type: commonIconsActionsTypes.SET_COMMON_ICONS_PAGINATION,
+        payload
+    }
+}

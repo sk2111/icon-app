@@ -9,7 +9,7 @@ import HomeHeader from '../../components/containers/home-header/home-header.comp
 import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
 import IconDisplayContainer from '../../components/containers/icon-display-container/icon-display-container.component';
 //actions
-import { setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../../redux/common-icons/common-icons.actions';
+import { fetchCommonIconsFromDatabaseStart, setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../../redux/common-icons/common-icons.actions';
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
@@ -22,7 +22,7 @@ import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS
 
 
 const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue,
-    selectOptions, selectValue, setSelectValue, openUploadModal, iconsList }) => {
+    selectOptions, selectValue, setSelectValue, openUploadModal, iconsList, fetchMoreCommonIcons }) => {
 
     return (
         <div className={styles.pageContainer}>
@@ -43,7 +43,7 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                     handleUploadIcon={openUploadModal}
                 />
                 <div className={styles.iconsContainer}>
-                    <IconDisplayContainer iconList={iconsList} />
+                    <IconDisplayContainer iconList={iconsList} fetchMoreIcons={fetchMoreCommonIcons} />
                 </div>
             </div>
 
@@ -65,7 +65,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setSearchValue: (searchValue) => dispatch(setCommonIconsTabSearchValue(searchValue)),
         setSelectValue: (selectValue) => dispatch(setCommonIconsTabSelectValue(selectValue)),
-        openUploadModal: (tabName) => dispatch(openUploadModal(tabName))
+        openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
+        fetchMoreCommonIcons: () => dispatch(fetchCommonIconsFromDatabaseStart())
     }
 };
 
