@@ -9,6 +9,8 @@ import NoFileFoundImg from '../../../assests/webp/no-files-found.webp';
 import Remove from '../../../assests/close.png';
 //constants
 import { ICON_PROP } from '../../../utilities/app.constants';
+//destructure ICON PROP
+const { ICON_ID, ICON_NAME, ICON_BASE_64 } = ICON_PROP;
 
 const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
 
@@ -40,13 +42,13 @@ const PreviewUploadIcons = ({ iconList, deleteIcon }) => {
                 <div className={styles.previewZone}>
                     {
                         iconList.map((icon) => {
-                            const iconId = icon[ICON_PROP.ICON_ID];
+                            const iconId = icon[ICON_ID];
                             const containerClass = styles.previewContainer + ' ' + ((deleteIconList.includes(iconId)) ? styles.deleteAnim : '');
                             return (
                                 <div key={iconId} className={containerClass}>
                                     <img className={styles.remove} src={Remove} alt="x" onClick={() => handleDeleteIcon(iconId)} />
-                                    <img className={styles.previewImage} src={`data:image/svg+xml;base64,${icon[ICON_PROP.ICON_BASE_64]}`} alt="Invalid" />
-                                    <div className={styles.iconName}>{icon[ICON_PROP.ICON_NAME]}</div>
+                                    <img className={styles.previewImage} src={`data:image/svg+xml;base64,${icon[ICON_BASE_64]}`} alt="Invalid" />
+                                    <div className={styles.iconName}>{icon[ICON_NAME]}</div>
                                 </div>
                             );
                         })

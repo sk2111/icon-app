@@ -17,6 +17,8 @@ import { selectUploadedIcons } from '../../../redux/upload-icons/upload-icons.se
 import EditPencilWebp from '../../../assests/webp/edit-pencil.webp';
 //contants 
 import { ICON_PROP } from '../../../utilities/app.constants';
+//destructure ICON PROP
+const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_TAGS } = ICON_PROP;
 
 
 const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classificationOptions,
@@ -33,20 +35,20 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
     const handleIconNameUpdate = (newName) => {
         const { id, oldName } = iconName;
         if (newName !== oldName) {
-            editUploadIconName({ [ICON_PROP.ICON_ID]: id, value: newName, key: ICON_PROP.ICON_NAME });
+            editUploadIconName({ [ICON_ID]: id, value: newName, key: ICON_NAME });
         }
         setCreateNewNameOpen(false);
     };
 
     const handleClassificationChange = (id, oldVal, newVal) => {
         if (oldVal !== newVal) {
-            editUploadIconClassification({ [ICON_PROP.ICON_ID]: id, value: [newVal], key: ICON_PROP.ICON_CLASSIFICATION });
+            editUploadIconClassification({ [ICON_ID]: id, value: [newVal], key: ICON_CLASSIFICATION });
         }
     };
 
     const handleIconTagsUpdate = (id, tags) => {
         if (id && tags) {
-            updateIconTags({ [ICON_PROP.ICON_ID]: id, value: tags, key: ICON_PROP.ICON_TAGS });
+            updateIconTags({ [ICON_ID]: id, value: tags, key: ICON_TAGS });
         }
     };
 
@@ -54,13 +56,13 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
         <div className={styles.topContainer}>
             {
                 uploadedIcons.map((icon) => {
-                    const selectValue = icon[ICON_PROP.ICON_CLASSIFICATION][0];
-                    const iconId = icon[ICON_PROP.ICON_ID];
-                    const iconName = icon[ICON_PROP.ICON_NAME];
+                    const selectValue = icon[ICON_CLASSIFICATION][0];
+                    const iconId = icon[ICON_ID];
+                    const iconName = icon[ICON_NAME];
                     return (
                         <div key={iconId} className={styles.listContainer}>
                             <div className={styles.imgContainer}>
-                                <img className={styles.previewImage} src={`data:image/svg+xml;base64,${icon[ICON_PROP.ICON_BASE_64]}`} alt="Invalid" />
+                                <img className={styles.previewImage} src={`data:image/svg+xml;base64,${icon[ICON_BASE_64]}`} alt="Invalid" />
                             </div>
                             <div className={styles.selectionZone}>
                                 <div className="re-uploadname-container">
@@ -77,7 +79,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
                                 <CustomTags
                                     className={styles.tagsContainer}
                                     suggestionOptions={tagSuggestionOptions}
-                                    tags={icon[ICON_PROP.ICON_TAGS]}
+                                    tags={icon[ICON_TAGS]}
                                     handleTagsUpdate={(tags) => handleIconTagsUpdate(iconId, tags)} />
                             </div>
                         </div>

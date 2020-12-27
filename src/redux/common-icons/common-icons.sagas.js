@@ -23,6 +23,8 @@ import { SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, MAXIMUM_NUMBER_OF_FIL
 //helpers
 import { framePaginateKey, frameIconObjFromDocObj } from '../../utilities/helper.functions';
 
+//destructure ICON PROP
+const { CREATED_AT } = ICON_PROP;
 
 //Get common icons search keyword and category options to select saga
 function* fetchKeywordAndSelectOptions() {
@@ -59,7 +61,7 @@ function* fetchCommonIconsFromDatabase() {
         else {
             const { docList, isMoreDocsAvaliable, newEndDocRef } = yield call(getDocListByPagination, {
                 collectionPath: COMMON_ICONS_LIST_PATH,
-                orderBy: ICON_PROP.CREATED_AT,
+                orderBy: CREATED_AT,
                 listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
                 previousEndDoc: null
             });
