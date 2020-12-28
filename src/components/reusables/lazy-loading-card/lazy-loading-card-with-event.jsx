@@ -11,7 +11,7 @@ const intersectionOptions = {
     threshold: 0.5
 };
 
-const LazyLoadingCardWithEvent = () => {
+const LazyLoadingCardWithEvent = ({ fetchMoreIcons }) => {
 
     const intersectionRef = useRef(null);
 
@@ -19,6 +19,9 @@ const LazyLoadingCardWithEvent = () => {
         const intersectionCallback = (entries) => {
             entries.forEach(entry => {
                 console.log("I am intersecting observor konj", entry.isIntersecting);
+                if (entry.isIntersecting) {
+                    fetchMoreIcons();
+                }
             });
         };
         const observer = new IntersectionObserver(intersectionCallback, intersectionOptions);
@@ -38,5 +41,8 @@ const LazyLoadingCardWithEvent = () => {
     );
 };
 
+LazyLoadingCardWithEvent.defaultProps = {
+    fetchMoreIcons: () => { }
+};
 
 export default LazyLoadingCardWithEvent;

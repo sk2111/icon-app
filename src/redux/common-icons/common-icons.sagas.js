@@ -12,7 +12,6 @@ import {
     fetchCommonIconsUserOptionsStart,
     fetchCommonIconsUserOptionsSuccess,
     fetchCommonIconsUserOptionsFailure,
-    fetchCommonIconsFromDatabaseStart,
     fetchCommonIconsFromDatabaseFailure,
     fetchCommonIconsFromDatabaseSuccess,
     setCommonIconsPaginationMap
@@ -26,6 +25,40 @@ import { framePaginateKey, frameIconObjFromDocObj } from '../../utilities/helper
 
 //destructure ICON PROP
 const { CREATED_AT } = ICON_PROP;
+
+
+// get common icons from database 
+function* fetchCommonIconsFromDatabase() {
+    try {
+        const { paginationMap, searchValue, selectValue } = yield select(selectCommonIcons);
+        const paginationKey = yield call(framePaginateKey, selectValue, searchValue);
+        const existingPaginationMap = paginationMap[paginationKey];
+        if (existingPaginationMap && !existingPaginationMap.isMoreIconsAvailable) {
+            console.log("All Icons fetched in this category");
+            return;
+        }
+        else {
+            const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
+                collectionPath: COMMON_ICONS_LIST_PATH,
+                orderConfig: [CREATED_AT, "desc"],
+                listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
+                previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
+            });
+            const iconsMap = yield call(frameIconObjFromDocObj, docList);
+            yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
+            yield put(setCommonIconsPaginationMap({ key: paginationKey, isMoreIconsAvailable: isMoreDocsAvailable, lastQueryEndRef: newEndDocRef }));
+        }
+    }
+    catch (e) {
+        console.log(e);
+        yield put(fetchCommonIconsFromDatabaseFailure(e?.message));
+    }
+
+};
+
+function* onFetchCommonIconsFromDatabase() {
+    yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START, fetchCommonIconsFromDatabase);
+};
 
 //Get common icons search keyword and category options to select saga
 function* fetchKeywordAndSelectOptions() {
@@ -50,37 +83,9 @@ function* onFetchKeywordAndSelectOptions() {
     ], fetchKeywordAndSelectOptions);
 };
 
-// get common icons from database 
-function* fetchCommonIconsFromDatabase() {
-    try {
-        const { paginationMap, searchValue, selectValue } = yield select(selectCommonIcons);
-        const paginationKey = yield call(framePaginateKey, selectValue, searchValue);
-        const existingPaginationMap = paginationMap[paginationKey];
-        const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
-            collectionPath: COMMON_ICONS_LIST_PATH,
-            orderConfig: [CREATED_AT, "desc"],
-            listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
-            previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
-        });
-        const iconsMap = yield call(frameIconObjFromDocObj, docList);
-        yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
-        yield put(setCommonIconsPaginationMap({ key: paginationKey, isMoreIconsAvailable: isMoreDocsAvailable, lastQueryEndRef: newEndDocRef }));
-    }
-    catch (e) {
-        console.log(e);
-        yield put(fetchCommonIconsFromDatabaseFailure(e?.message));
-    }
-
-};
-
-function* onFetchCommonIconsFromDatabase() {
-    yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START, fetchCommonIconsFromDatabase);
-};
-
 // on user auth completion success trigger fetch actions for common icons
 export function* triggerInitialDataFetchActions() {
     yield put(fetchCommonIconsUserOptionsStart());
-    yield put(fetchCommonIconsFromDatabaseStart());
 };
 export function* onCurrentUserInfoFetchSuccess() {
     yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_SUCCESS, triggerInitialDataFetchActions);
