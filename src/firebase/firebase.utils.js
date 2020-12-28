@@ -139,8 +139,8 @@ export const getDocListByPagination = async ({ collectionPath, orderConfig, list
     try {
         let docList, isMoreDocsAvailable, newEndDocRef;
         const query = previousQueryEndDoc ?
-            firestore.collection(collectionPath).orderBy(orderConfig).startAfter(previousQueryEndDoc).limit(listLimit) :
-            firestore.collection(collectionPath).orderBy(orderConfig).limit(listLimit);
+            firestore.collection(collectionPath).orderBy(...orderConfig).startAfter(previousQueryEndDoc).limit(listLimit) :
+            firestore.collection(collectionPath).orderBy(...orderConfig).limit(listLimit);
         docList = await query.get();
         isMoreDocsAvailable = docList.size === listLimit;
         newEndDocRef = isMoreDocsAvailable ? docList.docs[docList.docs.length - 1] : null;

@@ -58,7 +58,7 @@ function* fetchCommonIconsFromDatabase() {
         const existingPaginationMap = paginationMap[paginationKey];
         const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
             collectionPath: COMMON_ICONS_LIST_PATH,
-            orderBy: [CREATED_AT, "desc"],
+            orderConfig: [CREATED_AT, "desc"],
             listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
             previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
         });
