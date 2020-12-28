@@ -83,6 +83,7 @@ function* onFetchKeywordAndSelectOptions() {
     yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START, fetchKeywordAndSelectOptions);
 };
 
+
 // common generator for fetch triggering options
 export function* triggerUserOptionsFetchActions() {
     yield put(fetchCommonIconsUserOptionsStart());
@@ -95,6 +96,8 @@ export function* onCurrentUserInfoFetchSuccess() {
 export function* onTriggerUserOptionsFetch() {
     yield takeLatest(uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL, triggerUserOptionsFetchActions);
 };
+
+
 //Group all sagas
 export function* commonIconsSaga() {
     yield all([
