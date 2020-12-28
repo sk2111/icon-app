@@ -82,7 +82,7 @@ function* fetchKeywordAndSelectOptions() {
 function* onFetchKeywordAndSelectOptions() {
     yield takeLatest([
         commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START,
-        uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_SUCCESS
+        uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL
     ], fetchKeywordAndSelectOptions);
 };
 
