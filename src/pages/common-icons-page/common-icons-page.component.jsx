@@ -14,7 +14,7 @@ import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
 import {
-    selectCommonIconsSearchKeywords, selectCommonIconsSelectOptions,
+    selectCommonIconsSearchKeywords, selectCommonIconsSelectOptions, selectIsMoreIconsAvailableToFetch,
     selectCommonIconsSearchValue, selectCommonIconsSelectValue, selectCommonIconsListToDisplay
 } from '../../redux/common-icons/common-icons.selectors';
 //constants
@@ -58,7 +58,8 @@ const mapStateToProps = createStructuredSelector({
     selectValue: selectCommonIconsSelectValue,
     searchKeywords: selectCommonIconsSearchKeywords,
     selectOptions: selectCommonIconsSelectOptions,
-    iconsList: selectCommonIconsListToDisplay
+    iconsList: selectCommonIconsListToDisplay,
+    isMoreIconsAvaliableToFetch: selectIsMoreIconsAvailableToFetch
 });
 
 const mapDispatchToProps = (dispatch) => {

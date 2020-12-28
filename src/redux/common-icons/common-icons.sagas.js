@@ -36,7 +36,7 @@ function* fetchCommonIconsFromDatabase() {
         const { paginationMap, searchValue, selectValue } = yield select(selectCommonIcons);
         const paginationKey = yield call(framePaginateKey, selectValue, searchValue);
         const existingPaginationMap = paginationMap[paginationKey];
-        if (existingPaginationMap && !existingPaginationMap.isMoreIconsAvailable) {
+        if (existingPaginationMap && !existingPaginationMap.isMoreIconsAvailableToFetch) {
             console.log("All Icons fetched in this category");
             return;
         }
@@ -49,7 +49,7 @@ function* fetchCommonIconsFromDatabase() {
             });
             const iconsMap = yield call(frameIconObjFromDocObj, docList);
             yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
-            yield put(setCommonIconsPaginationMap({ key: paginationKey, isMoreIconsAvailable: isMoreDocsAvailable, lastQueryEndRef: newEndDocRef }));
+            yield put(setCommonIconsPaginationMap({ key: paginationKey, isMoreIconsAvailableToFetch: isMoreDocsAvailable, lastQueryEndRef: newEndDocRef }));
         }
     }
     catch (e) {

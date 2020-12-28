@@ -2,12 +2,14 @@ import { createSelector } from 'reselect';
 //constants
 import { COMMON_ICON_DEFAULT_CATEGORY_VALUE, ICON_PROP } from '../../utilities/app.constants';
 //helpers
-import { trimStr } from '../../utilities/helper.functions';
+import { trimStr, framePaginateKey } from '../../utilities/helper.functions';
 
 //destructure ICON PROP
 const { ICON_CLASSIFICATION, ICON_TAGS } = ICON_PROP;
 
 export const selectCommonIcons = state => state.commonIcons;
+
+export const selectCommonIconsPagination = createSelector([selectCommonIcons], (commonIcons) => commonIcons.paginationMap);
 
 export const selectCommonIconsSearchKeywords = createSelector([selectCommonIcons], (commonIcons) => commonIcons.searchKeywordsList);
 
@@ -19,6 +21,16 @@ export const selectCommonIconsClassification = createSelector([selectCommonIcons
 export const selectCommonIconsSearchValue = createSelector([selectCommonIcons], (commonIcons) => commonIcons.searchValue);
 
 export const selectCommonIconsSelectValue = createSelector([selectCommonIcons], (commonIcons) => commonIcons.selectValue);
+
+export const selectIsMoreIconsAvailableToFetch = createSelector(
+    [selectCommonIconsSelectValue, selectCommonIconsSearchValue, selectCommonIconsPagination],
+    (selectValue, searchValue, paginationMap) => {
+        console.log("I am  test selector and I am running", selectValue, searchValue, paginationMap);
+        const paginationKey = framePaginateKey(selectValue, searchValue);
+        const existingPaginationMap = paginationMap[paginationKey];
+        console.log("I am  test selector and I am running", existingPaginationMap);
+    }
+);
 
 const selectCommonIconsMap = createSelector([selectCommonIcons], (commonIcons) => commonIcons.iconsMap);
 
