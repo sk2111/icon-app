@@ -80,18 +80,20 @@ function* fetchKeywordAndSelectOptions() {
 };
 
 function* onFetchKeywordAndSelectOptions() {
-    yield takeLatest([
-        commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START,
-        uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL
-    ], fetchKeywordAndSelectOptions);
+    yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START, fetchKeywordAndSelectOptions);
 };
 
-// on user auth completion success trigger fetch actions for common icons
-export function* triggerInitialDataFetchActions() {
+// common generator for fetch triggering options
+export function* triggerUserOptionsFetchActions() {
     yield put(fetchCommonIconsUserOptionsStart());
 };
+// on user auth completion success trigger fetch actions for common icons
 export function* onCurrentUserInfoFetchSuccess() {
-    yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_SUCCESS, triggerInitialDataFetchActions);
+    yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_SUCCESS, triggerUserOptionsFetchActions);
+};
+// trigger observer for options fetch
+export function* onTriggerUserOptionsFetch() {
+    yield takeLatest(uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL, triggerUserOptionsFetchActions);
 };
 //Group all sagas
 export function* commonIconsSaga() {
@@ -99,5 +101,6 @@ export function* commonIconsSaga() {
         call(onFetchKeywordAndSelectOptions),
         call(onCurrentUserInfoFetchSuccess),
         call(onFetchCommonIconsFromDatabase),
+        call(onTriggerUserOptionsFetch),
     ]);
 };
