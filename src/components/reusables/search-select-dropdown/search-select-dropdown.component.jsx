@@ -13,22 +13,24 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
 
     const [searchTerm, setSearchTerm] = useState(defaultSearchValue);
     const [listHidden, setListHidden] = useState(true);
-    const debounceTime = useRef({ time: 0 });
-
+    const compRef = useRef({ time: 0 });
+    compRef.current.defaultValue = defaultSearchValue; // To avoid uneccary trigger on acions we store previosu valid value
 
     const filteredList = (listHidden || !searchTerm) ? searchList : searchList.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()));
     const searchListClass = styles.searchListContainer + ' ' + ((listHidden || !filteredList.length) ? styles.hideList : '');
 
     useEffect(() => {
-        const timerId = setTimeout(() => {
-            handleSearchValueChange(searchTerm);
-        }, debounceTime.current.time);
-        return () => clearTimeout(timerId);
+        if (compRef.current.defaultValue !== searchTerm) {
+            const timerId = setTimeout(() => {
+                handleSearchValueChange(searchTerm);
+            }, compRef.current.time);
+            return () => clearTimeout(timerId);
+        }
     }, [searchTerm, handleSearchValueChange]);
 
 
     const handleValueChange = (e) => {
-        debounceTime.current.time = DEFAULT_DEBOUNCE_TIME;
+        compRef.current.time = DEFAULT_DEBOUNCE_TIME;
         setSearchTerm(e.target.value);
         if (listHidden) {
             setListHidden(false);
@@ -43,7 +45,7 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
     };
 
     const handleOptionsListSelect = (listVal) => {
-        debounceTime.current.time = 0;
+        compRef.current.time = 0;
         setListHidden(true);
         setSearchTerm(listVal);
     };
