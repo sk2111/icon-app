@@ -162,7 +162,7 @@ export const getAllTagValuesFromIcons = (list) => {
 export const appendedDefaultClassfication = (iconList) => {
     return iconList.map((icon) => ({
         ...icon,
-        [icon[ICON_CLASSIFICATION]]: [...icon[ICON_CLASSIFICATION], DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS]
+        [ICON_CLASSIFICATION]: [...icon[ICON_CLASSIFICATION], DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS]
     })
     );
 };
