@@ -38,10 +38,8 @@ const selectCommonIconsMap = createSelector([selectCommonIcons], (commonIcons) =
 
 const selectTrimmedSearchValue = createSelector([selectCommonIconsSearchValue], (searchValue) => trimStr(searchValue));
 
-const selectTrimmedSelectValue = createSelector([selectCommonIconsSelectValue], (selectValue) => trimStr(selectValue));
-
 export const selectCommonIconsListToDisplay = createSelector(
-    [selectTrimmedSearchValue, selectTrimmedSelectValue, selectCommonIconsMap],
+    [selectTrimmedSearchValue, selectCommonIconsSelectValue, selectCommonIconsMap],
     (searchTagValue, classificationValue, iconsMap) => {
         console.log(" Hai I am reselect group runner", searchTagValue, classificationValue);
         const iconsArray = Object.values(iconsMap);
