@@ -1,5 +1,8 @@
 //constants
-import { UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP, NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY } from './app.constants';
+import {
+    UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP,
+    NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY, DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS
+} from './app.constants';
 // destructure icon prop
 const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_DATA, ICON_TAGS, CREATED_AT } = ICON_PROP;
 
@@ -121,13 +124,6 @@ export const normalizeUploadFileIconsStructure = (files) => {
     return normalizedData;
 };
 
-export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
-    const clonedIconsList = extractNeededPropsForUpload(Object.values(uploadedIcons));
-    const isNotAllowed = isIconsAllowedToUpload(clonedIconsList);
-    const iconsWithAppendedTagsList = appendCommonTagsAndIconName(clonedIconsList, commonRootTags);
-    const allTagValues = getAllTagValuesFromIcons(iconsWithAppendedTagsList);
-    return { isNotAllowed, iconsWithAppendedTagsList, allTagValues };
-};
 
 export const extractNeededPropsForUpload = (list) => {
     return list.map((icon) => {
@@ -162,6 +158,24 @@ export const getAllTagValuesFromIcons = (list) => {
     });
     return [...new Set(tags)];
 };
+
+export const appendedDefaultClassfication = (iconList) => {
+    return iconList.map((icon) => ({
+        ...icon,
+        [icon[ICON_CLASSIFICATION]]: [...icon[ICON_CLASSIFICATION], DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS]
+    })
+    );
+};
+
+export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
+    const clonedIconsList = extractNeededPropsForUpload(Object.values(uploadedIcons));
+    const isNotAllowed = isIconsAllowedToUpload(clonedIconsList);
+    const iconsWithAppendedTagsList = appendCommonTagsAndIconName(clonedIconsList, commonRootTags);
+    const allTagValues = getAllTagValuesFromIcons(iconsWithAppendedTagsList);
+    const iconsListToUpload = appendedDefaultClassfication(iconsWithAppendedTagsList);
+    return { isNotAllowed, iconsListToUpload, allTagValues };
+};
+
 
 //pagination helpers
 export const framePaginateKey = (classficationValue, searchKeywordValue) => {

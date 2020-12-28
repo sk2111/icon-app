@@ -16,7 +16,7 @@ import { selectUploadedIcons } from '../../../redux/upload-icons/upload-icons.se
 //static
 import EditPencilWebp from '../../../assests/webp/edit-pencil.webp';
 //contants 
-import { ICON_PROP, DEFAULT_CLASSIFICATION_VALUE_IN_UPLOADED_ICONS } from '../../../utilities/app.constants';
+import { ICON_PROP } from '../../../utilities/app.constants';
 //destructure ICON PROP
 const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_TAGS } = ICON_PROP;
 
@@ -44,7 +44,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
         if (oldVal !== newVal) {
             editUploadIconClassification({
                 [ICON_ID]: id,
-                value: [DEFAULT_CLASSIFICATION_VALUE_IN_UPLOADED_ICONS, newVal],
+                value: [newVal],
                 key: ICON_CLASSIFICATION
             });
         }

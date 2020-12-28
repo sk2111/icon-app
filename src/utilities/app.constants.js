@@ -12,7 +12,7 @@ export const COMMON_ICONS_SELECT_LABEL = 'Categories';
 export const PROJECT_ICONS_SELECT_LABEL = 'Projects';
 
 //default select value for common icons in display UI
-export const DEFAULT_CLASSIFICATION_VALUE_IN_UPLOADED_ICONS = 'All';
+export const DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS = 'All';
 export const COMMON_ICON_DEFAULT_CATEGORY_VALUE = 'All';
 export const UPLOAD_ICONS_DEFAULT_CLASSIFICATION = 'Not Selected';
 

@@ -65,7 +65,7 @@ function* uploadIconsValidCheck() {
     try {
         const { uploadedIcons, uploadIconDBPath, commonRootTags } = yield select(selectUploadIcons);
         if (uploadedIcons) {
-            const { isNotAllowed, iconsWithAppendedTagsList, allTagValues } = yield call(prepareIconDataForUpload, uploadedIcons, commonRootTags);
+            const { isNotAllowed, iconsListToUpload, allTagValues } = yield call(prepareIconDataForUpload, uploadedIcons, commonRootTags);
             if (isNotAllowed) {
                 throw new Error(SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE);
             }
@@ -75,7 +75,7 @@ function* uploadIconsValidCheck() {
                     keywordProp: CLASSIFICATION_SEARCH_KEYWORD_LIST,
                     keywordValue: allTagValues,
                     uploadPath: COMMON_ICONS_LIST_PATH,
-                    uploadList: iconsWithAppendedTagsList,
+                    uploadList: iconsListToUpload,
                     successAction: fetchCommonIconsUserOptionsStart
                 }));
             }

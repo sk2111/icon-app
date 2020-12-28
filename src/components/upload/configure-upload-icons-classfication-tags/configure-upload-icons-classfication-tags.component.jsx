@@ -14,7 +14,7 @@ import { changeModalView, changeRootClassfication, updateRootTags, addNewClassfi
 //reselect
 import { selectRootClassification, selectUploadIconDBPath, selectCommonRootTags } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
-import { MODAL_IN_UPLOAD_VIEW, ICON_PROP, DEFAULT_CLASSIFICATION_VALUE_IN_UPLOADED_ICONS } from '../../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW, ICON_PROP } from '../../../utilities/app.constants';
 //static 
 import BackArrowImg from '../../../assests/webp/back-arrow.webp';
 import CreateNewClassficationImg from '../../../assests/webp/create-new-classification.webp';
@@ -31,7 +31,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
             changeRootClassfication({
                 key: ICON_CLASSIFICATION,
                 newValue: newValue,
-                value: [DEFAULT_CLASSIFICATION_VALUE_IN_UPLOADED_ICONS, newValue]
+                value: [newValue]
             });
         }
     };
