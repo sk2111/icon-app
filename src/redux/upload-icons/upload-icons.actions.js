@@ -99,6 +99,12 @@ export const addNewClassficationFailed = (payload) => {
         payload
     }
 };
+
+export const closeAddNewClassificationModal = () => {
+    return {
+        type: uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL,
+    }
+};
 //upload to db actions
 export const uploadIconsStart = () => {
     return {

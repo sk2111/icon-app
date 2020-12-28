@@ -8,17 +8,20 @@ import styles from './message-modal-card.module.css';
 import RenderView from '../../reusables/render-view/render-view.component';
 import CreateModalCard from '../../reusables/create-modal-card/create-modal-card.component';
 //actions
-import { closeUploadStatusModal } from '../../../redux/upload-icons/upload-icons.actions';
+import { closeUploadStatusModal, closeAddNewClassificationModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
-import { selectShowCloseConfirmation, selectIsUserMessageCardOpen, selectIsUploading, selectUploadErrorMessage } from '../../../redux/upload-icons/upload-icons.selectors';
+import {
+    selectShowCloseConfirmation, selectIsUserMessageCardOpen,
+    selectIsUploading, selectUploadErrorMessage, selectIsAddNewClassificationSuccess
+} from '../../../redux/upload-icons/upload-icons.selectors';
 //static
 import FailedImg from '../../../assests/webp/failed-cross.webp';
 import SuccessImg from '../../../assests/webp/success-tick.webp';
 
 
 
-const MessageModalCard = ({ closeConfirmation, isUserMesssageCardOpen, isUploading, uploadErrorMessage,
-    showHideCloseConfirmationModal, closeUploadModal, closeUploadStatusModal }) => {
+const MessageModalCard = ({ closeConfirmation, isUserMesssageCardOpen, isUploading, uploadErrorMessage, closeAddNewClassificationModal,
+    showHideCloseConfirmationModal, closeUploadModal, closeUploadStatusModal, isAddNewClassificationSuccess }) => {
 
     return (
         <React.Fragment>
@@ -57,6 +60,15 @@ const MessageModalCard = ({ closeConfirmation, isUserMesssageCardOpen, isUploadi
                         </div>
                     </CreateModalCard>
                 </RenderView>
+                <RenderView renderIfTrue={isAddNewClassificationSuccess}>
+                    <CreateModalCard>
+                        <div className={styles.successHeader}><img className={styles.successSvg} src={SuccessImg} alt="-" /></div>
+                        <p className={styles.successText}>Creation Success</p>
+                        <div className={styles.uploadSuccessbtn}>
+                            <button className={styles.cancelButton} onClick={() => closeAddNewClassificationModal()}>Cancel</button>
+                        </div>
+                    </CreateModalCard>
+                </RenderView>
             </RenderView>
         </React.Fragment>
     );
@@ -67,11 +79,13 @@ const mapStateToProps = createStructuredSelector({
     isUserMesssageCardOpen: selectIsUserMessageCardOpen,
     isUploading: selectIsUploading,
     uploadErrorMessage: selectUploadErrorMessage,
+    isAddNewClassificationSuccess: selectIsAddNewClassificationSuccess
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         closeUploadStatusModal: () => dispatch(closeUploadStatusModal()),
+        closeAddNewClassificationModal: () => { dispatch(closeAddNewClassificationModal()) }
     }
 };
 

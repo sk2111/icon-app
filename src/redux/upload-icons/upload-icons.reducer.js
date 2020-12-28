@@ -7,6 +7,7 @@ import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW, UPLOAD_ICONS_DEFAULT_CLA
 const INITIAL_STATE = {
     uploadedIcons: {},
     isUploadModalOpen: null, // null beacause first time animation close flicker condition
+    isAddNewClassificationSuccess: false,
     isUserEditedUploadedIcons: false,
     showCloseConfirmationModal: false,
     uploadIconDBPath: null,
@@ -22,6 +23,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL:
             return { ...state, isUploadModalOpen: true, uploadIconDBPath: action.payload };
+        case uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_SUCCESS:
+            return { ...state, isAddNewClassificationSuccess: true, isUserMessageCardOpen: true }
         case uploadIconsActionTypes.SET_UPLOADED_ICONS:
             return { ...state, uploadedIcons: { ...state.uploadedIcons, ...action.payload } };
         case uploadIconsActionTypes.DELETE_UPLOADED_ICON:
@@ -46,6 +49,8 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, isUploading: false, errorMessage: action.payload };
         case uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_FAILURE:
             return { ...state, isUserMessageCardOpen: true, errorMessage: action.payload };
+        case uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL:
+            return { ...state, isAddNewClassificationSuccess: false, isUserMessageCardOpen: false };
         case uploadIconsActionTypes.CLOSE_UPLOAD_STATUS_MODAL:
             return { ...state, isUploading: false, errorMessage: '', isUserMessageCardOpen: false };
         case uploadIconsActionTypes.CLOSE_UPLOAD_MODAL:

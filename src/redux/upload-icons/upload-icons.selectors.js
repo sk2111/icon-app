@@ -10,6 +10,8 @@ export const selectUploadedIconsObj = createSelector([selectUploadIcons], (state
 export const selectUploadedIcons = createSelector([selectUploadedIconsObj],
     (uploadedIcons) => Object.values(uploadedIcons).sort((a, b) => compareProps(a, b, "id", "id")));
 
+export const selectIsAddNewClassificationSuccess = createSelector([selectUploadIcons], (state) => state.isAddNewClassificationSuccess);
+
 export const selectIsUploadModalOpen = createSelector([selectUploadIcons], (state) => state.isUploadModalOpen);
 
 export const selectCurrentModalView = createSelector([selectUploadIcons], (state) => state.uploadModalCurrentView);
