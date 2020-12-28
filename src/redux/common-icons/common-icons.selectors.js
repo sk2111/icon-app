@@ -25,10 +25,12 @@ export const selectCommonIconsSelectValue = createSelector([selectCommonIcons], 
 export const selectIsMoreIconsAvailableToFetch = createSelector(
     [selectCommonIconsSelectValue, selectCommonIconsSearchValue, selectCommonIconsPagination],
     (selectValue, searchValue, paginationMap) => {
-        console.log("I am  test selector and I am running", selectValue, searchValue, paginationMap);
         const paginationKey = framePaginateKey(selectValue, searchValue);
         const existingPaginationMap = paginationMap[paginationKey];
-        console.log("I am  test selector and I am running", existingPaginationMap);
+        if (existingPaginationMap) {
+            return existingPaginationMap.isMoreIconsAvailableToFetch;
+        }
+        return true;
     }
 );
 

@@ -21,9 +21,8 @@ import {
 import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS_SELECT_LABEL } from '../../utilities/app.constants';
 
 
-const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue,
-    selectOptions, selectValue, setSelectValue, openUploadModal, iconsList, fetchMoreCommonIcons }) => {
-
+const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectOptions,
+    selectValue, setSelectValue, openUploadModal, iconsList, isMoreIconsAvaliableToFetch, fetchMoreCommonIcons }) => {
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -43,7 +42,9 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                     handleUploadIcon={openUploadModal}
                 />
                 <div className={styles.iconsContainer}>
-                    <IconsDisplayContainer iconList={iconsList} fetchMoreIcons={fetchMoreCommonIcons} />
+                    <IconsDisplayContainer iconList={iconsList}
+                        isMoreIconsAvaliableToFetch={isMoreIconsAvaliableToFetch}
+                        fetchMoreIcons={fetchMoreCommonIcons} />
                 </div>
             </div>
 
