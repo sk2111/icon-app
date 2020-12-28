@@ -1,5 +1,5 @@
 //libs
-import { takeLatest, put, call, all, select } from 'redux-saga/effects';
+import { takeLatest, put, call, all, select, throttle } from 'redux-saga/effects';
 //firesbase
 import { getDocDataFromFireStore, getDocListByPagination } from '../../firebase/firebase.utils';
 import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
@@ -19,7 +19,10 @@ import {
 //selectors
 import { selectCommonIcons } from './common-icons.selectors';
 //constants
-import { SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD } from '../../utilities/app.constants';
+import {
+    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP,
+    MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME
+} from '../../utilities/app.constants';
 //helpers
 import { framePaginateKey, frameIconObjFromDocObj } from '../../utilities/helper.functions';
 
@@ -57,7 +60,7 @@ function* fetchCommonIconsFromDatabase() {
 };
 
 function* onFetchCommonIconsFromDatabase() {
-    yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START, fetchCommonIconsFromDatabase);
+    yield throttle(FETCHING_ICONS_THROTTLE_TIME, commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START, fetchCommonIconsFromDatabase);
 };
 
 //Get common icons search keyword and category options to select saga
