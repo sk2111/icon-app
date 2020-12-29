@@ -105,6 +105,7 @@
   /* upload modal */
   --app-upload-modal-header: #1c1c1d;
   --app-upload-modal-border-line: #dbdbdc;
+  --app-upload-modal-border-line-highlight: #7488cc;
   --app-upload-modal-view-zone: #f9f9fb;
   --app-upload-modal-info-text: #989899;
   --app-upload-modal-text: #707071;
