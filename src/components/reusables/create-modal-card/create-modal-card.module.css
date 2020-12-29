@@ -42,11 +42,9 @@
   font-size: 14px;
   outline: none;
 }
-.button:hover {
-  font-weight: bold;
-}
 .submitBtn {
   margin-right: 12px;
+  font-weight: 500;
   width: 30px;
 }
 .cancelBtn {

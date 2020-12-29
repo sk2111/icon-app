@@ -20,6 +20,7 @@
   color: var(--app-upload-modal-button-color);
   cursor: pointer;
   font-size: 14px;
+  font-weight: 500;
   outline: none;
   width: 70px;
 }
@@ -31,10 +32,6 @@
   font-size: 14px;
   outline: none;
   width: 70px;
-}
-.cancelButton:hover,
-.proceedButton:hover {
-  font-weight: bold;
 }
 .details {
   color: var(--app-upload-modal-text);
