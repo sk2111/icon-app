@@ -31,7 +31,7 @@ export const trimStr = (toTrimValue) => {
 
 export const getAlphaOnly = (text, replaceChar, allowSpace = true, toLowerCase = true) => {
     const alphaString = allowSpace ? String(text).replace(/[^a-zA-Z\s]/g, replaceChar) : String(text).replace(/[^a-zA-Z]/g, replaceChar);
-    return toLowerCase ? alphaString.toLowerCase() : alphaString;
+    return toLowerCase ? alphaString.toLowerCase().trim() : alphaString.trim();
 };
 
 export const getSpaceCombinationValue = (strValue) => {
@@ -154,10 +154,11 @@ export const isIconsAllowedToUpload = (list) => {
 
 export const appendCommonTagsAndIconName = (list, commonRootTags) => {
     return list.map((icon) => {
-        const finalTags = [...commonRootTags, icon[ICON_NAME], ...icon[ICON_TAGS]].map((tag) => getAlphaOnly(tag, '', true, true));
+        const finalTagsArr = [...commonRootTags, icon[ICON_NAME], ...icon[ICON_TAGS]]
+            .map((tag) => getSpaceCombinationValue(getAlphaOnly(tag, '', true, true)));
         return {
             ...icon,
-            [ICON_TAGS]: [...new Set(finalTags)]
+            [ICON_TAGS]: [...new Set(...finalTagsArr)]
         };
     });
 };
@@ -181,7 +182,7 @@ export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
 
 //pagination helpers
 export const framePaginateKey = (classficationValue, searchKeywordValue) => {
-    return (getAlphaOnly(classficationValue, '', false, true) + '-' + getAlphaOnly(searchKeywordValue, '', false, true));
+    return (classficationValue + '-' + getAlphaOnly(searchKeywordValue, '', true, true));
 };
 //reading data from firestore to redux helpers
 export const frameIconObjFromDocObj = (iconDocList) => {

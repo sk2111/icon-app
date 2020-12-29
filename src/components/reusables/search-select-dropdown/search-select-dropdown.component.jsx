@@ -21,10 +21,12 @@ const SearchSelectDropdown = ({ className, placeholder, defaultSearchValue,
 
     useEffect(() => {
         if (compRef.current.defaultValue !== searchTerm) {
-            const timerId = setTimeout(() => {
-                handleSearchValueChange(searchTerm);
-            }, compRef.current.time);
-            return () => clearTimeout(timerId);
+            if (searchTerm.trim()) {
+                const timerId = setTimeout(() => {
+                    handleSearchValueChange(searchTerm.trim());
+                }, compRef.current.time);
+                return () => clearTimeout(timerId);
+            }
         }
     }, [searchTerm, handleSearchValueChange]);
 
