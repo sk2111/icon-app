@@ -163,19 +163,22 @@ export const appendCommonTagsAndIconName = (list, commonRootTags) => {
     });
 };
 
-export const getAllTagValuesFromIcons = (list) => {
+export const getAllTagValuesFromIcons = (list, commonRootTags) => {
     const tags = [];
     list.forEach((icon) => {
         tags.push(...icon[ICON_TAGS]);
     });
-    return [...new Set(tags)];
+    return [...commonRootTags, ...new Set(tags)].map((tag) => getAlphaOnly(tag, '', true, true));
 };
 
 export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
     const clonedIconsList = extractNeededPropsForUpload(Object.values(uploadedIcons));
     const isNotAllowed = isIconsAllowedToUpload(clonedIconsList);
+    if (isNotAllowed) {
+        return { isNotAllowed, iconsListToUpload: [], allTagValues: [] };
+    }
+    const allTagValues = getAllTagValuesFromIcons(clonedIconsList, commonRootTags);
     const iconsListToUpload = appendCommonTagsAndIconName(clonedIconsList, commonRootTags);
-    const allTagValues = getAllTagValuesFromIcons(iconsListToUpload);
     return { isNotAllowed, iconsListToUpload, allTagValues };
 };
 
