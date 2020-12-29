@@ -158,7 +158,7 @@ export const appendCommonTagsAndIconName = (list, commonRootTags) => {
             .map((tag) => getSpaceCombinationValue(getAlphaOnly(tag, '', true, true)));
         return {
             ...icon,
-            [ICON_TAGS]: [...new Set(...finalTagsArr)]
+            [ICON_TAGS]: [...new Set(finalTagsArr.flat())]
         };
     });
 };
