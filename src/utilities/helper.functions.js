@@ -34,6 +34,14 @@ export const getAlphaOnly = (text, replaceChar, allowSpace = true, toLowerCase =
     return toLowerCase ? alphaString.toLowerCase() : alphaString;
 };
 
+export const getSpaceCombinationValue = (strValue) => {
+    if (strValue.length) {
+        const spaceSeperatedArr = strValue.split(' ').map((val) => getAlphaOnly(val, '', false, true));
+        return [...new Set([...spaceSeperatedArr, getAlphaOnly(strValue, '', false, true)])];
+    }
+    return [];
+};
+
 export const capitalizeFirstLetter = (stringVal) => {
     return stringVal.charAt(0).toUpperCase() + stringVal.slice(1);
 };

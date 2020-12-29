@@ -24,10 +24,10 @@ import {
     MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME
 } from '../../utilities/app.constants';
 //helpers
-import { framePaginateKey, frameIconObjFromDocObj } from '../../utilities/helper.functions';
+import { framePaginateKey, frameIconObjFromDocObj, getSpaceCombinationValue } from '../../utilities/helper.functions';
 
 //destructure ICON PROP
-const { CREATED_AT } = ICON_PROP;
+const { CREATED_AT, ICON_CLASSIFICATION, ICON_TAGS } = ICON_PROP;
 
 
 // get common icons from database 
@@ -41,8 +41,11 @@ function* fetchCommonIconsFromDatabase() {
             return;
         }
         else {
+            const searchCombination = yield call(getSpaceCombinationValue, searchValue);
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
                 collectionPath: COMMON_ICONS_LIST_PATH,
+                classificationConfig: [ICON_CLASSIFICATION, '==', selectValue],
+                searchKeywordConfig: [ICON_TAGS, 'array-contains-any', searchCombination],
                 orderConfig: [CREATED_AT, "desc"],
                 listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
                 previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
