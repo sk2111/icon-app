@@ -139,7 +139,7 @@
   --app-user-display-icon-name: #989899;
 
   /* User display icon card */
-  --app-user-display-icon-card-dimension: 130px;
+  --app-user-display-icon-card-dimension: 300px;
 }
 * {
   box-sizing: border-box;

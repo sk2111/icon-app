@@ -37,7 +37,7 @@ export const getAlphaOnly = (text, replaceChar, allowSpace = true, toLowerCase =
 export const getSpaceCombinationValue = (strValue) => {
     if (strValue.length) {
         const spaceSeperatedArr = strValue.split(' ').map((val) => getAlphaOnly(val, '', false, true));
-        return [...new Set([...spaceSeperatedArr, getAlphaOnly(strValue, '', false, true)])];
+        return [...new Set([...spaceSeperatedArr, getAlphaOnly(strValue, '', true, true)])];
     }
     return [];
 };
@@ -154,7 +154,7 @@ export const isIconsAllowedToUpload = (list) => {
 
 export const appendCommonTagsAndIconName = (list, commonRootTags) => {
     return list.map((icon) => {
-        const finalTags = [...commonRootTags, icon[ICON_NAME], ...icon[ICON_TAGS]].map((tag) => getAlphaOnly(tag, ''));
+        const finalTags = [...commonRootTags, icon[ICON_NAME], ...icon[ICON_TAGS]].map((tag) => getAlphaOnly(tag, '', true, true));
         return {
             ...icon,
             [ICON_TAGS]: [...new Set(finalTags)]
