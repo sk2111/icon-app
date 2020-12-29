@@ -135,16 +135,27 @@ export const performUploadIconsInBatchedMode = async (docPath, iconList) => {
     }
 };
 
-export const getDocListByPagination = async ({ collectionPath, orderConfig, listLimit, previousQueryEndDoc }) => {
+export const getDocListByPagination = async ({ collectionPath, classificationConfig, searchKeywordConfig,
+    orderConfig, listLimit, previousQueryEndDoc }) => {
     try {
-        let docList, isMoreDocsAvailable, newEndDocRef;
-        const query = previousQueryEndDoc ?
-            firestore.collection(collectionPath).orderBy(...orderConfig).startAfter(previousQueryEndDoc).limit(listLimit) :
-            firestore.collection(collectionPath).orderBy(...orderConfig).limit(listLimit);
+        let docList, isMoreDocsAvailable, newEndDocRef, query;
+        const searchValueList = searchKeywordConfig[2];
+        let classificationRef = firestore.collection(collectionPath).where(...classificationConfig).orderBy(...orderConfig);
+        if (searchValueList.length) {
+            console.log("Valid search query is executing here", searchValueList);
+            query = previousQueryEndDoc ?
+                classificationRef.where(...searchKeywordConfig).startAfter(previousQueryEndDoc).limit(listLimit) :
+                classificationRef.where(...searchKeywordConfig).limit(listLimit);
+        }
+        else {
+            console.log("Only select value query is is executing here");
+            query = previousQueryEndDoc ? classificationRef.startAfter(previousQueryEndDoc).limit(listLimit) :
+                classificationRef.limit(listLimit);
+        }
         docList = await query.get();
         isMoreDocsAvailable = docList.size === listLimit;
         newEndDocRef = isMoreDocsAvailable ? docList.docs[docList.docs.length - 1] : null;
-        console.log("docList testing", docList, isMoreDocsAvailable, newEndDocRef);
+        console.log("%cdocList testing -----IRONMAN", "color:blue;font-size:18px;", docList.docs, docList.docs.length, isMoreDocsAvailable, newEndDocRef);
         return {
             docList,
             isMoreDocsAvailable,
