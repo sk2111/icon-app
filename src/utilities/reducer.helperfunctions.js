@@ -27,7 +27,7 @@ export const editAllIconsObjectPropertiesImmutably = (obj, { key, value }) => {
         const array = Object.values(obj);
         let returnObj = {};
         array.forEach((item) => {
-            returnObj = { ...returnObj, [item.id]: { ...item, [key]: [...value] } }
+            returnObj = { ...returnObj, [item.id]: { ...item, [key]: value } }
         });
         return returnObj;
     }

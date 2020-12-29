@@ -44,8 +44,8 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
         if (oldVal !== newVal) {
             editUploadIconClassification({
                 [ICON_ID]: id,
-                value: [newVal],
-                key: ICON_CLASSIFICATION
+                key: ICON_CLASSIFICATION,
+                value: newVal
             });
         }
     };
@@ -60,7 +60,7 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
         <div className={styles.topContainer}>
             {
                 uploadedIcons.map((icon) => {
-                    const selectValue = icon[ICON_CLASSIFICATION][0];
+                    const selectValue = icon[ICON_CLASSIFICATION];
                     const iconId = icon[ICON_ID];
                     const iconName = icon[ICON_NAME];
                     return (

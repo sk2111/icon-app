@@ -1,7 +1,7 @@
 //constants
 import {
     UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP,
-    NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY, DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS
+    NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY
 } from './app.constants';
 // destructure icon prop
 const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_DATA, ICON_TAGS, CREATED_AT } = ICON_PROP;
@@ -114,7 +114,7 @@ export const normalizeUploadFileIconsStructure = (files) => {
         normalizedData[randomProperty] = {
             [ICON_ID]: randomProperty,
             [ICON_NAME]: fileName,
-            [ICON_CLASSIFICATION]: [UPLOAD_ICONS_DEFAULT_CLASSIFICATION],
+            [ICON_CLASSIFICATION]: UPLOAD_ICONS_DEFAULT_CLASSIFICATION,
             [ICON_TAGS]: [],
             [CREATED_AT]: new Date(),
             [ICON_BASE_64]: base64data,
@@ -131,7 +131,7 @@ export const extractNeededPropsForUpload = (list) => {
             [CREATED_AT]: createdAt, [ICON_DATA]: iconData } = icon;
         return {
             [ICON_NAME]: iconName,
-            [ICON_CLASSIFICATION]: [...iconClassification],
+            [ICON_CLASSIFICATION]: iconClassification,
             [ICON_TAGS]: [...iconTags],
             [CREATED_AT]: createdAt,
             [ICON_DATA]: iconData,
@@ -147,7 +147,7 @@ export const isIconsAllowedToUpload = (list) => {
 export const appendCommonTagsAndIconName = (list, commonRootTags) => {
     return list.map((icon) => ({
         ...icon,
-        [ICON_TAGS]: [...commonRootTags, icon[ICON_NAME], ...icon[ICON_TAGS]].map((tag) => getAlphaOnly(tag, ''))
+        [ICON_TAGS]: new Set([...commonRootTags, icon[ICON_NAME], ...icon[ICON_TAGS]].map((tag) => getAlphaOnly(tag, '')))
     }));
 };
 
@@ -159,20 +159,11 @@ export const getAllTagValuesFromIcons = (list) => {
     return [...new Set(tags)];
 };
 
-export const appendedDefaultClassfication = (iconList) => {
-    return iconList.map((icon) => ({
-        ...icon,
-        [ICON_CLASSIFICATION]: [...icon[ICON_CLASSIFICATION], DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS]
-    })
-    );
-};
-
 export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
     const clonedIconsList = extractNeededPropsForUpload(Object.values(uploadedIcons));
     const isNotAllowed = isIconsAllowedToUpload(clonedIconsList);
-    const iconsWithAppendedTagsList = appendCommonTagsAndIconName(clonedIconsList, commonRootTags);
-    const allTagValues = getAllTagValuesFromIcons(iconsWithAppendedTagsList);
-    const iconsListToUpload = appendedDefaultClassfication(iconsWithAppendedTagsList);
+    const iconsListToUpload = appendCommonTagsAndIconName(clonedIconsList, commonRootTags);
+    const allTagValues = getAllTagValuesFromIcons(iconsListToUpload);
     return { isNotAllowed, iconsListToUpload, allTagValues };
 };
 

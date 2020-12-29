@@ -31,7 +31,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
             changeRootClassfication({
                 key: ICON_CLASSIFICATION,
                 newValue: newValue,
-                value: [newValue]
+                value: newValue
             });
         }
     };
