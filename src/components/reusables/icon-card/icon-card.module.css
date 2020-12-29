@@ -3,8 +3,8 @@
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  height: 130px;
-  width: 130px;
+  height: var(--app-user-display-icon-card-dimension);
+  width: var(--app-user-display-icon-card-dimension);
 }
 .iconImg {
   display: block;
