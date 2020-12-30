@@ -14,6 +14,7 @@ export const PROJECT_ICONS_SELECT_LABEL = 'Projects';
 //default select value for common icons in display UI
 export const DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS = 'All';
 export const COMMON_ICON_DEFAULT_CATEGORY_VALUE = 'All';
+export const PROJECT_ICON_DEFAULT_PROJECT_VALUE = 'All';
 export const UPLOAD_ICONS_DEFAULT_CLASSIFICATION = 'Not Selected';
 
 // Page Names to display in Icon view header
