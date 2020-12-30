@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 //constants
 import { COMMON_ICON_DEFAULT_CATEGORY_VALUE, ICON_PROP } from '../../utilities/app.constants';
 //helpers
-import { getSpaceCombinationValue, getAlphaOnly, framePaginateKey } from '../../utilities/helper.functions';
+import { getSpaceCombinationValue, getAlphaOnly, getPaginateConfig } from '../../utilities/helper.functions';
 
 //destructure ICON PROP
 const { ICON_CLASSIFICATION, ICON_TAGS } = ICON_PROP;
@@ -22,20 +22,15 @@ export const selectCommonIconsSearchValue = createSelector([selectCommonIcons], 
 
 export const selectCommonIconsSelectValue = createSelector([selectCommonIcons], (commonIcons) => commonIcons.selectValue);
 
+const selectCommonIconsMap = createSelector([selectCommonIcons], (commonIcons) => commonIcons.iconsMap);
+
 export const selectIsMoreIconsAvailableToFetch = createSelector(
     [selectCommonIconsSelectValue, selectCommonIconsSearchValue, selectCommonIconsPagination],
     (selectValue, searchValue, paginationMap) => {
-        const paginationKey = framePaginateKey(selectValue, searchValue);
-        const existingPaginationMap = paginationMap[paginationKey];
-        if (existingPaginationMap) {
-            return existingPaginationMap.isMoreIconsAvailableToFetch;
-        }
-        return true;
+        const { existingPaginationMap, isMoreIconsAvailableToFetch } = getPaginateConfig(selectValue, searchValue, paginationMap);
+        return existingPaginationMap ? isMoreIconsAvailableToFetch : true;
     }
 );
-
-const selectCommonIconsMap = createSelector([selectCommonIcons], (commonIcons) => commonIcons.iconsMap);
-
 
 export const selectCommonIconsListToDisplay = createSelector(
     [selectCommonIconsSearchValue, selectCommonIconsSelectValue, selectCommonIconsMap],

@@ -184,8 +184,16 @@ export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
 
 
 //pagination helpers
-export const framePaginateKey = (classficationValue, searchKeywordValue) => {
-    return (classficationValue + '-' + getAlphaOnly(searchKeywordValue, '', true, true));
+export const getPaginateConfig = (classficationValue, searchKeywordValue, paginationMap) => {
+    const paginateKey = (classficationValue + '-' + getAlphaOnly(searchKeywordValue, '', true, true));
+    if (paginationMap[paginateKey]) {
+        return {
+            paginateKey,
+            existingPaginationMap: { ...paginationMap[paginateKey] },
+            isMoreIconsAvailableToFetch: paginationMap[paginateKey].isMoreIconsAvailableToFetch
+        };
+    }
+    return { paginateKey, existingPaginationMap: null, isMoreIconsAvailableToFetch: false };
 };
 //reading data from firestore to redux helpers
 export const frameIconObjFromDocObj = (iconDocList) => {
