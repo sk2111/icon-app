@@ -8,6 +8,8 @@ import styles from './project-icons-page.module.css';
 import HomeHeader from '../../components/containers/home-header/home-header.component';
 import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
 import IconsDisplayContainer from '../../components/containers/icons-display-container/icons-display-container.component';
+//actions
+import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
 //constants
@@ -49,4 +51,10 @@ const mapStateToProps = createStructuredSelector({
     isCurrentUserAdmin: selectCurrentUserAdminRole
 });
 
-export default connect(mapStateToProps)(ProjectIconsPage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectIconsPage);
