@@ -142,13 +142,11 @@ export const getDocListByPagination = async ({ collectionPath, classificationCon
         const searchValueList = searchKeywordConfig[2];
         let classificationRef = firestore.collection(collectionPath).where(...classificationConfig).orderBy(...orderConfig);
         if (searchValueList.length) {
-            console.log("Valid search query is executing here", searchValueList);
             query = previousQueryEndDoc ?
                 classificationRef.where(...searchKeywordConfig).startAfter(previousQueryEndDoc).limit(listLimit) :
                 classificationRef.where(...searchKeywordConfig).limit(listLimit);
         }
         else {
-            console.log("Only select value query is is executing here");
             query = previousQueryEndDoc ? classificationRef.startAfter(previousQueryEndDoc).limit(listLimit) :
                 classificationRef.limit(listLimit);
         }

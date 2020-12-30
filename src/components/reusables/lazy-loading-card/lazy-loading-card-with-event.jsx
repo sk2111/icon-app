@@ -18,7 +18,6 @@ const LazyLoadingCardWithEvent = ({ fetchMoreIcons }) => {
     useEffect(() => {
         const intersectionCallback = (entries) => {
             entries.forEach(entry => {
-                console.log("I am intersecting observor konj", entry.isIntersecting);
                 if (entry.isIntersecting) {
                     fetchMoreIcons();
                 }
