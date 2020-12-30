@@ -14,7 +14,7 @@ import { changeModalView, changeRootClassfication, updateRootTags, addNewClassfi
 //reselect
 import { selectRootClassification, selectUploadIconDBPath, selectCommonRootTags } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
-import { MODAL_IN_UPLOAD_VIEW, ICON_PROP, UPLOAD_ROOT_SELECT_LABEL } from '../../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW, ICON_PROP, UPLOAD_FORM_LABEL } from '../../../utilities/app.constants';
 //static 
 import BackArrowImg from '../../../assests/webp/back-arrow.webp';
 import CreateNewClassficationImg from '../../../assests/webp/create-new-classification.webp';
@@ -26,7 +26,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
 
     const [showCreateNewCategory, setShowCreateNewCategory] = useState(false);
 
-    const rootClassificationLabel = UPLOAD_ROOT_SELECT_LABEL[uploadIconDBPath];
+    const label = UPLOAD_FORM_LABEL[uploadIconDBPath];
 
     const handleClassficationChange = (newValue) => {
         if (newValue !== classificationValue) {
@@ -55,7 +55,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
                 </div>
             </div>
             <div className={styles.classification}>
-                <div className={styles.label}>{rootClassificationLabel}</div>
+                <div className={styles.label}>{label}</div>
                 <CustomSelect
                     options={classificationOptions}
                     value={classificationValue}
@@ -64,7 +64,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
                 <img className={styles.createNew} src={CreateNewClassficationImg} alt="+" onClick={() => setShowCreateNewCategory(true)} />
                 <RenderView renderIfTrue={showCreateNewCategory}>
                     <CreateModalCard
-                        heading="Create new category"
+                        heading={`Create New ${label}`}
                         inputType="text"
                         defaultValue=""
                         handleSubmit={handleAddNewClassification}

@@ -9,7 +9,9 @@ export const PROJECT_ICONS_INPUT_PLACEHOLDER = 'Search for your project icons';
 export const FAVORITES_ICONS_INPUT_PLACEHOLDER = 'Search for your favorites icons';
 //select label text
 export const COMMON_ICONS_SELECT_LABEL = 'Categories';
+export const COMMON_ICONS_UPLOAD_INP_LABEL = 'Category';
 export const PROJECT_ICONS_SELECT_LABEL = 'Projects';
+export const PROJECT_ICONS_UPLOAD_INP_LABEL = 'Project';
 
 //default select value for common icons in display UI
 export const DEFAULT_CLASSIFICATION_VALUE_FOR_UPLOADED_ICONS = 'All';
@@ -23,10 +25,10 @@ export const PROJECT_ICONS_HEADER_LABEL = "Project Icons";
 export const FAVORITES_ICONS_HEADER_LABEL = "Favorites Icons";
 export const EDIT_ICON_HEADER_LABEL = "Edit Icon";
 
-// root classification in upload lebel map
-export const UPLOAD_ROOT_SELECT_LABEL = {
-    [COMMON_ICONS_HEADER_LABEL]: COMMON_ICONS_SELECT_LABEL,
-    [PROJECT_ICONS_HEADER_LABEL]: PROJECT_ICONS_SELECT_LABEL
+// upload label map
+export const UPLOAD_FORM_LABEL = {
+    [COMMON_ICONS_HEADER_LABEL]: COMMON_ICONS_UPLOAD_INP_LABEL,
+    [PROJECT_ICONS_HEADER_LABEL]: PROJECT_ICONS_UPLOAD_INP_LABEL
 };
 //saga message constants
 export const SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user options for common or project icons';
