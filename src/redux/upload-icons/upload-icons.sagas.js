@@ -10,11 +10,12 @@ import { uploadIconsActionTypes } from './upload-icons.type';
 //selectors
 import { selectUploadIcons } from './upload-icons.selectors';
 //firebase 
-import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, CLASSIFICATION_SEARCH_KEYWORD_LIST, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
+import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, CLASSIFICATION_SEARCH_KEYWORD_LIST, COMMON_ICONS_LIST_PATH, PROJECT_ICONS_USER_OPTIONS_DATA_PATH } from '../../firebase/firebase.constants';
 import { CreateNewClassfication, updateDocPropInFirestore, performUploadIconsInBatchedMode } from '../../firebase/firebase.utils';
 //constants
 import {
     COMMON_ICONS_HEADER_LABEL,
+    PROJECT_ICONS_HEADER_LABEL,
     SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE
 } from '../../utilities/app.constants';
 //helpers
@@ -29,8 +30,12 @@ function* addNewClassficationInFirebase({ payload: { classification, uploadIconD
         const capitalizedValue = yield call(capitalizeFirstLetter, classification);
         if ((uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) && capitalizedValue) {
             yield call(CreateNewClassfication, { classification: capitalizedValue.trim(), dbDocPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH });
-            yield put(addNewClassficationSuccess());
+
         }
+        if ((uploadIconDBPath === PROJECT_ICONS_HEADER_LABEL) && capitalizedValue) {
+            yield call(CreateNewClassfication, { classification: capitalizedValue.trim(), dbDocPath: PROJECT_ICONS_USER_OPTIONS_DATA_PATH });
+        }
+        yield put(addNewClassficationSuccess());
     }
     catch (e) {
         yield put(addNewClassficationFailed(e?.message));
