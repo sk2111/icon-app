@@ -13,64 +13,65 @@ import {
     fetchProjectIconsFromDatabaseFailure, fetchProjectIconsFromDatabaseSuccess, setProjectIconsPaginationMap
 } from './project-icons.actions';
 //selectors
-// import { selectCommonIcons } from './common-icons.selectors';
+import { selectProjectIcons } from './project-icons.selectors';
 //constants
 import {
-    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
+    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, PROJECT_ICON_DEFAULT_PROJECT_VALUE,
     MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME, PROJECT_ICONS_HEADER_LABEL
 } from '../../utilities/app.constants';
 //helpers
 import { getPaginateConfig, frameIconObjFromDocObj, getSpaceCombinationValue } from '../../utilities/helper.functions';
 
 //destructure ICON PROP
-// const { CREATED_AT, ICON_CLASSIFICATION, ICON_TAGS } = ICON_PROP;
+const { CREATED_AT, ICON_CLASSIFICATION, ICON_TAGS } = ICON_PROP;
 
 // Fetch config query param frame
-// const frameQueryParams = (selectValue, searchValue, existingPaginationMap) => {
-//     const searchCombination = getSpaceCombinationValue(searchValue);
-//     const isDefaultClassification = selectValue === COMMON_ICON_DEFAULT_CATEGORY_VALUE
-//     const queryOperator = isDefaultClassification ? '!=' : '==';
-//     const queryOrderByConfig = isDefaultClassification ? [ICON_CLASSIFICATION] : [CREATED_AT, "desc"];
-//     return {
-//         collectionPath: COMMON_ICONS_LIST_PATH,
-//         classificationConfig: [ICON_CLASSIFICATION, queryOperator, selectValue],
-//         searchKeywordConfig: [ICON_TAGS, 'array-contains-any', searchCombination],
-//         orderConfig: [...queryOrderByConfig],
-//         listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
-//         previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
-//     }
-// };
-// // get common icons from database 
-// function* fetchCommonIconsFromDatabase() {
-//     try {
-//         const { paginationMap, searchValue, selectValue } = yield select(selectCommonIcons);
-//         const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, searchValue, paginationMap);
-//         if (existingPaginationMap && !isMoreIconsAvailableToFetch) {
-//             console.log("All Icons fetched in this category");
-//             return;
-//         }
-//         else {
-//             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
-//                 frameQueryParams(selectValue, searchValue, existingPaginationMap));
-//             const iconsMap = yield call(frameIconObjFromDocObj, docList);
-//             yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
-//             yield put(setCommonIconsPaginationMap({
-//                 key: paginateKey,
-//                 isMoreIconsAvailableToFetch: isMoreDocsAvailable,
-//                 lastQueryEndRef: newEndDocRef
-//             }));
-//         }
-//     }
-//     catch (e) {
-//         console.log(e);
-//         yield put(fetchCommonIconsFromDatabaseFailure(e?.message));
-//     }
+const frameQueryParams = (selectValue, searchValue, existingPaginationMap) => {
+    const searchCombination = getSpaceCombinationValue(searchValue);
+    const isDefaultClassification = selectValue === PROJECT_ICON_DEFAULT_PROJECT_VALUE
+    const queryOperator = isDefaultClassification ? '!=' : '==';
+    const queryOrderByConfig = isDefaultClassification ? [ICON_CLASSIFICATION] : [CREATED_AT, "desc"];
+    return {
+        collectionPath: PROJECT_ICONS_LIST_PATH,
+        classificationConfig: [ICON_CLASSIFICATION, queryOperator, selectValue],
+        searchKeywordConfig: [ICON_TAGS, 'array-contains-any', searchCombination],
+        orderConfig: [...queryOrderByConfig],
+        listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
+        previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
+    }
+};
 
-// };
+// get project icons from database 
+function* fetchProjectIconsFromDatabase() {
+    try {
+        const { paginationMap, searchValue, selectValue } = yield select(selectProjectIcons);
+        const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, searchValue, paginationMap);
+        if (existingPaginationMap && !isMoreIconsAvailableToFetch) {
+            console.log("All Icons fetched in this project");
+            return;
+        }
+        else {
+            const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
+                frameQueryParams(selectValue, searchValue, existingPaginationMap));
+            const iconsMap = yield call(frameIconObjFromDocObj, docList);
+            yield put(fetchProjectIconsFromDatabaseSuccess(iconsMap));
+            yield put(setProjectIconsPaginationMap({
+                key: paginateKey,
+                isMoreIconsAvailableToFetch: isMoreDocsAvailable,
+                lastQueryEndRef: newEndDocRef
+            }));
+        }
+    }
+    catch (e) {
+        console.log(e);
+        yield put(fetchProjectIconsFromDatabaseFailure(e?.message));
+    }
 
-// function* onFetchCommonIconsFromDatabase() {
-//     yield throttle(FETCHING_ICONS_THROTTLE_TIME, commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START, fetchCommonIconsFromDatabase);
-// };
+};
+
+function* onFetchProjectIconsFromDatabase() {
+    yield throttle(FETCHING_ICONS_THROTTLE_TIME, projectIconsActionTypes.FETCH_PROJECT_ICONS_FROM_DB_START, fetchProjectIconsFromDatabase);
+};
 
 //Get project icons search keyword and category options
 function* fetchKeywordAndSelectOptions() {
@@ -116,7 +117,7 @@ export function* projectIconsSaga() {
     yield all([
         call(onFetchKeywordAndSelectOptions),
         call(onCurrentUserInfoFetchSuccess),
-        // call(onFetchCommonIconsFromDatabase),
+        call(onFetchProjectIconsFromDatabase),
         call(onTriggerUserOptionsFetch),
     ]);
 };
