@@ -14,6 +14,8 @@ export const USERS_COLLECTION_PATH = 'users';
 export const GET_ACCESS_ROLE_PATH = 'appData/adminPanel/adminUsers/';
 export const COMMON_ICONS_USER_OPTIONS_DATA_PATH = 'appData/commonIconsTab';
 export const COMMON_ICONS_LIST_PATH = 'commonIcons';
+export const PROJECT_ICONS_USER_OPTIONS_DATA_PATH = 'appData/projectIconsTab';
+export const PROJECT_ICONS_LIST_PATH = 'projectIcons';
 
 //Db Propertie name consatnts
 export const CLASSIFICATION_SELECT_OPTIONS_LIST = 'selectOptionsList';
