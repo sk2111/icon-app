@@ -47,7 +47,6 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                         fetchMoreIcons={fetchMoreCommonIcons} />
                 </div>
             </div>
-
         </div>
     );
 };
