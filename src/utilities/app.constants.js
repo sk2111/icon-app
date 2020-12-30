@@ -23,7 +23,11 @@ export const PROJECT_ICONS_HEADER_LABEL = "Project Icons";
 export const FAVORITES_ICONS_HEADER_LABEL = "Favorites Icons";
 export const EDIT_ICON_HEADER_LABEL = "Edit Icon";
 
-
+// root classification in upload lebel map
+export const UPLOAD_ROOT_SELECT_LABEL = {
+    [COMMON_ICONS_HEADER_LABEL]: COMMON_ICONS_SELECT_LABEL,
+    [PROJECT_ICONS_HEADER_LABEL]: PROJECT_ICONS_SELECT_LABEL
+};
 //saga message constants
 export const SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user options for common or project icons';
 export const SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE = 'Upload failed...Invalid Icon classification found';

@@ -14,7 +14,7 @@ import { changeModalView, changeRootClassfication, updateRootTags, addNewClassfi
 //reselect
 import { selectRootClassification, selectUploadIconDBPath, selectCommonRootTags } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
-import { MODAL_IN_UPLOAD_VIEW, ICON_PROP } from '../../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW, ICON_PROP, UPLOAD_ROOT_SELECT_LABEL } from '../../../utilities/app.constants';
 //static 
 import BackArrowImg from '../../../assests/webp/back-arrow.webp';
 import CreateNewClassficationImg from '../../../assests/webp/create-new-classification.webp';
@@ -25,6 +25,8 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
     uploadIconDBPath, classificationValue, tagValues, classficationSuggestions, tagSuggestions }) => {
 
     const [showCreateNewCategory, setShowCreateNewCategory] = useState(false);
+
+    const rootClassificationLabel = UPLOAD_ROOT_SELECT_LABEL[uploadIconDBPath];
 
     const handleClassficationChange = (newValue) => {
         if (newValue !== classificationValue) {
@@ -46,14 +48,14 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
     return (
         <React.Fragment>
             <div className={styles.headerContainer}>
-                <h4 className={styles.configHeaderText}>Upload files to Common Icons</h4>
+                <h4 className={styles.configHeaderText}>{`Upload files to ${uploadIconDBPath}`}</h4>
                 <div className={styles.backContainer} onClick={() => changeModalView(MODAL_IN_UPLOAD_VIEW)}>
                     <img className={styles.backArrow} src={BackArrowImg} alt="<" />
                     <div className={styles.backBtn}>Back</div>
                 </div>
             </div>
             <div className={styles.classification}>
-                <div className={styles.label}>Category</div>
+                <div className={styles.label}>{rootClassificationLabel}</div>
                 <CustomSelect
                     options={classficationSuggestions}
                     value={classificationValue}
