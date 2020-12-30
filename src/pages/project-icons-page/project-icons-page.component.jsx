@@ -10,14 +10,19 @@ import IconsViewHeader from '../../components/containers/icons-view-header/icons
 import IconsDisplayContainer from '../../components/containers/icons-display-container/icons-display-container.component';
 //actions
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
+import { setProjectIconsTabSearchValue, setProjectIconsTabSelectValue, fetchProjectIconsFromDatabaseStart } from '../../redux/project-icons/project-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
+import {
+    selectProjectIconsSearchValue, selectProjectIconsSelectValue, selectProjectIconsSearchKeywords,
+    selectProjectIconsSelectOptions, selectProjectIconsListToDisplay, selectIsMoreIconsAvailableToFetch
+} from '../../redux/project-icons/project-icons.selectors';
 //constants
 import { PROJECT_ICONS_HEADER_LABEL, PROJECT_ICONS_INPUT_PLACEHOLDER, PROJECT_ICONS_SELECT_LABEL } from '../../utilities/app.constants';
 
 
 const ProjectIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectValue, selectOptions, setSelectValue,
-    openUploadModal, iconsList, isMoreIconsAvaliableToFetch, fetchMoreCommonIcons }) => {
+    openUploadModal, iconsList, isMoreIconsAvaliableToFetch, fetchMoreProjectIcons }) => {
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -37,9 +42,9 @@ const ProjectIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, set
                     handleUploadIcon={openUploadModal}
                 />
                 <div className={styles.iconsContainer}>
-                    <IconsDisplayContainer iconList={[]}
+                    <IconsDisplayContainer iconList={iconsList}
                         isMoreIconsAvaliableToFetch={isMoreIconsAvaliableToFetch}
-                        fetchMoreIcons={fetchMoreCommonIcons} />
+                        fetchMoreIcons={fetchMoreProjectIcons} />
                 </div>
             </div>
         </div>
@@ -48,12 +53,21 @@ const ProjectIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, set
 
 
 const mapStateToProps = createStructuredSelector({
-    isCurrentUserAdmin: selectCurrentUserAdminRole
+    isCurrentUserAdmin: selectCurrentUserAdminRole,
+    searchValue: selectProjectIconsSearchValue,
+    selectValue: selectProjectIconsSelectValue,
+    searchKeywords: selectProjectIconsSearchKeywords,
+    selectOptions: selectProjectIconsSelectOptions,
+    iconsList: selectProjectIconsListToDisplay,
+    isMoreIconsAvaliableToFetch: selectIsMoreIconsAvailableToFetch
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        setSearchValue: (searchValue) => dispatch(setProjectIconsTabSearchValue(searchValue)),
+        setSelectValue: (selectValue) => dispatch(setProjectIconsTabSelectValue(selectValue)),
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
+        fetchMoreProjectIcons: () => dispatch(fetchProjectIconsFromDatabaseStart())
     }
 };
 
