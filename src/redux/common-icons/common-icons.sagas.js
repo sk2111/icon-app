@@ -24,38 +24,45 @@ import {
     MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME
 } from '../../utilities/app.constants';
 //helpers
-import { framePaginateKey, frameIconObjFromDocObj, getSpaceCombinationValue } from '../../utilities/helper.functions';
+import { getPaginateConfig, frameIconObjFromDocObj, getSpaceCombinationValue } from '../../utilities/helper.functions';
 
 //destructure ICON PROP
 const { CREATED_AT, ICON_CLASSIFICATION, ICON_TAGS } = ICON_PROP;
 
-
+// Fetch config query param frame
+const frameQueryParams = (selectValue, searchValue, existingPaginationMap) => {
+    const searchCombination = getSpaceCombinationValue(searchValue);
+    const isDefaultClassification = selectValue === COMMON_ICON_DEFAULT_CATEGORY_VALUE
+    const queryOperator = isDefaultClassification ? '!=' : '==';
+    const queryOrderByConfig = isDefaultClassification ? [ICON_CLASSIFICATION] : [CREATED_AT, "desc"];
+    return {
+        collectionPath: COMMON_ICONS_LIST_PATH,
+        classificationConfig: [ICON_CLASSIFICATION, queryOperator, selectValue],
+        searchKeywordConfig: [ICON_TAGS, 'array-contains-any', searchCombination],
+        orderConfig: [...queryOrderByConfig],
+        listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
+        previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
+    }
+};
 // get common icons from database 
 function* fetchCommonIconsFromDatabase() {
     try {
         const { paginationMap, searchValue, selectValue } = yield select(selectCommonIcons);
-        const paginationKey = yield call(framePaginateKey, selectValue, searchValue);
-        const existingPaginationMap = paginationMap[paginationKey];
-        if (existingPaginationMap && !existingPaginationMap.isMoreIconsAvailableToFetch) {
+        const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, searchValue, paginationMap);
+        if (existingPaginationMap && !isMoreIconsAvailableToFetch) {
             console.log("All Icons fetched in this category");
             return;
         }
         else {
-            const isDefaultClassification = selectValue === COMMON_ICON_DEFAULT_CATEGORY_VALUE
-            const queryOperator = isDefaultClassification ? '!=' : '==';
-            const queryOrderByConfig = isDefaultClassification ? [ICON_CLASSIFICATION] : [CREATED_AT, "desc"];
-            const searchCombination = yield call(getSpaceCombinationValue, searchValue);
-            const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
-                collectionPath: COMMON_ICONS_LIST_PATH,
-                classificationConfig: [ICON_CLASSIFICATION, queryOperator, selectValue],
-                searchKeywordConfig: [ICON_TAGS, 'array-contains-any', searchCombination],
-                orderConfig: [...queryOrderByConfig],
-                listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
-                previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
-            });
+            const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
+                frameQueryParams(selectValue, searchValue, existingPaginationMap));
             const iconsMap = yield call(frameIconObjFromDocObj, docList);
             yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
-            yield put(setCommonIconsPaginationMap({ key: paginationKey, isMoreIconsAvailableToFetch: isMoreDocsAvailable, lastQueryEndRef: newEndDocRef }));
+            yield put(setCommonIconsPaginationMap({
+                key: paginateKey,
+                isMoreIconsAvailableToFetch: isMoreDocsAvailable,
+                lastQueryEndRef: newEndDocRef
+            }));
         }
     }
     catch (e) {
