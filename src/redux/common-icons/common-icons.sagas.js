@@ -9,12 +9,8 @@ import { userActionTypes } from '../user/user.type';
 import { uploadIconsActionTypes } from '../upload-icons/upload-icons.type';
 //actions
 import {
-    fetchCommonIconsUserOptionsStart,
-    fetchCommonIconsUserOptionsSuccess,
-    fetchCommonIconsUserOptionsFailure,
-    fetchCommonIconsFromDatabaseFailure,
-    fetchCommonIconsFromDatabaseSuccess,
-    setCommonIconsPaginationMap
+    fetchCommonIconsUserOptionsStart, fetchCommonIconsUserOptionsSuccess, fetchCommonIconsUserOptionsFailure,
+    fetchCommonIconsFromDatabaseFailure, fetchCommonIconsFromDatabaseSuccess, setCommonIconsPaginationMap
 } from './common-icons.actions';
 //selectors
 import { selectCommonIcons } from './common-icons.selectors';
