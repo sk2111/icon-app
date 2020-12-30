@@ -4,24 +4,21 @@ import {
 } from 'redux-saga/effects';
 //actions
 import { fetchCommonIconsUserOptionsStart } from '../common-icons/common-icons.actions';
+import { fetchProjectIconsUserOptionsStart } from '../project-icons/project-icons.actions';
 import { uploadIconsSuccess, uploadIconsFailure, readyToUploadIcons, addNewClassficationSuccess, addNewClassficationFailed } from '../upload-icons/upload-icons.actions';
 //action type
 import { uploadIconsActionTypes } from './upload-icons.type';
 //selectors
 import { selectUploadIcons } from './upload-icons.selectors';
 //firebase 
-import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, CLASSIFICATION_SEARCH_KEYWORD_LIST, COMMON_ICONS_LIST_PATH, PROJECT_ICONS_USER_OPTIONS_DATA_PATH } from '../../firebase/firebase.constants';
+import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, CLASSIFICATION_SEARCH_KEYWORD_LIST, COMMON_ICONS_LIST_PATH, PROJECT_ICONS_USER_OPTIONS_DATA_PATH, PROJECT_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 import { CreateNewClassfication, updateDocPropInFirestore, performUploadIconsInBatchedMode } from '../../firebase/firebase.utils';
 //constants
 import {
-    COMMON_ICONS_HEADER_LABEL,
-    PROJECT_ICONS_HEADER_LABEL,
-    SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE
+    COMMON_ICONS_HEADER_LABEL, PROJECT_ICONS_HEADER_LABEL, SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE
 } from '../../utilities/app.constants';
 //helpers
-import {
-    capitalizeFirstLetter, prepareIconDataForUpload,
-} from '../../utilities/helper.functions';
+import { capitalizeFirstLetter, prepareIconDataForUpload, } from '../../utilities/helper.functions';
 
 
 //create new category or classfication in firebase
@@ -82,6 +79,16 @@ function* uploadIconsValidCheck() {
                     uploadPath: COMMON_ICONS_LIST_PATH,
                     uploadList: iconsListToUpload,
                     successAction: fetchCommonIconsUserOptionsStart
+                }));
+            }
+            if (uploadIconDBPath === PROJECT_ICONS_HEADER_LABEL) {
+                yield put(readyToUploadIcons({
+                    keywordPath: PROJECT_ICONS_USER_OPTIONS_DATA_PATH,
+                    keywordProp: CLASSIFICATION_SEARCH_KEYWORD_LIST,
+                    keywordValue: allTagValues,
+                    uploadPath: PROJECT_ICONS_LIST_PATH,
+                    uploadList: iconsListToUpload,
+                    successAction: fetchProjectIconsUserOptionsStart
                 }));
             }
         }
