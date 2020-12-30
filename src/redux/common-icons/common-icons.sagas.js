@@ -20,7 +20,7 @@ import {
 import { selectCommonIcons } from './common-icons.selectors';
 //constants
 import {
-    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP,
+    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
     MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME
 } from '../../utilities/app.constants';
 //helpers
@@ -41,12 +41,15 @@ function* fetchCommonIconsFromDatabase() {
             return;
         }
         else {
+            const isDefaultClassification = selectValue === COMMON_ICON_DEFAULT_CATEGORY_VALUE
+            const queryOperator = isDefaultClassification ? '!=' : '==';
+            const queryOrderByConfig = isDefaultClassification ? [ICON_CLASSIFICATION] : [CREATED_AT, "desc"];
             const searchCombination = yield call(getSpaceCombinationValue, searchValue);
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination, {
                 collectionPath: COMMON_ICONS_LIST_PATH,
-                classificationConfig: [ICON_CLASSIFICATION, '==', selectValue],
+                classificationConfig: [ICON_CLASSIFICATION, queryOperator, selectValue],
                 searchKeywordConfig: [ICON_TAGS, 'array-contains-any', searchCombination],
-                orderConfig: [CREATED_AT, "desc"],
+                orderConfig: [...queryOrderByConfig],
                 listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
                 previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
             });
