@@ -100,9 +100,10 @@ export const addNewClassficationFailed = (payload) => {
     }
 };
 
-export const closeAddNewClassificationModal = () => {
+export const closeAddNewClassificationModal = (payload) => {
     return {
         type: uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL,
+        payload
     }
 };
 //upload to db actions

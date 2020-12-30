@@ -28,7 +28,7 @@ function* addNewClassficationInFirebase({ payload: { classification, uploadIconD
     try {
         const capitalizedValue = yield call(capitalizeFirstLetter, classification);
         if ((uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) && capitalizedValue) {
-            yield call(CreateNewClassfication, { classification: capitalizedValue, dbDocPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH });
+            yield call(CreateNewClassfication, { classification: capitalizedValue.trim(), dbDocPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH });
             yield put(addNewClassficationSuccess());
         }
     }

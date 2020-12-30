@@ -17,7 +17,7 @@ import { selectCommonIcons } from './common-icons.selectors';
 //constants
 import {
     SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
-    MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME
+    MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME, COMMON_ICONS_HEADER_LABEL
 } from '../../utilities/app.constants';
 //helpers
 import { getPaginateConfig, frameIconObjFromDocObj, getSpaceCombinationValue } from '../../utilities/helper.functions';
@@ -92,20 +92,24 @@ function* onFetchKeywordAndSelectOptions() {
     yield takeLatest(commonIconsActionsTypes.FETCH_COMMON_ICONS_USER_OPTIONS_START, fetchKeywordAndSelectOptions);
 };
 
-
-// common generator for fetch triggering options
-export function* triggerUserOptionsFetchActions() {
+// on user auth completion success trigger fetch actions for common icons
+export function* fetchUserOptions() {
     yield put(fetchCommonIconsUserOptionsStart());
 };
-// on user auth completion success trigger fetch actions for common icons
+
 export function* onCurrentUserInfoFetchSuccess() {
-    yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_SUCCESS, triggerUserOptionsFetchActions);
+    yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_SUCCESS, fetchUserOptions);
 };
 // trigger observer for options fetch
-export function* onTriggerUserOptionsFetch() {
-    yield takeLatest(uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL, triggerUserOptionsFetchActions);
+export function* triggerUserOptionsFetchAction({ payload }) {
+    if (payload === COMMON_ICONS_HEADER_LABEL) {
+        yield put(fetchCommonIconsUserOptionsStart());
+    }
 };
 
+export function* onTriggerUserOptionsFetch() {
+    yield takeLatest(uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL, triggerUserOptionsFetchAction);
+};
 
 //Group all sagas
 export function* commonIconsSaga() {
