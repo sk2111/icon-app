@@ -22,7 +22,7 @@ import CreateNewClassficationImg from '../../../assests/webp/create-new-classifi
 const { ICON_CLASSIFICATION } = ICON_PROP;
 
 const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootClassfication, updateRootTags, addNewClassfication,
-    uploadIconDBPath, classificationValue, tagValues, classficationSuggestions, tagSuggestions }) => {
+    uploadIconDBPath, classificationValue, tagValues, classificationOptions, tagSuggestionOptions }) => {
 
     const [showCreateNewCategory, setShowCreateNewCategory] = useState(false);
 
@@ -57,7 +57,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
             <div className={styles.classification}>
                 <div className={styles.label}>{rootClassificationLabel}</div>
                 <CustomSelect
-                    options={classficationSuggestions}
+                    options={classificationOptions}
                     value={classificationValue}
                     handleValueChange={handleClassficationChange}
                 />
@@ -73,7 +73,7 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
             </div>
             <div className={styles.tagsContainer}>
                 <div className={styles.labelTags}>Common tags</div>
-                <CustomTags suggestionOptions={tagSuggestions} tags={tagValues} handleTagsUpdate={updateRootTags} />
+                <CustomTags suggestionOptions={tagSuggestionOptions} tags={tagValues} handleTagsUpdate={updateRootTags} />
             </div>
         </React.Fragment>
     );

@@ -14,22 +14,28 @@ import ConfigureUploadIconsClassificationAndTags from '../configure-upload-icons
 import { uploadIconsStart } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsClassification, selectCommonIconsSearchKeywords } from '../../../redux/common-icons/common-icons.selectors';
-import { selectIsUploading } from '../../../redux/upload-icons/upload-icons.selectors';
+import { selectProjectIconsClassification, selectProjectIconsSearchKeywords } from '../../../redux/project-icons/project-icons.selectors';
+import { selectIsUploading, selectUploadIconDBPath } from '../../../redux/upload-icons/upload-icons.selectors';
+//constants
+import { COMMON_ICONS_HEADER_LABEL } from '../../../utilities/app.constants';
 
+const ConfigureUploadIcons = ({ uploadIconDBPath, closeUploadModalView, commonIconsSelectOptions, commonIconsSearchKeywords,
+    projectIconsSelectOptions, projectIconsSearchKeywords, uploadIconsStart, isUploading }) => {
 
-const ConfigureUploadIcons = ({ closeUploadModalView, commonIconsSelectOptions, commonIconsSearchKeywords,
-    uploadIconsStart, isUploading }) => {
+    const isCommonIconType = uploadIconDBPath === COMMON_ICONS_HEADER_LABEL;
+    const classificationOptions = isCommonIconType ? commonIconsSelectOptions : projectIconsSelectOptions;
+    const tagSuggestionOptions = isCommonIconType ? commonIconsSearchKeywords : projectIconsSearchKeywords;
 
     return (
         <React.Fragment>
             <div className={styles.container}>
                 <div className={styles.viewContainer}>
                     <ConfigureUploadIconsClassificationAndTags
-                        classficationSuggestions={commonIconsSelectOptions}
-                        tagSuggestions={commonIconsSearchKeywords}
+                        classificationOptions={classificationOptions}
+                        tagSuggestionOptions={tagSuggestionOptions}
                     />
                     <div className={styles.configPreview}>
-                        <ConfigureUploadIconsList classificationOptions={commonIconsSelectOptions} tagSuggestionOptions={commonIconsSearchKeywords} />
+                        <ConfigureUploadIconsList classificationOptions={classificationOptions} tagSuggestionOptions={tagSuggestionOptions} />
                     </div>
                 </div>
                 <div className={styles.btnContainer}>
@@ -44,8 +50,11 @@ const ConfigureUploadIcons = ({ closeUploadModalView, commonIconsSelectOptions, 
 };
 
 const mapStateToProps = createStructuredSelector({
+    uploadIconDBPath: selectUploadIconDBPath,
     commonIconsSelectOptions: selectCommonIconsClassification,
     commonIconsSearchKeywords: selectCommonIconsSearchKeywords,
+    projectIconsSelectOptions: selectProjectIconsClassification,
+    projectIconsSearchKeywords: selectProjectIconsSearchKeywords,
     isUploading: selectIsUploading,
 });
 
