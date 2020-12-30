@@ -11,7 +11,7 @@ import { readFilesAsync } from '../../../utilities/helper.functions';
 //constants
 import { MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD } from '../../../utilities/app.constants';
 
-const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) => {
+const UploadZone = ({ label, validFileNameExtension, acceptType, handleFileUpload }) => {
 
     const uploadFilesInpRef = useRef(null);
     const dragCounter = useRef({ count: 0 });
@@ -69,7 +69,7 @@ const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) =>
 
     return (
         <React.Fragment>
-            <h4 className={styles.headerText}>Upload files to Common Icons</h4>
+            <h4 className={styles.headerText}>{label}</h4>
             <div className={dropContainer}
                 onDragEnter={handleDragIn}
                 onDragLeave={handleDragOut}
@@ -89,6 +89,7 @@ const UploadZone = ({ validFileNameExtension, acceptType, handleFileUpload }) =>
 
 
 UploadZone.defaultProps = {
+    label: '',
     validFileNameExtension: '.svg',
     acceptType: 'image/svg+xml',
     handleFileUpload: () => { }

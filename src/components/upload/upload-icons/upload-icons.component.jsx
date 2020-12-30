@@ -17,17 +17,18 @@ import {
     showHideCloseConfirmationModal
 } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
-import { selectUploadedIcons, selectCurrentModalView, selectIsUserEditedUploadedIcons } from '../../../redux/upload-icons/upload-icons.selectors';
+import {
+    selectUploadedIcons, selectCurrentModalView,
+    selectIsUserEditedUploadedIcons, selectUploadIconDBPath
+} from '../../../redux/upload-icons/upload-icons.selectors';
 //helpers
 import { normalizeUploadFileIconsStructure } from '../../../utilities/helper.functions';
 //constants
 import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW } from '../../../utilities/app.constants';
 
 
-const UploadIcons = ({ uploadedIcons, uploadFilesToStore, deleteUploadedIcon, isUserEditedIcons,
+const UploadIcons = ({ uploadIconDBPath, uploadedIcons, uploadFilesToStore, deleteUploadedIcon, isUserEditedIcons,
     closeUploadModal, currentModalView, changeModalView, showHideCloseConfirmationModal }) => {
-
-    console.log("Current Modal view", currentModalView);
 
     const isUserUploadedIcons = !!uploadedIcons.length;
     const nextBtnClass = styles.nextBtn + ' ' + (isUserUploadedIcons ? '' : styles.disabled);
@@ -54,7 +55,11 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToStore, deleteUploadedIcon, is
     return (
         <div className={styles.uploadContainer}>
             <RenderView renderIfTrue={currentModalView === MODAL_IN_UPLOAD_VIEW}>
-                <UploadZone validFileNameExtension=".svg" acceptType="image/svg+xml" handleFileUpload={handleIconsFileUpload} />
+                <UploadZone
+                    label={`upload files to ${uploadIconDBPath}`}
+                    validFileNameExtension=".svg"
+                    acceptType="image/svg+xml"
+                    handleFileUpload={handleIconsFileUpload} />
                 <div className={styles.horizonLine}></div>
                 <h4 className={styles.viewHeaderText}>Added files</h4>
                 <PreviewUploadIcons iconList={uploadedIcons} deleteIcon={deleteUploadedIcon} />
@@ -72,6 +77,7 @@ const UploadIcons = ({ uploadedIcons, uploadFilesToStore, deleteUploadedIcon, is
 };
 
 const mapStateToProps = createStructuredSelector({
+    uploadIconDBPath: selectUploadIconDBPath,
     uploadedIcons: selectUploadedIcons,
     currentModalView: selectCurrentModalView,
     isUserEditedIcons: selectIsUserEditedUploadedIcons,
