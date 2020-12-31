@@ -13,7 +13,7 @@ import { ICON_PROP } from '../../../utilities/app.constants';
 
 const { ICON_ID, ICON_NAME, ICON_BASE_64 } = ICON_PROP;
 
-const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMoreIcons, handleDeleteIcon }) => {
+const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMoreIcons, isCurrentUserAdmin, handleDeleteIcon }) => {
 
     const DEFAULT_MODAL_STATE = { iconIdToDelete: null, isVisisble: false };
     const [showDeleteModal, setShowDeleteModal] = useState({ ...DEFAULT_MODAL_STATE });
@@ -41,7 +41,7 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
             <RenderView renderIfFalse={isMoreIconsAvaliableToFetch}>
                 <div>We fetched all icons sorry no more icons </div>
             </RenderView>
-            <RenderView renderIfTrue={isVisible}>
+            <RenderView renderIfTrue={isVisible && isCurrentUserAdmin}>
                 <CreateModalCard className={styles.deleteCard}>
                     <h6 className={styles.confirmHeader}>Warning !</h6>
                     <p className={styles.confirmDetails}>Icon will be deleted permanently from database...</p>

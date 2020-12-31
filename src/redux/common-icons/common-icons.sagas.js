@@ -1,7 +1,7 @@
 //libs
 import { takeLatest, put, call, all, select, throttle } from 'redux-saga/effects';
 //firesbase
-import { getDocDataFromFireStore, getDocListByPagination } from '../../firebase/firebase.utils';
+import { getDocDataFromFireStore, getDocListByPagination, deleteDocById } from '../../firebase/firebase.utils';
 import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 //action types
 import { commonIconsActionsTypes } from './common-icons.type';
@@ -10,7 +10,8 @@ import { uploadIconsActionTypes } from '../upload-icons/upload-icons.type';
 //actions
 import {
     fetchCommonIconsUserOptionsStart, fetchCommonIconsUserOptionsSuccess, fetchCommonIconsUserOptionsFailure,
-    fetchCommonIconsFromDatabaseFailure, fetchCommonIconsFromDatabaseSuccess, setCommonIconsPaginationMap
+    fetchCommonIconsFromDatabaseFailure, fetchCommonIconsFromDatabaseSuccess, setCommonIconsPaginationMap,
+    deleteCommonIconFromDbSuccess, deleteCommonIconFromDbFailure
 } from './common-icons.actions';
 //selectors
 import { selectCommonIcons } from './common-icons.selectors';
@@ -71,6 +72,21 @@ function* fetchCommonIconsFromDatabase() {
 function* onFetchCommonIconsFromDatabase() {
     yield throttle(FETCHING_ICONS_THROTTLE_TIME, commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START, fetchCommonIconsFromDatabase);
 };
+// delete particular icon from db
+function* deleteCommonIconFromDB({ payload: iconId }) {
+    try {
+        yield call(deleteDocById, COMMON_ICONS_LIST_PATH, iconId);
+        yield put(deleteCommonIconFromDbSuccess(iconId));
+    }
+    catch (e) {
+        console.log(e);
+        yield put(deleteCommonIconFromDbFailure(e?.message));
+    }
+}
+
+function* onDeleteCommonIconFromDB() {
+    yield takeLatest(commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_START, deleteCommonIconFromDB);
+}
 
 //Get common icons search keyword and category options to select saga
 function* fetchKeywordAndSelectOptions() {
@@ -117,6 +133,7 @@ export function* commonIconsSaga() {
         call(onFetchKeywordAndSelectOptions),
         call(onCurrentUserInfoFetchSuccess),
         call(onFetchCommonIconsFromDatabase),
+        call(onDeleteCommonIconFromDB),
         call(onTriggerUserOptionsFetch),
     ]);
 };

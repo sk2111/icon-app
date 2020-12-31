@@ -91,6 +91,16 @@ export const getDocDataFromFireStore = async (dbDocPath) => {
     }
 };
 
+export const deleteDocById = async (docPath, id) => {
+    try {
+        const docRef = firestore.collection(docPath).doc(id);
+        await docRef.delete();
+    }
+    catch (e) {
+        throw e;
+    }
+};
+
 export const CreateNewClassfication = async ({ classification, dbDocPath }) => {
     const docRef = firestore.doc(dbDocPath);
     try {

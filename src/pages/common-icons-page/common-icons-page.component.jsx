@@ -50,6 +50,7 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                         iconList={iconsList}
                         isMoreIconsAvaliableToFetch={isMoreIconsAvaliableToFetch}
                         fetchMoreIcons={fetchMoreCommonIcons}
+                        isCurrentUserAdmin={isCurrentUserAdmin}
                         handleDeleteIcon={deleteCommonIconFromDb} />
                 </div>
             </div>
