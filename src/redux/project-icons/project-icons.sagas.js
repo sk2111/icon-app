@@ -87,7 +87,7 @@ function* deleteCommonIconFromDB({ payload: iconId }) {
 }
 
 function* onDeleteProjectIconFromDB() {
-    yield takeLatest(projectIconsActionTypes.DELETE_COMMON_ICON_FROM_DB_START, deleteCommonIconFromDB);
+    yield takeLatest(projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_START, deleteCommonIconFromDB);
 }
 
 //Get project icons search keyword and category options

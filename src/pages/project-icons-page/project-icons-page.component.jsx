@@ -10,7 +10,10 @@ import IconsViewHeader from '../../components/containers/icons-view-header/icons
 import IconsDisplayContainer from '../../components/containers/icons-display-container/icons-display-container.component';
 //actions
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
-import { setProjectIconsTabSearchValue, setProjectIconsTabSelectValue, fetchProjectIconsFromDatabaseStart } from '../../redux/project-icons/project-icons.actions';
+import {
+    setProjectIconsTabSearchValue, setProjectIconsTabSelectValue, deleteProjectIconFromDbStart,
+    fetchProjectIconsFromDatabaseStart
+} from '../../redux/project-icons/project-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
 import {
@@ -21,8 +24,8 @@ import {
 import { PROJECT_ICONS_HEADER_LABEL, PROJECT_ICONS_INPUT_PLACEHOLDER, PROJECT_ICONS_SELECT_LABEL } from '../../utilities/app.constants';
 
 
-const ProjectIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectValue, selectOptions, setSelectValue,
-    openUploadModal, iconsList, isMoreIconsAvaliableToFetch, fetchMoreProjectIcons }) => {
+const ProjectIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectValue,
+    selectOptions, setSelectValue, openUploadModal, iconsList, isMoreIconsAvaliableToFetch, fetchMoreProjectIcons, deleteProjectIconFromDb }) => {
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -42,9 +45,12 @@ const ProjectIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, set
                     handleUploadIcon={openUploadModal}
                 />
                 <div className={styles.iconsContainer}>
-                    <IconsDisplayContainer iconList={iconsList}
+                    <IconsDisplayContainer
+                        iconList={iconsList}
                         isMoreIconsAvaliableToFetch={isMoreIconsAvaliableToFetch}
-                        fetchMoreIcons={fetchMoreProjectIcons} />
+                        fetchMoreIcons={fetchMoreProjectIcons}
+                        isCurrentUserAdmin={isCurrentUserAdmin}
+                        handleDeleteIcon={deleteProjectIconFromDb} />
                 </div>
             </div>
         </div>
@@ -67,7 +73,8 @@ const mapDispatchToProps = (dispatch) => {
         setSearchValue: (searchValue) => dispatch(setProjectIconsTabSearchValue(searchValue)),
         setSelectValue: (selectValue) => dispatch(setProjectIconsTabSelectValue(selectValue)),
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
-        fetchMoreProjectIcons: () => dispatch(fetchProjectIconsFromDatabaseStart())
+        fetchMoreProjectIcons: () => dispatch(fetchProjectIconsFromDatabaseStart()),
+        deleteProjectIconFromDb: (id) => dispatch(deleteProjectIconFromDbStart(id))
     }
 };
 
