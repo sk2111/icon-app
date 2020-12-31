@@ -4,9 +4,9 @@ import React from 'react';
 import styles from './icon-card.module.css';
 
 
-const IconCard = ({ iconName, iconBase64 }) => {
+const IconCard = ({ iconId, iconName, iconBase64, confirmDelete }) => {
     return (
-        <div className={styles.card}>
+        <div className={styles.card} onClick={() => { confirmDelete({ iconIdToDelete: iconId, isVisible: true }) }}>
             <div className={styles.iconContainer}>
                 <img className={styles.iconImg} src={`data:image/svg+xml;base64,${iconBase64}`} alt="" />
             </div>

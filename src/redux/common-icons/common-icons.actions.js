@@ -62,3 +62,23 @@ export const setCommonIconsPaginationMap = (payload) => {
         payload
     }
 }
+
+// delete icon from redux store
+export const deleteCommonIconFromDbStart = (payload) => {
+    return {
+        type: commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_START,
+        payload
+    }
+}
+export const deleteCommonIconFromDbSuccess = (payload) => {
+    return {
+        type: commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_SUCCESS,
+        payload
+    }
+}
+export const deleteCommonIconFromDbFailure = (payload) => {
+    return {
+        type: commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_FAILURE,
+        payload
+    }
+}

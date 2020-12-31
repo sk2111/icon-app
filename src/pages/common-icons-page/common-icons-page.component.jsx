@@ -9,7 +9,10 @@ import HomeHeader from '../../components/containers/home-header/home-header.comp
 import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
 import IconsDisplayContainer from '../../components/containers/icons-display-container/icons-display-container.component';
 //actions
-import { fetchCommonIconsFromDatabaseStart, setCommonIconsTabSearchValue, setCommonIconsTabSelectValue } from '../../redux/common-icons/common-icons.actions';
+import {
+    fetchCommonIconsFromDatabaseStart, setCommonIconsTabSearchValue, deleteCommonIconFromDbStart,
+    setCommonIconsTabSelectValue
+} from '../../redux/common-icons/common-icons.actions';
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
@@ -21,8 +24,9 @@ import {
 import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS_SELECT_LABEL } from '../../utilities/app.constants';
 
 
-const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectOptions,
-    selectValue, setSelectValue, openUploadModal, iconsList, isMoreIconsAvaliableToFetch, fetchMoreCommonIcons }) => {
+const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectOptions, selectValue,
+    setSelectValue, openUploadModal, iconsList, isMoreIconsAvaliableToFetch, deleteCommonIconFromDb,
+    fetchMoreCommonIcons }) => {
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -42,9 +46,11 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                     handleUploadIcon={openUploadModal}
                 />
                 <div className={styles.iconsContainer}>
-                    <IconsDisplayContainer iconList={iconsList}
+                    <IconsDisplayContainer
+                        iconList={iconsList}
                         isMoreIconsAvaliableToFetch={isMoreIconsAvaliableToFetch}
-                        fetchMoreIcons={fetchMoreCommonIcons} />
+                        fetchMoreIcons={fetchMoreCommonIcons}
+                        handleDeleteIcon={deleteCommonIconFromDb} />
                 </div>
             </div>
         </div>
@@ -67,7 +73,8 @@ const mapDispatchToProps = (dispatch) => {
         setSearchValue: (searchValue) => dispatch(setCommonIconsTabSearchValue(searchValue)),
         setSelectValue: (selectValue) => dispatch(setCommonIconsTabSelectValue(selectValue)),
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
-        fetchMoreCommonIcons: () => dispatch(fetchCommonIconsFromDatabaseStart())
+        fetchMoreCommonIcons: () => dispatch(fetchCommonIconsFromDatabaseStart()),
+        deleteCommonIconFromDb: (id) => dispatch(deleteCommonIconFromDbStart(id))
     }
 };
 

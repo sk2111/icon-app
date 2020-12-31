@@ -31,9 +31,9 @@
   border: 3px solid var(--app-scroll-thumb-light);
 }
 .deleteCard {
-  right: calc(50% - 200px);
-  top: 280px;
-  width: 350px;
+  right: calc(50% - 200px) !important;
+  top: 280px !important;
+  width: 350px !important;
 }
 .confirmHeader {
   color: var(--app-upload-modal-text);
