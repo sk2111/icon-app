@@ -6,10 +6,11 @@ import styles from './icon-card.module.css';
 import RenderView from '../render-view/render-view.component';
 
 
-const IconCard = ({ iconId, iconName, iconBase64, isCurrentUserAdmin, confirmDelete }) => {
+const IconCard = ({ iconId, iconName, iconContainerStyle, iconBase64, isCurrentUserAdmin, confirmDelete }) => {
+
     return (
         <div className="re-icon-dp-card">
-            <div className="re-icon-action-container">
+            <div style={iconContainerStyle} className="re-icon-action-container">
                 <RenderView renderIfTrue={isCurrentUserAdmin}>
                     <div className={styles.actionIcon} onClick={() => { confirmDelete({ iconIdToDelete: iconId, isVisible: true }) }}>D</div>
                 </RenderView>

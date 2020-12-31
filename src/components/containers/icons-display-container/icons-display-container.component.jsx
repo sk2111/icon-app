@@ -19,6 +19,8 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
     const [showDeleteModal, setShowDeleteModal] = useState({ ...DEFAULT_MODAL_STATE });
     const { iconIdToDelete, isVisible } = showDeleteModal;
 
+    const iconContainerStyle = isCurrentUserAdmin ? {} : { 'justifyContent': 'flex-end' };
+
     const handleDeleteIconAction = (iconId) => {
         setShowDeleteModal({ ...DEFAULT_MODAL_STATE });
         handleDeleteIcon(iconId);
@@ -32,6 +34,7 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
                         <IconCard
                             key={icon[ICON_ID]}
                             iconId={icon[ICON_ID]}
+                            iconContainerStyle={iconContainerStyle}
                             iconName={icon[ICON_NAME]}
                             iconBase64={icon[ICON_BASE_64]}
                             isCurrentUserAdmin={isCurrentUserAdmin}
