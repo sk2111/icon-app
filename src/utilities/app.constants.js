@@ -53,3 +53,7 @@ export const ICON_PROP = {
     ICON_BASE_64: 'iconBase64',
     ICON_DATA: 'iconData'
 };
+
+// user display Icon card messages
+export const NO_ICONS_FOUND_MESSAGE = 'No icons found';
+export const NO_MORE_ICONS_MESSAGE = 'You have reached the end';

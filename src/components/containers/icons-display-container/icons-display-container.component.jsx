@@ -9,7 +9,7 @@ import CreateModalCard from '../../reusables/create-modal-card/create-modal-card
 import LazyLoadingCardContainer from '../lazy-loading-card-container/lazy-loading-card-container.component';
 import LazyLoadingCardWithEvent from '../../reusables/lazy-loading-card/lazy-loading-card-with-event';
 //constans
-import { ICON_PROP } from '../../../utilities/app.constants';
+import { ICON_PROP, NO_ICONS_FOUND_MESSAGE, NO_MORE_ICONS_MESSAGE } from '../../../utilities/app.constants';
 
 const { ICON_ID, ICON_NAME, ICON_BASE_64 } = ICON_PROP;
 
@@ -20,6 +20,7 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
     const { iconIdToDelete, isVisible } = showDeleteModal;
 
     const iconContainerStyle = isCurrentUserAdmin ? {} : { 'justifyContent': 'flex-end' };
+    const userMessage = iconList.length ? NO_MORE_ICONS_MESSAGE : NO_ICONS_FOUND_MESSAGE;
 
     const handleDeleteIconAction = (iconId) => {
         setShowDeleteModal({ ...DEFAULT_MODAL_STATE });
@@ -47,7 +48,7 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
                 <LazyLoadingCardContainer />
             </RenderView>
             <RenderView renderIfFalse={isMoreIconsAvaliableToFetch}>
-                <div className={styles.userMessage}>You have reached the end</div>
+                <div className={styles.userMessage}>{userMessage}</div>
             </RenderView>
             <RenderView renderIfTrue={isVisible && isCurrentUserAdmin}>
                 <CreateModalCard className={styles.deleteCard}>
