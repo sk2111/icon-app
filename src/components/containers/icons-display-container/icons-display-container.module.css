@@ -30,6 +30,14 @@
 .container::-webkit-scrollbar-thumb {
   border: 3px solid var(--app-scroll-thumb-light);
 }
+.userMessage {
+  bottom: 14px;
+  color: var(--app-user-display-text);
+  font-size: 13px;
+  font-weight: 500;
+  left: 50%;
+  position: fixed;
+}
 .deleteCard {
   right: calc(50% - 200px) !important;
   top: 280px !important;

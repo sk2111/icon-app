@@ -47,7 +47,7 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
                 <LazyLoadingCardContainer />
             </RenderView>
             <RenderView renderIfFalse={isMoreIconsAvaliableToFetch}>
-                <div>We fetched all icons sorry no more icons </div>
+                <div className={styles.userMessage}>You have reached the end</div>
             </RenderView>
             <RenderView renderIfTrue={isVisible && isCurrentUserAdmin}>
                 <CreateModalCard className={styles.deleteCard}>
