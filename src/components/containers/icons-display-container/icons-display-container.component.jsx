@@ -19,9 +19,10 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
     const [showDeleteModal, setShowDeleteModal] = useState({ ...DEFAULT_MODAL_STATE });
     const { iconIdToDelete, isVisible } = showDeleteModal;
 
-    const iconContainerStyle = isCurrentUserAdmin ? {} : { 'justifyContent': 'flex-end' };
     const userMessage = iconList.length ? NO_MORE_ICONS_MESSAGE : NO_ICONS_FOUND_MESSAGE;
-    const displayContainerStyle = iconList.length < ICON_STY_LENGTH_LIMIT ? { 'justifyContent': 'flex-start' } : { 'justifyContent': 'space-between' };
+    const iconContainerClass = isCurrentUserAdmin ? styles.iconContainerAlignBetween : styles.iconContainerAlignEnd;
+    const displayContainer = styles.container + ' ' +
+        (iconList.length < ICON_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
 
     const handleDeleteIconAction = (iconId) => {
         setShowDeleteModal({ ...DEFAULT_MODAL_STATE });
@@ -29,14 +30,14 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
     };
 
     return (
-        <div style={displayContainerStyle} className={styles.container}>
+        <div className={displayContainer}>
             {
                 iconList.map((icon) => {
                     return (
                         <IconCard
                             key={icon[ICON_ID]}
                             iconId={icon[ICON_ID]}
-                            iconContainerStyle={iconContainerStyle}
+                            iconContainerClass={iconContainerClass}
                             iconName={icon[ICON_NAME]}
                             iconBase64={icon[ICON_BASE_64]}
                             isCurrentUserAdmin={isCurrentUserAdmin}

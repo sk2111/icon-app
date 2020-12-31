@@ -116,7 +116,6 @@
 .re-icon-action-container {
   display: flex;
   height: 18px;
-  justify-content: space-between;
   visibility: hidden;
 }
 .re-icon-dp-card:hover .re-icon-action-container {

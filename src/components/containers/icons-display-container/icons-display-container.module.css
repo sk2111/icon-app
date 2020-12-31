@@ -29,6 +29,18 @@
 .container::-webkit-scrollbar-thumb {
   border: 3px solid var(--app-scroll-thumb-light);
 }
+.smallList {
+  justify-content: flex-start;
+}
+.largeList {
+  justify-content: space-between;
+}
+.iconContainerAlignEnd {
+  justify-content: flex-end;
+}
+.iconContainerAlignBetween {
+  justify-content: space-between;
+}
 .userMessage {
   bottom: 14px;
   color: var(--app-user-display-text);
