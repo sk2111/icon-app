@@ -5,6 +5,7 @@ import styles from './icons-display-container.module.css';
 //components
 import RenderView from '../../reusables/render-view/render-view.component';
 import IconCard from '../../reusables/icon-card/icon-card.component';
+import CreateModalCard from '../../reusables/create-modal-card/create-modal-card.component';
 import LazyLoadingCardContainer from '../lazy-loading-card-container/lazy-loading-card-container.component';
 import LazyLoadingCardWithEvent from '../../reusables/lazy-loading-card/lazy-loading-card-with-event';
 //constans
@@ -29,6 +30,14 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
             <RenderView renderIfFalse={isMoreIconsAvaliableToFetch}>
                 <div>We fetched all icons sorry no more icons </div>
             </RenderView>
+            <CreateModalCard className={styles.deleteCard}>
+                <h6 className={styles.confirmHeader}>Warning !</h6>
+                <p className={styles.confirmDetails}>Icon will be deleted permanently from database...</p>
+                <div className={styles.confirmBtnContainer}>
+                    <button className={styles.cancelButton} onClick={() => { }}>Cancel</button>
+                    <button className={styles.proceedButton} onClick={() => { }}>Proceed</button>
+                </div>
+            </CreateModalCard>
         </div>
     );
 };
