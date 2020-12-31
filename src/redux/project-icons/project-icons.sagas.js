@@ -1,7 +1,7 @@
 //libs
 import { takeLatest, put, call, all, select, throttle } from 'redux-saga/effects';
 //firesbase
-import { getDocDataFromFireStore, getDocListByPagination } from '../../firebase/firebase.utils';
+import { getDocDataFromFireStore, getDocListByPagination, deleteDocById } from '../../firebase/firebase.utils';
 import { PROJECT_ICONS_USER_OPTIONS_DATA_PATH, PROJECT_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 //action types
 import { projectIconsActionTypes } from './project-icons.type';
@@ -10,7 +10,8 @@ import { uploadIconsActionTypes } from '../upload-icons/upload-icons.type';
 //actions
 import {
     fetchProjectIconsUserOptionsStart, fetchProjectIconsUserOptionsSuccess, fetchProjectIconsUserOptionsFailure,
-    fetchProjectIconsFromDatabaseFailure, fetchProjectIconsFromDatabaseSuccess, setProjectIconsPaginationMap
+    fetchProjectIconsFromDatabaseFailure, fetchProjectIconsFromDatabaseSuccess, setProjectIconsPaginationMap,
+    deleteProjectIconFromDbSuccess, deleteProjectIconFromDbFailure
 } from './project-icons.actions';
 //selectors
 import { selectProjectIcons } from './project-icons.selectors';
@@ -73,6 +74,22 @@ function* onFetchProjectIconsFromDatabase() {
     yield throttle(FETCHING_ICONS_THROTTLE_TIME, projectIconsActionTypes.FETCH_PROJECT_ICONS_FROM_DB_START, fetchProjectIconsFromDatabase);
 };
 
+// delete particular icon from db
+function* deleteCommonIconFromDB({ payload: iconId }) {
+    try {
+        yield call(deleteDocById, PROJECT_ICONS_LIST_PATH, iconId);
+        yield put(deleteProjectIconFromDbSuccess(iconId));
+    }
+    catch (e) {
+        console.log(e);
+        yield put(deleteProjectIconFromDbFailure(e?.message));
+    }
+}
+
+function* onDeleteProjectIconFromDB() {
+    yield takeLatest(projectIconsActionTypes.DELETE_COMMON_ICON_FROM_DB_START, deleteCommonIconFromDB);
+}
+
 //Get project icons search keyword and category options
 function* fetchKeywordAndSelectOptions() {
     const userOptions = yield call(getDocDataFromFireStore, PROJECT_ICONS_USER_OPTIONS_DATA_PATH);
@@ -118,6 +135,7 @@ export function* projectIconsSaga() {
         call(onFetchKeywordAndSelectOptions),
         call(onCurrentUserInfoFetchSuccess),
         call(onFetchProjectIconsFromDatabase),
+        call(onDeleteProjectIconFromDB),
         call(onTriggerUserOptionsFetch),
     ]);
 };

@@ -60,4 +60,26 @@ export const setProjectIconsPaginationMap = (payload) => {
         type: projectIconsActionTypes.SET_PROJECT_ICONS_PAGINATION,
         payload
     }
+};
+
+// delete icon from redux store and DB
+export const deleteProjectIconFromDbStart = (payload) => {
+    return {
+        type: projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_START,
+        payload
+    }
+};
+
+export const deleteProjectIconFromDbSuccess = (payload) => {
+    return {
+        type: projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_SUCCESS,
+        payload
+    }
+};
+
+export const deleteProjectIconFromDbFailure = (payload) => {
+    return {
+        type: projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_FAILURE,
+        payload
+    }
 }

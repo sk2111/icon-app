@@ -72,6 +72,7 @@ function* fetchCommonIconsFromDatabase() {
 function* onFetchCommonIconsFromDatabase() {
     yield throttle(FETCHING_ICONS_THROTTLE_TIME, commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START, fetchCommonIconsFromDatabase);
 };
+
 // delete particular icon from db
 function* deleteCommonIconFromDB({ payload: iconId }) {
     try {
