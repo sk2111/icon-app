@@ -29,7 +29,12 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
             {
                 iconList.map((icon) => {
                     return (
-                        <IconCard key={icon[ICON_ID]} iconId={icon[ICON_ID]} iconName={icon[ICON_NAME]} iconBase64={icon[ICON_BASE_64]}
+                        <IconCard
+                            key={icon[ICON_ID]}
+                            iconId={icon[ICON_ID]}
+                            iconName={icon[ICON_NAME]}
+                            iconBase64={icon[ICON_BASE_64]}
+                            isCurrentUserAdmin={isCurrentUserAdmin}
                             confirmDelete={setShowDeleteModal} />
                     );
                 })

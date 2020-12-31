@@ -1,14 +1,6 @@
-.card {
-  background-color: var(--app-user-display-icon-card-background);
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  height: var(--app-user-display-icon-card-dimension);
-  width: var(--app-user-display-icon-card-dimension);
-}
 .iconImg {
   display: block;
-  margin: 43px auto 24px auto;
+  margin: 20px auto 24px auto;
   height: 45px;
   width: 45px;
 }
@@ -21,4 +13,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 117px;
+}
+.actionIcon {
+  cursor: pointer;
+  height: 18px;
+  margin: 5px;
+  width: 18px;
 }

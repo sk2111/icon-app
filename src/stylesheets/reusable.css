@@ -104,3 +104,21 @@
   visibility: hidden;
   width: 10px;
 }
+/* User display Icon Card */
+.re-icon-dp-card {
+  background-color: var(--app-user-display-icon-card-background);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  height: var(--app-user-display-icon-card-dimension);
+  width: var(--app-user-display-icon-card-dimension);
+}
+.re-icon-action-container {
+  display: flex;
+  height: 18px;
+  justify-content: space-between;
+  visibility: hidden;
+}
+.re-icon-dp-card:hover .re-icon-action-container {
+  visibility: visible;
+}
