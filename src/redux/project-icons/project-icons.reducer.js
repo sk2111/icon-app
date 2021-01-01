@@ -1,7 +1,10 @@
 import { projectIconsActionTypes } from './project-icons.type';
 //constants
-import { PROJECT_ICON_DEFAULT_PROJECT_VALUE } from '../../utilities/app.constants';
+import { PROJECT_ICON_DEFAULT_PROJECT_VALUE, ICON_PROP } from '../../utilities/app.constants';
+//helpers
+import { editObjectPropertiesWithOrderImmutably } from '../../utilities/reducer.helperfunctions';
 
+const { ICON_FAVORITE } = ICON_PROP;
 
 const CLEAR_VALUE = '';
 
@@ -22,6 +25,9 @@ const projectIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, searchKeywordsList: [...searchKeywordsList], selectOptionsList: [...selectOptionsList] };
         case projectIconsActionTypes.FETCH_PROJECT_ICONS_FROM_DB_SUCCESS:
             return { ...state, iconsMap: { ...state.iconsMap, ...action.payload } };
+        case projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_START:
+            const { id, isFavorite } = action.payload;
+            return { ...state, iconsMap: { ...editObjectPropertiesWithOrderImmutably(state.iconsMap, { id, key: ICON_FAVORITE, value: isFavorite }) } };
         case projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_SUCCESS:
             const { [action.payload]: deletedIcon, ...iconsMapAfterDelete } = state.iconsMap;
             return { ...state, iconsMap: { ...iconsMapAfterDelete } };
