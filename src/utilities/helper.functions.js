@@ -13,29 +13,6 @@ export const frameCurrentUserObject = (userObj) => {
     };
 };
 
-export const compareProps = (a, b, aKey, bKey, order = "ASCE") => {
-    if (order === 'ASCE') {
-        if (a[aKey] < b[bKey]) {
-            return -1;
-        }
-        if (a[aKey] > b[bKey]) {
-            return 1;
-        }
-        return 0;
-    }
-    if (order === 'DESC') {
-        if (a[aKey] < b[bKey]) {
-            return 1;
-        }
-        if (a[aKey] > b[bKey]) {
-            return -1;
-        }
-        return 0;
-    }
-    return 0;
-
-}
-
 export const integerArray = len => Array.from(Array(len ?? NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY), (x, i) => i);
 
 export const trimStr = (toTrimValue) => {
@@ -199,14 +176,12 @@ export const prepareIconDataForUpload = (uploadedIcons, commonRootTags) => {
 //pagination helpers
 export const getPaginateConfig = (classficationValue, searchKeywordValue, paginationMap) => {
     const paginateKey = (classficationValue + '-' + getAlphaOnly(searchKeywordValue, '', true, true));
-    if (paginationMap[paginateKey]) {
-        return {
-            paginateKey,
-            existingPaginationMap: { ...paginationMap[paginateKey] },
-            isMoreIconsAvailableToFetch: paginationMap[paginateKey].isMoreIconsAvailableToFetch
-        };
-    }
-    return { paginateKey, existingPaginationMap: null, isMoreIconsAvailableToFetch: false };
+    const match = paginationMap[paginateKey];
+    return {
+        paginateKey,
+        existingPaginationMap: match ? { ...paginationMap[paginateKey] } : null,
+        isMoreIconsAvailableToFetch: match ? match.isMoreIconsAvailableToFetch : false
+    };
 };
 // Fetch config query param frame
 export const framePaginationQueryParams = (selectValue, searchValue, existingPaginationMap,
