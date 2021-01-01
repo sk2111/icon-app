@@ -11,9 +11,10 @@ import LazyLoadingCardWithEvent from '../../reusables/lazy-loading-card/lazy-loa
 //constans
 import { ICON_PROP, NO_ICONS_FOUND_MESSAGE, NO_MORE_ICONS_MESSAGE, ICON_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
 
-const { ICON_ID, ICON_NAME, ICON_BASE_64 } = ICON_PROP;
+const { ICON_ID, ICON_NAME, ICON_BASE_64, ICON_FAVORITE } = ICON_PROP;
 
-const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMoreIcons, isCurrentUserAdmin, handleDeleteIcon }) => {
+const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMoreIcons, isCurrentUserAdmin,
+    handleDeleteIcon, handleFavoriteSelection }) => {
 
     const DEFAULT_MODAL_STATE = { iconIdToDelete: null, isVisisble: false };
     const [showDeleteModal, setShowDeleteModal] = useState({ ...DEFAULT_MODAL_STATE });
@@ -40,7 +41,9 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
                             iconContainerClass={iconContainerClass}
                             iconName={icon[ICON_NAME]}
                             iconBase64={icon[ICON_BASE_64]}
+                            isFavorite={icon[ICON_FAVORITE]}
                             isCurrentUserAdmin={isCurrentUserAdmin}
+                            handleFavoriteSelection={handleFavoriteSelection}
                             confirmDelete={setShowDeleteModal} />
                     );
                 })

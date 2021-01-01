@@ -6,7 +6,8 @@ import styles from './icon-card.module.css';
 import RenderView from '../render-view/render-view.component';
 
 
-const IconCard = ({ iconId, iconName, iconContainerClass, iconBase64, isCurrentUserAdmin, confirmDelete }) => {
+const IconCard = ({ iconId, iconName, iconContainerClass, iconBase64, isCurrentUserAdmin, isFavorite,
+    handleFavoriteSelection, confirmDelete }) => {
 
     const actionContainer = `re-icon-action-container ${iconContainerClass}`;
 
@@ -16,7 +17,12 @@ const IconCard = ({ iconId, iconName, iconContainerClass, iconBase64, isCurrentU
                 <RenderView renderIfTrue={isCurrentUserAdmin}>
                     <div className={styles.actionIcon} onClick={() => { confirmDelete({ iconIdToDelete: iconId, isVisible: true }) }}>D</div>
                 </RenderView>
-                <div className={styles.actionIcon}>F</div>
+                <RenderView renderIfTrue={isFavorite}>
+                    <div className={styles.actionIcon} onClick={() => handleFavoriteSelection({ id: iconId, isFavorite: false })}>FA</div>
+                </RenderView>
+                <RenderView renderIfFalse={isFavorite}>
+                    <div className={styles.actionIcon} onClick={() => handleFavoriteSelection({ id: iconId, isFavorite: true })}>NF</div>
+                </RenderView>
             </div>
             <div className={styles.iconContainer}>
                 <img className={styles.iconImg} src={`data:image/svg+xml;base64,${iconBase64}`} alt="" />

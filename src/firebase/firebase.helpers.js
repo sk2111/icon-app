@@ -8,8 +8,8 @@ export const createUserProileDocObj = (firstname, lastname, email) => {
             lastName: lastname,
             email,
             createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
-            favouriteIconsDocId: {},
-            userMessagesDocId: {}
+            favoriteIconsDocId: {},
+            // userMessagesDocId: {}
         }
     }
 } 

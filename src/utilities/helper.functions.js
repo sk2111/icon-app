@@ -4,7 +4,7 @@ import {
     NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY
 } from './app.constants';
 // destructure icon prop
-const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_DATA, ICON_TAGS, CREATED_AT } = ICON_PROP;
+const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_DATA, ICON_TAGS, CREATED_AT, ICON_FAVORITE } = ICON_PROP;
 
 //helper functions
 export const frameCurrentUserObject = (userObj) => {
@@ -206,6 +206,7 @@ export const frameIconObjFromDocObj = (iconDocList) => {
         returnObj[iconDoc.id] = {
             [ICON_ID]: iconId,
             [ICON_BASE_64]: base64data,
+            [ICON_FAVORITE]: false,
             ...iconDoc.data()
         };
     });

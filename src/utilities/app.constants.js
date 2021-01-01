@@ -51,7 +51,8 @@ export const ICON_PROP = {
     ICON_TAGS: 'iconTags',
     CREATED_AT: 'createdAt',
     ICON_BASE_64: 'iconBase64',
-    ICON_DATA: 'iconData'
+    ICON_DATA: 'iconData',
+    ICON_FAVORITE:'isIconFavorite'
 };
 
 // user display Icon card messages
