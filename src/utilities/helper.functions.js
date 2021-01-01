@@ -13,14 +13,27 @@ export const frameCurrentUserObject = (userObj) => {
     };
 };
 
-export const compareProps = (a, b, aKey, bKey) => {
-    if (a[aKey] < b[bKey]) {
-        return -1;
+export const compareProps = (a, b, aKey, bKey, order = "ASCE") => {
+    if (order === 'ASCE') {
+        if (a[aKey] < b[bKey]) {
+            return -1;
+        }
+        if (a[aKey] > b[bKey]) {
+            return 1;
+        }
+        return 0;
     }
-    if (a[aKey] > b[bKey]) {
-        return 1;
+    if (order === 'DESC') {
+        if (a[aKey] < b[bKey]) {
+            return 1;
+        }
+        if (a[aKey] > b[bKey]) {
+            return -1;
+        }
+        return 0;
     }
     return 0;
+
 }
 
 export const integerArray = len => Array.from(Array(len ?? NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY), (x, i) => i);

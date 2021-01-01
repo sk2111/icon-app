@@ -1,14 +1,17 @@
 import { createSelector } from 'reselect';
 //helpers
 import { compareProps } from '../../utilities/helper.functions';
+//constanst
+import { ICON_PROP } from '../../utilities/app.constants';
 
+const { ICON_ID } = ICON_PROP;
 
 export const selectUploadIcons = (state) => state.uploadIcons;
 
 export const selectUploadedIconsObj = createSelector([selectUploadIcons], (state) => state.uploadedIcons);
 
 export const selectUploadedIcons = createSelector([selectUploadedIconsObj],
-    (uploadedIcons) => Object.values(uploadedIcons).sort((a, b) => compareProps(a, b, "id", "id")));
+    (uploadedIcons) => Object.values(uploadedIcons).sort((a, b) => compareProps(a, b, ICON_ID, ICON_ID, "ASCE")));
 
 export const selectIsAddNewClassificationSuccess = createSelector([selectUploadIcons], (state) => state.isAddNewClassificationSuccess);
 
