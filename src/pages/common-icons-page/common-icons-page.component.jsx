@@ -11,7 +11,7 @@ import IconsDisplayContainer from '../../components/containers/icons-display-con
 //actions
 import {
     fetchCommonIconsFromDatabaseStart, setCommonIconsTabSearchValue, deleteCommonIconFromDbStart,
-    setCommonIconsTabSelectValue
+    setCommonIconsTabSelectValue, toggleCommonIconFavoriteMode
 } from '../../redux/common-icons/common-icons.actions';
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
@@ -26,7 +26,7 @@ import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS
 
 const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectOptions, selectValue,
     setSelectValue, openUploadModal, iconsList, isMoreIconsAvaliableToFetch, deleteCommonIconFromDb,
-    fetchMoreCommonIcons }) => {
+    fetchMoreCommonIcons, toggleCommonIconFavoriteMode }) => {
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -51,6 +51,7 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                         isMoreIconsAvaliableToFetch={isMoreIconsAvaliableToFetch}
                         fetchMoreIcons={fetchMoreCommonIcons}
                         isCurrentUserAdmin={isCurrentUserAdmin}
+                        handleFavoriteSelection={toggleCommonIconFavoriteMode}
                         handleDeleteIcon={deleteCommonIconFromDb} />
                 </div>
             </div>
@@ -75,7 +76,8 @@ const mapDispatchToProps = (dispatch) => {
         setSelectValue: (selectValue) => dispatch(setCommonIconsTabSelectValue(selectValue)),
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
         fetchMoreCommonIcons: () => dispatch(fetchCommonIconsFromDatabaseStart()),
-        deleteCommonIconFromDb: (id) => dispatch(deleteCommonIconFromDbStart(id))
+        deleteCommonIconFromDb: (id) => dispatch(deleteCommonIconFromDbStart(id)),
+        toggleCommonIconFavoriteMode: (config) => dispatch(toggleCommonIconFavoriteMode(config))
     }
 };
 
