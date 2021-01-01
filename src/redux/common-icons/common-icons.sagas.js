@@ -105,9 +105,7 @@ function* fetchKeywordAndSelectOptions() {
         }));
         return;
     }
-    console.error("Failed to fetch user options - empty data received");
     yield put(fetchCommonIconsUserOptionsFailure({ message: SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE }));
-
 };
 
 function* onFetchKeywordAndSelectOptions() {
