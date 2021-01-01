@@ -28,6 +28,9 @@ const projectIconsReducer = (state = INITIAL_STATE, action) => {
         case projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_START:
             const { id, value } = action.payload;
             return { ...state, iconsMap: { ...editObjectPropertiesImmutably(state.iconsMap, { id, key: ICON_FAVORITE, value }) } };
+        case projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_FAILURE:
+            const { id: iconId, value: favValue } = action.payload;
+            return { ...state, iconsMap: { ...editObjectPropertiesImmutably(state.iconsMap, { id: iconId, key: ICON_FAVORITE, value: !favValue }) } };
         case projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_SUCCESS:
             const { [action.payload]: deletedIcon, ...iconsMapAfterDelete } = state.iconsMap;
             return { ...state, iconsMap: { ...iconsMapAfterDelete } };

@@ -28,6 +28,9 @@ const commonIconsReducer = (state = INITIAL_STATE, action) => {
         case commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_START:
             const { id, value } = action.payload;
             return { ...state, iconsMap: { ...editObjectPropertiesImmutably(state.iconsMap, { id, key: ICON_FAVORITE, value }) } };
+        case commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_FAILURE:
+            const { id: iconId, value: favValue } = action.payload;
+            return { ...state, iconsMap: { ...editObjectPropertiesImmutably(state.iconsMap, { id: iconId, key: ICON_FAVORITE, value: !favValue }) } };
         case commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_SUCCESS:
             const { [action.payload]: deletedIcon, ...iconsMapAfterDelete } = state.iconsMap;
             return { ...state, iconsMap: { ...iconsMapAfterDelete } };
