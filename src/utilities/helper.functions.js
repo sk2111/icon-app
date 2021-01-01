@@ -209,7 +209,7 @@ export const getPaginateConfig = (classficationValue, searchKeywordValue, pagina
     return { paginateKey, existingPaginationMap: null, isMoreIconsAvailableToFetch: false };
 };
 //reading data from firestore to redux helpers
-export const frameIconObjFromDocObj = (iconDocList) => {
+export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
     const returnObj = {};
     iconDocList.forEach((iconDoc) => {
         const iconId = iconDoc.id;
@@ -219,7 +219,7 @@ export const frameIconObjFromDocObj = (iconDocList) => {
         returnObj[iconDoc.id] = {
             [ICON_ID]: iconId,
             [ICON_BASE_64]: base64data,
-            [ICON_FAVORITE]: false,
+            [ICON_FAVORITE]: favoritesMap[iconId] ?? false,
             ...iconDoc.data()
         };
     });

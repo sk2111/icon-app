@@ -48,6 +48,7 @@ const frameQueryParams = (selectValue, searchValue, existingPaginationMap) => {
 function* fetchCommonIconsFromDatabase() {
     try {
         const { paginationMap, searchValue, selectValue } = yield select(selectCommonIcons);
+        const { currentUser: { favoriteIconsDocId } } = yield select(selectUser);
         const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, searchValue, paginationMap);
         if (existingPaginationMap && !isMoreIconsAvailableToFetch) {
             console.log("All Icons fetched in this category");
@@ -56,7 +57,7 @@ function* fetchCommonIconsFromDatabase() {
         else {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
                 frameQueryParams(selectValue, searchValue, existingPaginationMap));
-            const iconsMap = yield call(frameIconObjFromDocObj, docList);
+            const iconsMap = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
             yield put(setCommonIconsPaginationMap({
                 key: paginateKey,

@@ -49,6 +49,7 @@ const frameQueryParams = (selectValue, searchValue, existingPaginationMap) => {
 function* fetchProjectIconsFromDatabase() {
     try {
         const { paginationMap, searchValue, selectValue } = yield select(selectProjectIcons);
+        const { currentUser: { favoriteIconsDocId } } = yield select(selectUser);
         const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, searchValue, paginationMap);
         if (existingPaginationMap && !isMoreIconsAvailableToFetch) {
             console.log("All Icons fetched in this project");
@@ -57,7 +58,7 @@ function* fetchProjectIconsFromDatabase() {
         else {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
                 frameQueryParams(selectValue, searchValue, existingPaginationMap));
-            const iconsMap = yield call(frameIconObjFromDocObj, docList);
+            const iconsMap = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchProjectIconsFromDatabaseSuccess(iconsMap));
             yield put(setProjectIconsPaginationMap({
                 key: paginateKey,
