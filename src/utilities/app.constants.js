@@ -24,7 +24,14 @@ export const COMMON_ICONS_HEADER_LABEL = "Common Icons";
 export const PROJECT_ICONS_HEADER_LABEL = "Project Icons";
 export const FAVORITES_ICONS_HEADER_LABEL = "Favorites Icons";
 export const EDIT_ICON_HEADER_LABEL = "Edit Icon";
-
+//User profile prop constants
+export const USER_PROFILE = {
+    USER_FIRST_NAME: 'firstName',
+    USER_LAST_NAME: 'lastName',
+    USER_EMAIL: 'email',
+    USER_CREATED_AT: 'createdAt',
+    USER_FAVORITES: 'favoriteIconsDocId'
+};
 // upload label map
 export const UPLOAD_FORM_LABEL = {
     [COMMON_ICONS_HEADER_LABEL]: COMMON_ICONS_UPLOAD_INP_LABEL,
@@ -52,7 +59,7 @@ export const ICON_PROP = {
     CREATED_AT: 'createdAt',
     ICON_BASE_64: 'iconBase64',
     ICON_DATA: 'iconData',
-    ICON_FAVORITE:'isIconFavorite'
+    ICON_FAVORITE: 'isIconFavorite'
 };
 
 // user display Icon card messages
