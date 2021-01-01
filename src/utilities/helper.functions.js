@@ -218,10 +218,10 @@ export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
 };
 
 //favorites saga helpers
-export const getNewMapBasedOnPropValue = (map, { id, value }) => {
+export const getNewMapBasedOnPropValue = (map, { id, value }, finalValue) => {
     let newMap = {};
     if (value) {
-        newMap = { ...map, [id]: value };
+        newMap = { ...map, [id]: finalValue };
     }
     else {
         const { [id]: toRemove, ...others } = map;

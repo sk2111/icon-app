@@ -64,7 +64,7 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
     try {
         const { currentUser: { uid, [USER_FAVORITES]: favoriteIconsDocId } } = yield select(selectUser);
         const pathToUpdate = USERS_COLLECTION_PATH + '/' + uid;
-        const newFavoritesMap = yield call(getNewMapBasedOnPropValue, favoriteIconsDocId, { id, value });
+        const newFavoritesMap = yield call(getNewMapBasedOnPropValue, favoriteIconsDocId, { id, value }, PROJECT_ICONS_HEADER_LABEL);
         yield call(updateDocPropInFirestore, pathToUpdate, { property: USER_FAVORITES, value: newFavoritesMap });
         yield put(toggleProjectIconFavoriteModeSuccess({ id, value }));
         yield put(updateCurrentUserFavoriteIcons({ ...newFavoritesMap }));
