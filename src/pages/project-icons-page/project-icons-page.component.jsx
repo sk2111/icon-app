@@ -12,7 +12,7 @@ import IconsDisplayContainer from '../../components/containers/icons-display-con
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 import {
     setProjectIconsTabSearchValue, setProjectIconsTabSelectValue, deleteProjectIconFromDbStart,
-    fetchProjectIconsFromDatabaseStart, toggleProjectIconFavoriteMode
+    fetchProjectIconsFromDatabaseStart, toggleProjectIconFavoriteModeStart
 } from '../../redux/project-icons/project-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
         fetchMoreProjectIcons: () => dispatch(fetchProjectIconsFromDatabaseStart()),
         deleteProjectIconFromDb: (id) => dispatch(deleteProjectIconFromDbStart(id)),
-        toggleProjectIconFavoriteMode: (config) => dispatch(toggleProjectIconFavoriteMode(config))
+        toggleProjectIconFavoriteMode: (config) => dispatch(toggleProjectIconFavoriteModeStart(config))
     }
 };
 

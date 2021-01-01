@@ -11,7 +11,7 @@ import IconsDisplayContainer from '../../components/containers/icons-display-con
 //actions
 import {
     fetchCommonIconsFromDatabaseStart, setCommonIconsTabSearchValue, deleteCommonIconFromDbStart,
-    setCommonIconsTabSelectValue, toggleCommonIconFavoriteMode
+    setCommonIconsTabSelectValue, toggleCommonIconFavoriteModeStart
 } from '../../redux/common-icons/common-icons.actions';
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
         fetchMoreCommonIcons: () => dispatch(fetchCommonIconsFromDatabaseStart()),
         deleteCommonIconFromDb: (id) => dispatch(deleteCommonIconFromDbStart(id)),
-        toggleCommonIconFavoriteMode: (config) => dispatch(toggleCommonIconFavoriteMode(config))
+        toggleCommonIconFavoriteMode: (config) => dispatch(toggleCommonIconFavoriteModeStart(config))
     }
 };
 
