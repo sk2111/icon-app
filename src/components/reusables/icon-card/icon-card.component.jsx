@@ -18,10 +18,10 @@ const IconCard = ({ iconId, iconName, iconContainerClass, iconBase64, isCurrentU
                     <div className={styles.actionIcon} onClick={() => { confirmDelete({ iconIdToDelete: iconId, isVisible: true }) }}>D</div>
                 </RenderView>
                 <RenderView renderIfTrue={isFavorite}>
-                    <div className={styles.actionIcon} onClick={() => handleFavoriteSelection({ id: iconId, isFavorite: false })}>FA</div>
+                    <div className={styles.actionIcon} onClick={() => handleFavoriteSelection({ id: iconId, value: false })}>FA</div>
                 </RenderView>
                 <RenderView renderIfFalse={isFavorite}>
-                    <div className={styles.actionIcon} onClick={() => handleFavoriteSelection({ id: iconId, isFavorite: true })}>NF</div>
+                    <div className={styles.actionIcon} onClick={() => handleFavoriteSelection({ id: iconId, value: true })}>NF</div>
                 </RenderView>
             </div>
             <div className={styles.iconContainer}>
