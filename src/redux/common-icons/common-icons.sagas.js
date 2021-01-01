@@ -20,30 +20,12 @@ import { selectCommonIcons } from './common-icons.selectors';
 import { selectUser } from '../user/user.selectors';
 //constants
 import {
-    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
+    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
     MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME, COMMON_ICONS_HEADER_LABEL
 } from '../../utilities/app.constants';
 //helpers
-import { getPaginateConfig, frameIconObjFromDocObj, getSpaceCombinationValue } from '../../utilities/helper.functions';
+import { getPaginateConfig, frameIconObjFromDocObj, framePaginationQueryParams } from '../../utilities/helper.functions';
 
-//destructure ICON PROP
-const { CREATED_AT, ICON_CLASSIFICATION, ICON_TAGS } = ICON_PROP;
-
-// Fetch config query param frame
-const frameQueryParams = (selectValue, searchValue, existingPaginationMap) => {
-    const searchCombination = getSpaceCombinationValue(searchValue);
-    const isDefaultClassification = selectValue === COMMON_ICON_DEFAULT_CATEGORY_VALUE
-    const queryOperator = isDefaultClassification ? '!=' : '==';
-    const queryOrderByConfig = isDefaultClassification ? [ICON_CLASSIFICATION] : [CREATED_AT, "desc"];
-    return {
-        collectionPath: COMMON_ICONS_LIST_PATH,
-        classificationConfig: [ICON_CLASSIFICATION, queryOperator, selectValue],
-        searchKeywordConfig: [ICON_TAGS, 'array-contains-any', searchCombination],
-        orderConfig: [...queryOrderByConfig],
-        listLimit: MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD,
-        previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
-    }
-};
 // get common icons from database 
 function* fetchCommonIconsFromDatabase() {
     try {
@@ -56,7 +38,8 @@ function* fetchCommonIconsFromDatabase() {
         }
         else {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
-                frameQueryParams(selectValue, searchValue, existingPaginationMap));
+                framePaginationQueryParams(selectValue, searchValue, existingPaginationMap, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
+                    COMMON_ICONS_LIST_PATH, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD));
             const iconsMap = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
             yield put(setCommonIconsPaginationMap({

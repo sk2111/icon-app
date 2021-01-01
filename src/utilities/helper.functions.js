@@ -208,6 +208,22 @@ export const getPaginateConfig = (classficationValue, searchKeywordValue, pagina
     }
     return { paginateKey, existingPaginationMap: null, isMoreIconsAvailableToFetch: false };
 };
+// Fetch config query param frame
+export const framePaginationQueryParams = (selectValue, searchValue, existingPaginationMap,
+    defaultClassification,listPath,maxFiles) => {
+    const searchCombination = getSpaceCombinationValue(searchValue);
+    const isDefaultClassification = selectValue === defaultClassification
+    const queryOperator = isDefaultClassification ? '!=' : '==';
+    const queryOrderByConfig = isDefaultClassification ? [ICON_CLASSIFICATION] : [CREATED_AT, "desc"];
+    return {
+        collectionPath: listPath,
+        classificationConfig: [ICON_CLASSIFICATION, queryOperator, selectValue],
+        searchKeywordConfig: [ICON_TAGS, 'array-contains-any', searchCombination],
+        orderConfig: [...queryOrderByConfig],
+        listLimit: maxFiles,
+        previousQueryEndDoc: existingPaginationMap ? existingPaginationMap.lastQueryEndRef : null
+    }
+};
 //reading data from firestore to redux helpers
 export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
     const returnObj = {};
