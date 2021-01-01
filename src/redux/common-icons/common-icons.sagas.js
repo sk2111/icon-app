@@ -1,8 +1,8 @@
 //libs
 import { takeLatest, put, call, all, select, throttle } from 'redux-saga/effects';
 //firesbase
-import { getDocDataFromFireStore, getDocListByPagination, deleteDocById } from '../../firebase/firebase.utils';
-import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
+import { getDocDataFromFireStore, getDocListByPagination, deleteDocById, updateDocPropInFirestore } from '../../firebase/firebase.utils';
+import { USERS_COLLECTION_PATH, COMMON_ICONS_USER_OPTIONS_DATA_PATH, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 //action types
 import { commonIconsActionsTypes } from './common-icons.type';
 import { userActionTypes } from '../user/user.type';
@@ -11,10 +11,13 @@ import { uploadIconsActionTypes } from '../upload-icons/upload-icons.type';
 import {
     fetchCommonIconsUserOptionsStart, fetchCommonIconsUserOptionsSuccess, fetchCommonIconsUserOptionsFailure,
     fetchCommonIconsFromDatabaseFailure, fetchCommonIconsFromDatabaseSuccess, setCommonIconsPaginationMap,
-    deleteCommonIconFromDbSuccess, deleteCommonIconFromDbFailure
+    deleteCommonIconFromDbSuccess, deleteCommonIconFromDbFailure, toggleCommonIconFavoriteModeSuccess,
+    toggleCommonIconFavoriteModeFailure
 } from './common-icons.actions';
+import { updateCurrentUserFavoriteIcons } from '../user/user.actions';
 //selectors
 import { selectCommonIcons } from './common-icons.selectors';
+import { selectUser } from '../user/user.selectors';
 //constants
 import {
     SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
@@ -73,6 +76,34 @@ function* onFetchCommonIconsFromDatabase() {
     yield throttle(FETCHING_ICONS_THROTTLE_TIME, commonIconsActionsTypes.FETCH_COMMON_ICONS_FROM_DB_START, fetchCommonIconsFromDatabase);
 };
 
+//favorite icons addition
+function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
+    try {
+        const { currentUser: { uid, favoriteIconsDocId } } = yield select(selectUser);
+        const pathToUpdate = USERS_COLLECTION_PATH + '/' + uid;
+        let newFavoritesList = {};
+        if (value) {
+            newFavoritesList = { ...favoriteIconsDocId, [id]: value };
+        }
+        else {
+            const { [id]: toRemove, ...othersFavs } = favoriteIconsDocId;
+            newFavoritesList = { ...othersFavs };
+        }
+        yield call(updateDocPropInFirestore, pathToUpdate, { property: 'favoriteIconsDocId', value: newFavoritesList });
+        yield put(toggleCommonIconFavoriteModeSuccess({ id, value }));
+        yield put(updateCurrentUserFavoriteIcons({ ...newFavoritesList }));
+    }
+    catch (e) {
+        console.log(e);
+        yield put(toggleCommonIconFavoriteModeFailure({ id, value }));
+    }
+};
+
+function* onFavoriteCommonIconSelection() {
+    yield takeLatest(commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_START, addOrRemoveFavoritesFromUserMap);
+}
+
+
 // delete particular icon from db
 function* deleteCommonIconFromDB({ payload: iconId }) {
     try {
@@ -88,6 +119,7 @@ function* deleteCommonIconFromDB({ payload: iconId }) {
 function* onDeleteCommonIconFromDB() {
     yield takeLatest(commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_START, deleteCommonIconFromDB);
 }
+
 
 //Get common icons search keyword and category options to select saga
 function* fetchKeywordAndSelectOptions() {
@@ -134,6 +166,7 @@ export function* commonIconsSaga() {
         call(onFetchKeywordAndSelectOptions),
         call(onCurrentUserInfoFetchSuccess),
         call(onFetchCommonIconsFromDatabase),
+        call(onFavoriteCommonIconSelection),
         call(onDeleteCommonIconFromDB),
         call(onTriggerUserOptionsFetch),
     ]);

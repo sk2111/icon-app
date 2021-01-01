@@ -1,8 +1,8 @@
 //libs
 import { takeLatest, put, call, all, select, throttle } from 'redux-saga/effects';
 //firesbase
-import { getDocDataFromFireStore, getDocListByPagination, deleteDocById } from '../../firebase/firebase.utils';
-import { PROJECT_ICONS_USER_OPTIONS_DATA_PATH, PROJECT_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
+import { getDocDataFromFireStore, getDocListByPagination, deleteDocById, updateDocPropInFirestore } from '../../firebase/firebase.utils';
+import { USERS_COLLECTION_PATH, PROJECT_ICONS_USER_OPTIONS_DATA_PATH, PROJECT_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 //action types
 import { projectIconsActionTypes } from './project-icons.type';
 import { userActionTypes } from '../user/user.type';
@@ -11,10 +11,13 @@ import { uploadIconsActionTypes } from '../upload-icons/upload-icons.type';
 import {
     fetchProjectIconsUserOptionsStart, fetchProjectIconsUserOptionsSuccess, fetchProjectIconsUserOptionsFailure,
     fetchProjectIconsFromDatabaseFailure, fetchProjectIconsFromDatabaseSuccess, setProjectIconsPaginationMap,
-    deleteProjectIconFromDbSuccess, deleteProjectIconFromDbFailure
+    deleteProjectIconFromDbSuccess, deleteProjectIconFromDbFailure, toggleProjectIconFavoriteModeFailure,
+    toggleProjectIconFavoriteModeSuccess
 } from './project-icons.actions';
+import { updateCurrentUserFavoriteIcons } from '../user/user.actions';
 //selectors
 import { selectProjectIcons } from './project-icons.selectors';
+import { selectUser } from '../user/user.selectors';
 //constants
 import {
     SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, ICON_PROP, PROJECT_ICON_DEFAULT_PROJECT_VALUE,
@@ -73,6 +76,34 @@ function* fetchProjectIconsFromDatabase() {
 function* onFetchProjectIconsFromDatabase() {
     yield throttle(FETCHING_ICONS_THROTTLE_TIME, projectIconsActionTypes.FETCH_PROJECT_ICONS_FROM_DB_START, fetchProjectIconsFromDatabase);
 };
+
+
+//favorite icons addition
+function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
+    try {
+        const { currentUser: { uid, favoriteIconsDocId } } = yield select(selectUser);
+        const pathToUpdate = USERS_COLLECTION_PATH + '/' + uid;
+        let newFavoritesList = {};
+        if (value) {
+            newFavoritesList = { ...favoriteIconsDocId, [id]: value };
+        }
+        else {
+            const { [id]: toRemove, ...othersFavs } = favoriteIconsDocId;
+            newFavoritesList = { ...othersFavs };
+        }
+        yield call(updateDocPropInFirestore, pathToUpdate, { property: 'favoriteIconsDocId', value: newFavoritesList });
+        yield put(toggleProjectIconFavoriteModeSuccess({ id, value }));
+        yield put(updateCurrentUserFavoriteIcons({ ...newFavoritesList }));
+    }
+    catch (e) {
+        console.log(e);
+        yield put(toggleProjectIconFavoriteModeFailure({ id, value }));
+    }
+};
+
+function* onFavoriteProjectIconSelection() {
+    yield takeLatest(projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_START, addOrRemoveFavoritesFromUserMap);
+}
 
 // delete particular icon from db
 function* deleteCommonIconFromDB({ payload: iconId }) {
@@ -135,6 +166,7 @@ export function* projectIconsSaga() {
         call(onFetchKeywordAndSelectOptions),
         call(onCurrentUserInfoFetchSuccess),
         call(onFetchProjectIconsFromDatabase),
+        call(onFavoriteProjectIconSelection),
         call(onDeleteProjectIconFromDB),
         call(onTriggerUserOptionsFetch),
     ]);
