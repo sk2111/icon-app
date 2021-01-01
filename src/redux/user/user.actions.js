@@ -55,3 +55,11 @@ export const userSignOutFailure = (payload) => {
         payload
     }
 };
+
+// update local state of favorites icons
+export const updateCurrentUserFavoriteIcons = (payload) => {
+    return {
+        type: userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS,
+        payload
+    }
+};

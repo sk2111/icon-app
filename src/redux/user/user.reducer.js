@@ -14,6 +14,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return { ...state, errorMessage: CLEARVALUE, currentUser: action.payload };
         case userActionTypes.CHECK_USER_PERSISTANCE_COMPLETED:
             return { ...state, errorMessage: CLEARVALUE, userPersistCheckDone: true };
+        case userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS:
+            return { ...state, currentUser: { ...state.currentUser, favoriteIconsDocId: { ...action.payload } } }
         case userActionTypes.USER_SIGN_OUT_SUCCESS:
             return { ...state, errorMessage: CLEARVALUE, currentUser: null };
         case userActionTypes.USER_SIGN_OUT_FAILURE:
