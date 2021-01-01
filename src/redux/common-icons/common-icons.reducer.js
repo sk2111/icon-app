@@ -1,7 +1,7 @@
 import { commonIconsActionsTypes } from './common-icons.type';
 //constants
 import { COMMON_ICON_DEFAULT_CATEGORY_VALUE, ICON_PROP } from '../../utilities/app.constants';
-import { editObjectPropertiesWithOrderImmutably } from '../../utilities/reducer.helperfunctions';
+import { editObjectPropertiesImmutably } from '../../utilities/reducer.helperfunctions';
 
 //ICON PROP
 const { ICON_FAVORITE } = ICON_PROP;
@@ -27,7 +27,7 @@ const commonIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, iconsMap: { ...state.iconsMap, ...action.payload } };
         case commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_START:
             const { id, isFavorite } = action.payload;
-            return { ...state, iconsMap: { ...editObjectPropertiesWithOrderImmutably(state.iconsMap, { id, key: ICON_FAVORITE, value: isFavorite }) } };
+            return { ...state, iconsMap: { ...editObjectPropertiesImmutably(state.iconsMap, { id, key: ICON_FAVORITE, value: isFavorite }) } };
         case commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_SUCCESS:
             const { [action.payload]: deletedIcon, ...iconsMapAfterDelete } = state.iconsMap;
             return { ...state, iconsMap: { ...iconsMapAfterDelete } };
