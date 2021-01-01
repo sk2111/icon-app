@@ -210,7 +210,7 @@ export const getPaginateConfig = (classficationValue, searchKeywordValue, pagina
 };
 // Fetch config query param frame
 export const framePaginationQueryParams = (selectValue, searchValue, existingPaginationMap,
-    defaultClassification,listPath,maxFiles) => {
+    defaultClassification, listPath, maxFiles) => {
     const searchCombination = getSpaceCombinationValue(searchValue);
     const isDefaultClassification = selectValue === defaultClassification
     const queryOperator = isDefaultClassification ? '!=' : '==';
@@ -240,4 +240,17 @@ export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
         };
     });
     return { ...returnObj };
-}; 
+};
+
+//favorites saga helpers
+export const getNewMapBasedOnPropValue = (map, { id, value }) => {
+    let newMap = {};
+    if (value) {
+        newMap = { ...map, [id]: value };
+    }
+    else {
+        const { [id]: toRemove, ...others } = map;
+        newMap = { ...others };
+    }
+    return { ...newMap };
+};

@@ -24,7 +24,7 @@ import {
     MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME, COMMON_ICONS_HEADER_LABEL
 } from '../../utilities/app.constants';
 //helpers
-import { getPaginateConfig, frameIconObjFromDocObj, framePaginationQueryParams } from '../../utilities/helper.functions';
+import { getPaginateConfig, frameIconObjFromDocObj, framePaginationQueryParams, getNewMapBasedOnPropValue } from '../../utilities/helper.functions';
 
 // get common icons from database 
 function* fetchCommonIconsFromDatabase() {
@@ -65,17 +65,10 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
     try {
         const { currentUser: { uid, favoriteIconsDocId } } = yield select(selectUser);
         const pathToUpdate = USERS_COLLECTION_PATH + '/' + uid;
-        let newFavoritesList = {};
-        if (value) {
-            newFavoritesList = { ...favoriteIconsDocId, [id]: value };
-        }
-        else {
-            const { [id]: toRemove, ...othersFavs } = favoriteIconsDocId;
-            newFavoritesList = { ...othersFavs };
-        }
-        yield call(updateDocPropInFirestore, pathToUpdate, { property: 'favoriteIconsDocId', value: newFavoritesList });
+        const newFavoritesMap = yield call(getNewMapBasedOnPropValue, favoriteIconsDocId, { id, value });
+        yield call(updateDocPropInFirestore, pathToUpdate, { property: 'favoriteIconsDocId', value: newFavoritesMap });
         yield put(toggleCommonIconFavoriteModeSuccess({ id, value }));
-        yield put(updateCurrentUserFavoriteIcons({ ...newFavoritesList }));
+        yield put(updateCurrentUserFavoriteIcons({ ...newFavoritesMap }));
     }
     catch (e) {
         console.log(e);
