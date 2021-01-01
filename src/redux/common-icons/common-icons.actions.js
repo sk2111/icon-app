@@ -61,7 +61,7 @@ export const setCommonIconsPaginationMap = (payload) => {
         type: commonIconsActionsTypes.SET_COMMON_ICONS_PAGINATION,
         payload
     }
-}
+};
 
 // delete icon from redux store and DB
 export const deleteCommonIconFromDbStart = (payload) => {
@@ -69,16 +69,36 @@ export const deleteCommonIconFromDbStart = (payload) => {
         type: commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_START,
         payload
     }
-}
+};
 export const deleteCommonIconFromDbSuccess = (payload) => {
     return {
         type: commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_SUCCESS,
         payload
     }
-}
+};
 export const deleteCommonIconFromDbFailure = (payload) => {
     return {
         type: commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_FAILURE,
         payload
     }
-}
+};
+
+// Favourites addition
+export const toggleCommonIconFavoriteModeStart = (payload) => {
+    return {
+        type: commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_START,
+        payload
+    }
+};
+export const toggleCommonIconFavoriteModeSuccess = (payload) => {
+    return {
+        type: commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_SUCCESS,
+        payload
+    }
+};
+export const toggleCommonIconFavoriteModeFailure = (payload) => {
+    return {
+        type: commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_FAILURE,
+        payload
+    }
+};

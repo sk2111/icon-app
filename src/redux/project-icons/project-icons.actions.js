@@ -82,4 +82,24 @@ export const deleteProjectIconFromDbFailure = (payload) => {
         type: projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_FAILURE,
         payload
     }
-}
+};
+
+// Favourites addition
+export const toggleProjectIconFavoriteModeStart = (payload) => {
+    return {
+        type: projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_START,
+        payload
+    }
+};
+export const toggleProjectIconFavoriteModeSuccess = (payload) => {
+    return {
+        type: projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_SUCCESS,
+        payload
+    }
+};
+export const toggleProjectIconFavoriteModeFailure = (payload) => {
+    return {
+        type: projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_FAILURE,
+        payload
+    }
+};
