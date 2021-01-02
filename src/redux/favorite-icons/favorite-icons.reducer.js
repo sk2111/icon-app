@@ -3,7 +3,10 @@ import { favoriteIconsActionTypes } from './favorite-icons.type';
 
 
 const INITIAL_STATE = {
-    iconsMap: {}
+    iconsMap: {},
+    fetchMap: {
+        isAllFavoriteIconsFetched: false
+    }
 };
 
 const favoriteIconsReducer = (state = INITIAL_STATE, action) => {

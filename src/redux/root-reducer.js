@@ -25,11 +25,12 @@ const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
     if (action.type === userActionTypes.USER_SIGN_OUT_SUCCESS) {
+        state.appData = undefined;
         state.toastMessage = undefined;
+        state.uploadIcons = undefined; // if state is set to undefined then reducer use initial state as default
         state.commonIcons = undefined;
         state.projectIcons = undefined;
-        state.appData = undefined;
-        state.uploadIcons = undefined; // if state is set to undefined then reducer use initial state as default
+        state.favoriteIcons = undefined;
     }
     return appReducer(state, action);
 };
