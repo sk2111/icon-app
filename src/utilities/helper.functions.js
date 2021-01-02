@@ -217,7 +217,7 @@ export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
     return { ...returnObj };
 };
 
-//favorites saga helpers
+//favorites- common and projects saga helpers
 export const getNewMapBasedOnPropValue = (map, { id, value }, finalValue) => {
     let newMap = {};
     if (value) {
@@ -228,4 +228,17 @@ export const getNewMapBasedOnPropValue = (map, { id, value }, finalValue) => {
         newMap = { ...others };
     }
     return { ...newMap };
+};
+
+// favourites Map frame db to client
+export const frameFavoriteIconsMap = (favoriteIcons) => {
+    let favoritesMap = {};
+    for (const [key, value] of Object.entries(favoriteIcons)) {
+        favoritesMap[key] = {
+            id: key,
+            fetchPath: value,
+            isFetched: false
+        }
+    }
+    return favoritesMap;
 };
