@@ -235,7 +235,6 @@ export const frameFavoriteIconsMap = (favoriteIcons) => {
         favoritesMap[key] = {
             id: key,
             fetchPath: value,
-            isFetched: false
         }
     }
     return favoritesMap;

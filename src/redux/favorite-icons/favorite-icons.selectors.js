@@ -1,7 +1,7 @@
 // reselect 
 import { createSelector } from 'reselect';
 
-const selectFavoriteIcons = (state) => state.favoriteIcons;
+export const selectFavoriteIcons = (state) => state.favoriteIcons;
 
 
 export const selectFavoriteIconsMap = createSelector([selectFavoriteIcons],
