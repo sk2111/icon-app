@@ -219,15 +219,13 @@ export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
 
 //favorites- common and projects saga helpers
 export const getNewMapBasedOnPropValue = (map, { id, value }, finalValue) => {
-    let newMap = {};
     if (value) {
-        newMap = { ...map, [id]: finalValue };
+        return { ...map, [id]: finalValue };
     }
     else {
         const { [id]: toRemove, ...others } = map;
-        newMap = { ...others };
+        return { ...others };
     }
-    return { ...newMap };
 };
 
 // favourites Map frame db to client
