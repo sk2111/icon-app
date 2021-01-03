@@ -12,6 +12,10 @@ const INITIAL_STATE = {
 
 const favoriteIconsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case favoriteIconsActionTypes.SET_FAVORITE_TAB_SEARCH_VALUE:
+            return { ...state, searchValue: action.payload };
+        case favoriteIconsActionTypes.SET_CURRENT_USER_FAVORITE_FETCH_MAP:
+            return { ...state, fetchMap: { ...action.payload } };
         case favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_SUCCESS:
             const { iconsMap, isMoreIconsAvailableToFetch, fetchIdList } = action.payload;
             return {
@@ -20,8 +24,6 @@ const favoriteIconsReducer = (state = INITIAL_STATE, action) => {
                 fetchMap: { ...updateFavoritesIconsFetchMap(state.fetchMap, fetchIdList) },
                 isMoreIconsAvailableToFetch,
             };
-        case favoriteIconsActionTypes.SET_CURRENT_USER_FAVORITE_FETCH_MAP:
-            return { ...state, fetchMap: { ...action.payload } };
         default:
             return state;
     }

@@ -14,7 +14,7 @@ export const selectFavoriteIcons = (state) => state.favoriteIcons;
 export const selectFavoriteIconsMap = createSelector([selectFavoriteIcons],
     (favoriteIcons) => favoriteIcons.iconsMap);
 
-export const selecFavoriteIconsSearchValue = createSelector([selectFavoriteIcons],
+export const selectFavoriteIconsSearchValue = createSelector([selectFavoriteIcons],
     (favoriteIcons) => favoriteIcons.searchValue);
 
 export const selectIsMoreIconsAvailableToFetch = createSelector([selectFavoriteIcons],
@@ -24,7 +24,7 @@ export const selectFavoriteFetchMap = createSelector([selectFavoriteIcons],
     (favoriteIcons) => favoriteIcons.fetchMap);
 
 export const selectFavoriteIconsListToDisplay = createSelector(
-    [selecFavoriteIconsSearchValue, selectFavoriteIconsMap],
+    [selectFavoriteIconsSearchValue, selectFavoriteIconsMap],
     (searchValue, iconsMap) => {
         const searchTagValue = getSpaceCombinationValue(getAlphaOnly(searchValue, '', true, true));
         const iconsArray = Object.values(iconsMap);

@@ -1,7 +1,13 @@
 import { favoriteIconsActionTypes } from './favorite-icons.type';
 
 
-
+//set favorite tab search value 
+export const setFavoriteTabSearchValue = (payload) => {
+    return {
+        type: favoriteIconsActionTypes.SET_FAVORITE_TAB_SEARCH_VALUE,
+        payload
+    }
+};
 
 //set user favoruirites map after current user fetch 
 

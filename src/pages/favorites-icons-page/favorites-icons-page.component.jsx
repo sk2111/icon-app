@@ -9,9 +9,9 @@ import IconsDisplayContainer from '../../components/containers/icons-display-con
 import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
 import HomeHeader from '../../components/containers/home-header/home-header.component';
 //actions
-import { fetchCurrentUserFavoriteIconsStart } from '../../redux/favorite-icons/favorite-icons.actions';
+import { fetchCurrentUserFavoriteIconsStart, setFavoriteTabSearchValue } from '../../redux/favorite-icons/favorite-icons.actions';
 //selectors
-import { selectIsMoreIconsAvailableToFetch, selectFavoriteIconsListToDisplay } from '../../redux/favorite-icons/favorite-icons.selectors';
+import { selectIsMoreIconsAvailableToFetch, selectFavoriteIconsListToDisplay, selectFavoriteIconsSearchValue } from '../../redux/favorite-icons/favorite-icons.selectors';
 //constants
 import { FAVORITES_ICONS_HEADER_LABEL, FAVORITES_ICONS_INPUT_PLACEHOLDER } from '../../utilities/app.constants';
 
@@ -47,12 +47,14 @@ const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, icons
 
 const mapStateToProps = createStructuredSelector({
     isMoreIconsAvaliableToFetch: selectIsMoreIconsAvailableToFetch,
-    iconsList: selectFavoriteIconsListToDisplay
+    iconsList: selectFavoriteIconsListToDisplay,
+    searchValue: selectFavoriteIconsSearchValue,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMoreFavoriteIcons: () => dispatch(fetchCurrentUserFavoriteIconsStart())
+        setSearchValue: (value) => dispatch(setFavoriteTabSearchValue(value)),
+        fetchMoreFavoriteIcons: () => dispatch(fetchCurrentUserFavoriteIconsStart()),
     }
 };
 
