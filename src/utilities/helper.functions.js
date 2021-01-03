@@ -1,8 +1,9 @@
 //constants
 import {
     UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP,
-    NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY
+    NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY, COMMON_ICONS_HEADER_LABEL, PROJECT_ICONS_HEADER_LABEL
 } from './app.constants';
+import { COMMON_ICONS_LIST_PATH, PROJECT_ICONS_LIST_PATH } from '../firebase/firebase.constants';
 // destructure icon prop
 const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_DATA, ICON_TAGS, CREATED_AT, ICON_FAVORITE } = ICON_PROP;
 
@@ -203,16 +204,18 @@ export const framePaginationQueryParams = (selectValue, searchValue, existingPag
 export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
     const returnObj = {};
     iconDocList.forEach((iconDoc) => {
-        const iconId = iconDoc.id;
-        const { [ICON_DATA]: iconData } = iconDoc.data();
-        const buff = Buffer.from(iconData);
-        const base64data = buff.toString('base64');
-        returnObj[iconDoc.id] = {
-            [ICON_ID]: iconId,
-            [ICON_BASE_64]: base64data,
-            [ICON_FAVORITE]: favoritesMap[iconId] ?? false,
-            ...iconDoc.data()
-        };
+        if (iconDoc.exists) {
+            const iconId = iconDoc.id;
+            const { [ICON_DATA]: iconData } = iconDoc.data();
+            const buff = Buffer.from(iconData);
+            const base64data = buff.toString('base64');
+            returnObj[iconDoc.id] = {
+                [ICON_ID]: iconId,
+                [ICON_BASE_64]: base64data,
+                [ICON_FAVORITE]: favoritesMap[iconId] ?? false,
+                ...iconDoc.data()
+            };
+        }
     });
     return { ...returnObj };
 };
@@ -227,14 +230,39 @@ export const getNewMapBasedOnPropValue = (map, { id, value }, finalValue) => {
         return { ...others };
     }
 };
-
+// favorites tab pick selected items for fetching
+export const getLimitedFetchList = (fetchMap, propName, equalsToValue, limit) => {
+    const keys = Object.keys(fetchMap);
+    const newFetchList = [];
+    for (let i = 0; i < keys.length; i++) {
+        const fetchItem = fetchMap[keys[i]];
+        if ((newFetchList.length < limit) && fetchItem[propName] === equalsToValue) {
+            newFetchList.push(fetchItem);
+        }
+        if (newFetchList.length === limit) {
+            break;
+        }
+    }
+    return {
+        fetchList: [...newFetchList],
+        isMoreIconsAvaliableToFetch: newFetchList.length === limit
+    };
+};
 // favourites Map frame db to client
 export const frameFavoriteIconsMap = (favoriteIcons) => {
     let favoritesMap = {};
     for (const [key, value] of Object.entries(favoriteIcons)) {
+        let fetchPath;
+        if (value === COMMON_ICONS_HEADER_LABEL) {
+            fetchPath = COMMON_ICONS_LIST_PATH + '/' + key;
+        }
+        if (value === PROJECT_ICONS_HEADER_LABEL) {
+            fetchPath = PROJECT_ICONS_LIST_PATH + '/' + key;
+        }
         favoritesMap[key] = {
             id: key,
-            fetchPath: value,
+            isFetched: false,
+            fetchPath,
         }
     }
     return favoritesMap;

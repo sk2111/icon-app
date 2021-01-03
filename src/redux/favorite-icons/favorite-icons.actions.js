@@ -30,9 +30,9 @@ export const fetchCurrentUserFavoriteIconsFailure = () => {
 };
 
 // after fetch adding to store one by one 
-export const addFavoriteIconToStore = (payload) => {
+export const addFavoriteIconsToStore = (payload) => {
     return {
-        type: favoriteIconsActionTypes.ADD_FAVORITE_ICON_TO_STORE,
+        type: favoriteIconsActionTypes.ADD_FAVORITE_ICONS_TO_STORE,
         payload
     }
 };

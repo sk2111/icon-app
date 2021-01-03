@@ -175,3 +175,17 @@ export const getDocListByPagination = async ({ collectionPath, classificationCon
         throw e;
     }
 };
+
+export const readDocListFromFirestore = async (docList) => {
+    try {
+        const returnList = [];
+        for (let i = 0; i < docList.length; i++) {
+            const rawDoc = await firestore.doc(docList[i].fetchPath).get();
+            returnList.push(rawDoc);
+        }
+        return returnList;
+    }
+    catch (e) {
+        console.log(e);
+    }
+}

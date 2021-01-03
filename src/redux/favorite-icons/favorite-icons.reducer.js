@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
 const favoriteIconsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case favoriteIconsActionTypes.ADD_FAVORITE_ICON_TO_STORE:
+        case favoriteIconsActionTypes.ADD_FAVORITE_ICONS_TO_STORE:
             return { ...state, iconsMap: { ...state.iconsMap, ...action.payload } };
         case favoriteIconsActionTypes.SET_CURRENT_USER_FAVORITE_FETCH_MAP:
             return { ...state, fetchMap: { ...action.payload } };
