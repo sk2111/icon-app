@@ -236,19 +236,21 @@ export const getLimitedFetchList = (fetchMap, propName, equalsToValue, limit) =>
     const keys = Object.keys(fetchMap);
     const newFetchList = [];
     const fetchIdList = [];
+    let isBreakHit = false;
     for (let i = 0; i < keys.length; i++) {
         const fetchItem = fetchMap[keys[i]];
+        if (newFetchList.length === limit) {
+            isBreakHit = true;
+            break;
+        }
         if ((newFetchList.length < limit) && fetchItem[propName] === equalsToValue) {
             newFetchList.push(fetchItem);
             fetchIdList.push(keys[i]);
         }
-        if (newFetchList.length === limit) {
-            break;
-        }
     }
     return {
         fetchList: [...newFetchList],
-        isMoreIconsAvailableToFetch: !!newFetchList.length,
+        isMoreIconsAvailable: isBreakHit,
         fetchIdList,
     };
 };

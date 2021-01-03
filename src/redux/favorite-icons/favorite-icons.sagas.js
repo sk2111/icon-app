@@ -26,13 +26,13 @@ const { FAVORITES_IS_FETCHED } = FAVORITES_PROP;
 //fetch favorites icons from db
 function* fetchUserFavoriteIcons() {
     try {
-        const { fetchMap } = yield select(selectFavoriteIcons);
-        const { fetchList, fetchIdList, isMoreIconsAvailableToFetch } = yield call(getLimitedFetchList,
+        const { fetchMap, isMoreIconsAvailableToFetch } = yield select(selectFavoriteIcons);
+        const { fetchList, fetchIdList, isMoreIconsAvailable } = yield call(getLimitedFetchList,
             fetchMap, FAVORITES_IS_FETCHED, false, USER_FAVORITES_FETCH_LIMIT);
         if (fetchList.length && isMoreIconsAvailableToFetch) {
             const docList = yield call(readDocListFromFirestore, fetchList);
             const iconsMap = yield call(frameIconObjFromDocObj, docList, fetchMap);
-            yield put(fetchCurrentUserFavoriteIconsSuccess({ iconsMap, isMoreIconsAvailableToFetch, fetchIdList }));
+            yield put(fetchCurrentUserFavoriteIconsSuccess({ iconsMap, isMoreIconsAvailableToFetch: isMoreIconsAvailable, fetchIdList }));
         }
         else {
             yield put(fetchCurrentUserFavoriteIconsSuccess({ iconsMap: [], isMoreIconsAvailableToFetch: false, fetchIdList: [] }));
