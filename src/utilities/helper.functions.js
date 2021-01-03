@@ -212,7 +212,7 @@ export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
             returnObj[iconDoc.id] = {
                 [ICON_ID]: iconId,
                 [ICON_BASE_64]: base64data,
-                [ICON_FAVORITE]: favoritesMap[iconId] ?? false,
+                [ICON_FAVORITE]: (!!favoritesMap[iconId]) ?? false,
                 ...iconDoc.data()
             };
         }
@@ -234,10 +234,12 @@ export const getNewMapBasedOnPropValue = (map, { id, value }, finalValue) => {
 export const getLimitedFetchList = (fetchMap, propName, equalsToValue, limit) => {
     const keys = Object.keys(fetchMap);
     const newFetchList = [];
+    const fetchIdList = [];
     for (let i = 0; i < keys.length; i++) {
         const fetchItem = fetchMap[keys[i]];
         if ((newFetchList.length < limit) && fetchItem[propName] === equalsToValue) {
             newFetchList.push(fetchItem);
+            fetchIdList.push(keys[i]);
         }
         if (newFetchList.length === limit) {
             break;
@@ -245,7 +247,8 @@ export const getLimitedFetchList = (fetchMap, propName, equalsToValue, limit) =>
     }
     return {
         fetchList: [...newFetchList],
-        isMoreIconsAvaliableToFetch: newFetchList.length === limit
+        isMoreIconsAvailableToFetch: (newFetchList.length === limit),
+        fetchIdList,
     };
 };
 // favourites Map frame db to client

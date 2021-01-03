@@ -28,3 +28,12 @@ export const editAllIconsObjectPropertiesImmutably = (obj, { key, value }) => {
     }
     return obj;
 };
+
+export const updateFavoritesIconsFetchMap = (fetchMap, fetchIdList) => {
+    fetchIdList.forEach(id => {
+        fetchMap[id] = {
+            ...fetchMap[id], isFetched: true
+        }
+    });
+    return { ...fetchMap };
+};

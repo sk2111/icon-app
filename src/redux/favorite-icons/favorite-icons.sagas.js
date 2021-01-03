@@ -5,7 +5,10 @@ import { readDocListFromFirestore } from '../../firebase/firebase.utils';
 import { userActionTypes } from '../user/user.type';
 import { favoriteIconsActionTypes } from './favorite-icons.type';
 //actions
-import { setCurrentUserFavoriteIconsFetchMap } from './favorite-icons.actions';
+import {
+    setCurrentUserFavoriteIconsFetchMap, fetchCurrentUserFavoriteIconsSuccess,
+    fetchCurrentUserFavoriteIconsFailure
+} from './favorite-icons.actions';
 //selectors
 import { selectFavoriteIcons } from './favorite-icons.selectors';
 //constants
@@ -23,16 +26,20 @@ const { USER_FAVORITES } = USER_PROFILE;
 function* fetchUserFavoriteIcons() {
     try {
         const { fetchMap } = yield select(selectFavoriteIcons);
-        const { fetchList, isMoreIconsAvaliableToFetch } = yield call(getLimitedFetchList,
+        const { fetchList, fetchIdList, isMoreIconsAvailableToFetch } = yield call(getLimitedFetchList,
             fetchMap, 'isFetched', false, USER_FAVORITES_FETCH_LIMIT);
-        if (fetchList.length && isMoreIconsAvaliableToFetch) {
+        if (fetchList.length && isMoreIconsAvailableToFetch) {
             const docList = yield call(readDocListFromFirestore, fetchList);
-            // const iconsMap = yield call(frameIconObjFromDocObj, docList, Object.keys(favoriteIconsList));
-            console.log("Final Icons Maps are", docList);
+            const iconsMap = yield call(frameIconObjFromDocObj, docList, fetchMap);
+            yield put(fetchCurrentUserFavoriteIconsSuccess({ iconsMap, isMoreIconsAvailableToFetch, fetchIdList }));
+        }
+        else {
+            yield put(fetchCurrentUserFavoriteIconsSuccess({ iconsMap: [], isMoreIconsAvailableToFetch: false, fetchIdList: [] }));
         }
     }
     catch (e) {
         console.log(e);
+        yield put(fetchCurrentUserFavoriteIconsFailure(e?.message));
     }
 };
 function* onFetchUserFavoriteIcons() {

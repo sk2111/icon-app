@@ -18,9 +18,10 @@ export const fetchCurrentUserFavoriteIconsStart = () => {
         type: favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_START
     }
 };
-export const fetchCurrentUserFavoriteIconsSuccess = () => {
+export const fetchCurrentUserFavoriteIconsSuccess = (payload) => {
     return {
-        type: favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_SUCCESS
+        type: favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_SUCCESS,
+        payload
     }
 };
 export const fetchCurrentUserFavoriteIconsFailure = () => {

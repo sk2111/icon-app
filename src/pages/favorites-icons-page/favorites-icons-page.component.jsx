@@ -11,13 +11,14 @@ import HomeHeader from '../../components/containers/home-header/home-header.comp
 //actions
 import { fetchCurrentUserFavoriteIconsStart } from '../../redux/favorite-icons/favorite-icons.actions';
 //selectors
-import { selectIsMoreIconsAvailableToFetch } from '../../redux/favorite-icons/favorite-icons.selectors';
+import { selectIsMoreIconsAvailableToFetch, selectFavoriteIconsListToDisplay } from '../../redux/favorite-icons/favorite-icons.selectors';
 //constants
 import { FAVORITES_ICONS_HEADER_LABEL, FAVORITES_ICONS_INPUT_PLACEHOLDER } from '../../utilities/app.constants';
 
 
 const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, iconsList, isMoreIconsAvaliableToFetch,
     fetchMoreFavoriteIcons, isCurrentUserAdmin, toggleFavoriteMode, deleteIconFromDb }) => {
+    console.log("The icons list are", iconsList);
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -31,7 +32,7 @@ const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, icons
                 <IconsViewHeader label={FAVORITES_ICONS_HEADER_LABEL} />
                 <div className={styles.iconsContainer}>
                     <IconsDisplayContainer
-                        iconList={[]}
+                        iconList={iconsList}
                         isMoreIconsAvaliableToFetch={isMoreIconsAvaliableToFetch}
                         fetchMoreIcons={fetchMoreFavoriteIcons}
                         isCurrentUserAdmin={isCurrentUserAdmin}
@@ -45,7 +46,8 @@ const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, icons
 
 
 const mapStateToProps = createStructuredSelector({
-    isMoreIconsAvaliableToFetch: selectIsMoreIconsAvailableToFetch
+    isMoreIconsAvaliableToFetch: selectIsMoreIconsAvailableToFetch,
+    iconsList: selectFavoriteIconsListToDisplay
 });
 
 const mapDispatchToProps = (dispatch) => {
