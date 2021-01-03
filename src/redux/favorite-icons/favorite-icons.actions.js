@@ -29,11 +29,3 @@ export const fetchCurrentUserFavoriteIconsFailure = () => {
         type: favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_FAILURE
     }
 };
-
-// after fetch adding to store one by one 
-export const addFavoriteIconsToStore = (payload) => {
-    return {
-        type: favoriteIconsActionTypes.ADD_FAVORITE_ICONS_TO_STORE,
-        payload
-    }
-};
