@@ -1,11 +1,12 @@
 //constants
 import {
-    UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP,
+    UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP, FAVORITES_PROP,
     NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY, COMMON_ICONS_HEADER_LABEL, PROJECT_ICONS_HEADER_LABEL
 } from './app.constants';
 import { COMMON_ICONS_LIST_PATH, PROJECT_ICONS_LIST_PATH } from '../firebase/firebase.constants';
 // destructure icon prop
 const { ICON_ID, ICON_NAME, ICON_CLASSIFICATION, ICON_BASE_64, ICON_DATA, ICON_TAGS, CREATED_AT, ICON_FAVORITE } = ICON_PROP;
+const { FAVORITES_ID, FAVORITES_IS_FETCHED, FAVORITES_PATH } = FAVORITES_PROP;
 
 //helper functions
 export const frameCurrentUserObject = (userObj) => {
@@ -263,9 +264,9 @@ export const frameFavoriteIconsMap = (favoriteIcons) => {
             fetchPath = PROJECT_ICONS_LIST_PATH + '/' + key;
         }
         favoritesMap[key] = {
-            id: key,
-            isFetched: false,
-            fetchPath,
+            [FAVORITES_ID]: key,
+            [FAVORITES_IS_FETCHED]: false,
+            [FAVORITES_PATH]: fetchPath,
         }
     }
     return favoritesMap;

@@ -32,6 +32,12 @@ export const USER_PROFILE = {
     USER_CREATED_AT: 'createdAt',
     USER_FAVORITES: 'favoriteIconsDocId'
 };
+//Favorites Prop constants
+export const FAVORITES_PROP = {
+    FAVORITES_IS_FETCHED:'isFetched',
+    FAVORITES_ID:'id',
+    FAVORITES_PATH:'fetchPath'
+};
 // upload label map
 export const UPLOAD_FORM_LABEL = {
     [COMMON_ICONS_HEADER_LABEL]: COMMON_ICONS_UPLOAD_INP_LABEL,

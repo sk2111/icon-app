@@ -12,12 +12,13 @@ import {
 //selectors
 import { selectFavoriteIcons } from './favorite-icons.selectors';
 //constants
-import { USER_PROFILE, USER_FAVORITES_FETCH_LIMIT } from '../../utilities/app.constants';
+import { USER_PROFILE, FAVORITES_PROP, USER_FAVORITES_FETCH_LIMIT } from '../../utilities/app.constants';
 //helpers
 import { frameFavoriteIconsMap, getLimitedFetchList, frameIconObjFromDocObj } from '../../utilities/helper.functions';
 
 
 const { USER_FAVORITES } = USER_PROFILE;
+const { FAVORITES_IS_FETCHED } = FAVORITES_PROP;
 
 
 
@@ -27,7 +28,7 @@ function* fetchUserFavoriteIcons() {
     try {
         const { fetchMap } = yield select(selectFavoriteIcons);
         const { fetchList, fetchIdList, isMoreIconsAvailableToFetch } = yield call(getLimitedFetchList,
-            fetchMap, 'isFetched', false, USER_FAVORITES_FETCH_LIMIT);
+            fetchMap, FAVORITES_IS_FETCHED, false, USER_FAVORITES_FETCH_LIMIT);
         if (fetchList.length && isMoreIconsAvailableToFetch) {
             const docList = yield call(readDocListFromFirestore, fetchList);
             const iconsMap = yield call(frameIconObjFromDocObj, docList, fetchMap);
