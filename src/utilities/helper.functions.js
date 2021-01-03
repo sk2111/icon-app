@@ -247,7 +247,7 @@ export const getLimitedFetchList = (fetchMap, propName, equalsToValue, limit) =>
     }
     return {
         fetchList: [...newFetchList],
-        isMoreIconsAvailableToFetch: newFetchList.length,
+        isMoreIconsAvailableToFetch: !!newFetchList.length,
         fetchIdList,
     };
 };

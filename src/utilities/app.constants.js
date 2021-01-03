@@ -45,7 +45,7 @@ export const SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE = 'Upload fa
 export const MAXIMUM_NUMBER_OF_FILES_FOR_UPLOAD = 150;
 // Icon read maixmium limit at a time
 export const MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD = 15;
-export const USER_FAVORITES_FETCH_LIMIT = 5;
+export const USER_FAVORITES_FETCH_LIMIT = 10;
 export const NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY = 15;
 export const FETCHING_ICONS_THROTTLE_TIME = 1000; //1sec
 //Upload Modal view constants

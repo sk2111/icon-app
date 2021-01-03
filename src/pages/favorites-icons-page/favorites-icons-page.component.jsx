@@ -18,7 +18,7 @@ import { FAVORITES_ICONS_HEADER_LABEL, FAVORITES_ICONS_INPUT_PLACEHOLDER } from 
 
 const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, iconsList, isMoreIconsAvaliableToFetch,
     fetchMoreFavoriteIcons, isCurrentUserAdmin, toggleFavoriteMode, deleteIconFromDb }) => {
-    console.log("The icons list are", iconsList);
+
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
