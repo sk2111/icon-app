@@ -4,7 +4,7 @@ import { favoriteIconsActionTypes } from './favorite-icons.type';
 
 const INITIAL_STATE = {
     iconsMap: {},
-    isMoreIconsAvailableToFetch: false,
+    isMoreIconsAvailableToFetch: true,
     fetchMap: {}
 };
 
