@@ -138,6 +138,17 @@ function* onCurrentUserFetchSuccess() {
     yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_SUCCESS, storeFavoritesIcons);
 }
 
+
+// listen for favorites list update and update fetchMap 
+function* updateUserFavoriteFetchMap({ payload: newFetchMap }) {
+    yield console.log("testing user payload", newFetchMap);
+    const { fetchMap } = yield select(selectFavoriteIcons);
+    const updatedFetchMap = yield call(frameFavoriteIconsMap, newFetchMap, fetchMap);
+    console.log("The updated list is", updatedFetchMap);
+}
+function* onUserFavoriteListUpdate() {
+    yield takeLatest(userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS, updateUserFavoriteFetchMap);
+}
 // combine all sagas
 
 export function* favoriteIconsSagas() {
@@ -148,5 +159,6 @@ export function* favoriteIconsSagas() {
         call(onDeleteFromDbSuccess),
         call(onRemovingIconFromFavorite),
         call(onRemoveAsFavoriteFromDbSuccess),
+        call(onUserFavoriteListUpdate)
     ]);
 }

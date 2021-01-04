@@ -255,7 +255,7 @@ export const getLimitedFetchList = (fetchMap, propName, equalsToValue, limit) =>
     };
 };
 // favourites Map frame db to client
-export const frameFavoriteIconsMap = (favoriteIcons) => {
+export const frameFavoriteIconsMap = (favoriteIcons, oldFetchMap = {}) => {
     let favoritesMap = {};
     for (const [key, value] of Object.entries(favoriteIcons)) {
         let fetchPath;
@@ -267,7 +267,7 @@ export const frameFavoriteIconsMap = (favoriteIcons) => {
         }
         favoritesMap[key] = {
             [FAVORITES_ID]: key,
-            [FAVORITES_IS_FETCHED]: false,
+            [FAVORITES_IS_FETCHED]: oldFetchMap[key] ? oldFetchMap[key][FAVORITES_IS_FETCHED] : false,
             [FAVORITES_PATH]: fetchPath,
         }
     }
