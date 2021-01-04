@@ -35,3 +35,23 @@ export const fetchCurrentUserFavoriteIconsFailure = () => {
         type: favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_FAILURE
     }
 };
+
+//delete icon only allowed for admin
+export const deleteIconFromFavoriteTabStart = (payload) => {
+    return {
+        type: favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_START,
+        payload
+    }
+};
+export const deleteIconFromFavoriteTabSuccess = (payload) => {
+    return {
+        type: favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_SUCCESS,
+        payload
+    }
+};
+export const deleteIconFromFavoriteTabFailure = (payload) => {
+    return {
+        type: favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_FAILURE,
+        payload
+    }
+};
