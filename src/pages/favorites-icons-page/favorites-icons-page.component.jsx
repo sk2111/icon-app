@@ -11,7 +11,7 @@ import HomeHeader from '../../components/containers/home-header/home-header.comp
 //actions
 import {
     fetchCurrentUserFavoriteIconsStart, setFavoriteTabSearchValue,
-    deleteIconFromFavoriteTabStart,
+    deleteIconFromFavoriteTabStart, toggleIconFavoriteModeStart
 } from '../../redux/favorite-icons/favorite-icons.actions';
 //selectors
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
@@ -61,6 +61,7 @@ const mapDispatchToProps = (dispatch) => {
         setSearchValue: (value) => dispatch(setFavoriteTabSearchValue(value)),
         fetchMoreFavoriteIcons: () => dispatch(fetchCurrentUserFavoriteIconsStart()),
         deleteIconFromDb: (id) => dispatch(deleteIconFromFavoriteTabStart(id)),
+        toggleFavoriteMode: (config) => dispatch(toggleIconFavoriteModeStart(config)),
     }
 };
 

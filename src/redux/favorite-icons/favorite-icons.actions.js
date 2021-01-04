@@ -55,3 +55,24 @@ export const deleteIconFromFavoriteTabFailure = (payload) => {
         payload
     }
 };
+
+// toggle favorite mode 
+
+export const toggleIconFavoriteModeStart = (payload) => {
+    return {
+        type: favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_START,
+        payload
+    }
+};
+export const toggleIconFavoriteModeSuccess = (payload) => {
+    return {
+        type: favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_SUCCESS,
+        payload
+    }
+};
+export const toggleIconFavoriteModeFailure = (payload) => {
+    return {
+        type: favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_FAILURE,
+        payload
+    }
+};
