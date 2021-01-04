@@ -1,13 +1,19 @@
 import { takeLatest, all, call, put, select } from 'redux-saga/effects';
 //firebase
 import { readDocListFromFirestore } from '../../firebase/firebase.utils';
+import { COMMON_ICONS_LIST_PATH, PROJECT_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 //Action types
 import { userActionTypes } from '../user/user.type';
 import { favoriteIconsActionTypes } from './favorite-icons.type';
+import { commonIconsActionsTypes } from '../common-icons/common-icons.type';
+import { projectIconsActionTypes } from '../project-icons/project-icons.type';
 //actions
+import { deleteCommonIconFromDbStart } from '../common-icons/common-icons.actions';
+import { deleteProjectIconFromDbStart } from '../project-icons/project-icons.actions';
 import {
     setCurrentUserFavoriteIconsFetchMap, fetchCurrentUserFavoriteIconsSuccess,
-    fetchCurrentUserFavoriteIconsFailure
+    fetchCurrentUserFavoriteIconsFailure, deleteIconFromFavoriteTabSuccess,
+    deleteIconFromFavoriteTabFailure
 } from './favorite-icons.actions';
 //selectors
 import { selectFavoriteIcons } from './favorite-icons.selectors';
@@ -18,10 +24,43 @@ import { frameFavoriteIconsMap, getLimitedFetchList, frameIconObjFromDocObj } fr
 
 
 const { USER_FAVORITES } = USER_PROFILE;
-const { FAVORITES_IS_FETCHED } = FAVORITES_PROP;
+const { FAVORITES_IS_FETCHED, FAVORITES_PATH } = FAVORITES_PROP;
 
 
+//delete icon from favorite tab after success in db
+function* deleteIconFromFavoriteTab({ payload: iconId }) {
+    yield put(deleteIconFromFavoriteTabSuccess(iconId));
+}
 
+function* onDeleteFromDbSuccess() {
+    yield takeLatest(
+        [commonIconsActionsTypes.DELETE_COMMON_ICON_FROM_DB_SUCCESS,
+        projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_SUCCESS],
+        deleteIconFromFavoriteTab
+    );
+};
+
+//delete icon from db 
+function* deleteIconFromClientAndDB({ payload: iconId }) {
+    try {
+        const { fetchMap } = yield select(selectFavoriteIcons);
+        const iconPath = fetchMap[iconId][FAVORITES_PATH];
+        if (iconPath.includes(COMMON_ICONS_LIST_PATH)) {
+            yield put(deleteCommonIconFromDbStart(iconId));
+        }
+        if (iconPath.includes(PROJECT_ICONS_LIST_PATH)) {
+            yield put(deleteProjectIconFromDbStart(iconId));
+        }
+    }
+    catch (e) {
+        console.log(e);
+        yield put(deleteIconFromFavoriteTabFailure(e?.message));
+    }
+};
+
+function* onDeleteIconFromFavoriteTab() {
+    yield takeLatest(favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_START, deleteIconFromClientAndDB);
+};
 
 //fetch favorites icons from db
 function* fetchUserFavoriteIcons() {
@@ -70,5 +109,7 @@ export function* favoriteIconsSagas() {
     yield all([
         call(onCurrentUserFetchSuccess),
         call(onFetchUserFavoriteIcons),
+        call(onDeleteIconFromFavoriteTab),
+        call(onDeleteFromDbSuccess),
     ]);
 }

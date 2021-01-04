@@ -24,6 +24,9 @@ const favoriteIconsReducer = (state = INITIAL_STATE, action) => {
                 fetchMap: { ...updateFavoritesIconsFetchMap(state.fetchMap, fetchIdList) },
                 isMoreIconsAvailableToFetch,
             };
+        case favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_SUCCESS:
+            const { [action.payload]: deletedIcon, ...iconsMapAfterDelete } = state.iconsMap;
+            return { ...state, iconsMap: { ...iconsMapAfterDelete } };
         default:
             return state;
     }
