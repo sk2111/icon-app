@@ -27,7 +27,18 @@ import { frameFavoriteIconsMap, getLimitedFetchList, frameIconObjFromDocObj } fr
 const { USER_FAVORITES } = USER_PROFILE;
 const { FAVORITES_IS_FETCHED, FAVORITES_PATH } = FAVORITES_PROP;
 
+// Remvoving icon from client fav tab
+function* removeIconFromFavoriteTab({ payload: { id } }) {
+    yield put(toggleIconFavoriteModeSuccess(id));
+};
 
+function* onRemoveAsFavoriteFromDbSuccess() {
+    yield takeLatest(
+        [commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_SUCCESS,
+        projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_SUCCESS],
+        removeIconFromFavoriteTab
+    );
+};
 //Removing from favorites in db
 function* removeIconFromUserFavorite({ payload: { id, value } }) {
     try {
@@ -136,5 +147,6 @@ export function* favoriteIconsSagas() {
         call(onDeleteIconFromFavoriteTab),
         call(onDeleteFromDbSuccess),
         call(onRemovingIconFromFavorite),
+        call(onRemoveAsFavoriteFromDbSuccess),
     ]);
 }

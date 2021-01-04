@@ -25,6 +25,7 @@ const favoriteIconsReducer = (state = INITIAL_STATE, action) => {
                 isMoreIconsAvailableToFetch,
             };
         case favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_SUCCESS:
+        case favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_SUCCESS:
             const { [action.payload]: deletedIcon, ...iconsMapAfterDelete } = state.iconsMap;
             return { ...state, iconsMap: { ...iconsMapAfterDelete } };
         default:
