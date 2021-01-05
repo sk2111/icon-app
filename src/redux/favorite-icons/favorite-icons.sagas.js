@@ -141,10 +141,14 @@ function* onCurrentUserFetchSuccess() {
 
 // listen for favorites list update and update fetchMap 
 function* updateUserFavoriteFetchMap({ payload: newFetchMap }) {
-    yield console.log("testing user payload", newFetchMap);
-    const { fetchMap } = yield select(selectFavoriteIcons);
-    const updatedFetchMap = yield call(frameFavoriteIconsMap, newFetchMap, fetchMap);
-    console.log("The updated list is", updatedFetchMap);
+    try {
+        const { fetchMap } = yield select(selectFavoriteIcons);
+        const updatedFetchMap = yield call(frameFavoriteIconsMap, newFetchMap, fetchMap);
+        yield put(setCurrentUserFavoriteIconsFetchMap(updatedFetchMap));
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
 function* onUserFavoriteListUpdate() {
     yield takeLatest(userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS, updateUserFavoriteFetchMap);
