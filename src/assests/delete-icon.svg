@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="122px" height="122px" viewBox="0 0 122 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Home-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Profile" transform="translate(-13.000000, -192.000000)">
+            <g id="Delete" transform="translate(13.000000, 192.000000)">
+                <rect id="Rectangle" x="0" y="0" width="122" height="122"></rect>
+                <path d="M91.9285714,37.122807 L91.9285714,111.5 C91.9285714,111.776142 91.7047138,112 91.4285714,112 L31.5714286,112 C31.2952862,112 31.0714286,111.776142 31.0714286,111.5 L31.0714286,37.122807 L91.9285714,37.122807 Z M71.1428571,15 C71.4189995,15 71.6428571,15.2238576 71.6428571,15.5 L71.642,20.105 L97,20.1052632 L97,30.3157895 L26,30.3157895 L26,20.1052632 L51.357,20.105 L51.3571429,15.5 C51.3571429,15.2238576 51.5810005,15 51.8571429,15 L71.1428571,15 Z" id="Combined-Shape" fill="#989899"></path>
+            </g>
+        </g>
+    </g>
+</svg>

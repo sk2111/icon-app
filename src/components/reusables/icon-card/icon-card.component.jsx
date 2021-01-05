@@ -5,9 +5,10 @@ import styles from './icon-card.module.css';
 //components
 import RenderView from '../render-view/render-view.component';
 //static
-import DeleteIcon from '../../../assests/webp/delete-icon.webp';
-import FavoriteIcon from '../../../assests/webp/favorite-icon.webp';
-import NotFavoriteIcon from '../../../assests/webp/not-favorite-icon.webp';
+import DeleteIcon from '../../../assests/png/delete-icon.png';
+import FavoriteIcon from '../../../assests/png/favorite-icon.png';
+import NotFavoriteIcon from '../../../assests/png/not-favorite-icon.png';
+
 
 const IconCard = ({ iconId, iconName, iconContainerClass, iconBase64, isCurrentUserAdmin, isFavorite,
     handleFavoriteSelection, confirmDelete }) => {
