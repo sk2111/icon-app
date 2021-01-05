@@ -14,18 +14,20 @@ import {
 } from './user.actions';
 //constants
 import { SIGN_OUT_FAILURE_MESSAGE } from '../../utilities/auth.messages';
-import { LOADING_PERSISTANT_CHECK_TIME } from '../../utilities/app.constants';
+import { LOADING_PERSISTANT_CHECK_TIME, USER_PROFILE } from '../../utilities/app.constants';
 //helper functions
-import { frameCurrentUserObject } from '../../utilities/helper.functions';
+import { frameCurrentUserObject, frameFavoriteIconsMap } from '../../utilities/helper.functions';
 
 
+const { USER_FAVORITES, USER_ADMIN } = USER_PROFILE;
 // current user auth object stroring in redux store 
 function* storeAndFetchCurrentUserDetails({ payload: { ...currentUserData } }) {
     try {
         // read is admin details from firestore and store in redux
         const currentUserDataToStore = yield call(frameCurrentUserObject, currentUserData);
         const userRoleType = yield call(getUserAccessRoleFromFireStore, currentUserData.uid);
-        currentUserDataToStore.isAdmin = !!userRoleType?.isAdmin;
+        currentUserDataToStore[USER_ADMIN] = userRoleType ? userRoleType[USER_ADMIN] : false;
+        currentUserDataToStore[USER_FAVORITES] = yield call(frameFavoriteIconsMap, currentUserDataToStore[USER_FAVORITES]);
         yield put(getCurrentUserInfoSuccess(currentUserDataToStore));
     }
     catch (e) {
