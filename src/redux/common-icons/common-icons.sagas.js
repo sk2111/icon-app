@@ -29,7 +29,7 @@ import {
     extractSimplifiedMapFromFavoritesMap, frameFavoriteIconsMap, checkIsAllIconsFetched
 } from '../../utilities/helper.functions';
 
-const { USER_FAVORITES } = USER_PROFILE;
+const { USER_FAVORITES, USER_FAVORITES_FETCH_STATUS } = USER_PROFILE;
 
 // get common icons from database 
 function* fetchCommonIconsFromDatabase() {
@@ -69,7 +69,7 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
         const newFavoritesMapForUpload = yield call(extractSimplifiedMapFromFavoritesMap, favoriteFetchMap, { id, value }, COMMON_ICONS_HEADER_LABEL);
         yield call(updateDocPropInFirestore, pathToUpdate, { property: USER_FAVORITES, value: newFavoritesMapForUpload });
         yield put(toggleCommonIconFavoriteModeSuccess({ id, value }));
-        const newFavoritesFetchMap = yield call(frameFavoriteIconsMap, newFavoritesMapForUpload,favoriteFetchMap);
+        const newFavoritesFetchMap = yield call(frameFavoriteIconsMap, newFavoritesMapForUpload, favoriteFetchMap);
         const isMoreFavIconsAvailableToFetch = yield call(checkIsAllIconsFetched, newFavoritesFetchMap);
         console.log("Common icons see whether all fav icons is fetchd", isMoreFavIconsAvailableToFetch);
         yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap: { ...newFavoritesFetchMap }, isMoreFavIconsAvailableToFetch }));
@@ -88,8 +88,16 @@ function* onFavoriteCommonIconSelection() {
 // delete particular icon from db
 function* deleteCommonIconFromDB({ payload: iconId }) {
     try {
+        const { currentUser: { [USER_FAVORITES_FETCH_STATUS]: isMoreIconsAvailableToFetch, [USER_FAVORITES]: fetchMap } } = yield select(selectUser);
+        const { [iconId]: removeExistingIconFetchData, ...otherFavFetchMap } = fetchMap;
         yield call(deleteDocById, COMMON_ICONS_LIST_PATH, iconId);
         yield put(deleteCommonIconFromDbSuccess(iconId));
+        if (removeExistingIconFetchData) {
+            yield put(updateCurrentUserFavoriteIcons({
+                updatedFetchMap: { ...otherFavFetchMap },
+                isMoreFavIconsAvailableToFetch: isMoreIconsAvailableToFetch
+            }));
+        }
     }
     catch (e) {
         console.log(e);

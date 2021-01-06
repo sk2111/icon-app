@@ -29,7 +29,7 @@ import {
     extractSimplifiedMapFromFavoritesMap, frameFavoriteIconsMap, checkIsAllIconsFetched
 } from '../../utilities/helper.functions';
 
-const { USER_FAVORITES } = USER_PROFILE;
+const { USER_FAVORITES, USER_FAVORITES_FETCH_STATUS } = USER_PROFILE;
 
 // get project icons from database 
 function* fetchProjectIconsFromDatabase() {
@@ -70,7 +70,7 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
         const newFavoritesMapForUpload = yield call(extractSimplifiedMapFromFavoritesMap, favoriteFetchMap, { id, value }, PROJECT_ICONS_HEADER_LABEL);
         yield call(updateDocPropInFirestore, pathToUpdate, { property: USER_FAVORITES, value: newFavoritesMapForUpload });
         yield put(toggleProjectIconFavoriteModeSuccess({ id, value }));
-        const newFavoritesFetchMap = yield call(frameFavoriteIconsMap, newFavoritesMapForUpload,favoriteFetchMap);
+        const newFavoritesFetchMap = yield call(frameFavoriteIconsMap, newFavoritesMapForUpload, favoriteFetchMap);
         const isMoreFavIconsAvailableToFetch = yield call(checkIsAllIconsFetched, newFavoritesFetchMap);
         console.log("project icons see whether all fav icons is fetchd", isMoreFavIconsAvailableToFetch);
         yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap: { ...newFavoritesFetchMap }, isMoreFavIconsAvailableToFetch }));
@@ -86,10 +86,18 @@ function* onFavoriteProjectIconSelection() {
 }
 
 // delete particular icon from db
-function* deleteCommonIconFromDB({ payload: iconId }) {
+function* deleteProjectIconFromDB({ payload: iconId }) {
     try {
+        const { currentUser: { [USER_FAVORITES_FETCH_STATUS]: isMoreIconsAvailableToFetch, [USER_FAVORITES]: fetchMap } } = yield select(selectUser);
+        const { [iconId]: removeExistingIconFetchData, ...otherFavFetchMap } = fetchMap;
         yield call(deleteDocById, PROJECT_ICONS_LIST_PATH, iconId);
         yield put(deleteProjectIconFromDbSuccess(iconId));
+        if (removeExistingIconFetchData) {
+            yield put(updateCurrentUserFavoriteIcons({
+                updatedFetchMap: { ...otherFavFetchMap },
+                isMoreFavIconsAvailableToFetch: isMoreIconsAvailableToFetch
+            }));
+        }
     }
     catch (e) {
         console.log(e);
@@ -98,7 +106,7 @@ function* deleteCommonIconFromDB({ payload: iconId }) {
 }
 
 function* onDeleteProjectIconFromDB() {
-    yield takeLatest(projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_START, deleteCommonIconFromDB);
+    yield takeLatest(projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_START, deleteProjectIconFromDB);
 }
 
 //Get project icons search keyword and category options
