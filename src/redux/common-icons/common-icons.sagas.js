@@ -70,9 +70,9 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
         yield call(updateDocPropInFirestore, pathToUpdate, { property: USER_FAVORITES, value: newFavoritesMapForUpload });
         yield put(toggleCommonIconFavoriteModeSuccess({ id, value }));
         const newFavoritesFetchMap = yield call(frameFavoriteIconsMap, newFavoritesMapForUpload);
-        const fetchStatus = yield call(checkIsAllIconsFetched, newFavoritesFetchMap);
-        console.log("Common icons see whether all fav icons is fetchd", fetchStatus);
-        yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap: { ...newFavoritesFetchMap }, fetchStatus }));
+        const moreIconsFavIconsAvailableToFetch = yield call(checkIsAllIconsFetched, newFavoritesFetchMap);
+        console.log("Common icons see whether all fav icons is fetchd", moreIconsFavIconsAvailableToFetch);
+        yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap: { ...newFavoritesFetchMap }, moreIconsFavIconsAvailableToFetch }));
     }
     catch (e) {
         console.log(e);

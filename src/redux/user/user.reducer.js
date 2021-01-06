@@ -19,11 +19,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case userActionTypes.CHECK_USER_PERSISTANCE_COMPLETED:
             return { ...state, errorMessage: CLEARVALUE, userPersistCheckDone: true };
         case userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS:
-            const { updatedFetchMap, fetchStatus } = action.payload;
+            const { updatedFetchMap, moreIconsFavIconsAvailableToFetch } = action.payload;
             return {
                 ...state, currentUser: {
                     ...state.currentUser,
-                    [USER_FAVORITES_FETCH_STATUS]: fetchStatus,
+                    [USER_FAVORITES_FETCH_STATUS]: moreIconsFavIconsAvailableToFetch,
                     [USER_FAVORITES]: updatedFetchMap
                 }
             }

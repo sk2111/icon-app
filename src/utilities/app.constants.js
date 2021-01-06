@@ -31,7 +31,8 @@ export const USER_PROFILE = {
     USER_EMAIL: 'email',
     USER_CREATED_AT: 'createdAt',
     USER_FAVORITES: 'favoriteIconsDocId',
-    USER_ADMIN:'isAdmin'
+    USER_ADMIN:'isAdmin',
+    USER_FAVORITES_FETCH_STATUS:'isFavoriteIconsAvailableToFetch'
 };
 //Favorites Prop constants
 export const FAVORITES_PROP = {
