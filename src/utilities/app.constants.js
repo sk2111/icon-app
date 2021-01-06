@@ -30,7 +30,8 @@ export const USER_PROFILE = {
     USER_LAST_NAME: 'lastName',
     USER_EMAIL: 'email',
     USER_CREATED_AT: 'createdAt',
-    USER_FAVORITES: 'favoriteIconsDocId'
+    USER_FAVORITES: 'favoriteIconsDocId',
+    USER_ADMIN:'isAdmin'
 };
 //Favorites Prop constants
 export const FAVORITES_PROP = {
