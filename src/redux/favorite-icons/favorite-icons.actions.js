@@ -8,7 +8,19 @@ export const setFavoriteTabSearchValue = (payload) => {
         payload
     }
 };
-
+// sync favorite icons tab with other tab favorites
+export const syncFavoriteTabIconsWithFetchMap = () => {
+    return {
+        type: favoriteIconsActionTypes.SYNC_FAVORITE_ICONS
+    }
+};
+//update iconsMap for favorites
+export const updateFavoriteIconsMap = (payload) => {
+    return{
+        type:favoriteIconsActionTypes.UPDATE_FAVORITE_ICONS_MAP_AFTER_SYNC,
+        payload
+    }
+};
 //set user favoruirites map after current user fetch 
 
 export const setCurrentUserFavoriteIconsFetchMap = (payload) => {

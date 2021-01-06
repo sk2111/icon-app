@@ -14,30 +14,35 @@ import {
     setCurrentUserFavoriteIconsFetchMap, fetchCurrentUserFavoriteIconsSuccess,
     fetchCurrentUserFavoriteIconsFailure, deleteIconFromFavoriteTabSuccess,
     deleteIconFromFavoriteTabFailure, toggleIconFavoriteModeSuccess,
-    toggleIconFavoriteModeFailure
+    toggleIconFavoriteModeFailure, updateFavoriteIconsMap, syncFavoriteTabIconsWithFetchMap
 } from './favorite-icons.actions';
 //selectors
+import { selectUser } from '../user/user.selectors';
 import { selectFavoriteIcons } from './favorite-icons.selectors';
 //constants
 import { USER_PROFILE, FAVORITES_PROP, USER_FAVORITES_FETCH_LIMIT } from '../../utilities/app.constants';
 //helpers
-import { frameFavoriteIconsMap, getLimitedFetchList, frameIconObjFromDocObj } from '../../utilities/helper.functions';
+import {
+    frameFavoriteIconsMap, getLimitedFetchList, frameIconObjFromDocObj, checkIsAllIconsFetched,
+    updateFavoritesIconsFetchMap, extractPropsBasedOnList
+} from '../../utilities/helper.functions';
+import { updateCurrentUserFavoriteIcons } from '../user/user.actions';
 
 
-const { USER_FAVORITES } = USER_PROFILE;
+const { USER_FAVORITES, USER_FAVORITES_FETCH_STATUS } = USER_PROFILE;
 const { FAVORITES_IS_FETCHED, FAVORITES_PATH } = FAVORITES_PROP;
 
 // Remvoving icon from client fav tab
 function* removeIconFromFavoriteTab({ payload: { id } }) {
-    yield put(toggleIconFavoriteModeSuccess(id));
+    // yield put(toggleIconFavoriteModeSuccess(id));
 };
 
 function* onRemoveAsFavoriteFromDbSuccess() {
-    yield takeLatest(
-        [commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_SUCCESS,
-        projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_SUCCESS],
-        removeIconFromFavoriteTab
-    );
+    // yield takeLatest(
+    //     [commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_SUCCESS,
+    //     projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_SUCCESS],
+    //     removeIconFromFavoriteTab
+    // );
 };
 //Removing from favorites in db
 function* removeIconFromUserFavorite({ payload: { id, value } }) {
@@ -59,7 +64,71 @@ function* removeIconFromUserFavorite({ payload: { id, value } }) {
 };
 
 function* onRemovingIconFromFavorite() {
-    yield takeLatest(favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_START, removeIconFromUserFavorite);
+    // yield takeLatest(favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_START, removeIconFromUserFavorite);
+};
+
+// listen for favorites list update and update fetchMap 
+function* updateUserFavoriteFetchMap({ payload: newFetchMap }) {
+    try {
+        const { fetchMap } = yield select(selectFavoriteIcons);
+        const updatedFetchMap = yield call(frameFavoriteIconsMap, newFetchMap, fetchMap);
+        yield put(setCurrentUserFavoriteIconsFetchMap(updatedFetchMap));
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
+function* onUserFavoriteListUpdate() {
+    // yield takeLatest(userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS, updateUserFavoriteFetchMap);
+}
+
+//sync favorite icons tab with other values
+function* syncFavoriteIconsWithFetchMap() {
+    const { currentUser: { [USER_FAVORITES]: fetchMap } } = yield select(selectUser);
+    const { iconsMap } = yield select(selectFavoriteIcons);
+    const newIconsMap = yield call(extractPropsBasedOnList, iconsMap, Object.keys(fetchMap));
+    yield put(updateFavoriteIconsMap(newIconsMap));
+};
+function* onSyncFavoriteIcons() {
+    yield takeLatest(favoriteIconsActionTypes.SYNC_FAVORITE_ICONS, syncFavoriteIconsWithFetchMap);
+};
+
+//fetch favorites icons from db
+function* fetchUserFavoriteIcons() {
+    try {
+        let updatedFetchMap, isMoreFavIconsAvailableToFetch;
+        const { currentUser: { [USER_FAVORITES_FETCH_STATUS]: isMoreIconsAvailableToFetch, [USER_FAVORITES]: fetchMap } } = yield select(selectUser);
+        const { fetchList, fetchIdList } = yield call(getLimitedFetchList,
+            fetchMap, FAVORITES_IS_FETCHED, false, USER_FAVORITES_FETCH_LIMIT);
+        if (fetchList.length && isMoreIconsAvailableToFetch) {
+            const docList = yield call(readDocListFromFirestore, fetchList);
+            const { iconsMap, notFoundList } = yield call(frameIconObjFromDocObj, docList, fetchMap);
+            if (notFoundList.length) {
+                // UpdatedFetchMap = 
+                // In case of not found list => update in db update user fetch Map
+                console.log("I am executing not found list favorite saga");
+            }
+            else {
+                updatedFetchMap = yield call(updateFavoritesIconsFetchMap, fetchMap, fetchIdList);
+                isMoreFavIconsAvailableToFetch = yield call(checkIsAllIconsFetched, updatedFetchMap);
+            }
+            console.log("Testing Not Found list", iconsMap, notFoundList);
+            yield put(fetchCurrentUserFavoriteIconsSuccess(iconsMap));
+            yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap, isMoreFavIconsAvailableToFetch }));
+            // yield put(syncFavoriteTabIconsWithFetchMap());
+        }
+        else {
+            yield put(fetchCurrentUserFavoriteIconsSuccess([]));
+            yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap: fetchMap, isMoreFavIconsAvailableToFetch: false }));
+        }
+    }
+    catch (e) {
+        console.log(e);
+        yield put(fetchCurrentUserFavoriteIconsFailure(e?.message));
+    }
+};
+function* onFetchUserFavoriteIcons() {
+    yield takeLatest(favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_START, fetchUserFavoriteIcons);
 };
 
 //delete icon from favorite tab after success in db
@@ -78,7 +147,7 @@ function* onDeleteFromDbSuccess() {
 //delete icon from db 
 function* deleteIconFromClientAndDB({ payload: iconId }) {
     try {
-        const { fetchMap } = yield select(selectFavoriteIcons);
+        const { currentUser: { [USER_FAVORITES]: fetchMap } } = yield select(selectUser);
         const iconPath = fetchMap[iconId][FAVORITES_PATH];
         if (iconPath.includes(COMMON_ICONS_LIST_PATH)) {
             yield put(deleteCommonIconFromDbStart(iconId));
@@ -97,72 +166,16 @@ function* onDeleteIconFromFavoriteTab() {
     yield takeLatest(favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_START, deleteIconFromClientAndDB);
 };
 
-//fetch favorites icons from db
-function* fetchUserFavoriteIcons() {
-    try {
-        const { fetchMap, isMoreIconsAvailableToFetch } = yield select(selectFavoriteIcons);
-        const { fetchList, fetchIdList, isMoreIconsAvailable } = yield call(getLimitedFetchList,
-            fetchMap, FAVORITES_IS_FETCHED, false, USER_FAVORITES_FETCH_LIMIT);
-        if (fetchList.length && isMoreIconsAvailableToFetch) {
-            const docList = yield call(readDocListFromFirestore, fetchList);
-            const iconsMap = yield call(frameIconObjFromDocObj, docList, fetchMap);
-            yield put(fetchCurrentUserFavoriteIconsSuccess({ iconsMap, isMoreIconsAvailableToFetch: isMoreIconsAvailable, fetchIdList }));
-        }
-        else {
-            yield put(fetchCurrentUserFavoriteIconsSuccess({ iconsMap: [], isMoreIconsAvailableToFetch: false, fetchIdList: [] }));
-        }
-    }
-    catch (e) {
-        console.log(e);
-        yield put(fetchCurrentUserFavoriteIconsFailure(e?.message));
-    }
-};
-function* onFetchUserFavoriteIcons() {
-    yield takeLatest(favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_START, fetchUserFavoriteIcons);
-};
 
-// listen for current user info success call and store favorite list in favourites store slice
-function* storeFavoritesIcons({ payload }) {
-    try {
-
-        const { [USER_FAVORITES]: favoriteIcons = {} } = payload;
-        const favoritesMap = yield call(frameFavoriteIconsMap, favoriteIcons);
-        yield put(setCurrentUserFavoriteIconsFetchMap({ ...favoritesMap }));
-    }
-    catch (e) {
-        console.log(e);
-    }
-}
-
-function* onCurrentUserFetchSuccess() {
-    yield takeLatest(userActionTypes.GET_CURRENT_USER_INFO_SUCCESS, storeFavoritesIcons);
-}
-
-
-// listen for favorites list update and update fetchMap 
-function* updateUserFavoriteFetchMap({ payload: newFetchMap }) {
-    try {
-        const { fetchMap } = yield select(selectFavoriteIcons);
-        const updatedFetchMap = yield call(frameFavoriteIconsMap, newFetchMap, fetchMap);
-        yield put(setCurrentUserFavoriteIconsFetchMap(updatedFetchMap));
-    }
-    catch (e) {
-        console.log(e);
-    }
-}
-function* onUserFavoriteListUpdate() {
-    yield takeLatest(userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS, updateUserFavoriteFetchMap);
-}
 // combine all sagas
-
 export function* favoriteIconsSagas() {
     yield all([
-        call(onCurrentUserFetchSuccess),
-        call(onFetchUserFavoriteIcons),
-        call(onDeleteIconFromFavoriteTab),
         call(onDeleteFromDbSuccess),
-        call(onRemovingIconFromFavorite),
-        call(onRemoveAsFavoriteFromDbSuccess),
-        call(onUserFavoriteListUpdate)
+        call(onDeleteIconFromFavoriteTab),
+        call(onFetchUserFavoriteIcons),
+        call(onSyncFavoriteIcons),
+        // call(onRemovingIconFromFavorite),
+        // call(onRemoveAsFavoriteFromDbSuccess),
+        // call(onUserFavoriteListUpdate)
     ]);
 }

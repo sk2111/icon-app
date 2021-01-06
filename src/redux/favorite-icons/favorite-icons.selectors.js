@@ -17,12 +17,6 @@ export const selectFavoriteIconsMap = createSelector([selectFavoriteIcons],
 export const selectFavoriteIconsSearchValue = createSelector([selectFavoriteIcons],
     (favoriteIcons) => favoriteIcons.searchValue);
 
-export const selectIsMoreIconsAvailableToFetch = createSelector([selectFavoriteIcons],
-    (favoriteIcons) => favoriteIcons.isMoreIconsAvailableToFetch);
-
-export const selectFavoriteFetchMap = createSelector([selectFavoriteIcons],
-    (favoriteIcons) => favoriteIcons.fetchMap);
-
 export const selectFavoriteIconsListToDisplay = createSelector(
     [selectFavoriteIconsSearchValue, selectFavoriteIconsMap],
     (searchValue, iconsMap) => {

@@ -309,3 +309,13 @@ export const updateFavoritesIconsFetchMap = (fetchMap, fetchIdList) => {
     });
     return { ...fetchMap };
 };
+//extract required props based on list
+export const extractPropsBasedOnList = (obj, keepList) => {
+    let newMap = {};
+    keepList.forEach((id) => {
+        if(obj[id]){
+            newMap[id] = { ...obj[id] };
+        }
+    });
+    return { ...newMap };
+};

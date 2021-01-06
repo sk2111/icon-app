@@ -1,5 +1,5 @@
 //libs
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //css
@@ -11,7 +11,7 @@ import HomeHeader from '../../components/containers/home-header/home-header.comp
 //actions
 import {
     fetchCurrentUserFavoriteIconsStart, setFavoriteTabSearchValue,
-    deleteIconFromFavoriteTabStart, toggleIconFavoriteModeStart
+    deleteIconFromFavoriteTabStart, toggleIconFavoriteModeStart, syncFavoriteTabIconsWithFetchMap
 } from '../../redux/favorite-icons/favorite-icons.actions';
 //selectors
 import { selectCurrentUserAdminRole, selectIsMoreFavoriteIconsAvailableToFetch } from '../../redux/user/user.selectors';
@@ -21,7 +21,11 @@ import { FAVORITES_ICONS_HEADER_LABEL, FAVORITES_ICONS_INPUT_PLACEHOLDER } from 
 
 
 const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, iconsList, isMoreIconsAvaliableToFetch,
-    fetchMoreFavoriteIcons, isCurrentUserAdmin, toggleFavoriteMode, deleteIconFromDb }) => {
+    fetchMoreFavoriteIcons, isCurrentUserAdmin, toggleFavoriteMode, deleteIconFromDb, syncFavoriteIcons }) => {
+
+    useEffect(() => {
+        syncFavoriteIcons();
+    }, [syncFavoriteIcons]);
 
     return (
         <div className={styles.pageContainer}>
@@ -62,6 +66,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchMoreFavoriteIcons: () => dispatch(fetchCurrentUserFavoriteIconsStart()),
         deleteIconFromDb: (id) => dispatch(deleteIconFromFavoriteTabStart(id)),
         toggleFavoriteMode: (config) => dispatch(toggleIconFavoriteModeStart(config)),
+        syncFavoriteIcons: () => dispatch(syncFavoriteTabIconsWithFetchMap())
     }
 };
 
