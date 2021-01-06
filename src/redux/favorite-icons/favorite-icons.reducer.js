@@ -13,7 +13,7 @@ const favoriteIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, iconsMap: { ...action.payload } };
         case favoriteIconsActionTypes.FETCH_CURRENT_USER_FAVORITE_ICONS_SUCCESS:
             return { ...state, iconsMap: { ...state.iconsMap, ...action.payload } };
-        case favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_SUCCESS:
+        case favoriteIconsActionTypes.DELETE_ICON_FROM_FAVORITES_TAB_SUCCESS:
             const { [action.payload]: deletedIcon, ...iconsMapAfterDelete } = state.iconsMap;
             return { ...state, iconsMap: { ...iconsMapAfterDelete } };
         case favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_START:

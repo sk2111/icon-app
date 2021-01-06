@@ -132,7 +132,7 @@ function* deleteIconFromClientAndDB({ payload: iconId }) {
 };
 
 function* onDeleteIconFromFavoriteTab() {
-    yield takeLatest(favoriteIconsActionTypes.DELETE_ICON_FROM_DB_AND_CLIENT_START, deleteIconFromClientAndDB);
+    yield takeLatest(favoriteIconsActionTypes.DELETE_ICON_FROM_FAVORITES_TAB_START, deleteIconFromClientAndDB);
 };
 
 
