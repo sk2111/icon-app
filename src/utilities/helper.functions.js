@@ -313,8 +313,19 @@ export const updateFavoritesIconsFetchMap = (fetchMap, fetchIdList) => {
 export const extractPropsBasedOnList = (obj, keepList) => {
     let newMap = {};
     keepList.forEach((id) => {
-        if(obj[id]){
+        if (obj[id]) {
             newMap[id] = { ...obj[id] };
+        }
+    });
+    return { ...newMap };
+};
+//remove props based on list
+export const removePropsBasedOnList = (obj, removeList) => {
+    let newMap = { ...obj };
+    removeList.forEach((id) => {
+        if (newMap[id]) {
+            const { [id]: remove, ...otherProps } = newMap;
+            newMap = { ...otherProps };
         }
     });
     return { ...newMap };

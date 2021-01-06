@@ -24,7 +24,7 @@ import { USER_PROFILE, FAVORITES_PROP, USER_FAVORITES_FETCH_LIMIT } from '../../
 //helpers
 import {
     frameFavoriteIconsMap, getLimitedFetchList, frameIconObjFromDocObj, checkIsAllIconsFetched,
-    updateFavoritesIconsFetchMap, extractPropsBasedOnList
+    updateFavoritesIconsFetchMap, extractPropsBasedOnList, removePropsBasedOnList
 } from '../../utilities/helper.functions';
 import { updateCurrentUserFavoriteIcons } from '../user/user.actions';
 
@@ -104,15 +104,13 @@ function* fetchUserFavoriteIcons() {
             const docList = yield call(readDocListFromFirestore, fetchList);
             const { iconsMap, notFoundList } = yield call(frameIconObjFromDocObj, docList, fetchMap);
             if (notFoundList.length) {
-                // UpdatedFetchMap = 
-                // In case of not found list => update in db update user fetch Map
-                console.log("I am executing not found list favorite saga");
+                updatedFetchMap = yield call(removePropsBasedOnList, fetchMap, notFoundList);
+                isMoreFavIconsAvailableToFetch = yield call(checkIsAllIconsFetched, updatedFetchMap);
             }
             else {
                 updatedFetchMap = yield call(updateFavoritesIconsFetchMap, fetchMap, fetchIdList);
                 isMoreFavIconsAvailableToFetch = yield call(checkIsAllIconsFetched, updatedFetchMap);
             }
-            console.log("Testing Not Found list", iconsMap, notFoundList);
             yield put(fetchCurrentUserFavoriteIconsSuccess(iconsMap));
             yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap, isMoreFavIconsAvailableToFetch }));
             // yield put(syncFavoriteTabIconsWithFetchMap());
