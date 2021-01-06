@@ -10,7 +10,7 @@ import { projectIconsActionTypes } from '../project-icons/project-icons.type';
 import { deleteCommonIconFromDbStart, toggleCommonIconFavoriteModeStart } from '../common-icons/common-icons.actions';
 import { deleteProjectIconFromDbStart, toggleProjectIconFavoriteModeStart } from '../project-icons/project-icons.actions';
 import {
-    fetchCurrentUserFavoriteIconsSuccess,fetchCurrentUserFavoriteIconsFailure, deleteIconFromFavoriteTabSuccess,
+    fetchCurrentUserFavoriteIconsSuccess, fetchCurrentUserFavoriteIconsFailure, deleteIconFromFavoriteTabSuccess,
     deleteIconFromFavoriteTabFailure, toggleIconFavoriteModeFailure, updateFavoriteIconsMap
 } from './favorite-icons.actions';
 //selectors
@@ -99,7 +99,10 @@ function* onFetchUserFavoriteIcons() {
 
 //delete icon from favorite tab after success in db
 function* deleteIconFromFavoriteTab({ payload: iconId }) {
-    yield put(deleteIconFromFavoriteTabSuccess(iconId));
+    const { iconsMap } = yield select(selectFavoriteIcons);
+    if(iconsMap[iconId]){
+        yield put(deleteIconFromFavoriteTabSuccess(iconId));
+    }
 };
 
 function* onDeleteFromDbSuccess() {
