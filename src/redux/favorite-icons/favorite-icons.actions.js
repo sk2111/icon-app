@@ -21,15 +21,6 @@ export const updateFavoriteIconsMap = (payload) => {
         payload
     }
 };
-//set user favoruirites map after current user fetch 
-
-export const setCurrentUserFavoriteIconsFetchMap = (payload) => {
-    return {
-        type: favoriteIconsActionTypes.SET_CURRENT_USER_FAVORITE_FETCH_MAP,
-        payload
-    }
-};
-
 // fetch user favorite from db
 export const fetchCurrentUserFavoriteIconsStart = () => {
     return {
