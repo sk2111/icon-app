@@ -47,8 +47,7 @@ function* onRemoveAsFavoriteFromDbSuccess() {
 //Removing from favorites in db
 function* removeIconFromUserFavorite({ payload: { id, value } }) {
     try {
-
-        const { fetchMap } = yield select(selectFavoriteIcons);
+        const { currentUser: { [USER_FAVORITES]: fetchMap } } = yield select(selectUser);
         const iconPath = fetchMap[id][FAVORITES_PATH];
         if (iconPath.includes(COMMON_ICONS_LIST_PATH)) {
             yield put(toggleCommonIconFavoriteModeStart({ id, value }));
@@ -64,23 +63,8 @@ function* removeIconFromUserFavorite({ payload: { id, value } }) {
 };
 
 function* onRemovingIconFromFavorite() {
-    // yield takeLatest(favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_START, removeIconFromUserFavorite);
+    yield takeLatest(favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_START, removeIconFromUserFavorite);
 };
-
-// listen for favorites list update and update fetchMap 
-function* updateUserFavoriteFetchMap({ payload: newFetchMap }) {
-    try {
-        const { fetchMap } = yield select(selectFavoriteIcons);
-        const updatedFetchMap = yield call(frameFavoriteIconsMap, newFetchMap, fetchMap);
-        yield put(setCurrentUserFavoriteIconsFetchMap(updatedFetchMap));
-    }
-    catch (e) {
-        console.log(e);
-    }
-}
-function* onUserFavoriteListUpdate() {
-    // yield takeLatest(userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS, updateUserFavoriteFetchMap);
-}
 
 //sync favorite icons tab with other values
 function* syncFavoriteIconsWithFetchMap() {
@@ -113,7 +97,6 @@ function* fetchUserFavoriteIcons() {
             }
             yield put(fetchCurrentUserFavoriteIconsSuccess(iconsMap));
             yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap, isMoreFavIconsAvailableToFetch }));
-            // yield put(syncFavoriteTabIconsWithFetchMap());
         }
         else {
             yield put(fetchCurrentUserFavoriteIconsSuccess([]));
@@ -172,8 +155,7 @@ export function* favoriteIconsSagas() {
         call(onDeleteIconFromFavoriteTab),
         call(onFetchUserFavoriteIcons),
         call(onSyncFavoriteIcons),
-        // call(onRemovingIconFromFavorite),
+        call(onRemovingIconFromFavorite),
         // call(onRemoveAsFavoriteFromDbSuccess),
-        // call(onUserFavoriteListUpdate)
     ]);
 }
