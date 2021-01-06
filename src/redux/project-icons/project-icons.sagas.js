@@ -24,7 +24,10 @@ import {
     MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME, PROJECT_ICONS_HEADER_LABEL
 } from '../../utilities/app.constants';
 //helpers
-import { getPaginateConfig, frameIconObjFromDocObj, framePaginationQueryParams, getNewMapBasedOnPropValue } from '../../utilities/helper.functions';
+import {
+    getPaginateConfig, frameIconObjFromDocObj, framePaginationQueryParams,
+    extractSimplifiedMapFromFavoritesMap, frameFavoriteIconsMap
+} from '../../utilities/helper.functions';
 
 const { USER_FAVORITES } = USER_PROFILE;
 
@@ -38,7 +41,7 @@ function* fetchProjectIconsFromDatabase() {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
                 framePaginationQueryParams(selectValue, searchValue, existingPaginationMap, PROJECT_ICON_DEFAULT_PROJECT_VALUE,
                     PROJECT_ICONS_LIST_PATH, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD));
-            const iconsMap = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
+            const { iconsMap } = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchProjectIconsFromDatabaseSuccess(iconsMap));
             yield put(setProjectIconsPaginationMap({
                 key: paginateKey,
@@ -62,12 +65,13 @@ function* onFetchProjectIconsFromDatabase() {
 //favorite icons addition
 function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
     try {
-        const { currentUser: { uid, [USER_FAVORITES]: favoriteIconsDocId } } = yield select(selectUser);
+        const { currentUser: { uid, [USER_FAVORITES]: favoriteFetchMap } } = yield select(selectUser);
         const pathToUpdate = USERS_COLLECTION_PATH + '/' + uid;
-        const newFavoritesMap = yield call(getNewMapBasedOnPropValue, favoriteIconsDocId, { id, value }, PROJECT_ICONS_HEADER_LABEL);
-        yield call(updateDocPropInFirestore, pathToUpdate, { property: USER_FAVORITES, value: newFavoritesMap });
+        const newFavoritesMapForUpload = yield call(extractSimplifiedMapFromFavoritesMap, favoriteFetchMap, { id, value }, PROJECT_ICONS_HEADER_LABEL);
+        yield call(updateDocPropInFirestore, pathToUpdate, { property: USER_FAVORITES, value: newFavoritesMapForUpload });
         yield put(toggleProjectIconFavoriteModeSuccess({ id, value }));
-        yield put(updateCurrentUserFavoriteIcons({ ...newFavoritesMap }));
+        const newFavoritesFetchMap = yield call(frameFavoriteIconsMap, newFavoritesMapForUpload);
+        yield put(updateCurrentUserFavoriteIcons({ ...newFavoritesFetchMap }));
     }
     catch (e) {
         console.log(e);

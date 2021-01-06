@@ -204,6 +204,7 @@ export const framePaginationQueryParams = (selectValue, searchValue, existingPag
 //reading data from firestore to redux helpers
 export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
     const returnObj = {};
+    const notFoundList = [];
     iconDocList.forEach((iconDoc) => {
         if (iconDoc.exists) {
             const iconId = iconDoc.id;
@@ -217,19 +218,14 @@ export const frameIconObjFromDocObj = (iconDocList, favoritesMap) => {
                 ...iconDoc.data()
             };
         }
+        else {
+            notFoundList.push(iconDoc.id);
+        }
     });
-    return { ...returnObj };
-};
-
-//favorites- common and projects saga helpers
-export const getNewMapBasedOnPropValue = (map, { id, value }, finalValue) => {
-    if (value) {
-        return { ...map, [id]: finalValue };
-    }
-    else {
-        const { [id]: toRemove, ...others } = map;
-        return { ...others };
-    }
+    return {
+        iconsMap: { ...returnObj },
+        notFoundList
+    };
 };
 // favorites tab pick selected items for fetching
 export const getLimitedFetchList = (fetchMap, propName, equalsToValue, limit) => {
@@ -271,5 +267,30 @@ export const frameFavoriteIconsMap = (favoriteIcons, oldFetchMap = {}) => {
             [FAVORITES_PATH]: fetchPath,
         }
     }
-    return favoritesMap;
+    return { ...favoritesMap };
+};
+
+export const extractSimplifiedMapFromFavoritesMap = (favoritesMap, newItem, label) => {
+    // fetchmap :{id,fetchPath,isFetched} convert to => id:path
+    // TO avoid much memory usage in db we are following this way of simplified mapping
+    let newMap = {};
+    const { id, value } = newItem;
+    for (const [key, config] of Object.entries(favoritesMap)) {
+        let fetchPath;
+        if (config[FAVORITES_PATH].includes(COMMON_ICONS_LIST_PATH)) {
+            fetchPath = COMMON_ICONS_HEADER_LABEL;
+        }
+        if (config[FAVORITES_PATH].includes(PROJECT_ICONS_LIST_PATH)) {
+            fetchPath = PROJECT_ICONS_HEADER_LABEL;
+        }
+        newMap[key] = fetchPath;
+    }
+    if (value) {
+        newMap[id] = label;
+    }
+    else {
+        const { [id]: deleteItem, ...otherProps } = newMap;
+        newMap = { ...otherProps };
+    }
+    return { ...newMap };
 };
