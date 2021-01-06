@@ -3,7 +3,6 @@ import { takeLatest, all, call, put, select } from 'redux-saga/effects';
 import { readDocListFromFirestore } from '../../firebase/firebase.utils';
 import { COMMON_ICONS_LIST_PATH, PROJECT_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
 //Action types
-import { userActionTypes } from '../user/user.type';
 import { favoriteIconsActionTypes } from './favorite-icons.type';
 import { commonIconsActionsTypes } from '../common-icons/common-icons.type';
 import { projectIconsActionTypes } from '../project-icons/project-icons.type';
@@ -11,10 +10,8 @@ import { projectIconsActionTypes } from '../project-icons/project-icons.type';
 import { deleteCommonIconFromDbStart, toggleCommonIconFavoriteModeStart } from '../common-icons/common-icons.actions';
 import { deleteProjectIconFromDbStart, toggleProjectIconFavoriteModeStart } from '../project-icons/project-icons.actions';
 import {
-    setCurrentUserFavoriteIconsFetchMap, fetchCurrentUserFavoriteIconsSuccess,
-    fetchCurrentUserFavoriteIconsFailure, deleteIconFromFavoriteTabSuccess,
-    deleteIconFromFavoriteTabFailure, toggleIconFavoriteModeSuccess,
-    toggleIconFavoriteModeFailure, updateFavoriteIconsMap, syncFavoriteTabIconsWithFetchMap
+    fetchCurrentUserFavoriteIconsSuccess,fetchCurrentUserFavoriteIconsFailure, deleteIconFromFavoriteTabSuccess,
+    deleteIconFromFavoriteTabFailure, toggleIconFavoriteModeFailure, updateFavoriteIconsMap
 } from './favorite-icons.actions';
 //selectors
 import { selectUser } from '../user/user.selectors';
@@ -23,7 +20,7 @@ import { selectFavoriteIcons } from './favorite-icons.selectors';
 import { USER_PROFILE, FAVORITES_PROP, USER_FAVORITES_FETCH_LIMIT } from '../../utilities/app.constants';
 //helpers
 import {
-    frameFavoriteIconsMap, getLimitedFetchList, frameIconObjFromDocObj, checkIsAllIconsFetched,
+    getLimitedFetchList, frameIconObjFromDocObj, checkIsAllIconsFetched,
     updateFavoritesIconsFetchMap, extractPropsBasedOnList, removePropsBasedOnList
 } from '../../utilities/helper.functions';
 import { updateCurrentUserFavoriteIcons } from '../user/user.actions';
@@ -32,18 +29,6 @@ import { updateCurrentUserFavoriteIcons } from '../user/user.actions';
 const { USER_FAVORITES, USER_FAVORITES_FETCH_STATUS } = USER_PROFILE;
 const { FAVORITES_IS_FETCHED, FAVORITES_PATH } = FAVORITES_PROP;
 
-// Remvoving icon from client fav tab
-function* removeIconFromFavoriteTab({ payload: { id } }) {
-    // yield put(toggleIconFavoriteModeSuccess(id));
-};
-
-function* onRemoveAsFavoriteFromDbSuccess() {
-    // yield takeLatest(
-    //     [commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_SUCCESS,
-    //     projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_SUCCESS],
-    //     removeIconFromFavoriteTab
-    // );
-};
 //Removing from favorites in db
 function* removeIconFromUserFavorite({ payload: { id, value } }) {
     try {
@@ -156,6 +141,5 @@ export function* favoriteIconsSagas() {
         call(onFetchUserFavoriteIcons),
         call(onSyncFavoriteIcons),
         call(onRemovingIconFromFavorite),
-        // call(onRemoveAsFavoriteFromDbSuccess),
     ]);
 }
