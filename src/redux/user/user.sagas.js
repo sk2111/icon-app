@@ -28,7 +28,7 @@ function* storeAndFetchCurrentUserDetails({ payload: { ...currentUserData } }) {
         const userRoleType = yield call(getUserAccessRoleFromFireStore, currentUserData.uid);
         currentUserDataToStore[USER_ADMIN] = userRoleType ? userRoleType[USER_ADMIN] : false;
         currentUserDataToStore[USER_FAVORITES] = yield call(frameFavoriteIconsMap, currentUserDataToStore[USER_FAVORITES]);
-        currentUserDataToStore[USER_FAVORITES_FETCH_STATUS] = true;
+        currentUserDataToStore[USER_FAVORITES_FETCH_STATUS] = !!Object.keys(currentUserDataToStore[USER_FAVORITES]).length;
         yield put(getCurrentUserInfoSuccess(currentUserDataToStore));
     }
     catch (e) {
