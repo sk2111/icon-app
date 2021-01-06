@@ -71,9 +71,9 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
         yield call(updateDocPropInFirestore, pathToUpdate, { property: USER_FAVORITES, value: newFavoritesMapForUpload });
         yield put(toggleProjectIconFavoriteModeSuccess({ id, value }));
         const newFavoritesFetchMap = yield call(frameFavoriteIconsMap, newFavoritesMapForUpload);
-        const moreIconsFavIconsAvailableToFetch = yield call(checkIsAllIconsFetched, newFavoritesFetchMap);
-        console.log("project icons see whether all fav icons is fetchd", moreIconsFavIconsAvailableToFetch);
-        yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap: { ...newFavoritesFetchMap }, moreIconsFavIconsAvailableToFetch }));
+        const isMoreFavIconsAvailableToFetch = yield call(checkIsAllIconsFetched, newFavoritesFetchMap);
+        console.log("project icons see whether all fav icons is fetchd", isMoreFavIconsAvailableToFetch);
+        yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap: { ...newFavoritesFetchMap }, isMoreFavIconsAvailableToFetch }));
     }
     catch (e) {
         console.log(e);
