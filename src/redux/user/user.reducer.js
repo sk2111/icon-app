@@ -2,7 +2,7 @@ import { userActionTypes } from './user.type';
 //constants 
 import { USER_PROFILE } from '../../utilities/app.constants';
 
-const { USER_FAVORITES } = USER_PROFILE;
+const { USER_FAVORITES, USER_FAVORITES_FETCH_STATUS } = USER_PROFILE;
 
 const CLEARVALUE = null;
 
@@ -19,7 +19,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case userActionTypes.CHECK_USER_PERSISTANCE_COMPLETED:
             return { ...state, errorMessage: CLEARVALUE, userPersistCheckDone: true };
         case userActionTypes.UPDATE_CURRENT_USER_FAVORITE_ICONS:
-            return { ...state, currentUser: { ...state.currentUser, [USER_FAVORITES]: { ...action.payload } } }
+            const { updatedFetchMap, fetchStatus } = action.payload;
+            return {
+                ...state, currentUser: {
+                    ...state.currentUser,
+                    [USER_FAVORITES_FETCH_STATUS]: fetchStatus,
+                    [USER_FAVORITES]: updatedFetchMap
+                }
+            }
         case userActionTypes.USER_SIGN_OUT_SUCCESS:
             return { ...state, errorMessage: CLEARVALUE, currentUser: null };
         case userActionTypes.USER_SIGN_OUT_FAILURE:

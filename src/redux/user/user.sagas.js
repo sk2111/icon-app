@@ -19,7 +19,7 @@ import { LOADING_PERSISTANT_CHECK_TIME, USER_PROFILE } from '../../utilities/app
 import { frameCurrentUserObject, frameFavoriteIconsMap } from '../../utilities/helper.functions';
 
 
-const { USER_FAVORITES, USER_ADMIN } = USER_PROFILE;
+const { USER_FAVORITES, USER_ADMIN, USER_FAVORITES_FETCH_STATUS } = USER_PROFILE;
 // current user auth object stroring in redux store 
 function* storeAndFetchCurrentUserDetails({ payload: { ...currentUserData } }) {
     try {
@@ -28,6 +28,7 @@ function* storeAndFetchCurrentUserDetails({ payload: { ...currentUserData } }) {
         const userRoleType = yield call(getUserAccessRoleFromFireStore, currentUserData.uid);
         currentUserDataToStore[USER_ADMIN] = userRoleType ? userRoleType[USER_ADMIN] : false;
         currentUserDataToStore[USER_FAVORITES] = yield call(frameFavoriteIconsMap, currentUserDataToStore[USER_FAVORITES]);
+        currentUserDataToStore[USER_FAVORITES_FETCH_STATUS] = true;
         yield put(getCurrentUserInfoSuccess(currentUserDataToStore));
     }
     catch (e) {

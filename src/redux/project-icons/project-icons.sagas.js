@@ -26,7 +26,7 @@ import {
 //helpers
 import {
     getPaginateConfig, frameIconObjFromDocObj, framePaginationQueryParams,
-    extractSimplifiedMapFromFavoritesMap, frameFavoriteIconsMap
+    extractSimplifiedMapFromFavoritesMap, frameFavoriteIconsMap, checkIsAllIconsFetched
 } from '../../utilities/helper.functions';
 
 const { USER_FAVORITES } = USER_PROFILE;
@@ -71,7 +71,9 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
         yield call(updateDocPropInFirestore, pathToUpdate, { property: USER_FAVORITES, value: newFavoritesMapForUpload });
         yield put(toggleProjectIconFavoriteModeSuccess({ id, value }));
         const newFavoritesFetchMap = yield call(frameFavoriteIconsMap, newFavoritesMapForUpload);
-        yield put(updateCurrentUserFavoriteIcons({ ...newFavoritesFetchMap }));
+        const fetchStatus = yield call(checkIsAllIconsFetched, newFavoritesFetchMap);
+        console.log("project icons see whether all fav icons is fetchd", fetchStatus);
+        yield put(updateCurrentUserFavoriteIcons({ updatedFetchMap: { ...newFavoritesFetchMap }, fetchStatus }));
     }
     catch (e) {
         console.log(e);

@@ -1,7 +1,3 @@
-import { FAVORITES_PROP } from '../utilities/app.constants';
-const { FAVORITES_IS_FETCHED } = FAVORITES_PROP;
-
-
 export const removeObjectPropertiesImmutably = (obj, keys) => {
     if (keys) {
         let objToReturn = { ...obj };
@@ -32,13 +28,4 @@ export const editAllIconsObjectPropertiesImmutably = (obj, { key, value }) => {
         return returnObj;
     }
     return obj;
-};
-
-export const updateFavoritesIconsFetchMap = (fetchMap, fetchIdList) => {
-    fetchIdList.forEach(id => {
-        fetchMap[id] = {
-            ...fetchMap[id], [FAVORITES_IS_FETCHED]: true
-        }
-    });
-    return { ...fetchMap };
 };

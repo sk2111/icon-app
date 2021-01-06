@@ -14,8 +14,8 @@ import {
     deleteIconFromFavoriteTabStart, toggleIconFavoriteModeStart
 } from '../../redux/favorite-icons/favorite-icons.actions';
 //selectors
-import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
-import { selectIsMoreIconsAvailableToFetch, selectFavoriteIconsListToDisplay, selectFavoriteIconsSearchValue } from '../../redux/favorite-icons/favorite-icons.selectors';
+import { selectCurrentUserAdminRole, selectIsMoreFavoriteIconsAvailableToFetch } from '../../redux/user/user.selectors';
+import { selectFavoriteIconsListToDisplay, selectFavoriteIconsSearchValue } from '../../redux/favorite-icons/favorite-icons.selectors';
 //constants
 import { FAVORITES_ICONS_HEADER_LABEL, FAVORITES_ICONS_INPUT_PLACEHOLDER } from '../../utilities/app.constants';
 
@@ -51,7 +51,7 @@ const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, icons
 
 const mapStateToProps = createStructuredSelector({
     isCurrentUserAdmin: selectCurrentUserAdminRole,
-    isMoreIconsAvaliableToFetch: selectIsMoreIconsAvailableToFetch,
+    isMoreIconsAvaliableToFetch: selectIsMoreFavoriteIconsAvailableToFetch,
     iconsList: selectFavoriteIconsListToDisplay,
     searchValue: selectFavoriteIconsSearchValue,
 });

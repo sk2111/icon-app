@@ -294,3 +294,21 @@ export const extractSimplifiedMapFromFavoritesMap = (favoritesMap, newItem, labe
     }
     return { ...newMap };
 };
+//check all favorite icons fetched
+export const checkIsAllIconsFetched = (fetchMap) => {
+    for (const [key] of Object.entries(fetchMap)) {
+        if (!fetchMap[key][FAVORITES_IS_FETCHED]) {
+            return true;
+        }
+    }
+    return false;
+};
+// update favorites fetch Map after retriving from db
+export const updateFavoritesIconsFetchMap = (fetchMap, fetchIdList) => {
+    fetchIdList.forEach(id => {
+        fetchMap[id] = {
+            ...fetchMap[id], [FAVORITES_IS_FETCHED]: true
+        }
+    });
+    return { ...fetchMap };
+};

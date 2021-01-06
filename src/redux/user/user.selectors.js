@@ -12,6 +12,8 @@ export const selectCurrentUserEmail = createSelector([selectCurrentUser], (user)
 
 export const selectCurrentUserFavoriteIcons = createSelector([selectCurrentUser], (user) => user.favouriteIconsDocId);
 
+export const selectIsMoreFavoriteIconsAvailableToFetch = createSelector([selectCurrentUser], (user) => user.isFavoriteIconsAvailableToFetch);
+
 export const selectCurrentUserFullName = createSelector([selectCurrentUser],
     (user) => user ? user.firstName + ' ' + user.lastName : CLEARVALUE);
 
