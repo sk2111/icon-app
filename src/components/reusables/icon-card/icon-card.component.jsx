@@ -8,11 +8,16 @@ import RenderView from '../render-view/render-view.component';
 import DeleteIcon from '../../../assests/png/delete-icon.png';
 import FavoriteIcon from '../../../assests/png/favorite-icon.png';
 import NotFavoriteIcon from '../../../assests/png/not-favorite-icon.png';
+//constants
+import { ICON_PROP } from '../../../utilities/app.constants';
 
+const { ICON_ID, ICON_NAME, ICON_BASE_64, ICON_FAVORITE, ICON_DATA } = ICON_PROP;
 
-const IconCard = ({ iconId, iconName, iconContainerClass, iconBase64, isCurrentUserAdmin, isFavorite,
-    handleFavoriteSelection, confirmDelete }) => {
+const IconCard = ({ iconConfig, iconContainerClass, isCurrentUserAdmin, handleFavoriteSelection,
+    confirmDelete, editSelectedIcon }) => {
 
+    const { [ICON_ID]: iconId, [ICON_DATA]: iconData, [ICON_NAME]: iconName,
+        [ICON_BASE_64]: iconBase64, [ICON_FAVORITE]: isFavorite } = iconConfig;
     const actionContainer = `re-icon-action-container ${iconContainerClass}`;
 
     return (
@@ -28,11 +33,16 @@ const IconCard = ({ iconId, iconName, iconContainerClass, iconBase64, isCurrentU
                 </RenderView>
                 <RenderView renderIfFalse={isFavorite}>
                     <img className={styles.actionIcon} alt="-" src={NotFavoriteIcon}
-                        onClick={() => handleFavoriteSelection({ id: iconId, value: true })}/>
+                        onClick={() => handleFavoriteSelection({ id: iconId, value: true })} />
                 </RenderView>
             </div>
             <div className={styles.iconContainer}>
-                <img className={styles.iconImg} src={`data:image/svg+xml;base64,${iconBase64}`} alt="" />
+                <img
+                    className={styles.iconImg}
+                    src={`data:image/svg+xml;base64,${iconBase64}`}
+                    alt=""
+                    onClick={() => editSelectedIcon({ id: iconId, iconName, iconData })}
+                />
             </div>
             <div className={styles.iconName}>{iconName}</div>
         </div>
