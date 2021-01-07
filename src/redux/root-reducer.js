@@ -9,6 +9,8 @@ import projectIconsReducer from './project-icons/project-icons.reducer';
 import favoriteIconsReducer from './favorite-icons/favorite-icons.reducer';
 import appDataReducer from './app-data/app-data.reducer';
 import uploadIconsReducer from './upload-icons/upload-icons.reducer';
+import editIconReducer from './edit-icon/edit-icon.reducer';
+
 //action types
 import { userActionTypes } from '../redux/user/user.type';
 
@@ -20,7 +22,9 @@ const appReducer = combineReducers({
     uploadIcons: uploadIconsReducer,
     commonIcons: commonIconsReducer,
     projectIcons: projectIconsReducer,
-    favoriteIcons: favoriteIconsReducer
+    favoriteIcons: favoriteIconsReducer,
+    editIcon: editIconReducer,
+
 });
 
 const rootReducer = (state, action) => {
@@ -31,6 +35,7 @@ const rootReducer = (state, action) => {
         state.commonIcons = undefined;
         state.projectIcons = undefined;
         state.favoriteIcons = undefined;
+        state.editIcon = undefined;
     }
     return appReducer(state, action);
 };
