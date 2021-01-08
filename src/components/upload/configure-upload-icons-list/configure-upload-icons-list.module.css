@@ -1,13 +1,15 @@
 .topContainer {
   position: relative;
 }
+.nameIconPreview{
+  display:flex;
+}
 .dropdown {
   font-size: 13px;
   height: 27px;
   width: 160px;
 }
 .listContainer {
-  align-items: center;
   border-radius: 3px;
   box-shadow: 0 0 3px 0 var(--app-upload-modal-preview-shadow);
   display: flex;
@@ -36,10 +38,13 @@
   max-width: 140px;
   white-space: nowrap;
 }
+.tagHolder {
+  height: 100%;
+}
 .tagSection {
   margin-left: 20px;
 }
 .tagsContainer {
-  max-height: 80px !important;
+  max-height: 56px !important;
   width: 270px !important;
 }

@@ -65,19 +65,21 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
                     const iconName = icon[ICON_NAME];
                     return (
                         <div key={iconId} className={styles.listContainer}>
-                            <div className={styles.imgContainer}>
-                                <img className={styles.previewImage} src={`data:image/svg+xml;base64,${icon[ICON_BASE_64]}`} alt="Invalid" />
-                            </div>
-                            <div className={styles.selectionZone}>
-                                <div className="re-uploadname-container">
-                                    <div className={styles.iconName}>{iconName}</div>
-                                    <img className="re-upload-editPencil" src={EditPencilWebp} alt="edit" onClick={() => handleEditName(iconName, iconId)} />
+                            <div className={styles.nameIconPreview}>
+                                <div className={styles.imgContainer}>
+                                    <img className={styles.previewImage} src={`data:image/svg+xml;base64,${icon[ICON_BASE_64]}`} alt="Invalid" />
                                 </div>
-                                <CustomSelect
-                                    className={styles.dropdown}
-                                    options={classificationOptions}
-                                    value={selectValue}
-                                    handleValueChange={(val) => handleClassificationChange(iconId, selectValue, val)} />
+                                <div className={styles.selectionZone}>
+                                    <div className="re-uploadname-container">
+                                        <div className={styles.iconName}>{iconName}</div>
+                                        <img className="re-upload-editPencil" src={EditPencilWebp} alt="edit" onClick={() => handleEditName(iconName, iconId)} />
+                                    </div>
+                                    <CustomSelect
+                                        className={styles.dropdown}
+                                        options={classificationOptions}
+                                        value={selectValue}
+                                        handleValueChange={(val) => handleClassificationChange(iconId, selectValue, val)} />
+                                </div>
                             </div>
                             <div className={styles.tagSection}>
                                 <CustomTags

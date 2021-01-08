@@ -92,7 +92,7 @@
   align-items: center;
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .re-uploadname-container:hover .re-upload-editPencil {
   visibility: visible !important;
