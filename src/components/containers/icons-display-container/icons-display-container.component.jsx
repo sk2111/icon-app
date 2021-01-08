@@ -31,40 +31,42 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
     };
 
     return (
-        <div className={displayContainer}>
-            {
-                iconList.map((icon) => {
-                    return (
-                        <IconCard
-                            key={icon[ICON_ID]}
-                            iconConfig={icon}
-                            iconContainerClass={iconContainerClass}
-                            isCurrentUserAdmin={isCurrentUserAdmin}
-                            handleFavoriteSelection={handleFavoriteSelection}
-                            confirmDelete={setShowDeleteModal}
-                            editSelectedIcon={handleEditIcon}
-                        />
+        <div className={styles.overflowContainer}>
+            <div className={displayContainer}>
+                {
+                    iconList.map((icon) => {
+                        return (
+                            <IconCard
+                                key={icon[ICON_ID]}
+                                iconConfig={icon}
+                                iconContainerClass={iconContainerClass}
+                                isCurrentUserAdmin={isCurrentUserAdmin}
+                                handleFavoriteSelection={handleFavoriteSelection}
+                                confirmDelete={setShowDeleteModal}
+                                editSelectedIcon={handleEditIcon}
+                            />
 
-                    );
-                })
-            }
-            <RenderView renderIfTrue={isMoreIconsAvaliableToFetch}>
-                <LazyLoadingCardWithEvent fetchMoreIcons={fetchMoreIcons} />
-                <LazyLoadingCardContainer />
-            </RenderView>
-            <RenderView renderIfFalse={isMoreIconsAvaliableToFetch}>
-                <div className={styles.userMessage}>{userMessage}</div>
-            </RenderView>
-            <RenderView renderIfTrue={isVisible && isCurrentUserAdmin}>
-                <CreateModalCard className={styles.deleteCard}>
-                    <h6 className={styles.confirmHeader}>Warning !</h6>
-                    <p className={styles.confirmDetails}>Icon will be deleted permanently from database...</p>
-                    <div className={styles.confirmBtnContainer}>
-                        <button className={styles.cancelButton} onClick={() => setShowDeleteModal({ ...DEFAULT_MODAL_STATE })}>Cancel</button>
-                        <button className={styles.proceedButton} onClick={() => handleDeleteIconAction(iconIdToDelete)} > Proceed</button>
-                    </div>
-                </CreateModalCard>
-            </RenderView>
+                        );
+                    })
+                }
+                <RenderView renderIfTrue={isMoreIconsAvaliableToFetch}>
+                    <LazyLoadingCardWithEvent fetchMoreIcons={fetchMoreIcons} />
+                    <LazyLoadingCardContainer />
+                </RenderView>
+                <RenderView renderIfFalse={isMoreIconsAvaliableToFetch}>
+                    <div className={styles.userMessage}>{userMessage}</div>
+                </RenderView>
+                <RenderView renderIfTrue={isVisible && isCurrentUserAdmin}>
+                    <CreateModalCard className={styles.deleteCard}>
+                        <h6 className={styles.confirmHeader}>Warning !</h6>
+                        <p className={styles.confirmDetails}>Icon will be deleted permanently from database...</p>
+                        <div className={styles.confirmBtnContainer}>
+                            <button className={styles.cancelButton} onClick={() => setShowDeleteModal({ ...DEFAULT_MODAL_STATE })}>Cancel</button>
+                            <button className={styles.proceedButton} onClick={() => handleDeleteIconAction(iconIdToDelete)} > Proceed</button>
+                        </div>
+                    </CreateModalCard>
+                </RenderView>
+            </div>
         </div>
     );
 };
