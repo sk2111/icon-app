@@ -8,7 +8,7 @@ import styles from './lazy-loading-card.module.css';
 const intersectionOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.85
+    threshold: 0.80
 };
 
 const LazyLoadingCardWithEvent = ({ fetchMoreIcons }) => {
