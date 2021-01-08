@@ -4,10 +4,11 @@
   display: flex;
   flex-direction: column;
   height: var(--app-user-display-icon-card-dimension);
+  position: relative;
   width: var(--app-user-display-icon-card-dimension);
 }
 .iconImg {
-  background-color: var(--app-user-display-icon-card-lazy-background);
+  background: var(--app-user-display-icon-card-lazy-background);
   border-radius: 3px;
   display: block;
   margin: 34px auto 24px auto;
@@ -23,4 +24,24 @@
   margin-left: 8px;
   height: 14px;
   width: 114px;
+}
+.overlay {
+  background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0));
+  background-size: 600% 600%;
+  animation: gradient 1s ease infinite;
+  position: absolute;
+  height: 100%;
+  width:100%;
+}
+/* Animatio wavy */
+@keyframes gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
 }

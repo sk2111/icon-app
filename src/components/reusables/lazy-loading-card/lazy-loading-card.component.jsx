@@ -13,6 +13,7 @@ const LazyLoadingCard = () => {
                 <div className={styles.iconImg}></div>
             </div>
             <div className={styles.iconName}></div>
+            <div className={styles.overlay}></div>
         </div>
     );
 };
