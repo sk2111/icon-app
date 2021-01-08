@@ -1,13 +1,14 @@
 import { editIconActionTypes } from './edit-icon.type';
 
 const INITIAL_STATE = {
-    iconToEdit: {}
+    iconToEdit: {},
+    isEditIconModalOpen: false,
 };
 
 const editIconReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case editIconActionTypes.EDIT_USER_SELECTED_ICON:
-            return { ...state, iconToEdit: { ...action.payload } };
+            return { ...state, isEditIconModalOpen: true, iconToEdit: { ...action.payload } };
         default:
             return state;
     }

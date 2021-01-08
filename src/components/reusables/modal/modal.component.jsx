@@ -4,12 +4,12 @@ import React from 'react';
 import styles from './modal.module.css';
 
 
-const Modal = ({ children, isModalOpen }) => {
+const Modal = ({ children, isModalOpen, contentContainerClass }) => {
 
     const modalViewClass = isModalOpen ? styles.showModal : styles.hideModal;
 
     const modalBackgroundClass = `${styles.shadow} ${modalViewClass}`;
-    const contentClass = `${styles.content} ${modalViewClass}`;
+    const contentClass = `${styles.content} ${modalViewClass} ${contentContainerClass}`;
 
     return (
         <div className={modalBackgroundClass}>
@@ -18,6 +18,11 @@ const Modal = ({ children, isModalOpen }) => {
             </div>
         </div>
     );
+};
+
+
+Modal.defaultProps = {
+    contentContainerClass: ''
 };
 
 export default Modal;
