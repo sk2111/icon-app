@@ -14,7 +14,7 @@ import { ICON_PROP, NO_ICONS_FOUND_MESSAGE, NO_MORE_ICONS_MESSAGE, ICON_STY_LENG
 const { ICON_ID } = ICON_PROP;
 
 const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMoreIcons, isCurrentUserAdmin,
-    handleDeleteIcon, handleFavoriteSelection }) => {
+    handleDeleteIcon, handleFavoriteSelection, handleEditIcon }) => {
 
     const DEFAULT_MODAL_STATE = { iconIdToDelete: null, isVisisble: false };
     const [showDeleteModal, setShowDeleteModal] = useState({ ...DEFAULT_MODAL_STATE });
@@ -41,7 +41,10 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
                             iconContainerClass={iconContainerClass}
                             isCurrentUserAdmin={isCurrentUserAdmin}
                             handleFavoriteSelection={handleFavoriteSelection}
-                            confirmDelete={setShowDeleteModal} />
+                            confirmDelete={setShowDeleteModal}
+                            editSelectedIcon={handleEditIcon}
+                        />
+
                     );
                 })
             }

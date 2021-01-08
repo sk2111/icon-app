@@ -36,15 +36,12 @@ const IconCard = ({ iconConfig, iconContainerClass, isCurrentUserAdmin, handleFa
                         onClick={() => handleFavoriteSelection({ id: iconId, value: true })} />
                 </RenderView>
             </div>
-            <div className={styles.iconContainer}>
-                <img
-                    className={styles.iconImg}
-                    src={`data:image/svg+xml;base64,${iconBase64}`}
-                    alt=""
-                    onClick={() => editSelectedIcon({ id: iconId, iconName, iconData })}
-                />
+            <div className={styles.editContainer} onClick={() => editSelectedIcon({ id: iconId, iconName, iconData })}>
+                <div className={styles.iconContainer}>
+                    <img className={styles.iconImg} src={`data:image/svg+xml;base64,${iconBase64}`} alt="" />
+                </div>
+                <div className={styles.iconName}>{iconName}</div>
             </div>
-            <div className={styles.iconName}>{iconName}</div>
         </div>
     );
 };
