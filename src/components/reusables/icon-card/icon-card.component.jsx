@@ -27,15 +27,15 @@ const IconCard = ({ iconConfig, iconContainerClass, isCurrentUserAdmin, handleFa
                     <img className={styles.actionIcon} alt="D" src={DeleteIcon}
                         onClick={() => { confirmDelete({ iconIdToDelete: iconId, isVisible: true }) }} />
                 </RenderView>
-                <RenderView renderIfTrue={isFavorite}>
-                    <img className={styles.actionIcon} alt="-" src={FavoriteIcon}
-                        onClick={() => handleFavoriteSelection({ id: iconId, value: false })} />
-                </RenderView>
                 <RenderView renderIfFalse={isFavorite}>
                     <img className={styles.actionIcon} alt="-" src={NotFavoriteIcon}
                         onClick={() => handleFavoriteSelection({ id: iconId, value: true })} />
                 </RenderView>
             </div>
+            <RenderView renderIfTrue={isFavorite}>
+                <img className={styles.actionIconFavorite} alt="-" src={FavoriteIcon}
+                    onClick={() => handleFavoriteSelection({ id: iconId, value: false })} />
+            </RenderView>
             <div className={styles.editContainer} onClick={() => editSelectedIcon({ id: iconId, iconName, iconData })}>
                 <div className={styles.iconContainer}>
                     <img className={styles.iconImg} src={`data:image/svg+xml;base64,${iconBase64}`} alt="" />

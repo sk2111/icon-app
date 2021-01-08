@@ -1,5 +1,5 @@
 .editContainer {
-  cursor: url("../../../assests/png/pencil-cursor.png"), pointer;
+  /* cursor: url("../../../assests/png/pencil-cursor.png"), pointer; */
 }
 .iconImg {
   display: block;
@@ -21,5 +21,13 @@
   cursor: pointer;
   height: 18px;
   margin: 5px;
+  width: 18px;
+}
+.actionIconFavorite {
+  cursor: pointer;
+  height: 18px;
+  margin: 5px;
+  position: absolute;
+  right: 0px;
   width: 18px;
 }
