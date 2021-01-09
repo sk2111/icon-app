@@ -19,3 +19,7 @@
 .navMenuCollapsed {
   width: 80px;
 }
+.editContainer {
+  max-height: 557px !important;
+  width: 829px !important;
+}

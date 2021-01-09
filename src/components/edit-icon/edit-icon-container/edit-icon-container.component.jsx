@@ -1,11 +1,12 @@
 //libs
 import React from 'react';
-
+//css
+import styles from './edit-icon-container.module.css';
 
 
 const EditIconContainer = () => {
     return (
-        <div>Hai I am edit icon</div>
+        <div className={styles.container}>Hai I am edit icon</div>
     );
 };
 

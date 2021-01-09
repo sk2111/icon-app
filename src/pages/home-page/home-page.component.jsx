@@ -49,7 +49,7 @@ const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen })
             <Modal isModalOpen={isUploadModalOpen}>
                 <UploadIcons />
             </Modal>
-            <Modal isModalOpen={isEditIconModalOpen}>
+            <Modal contentContainerClass={styles.editContainer} isModalOpen={isEditIconModalOpen}>
                 <EditIconContainer />
             </Modal>
         </div>
