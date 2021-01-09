@@ -8,3 +8,10 @@ export const editSelectedIcon = (payload) => {
         payload
     }
 };
+
+//close edit icon modal
+export const closeEditModal = () => {
+    return {
+        type: editIconActionTypes.CLOSE_EDIT_ICON_MODAL
+    }
+};

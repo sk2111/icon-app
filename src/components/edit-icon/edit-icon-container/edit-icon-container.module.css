@@ -1,3 +1,26 @@
 .container {
+  display: flex;
+  flex-direction: row;
   height: 100%;
+  position: relative;
+  width: 100%;
+}
+.svgContainer {
+  height: 100%;
+  padding: 14px;
+  width: 60%;
+}
+.configcontainer {
+  height: 100%;
+  width: 40%;
+}
+.svgInfo {
+  color: #707071;
+  font-size: 20px;
+  font-weight: 500;
+}
+.close {
+  position: absolute;
+  right: -41px;
+  top: -15px;
 }
