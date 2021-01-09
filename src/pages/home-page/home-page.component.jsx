@@ -16,6 +16,7 @@ import NavigationMenu from '../../components/containers/navigation-menu/navigati
 import RouteNotFound from '../../components/containers/route-not-found/route-not-found.component';
 import Modal from '../../components/reusables/modal/modal.component';
 import UploadIcons from '../../components/upload/upload-icons/upload-icons.component';
+import EditIconContainer from '../../components/edit-icon/edit-icon-container/edit-icon-container.component';
 //reselect
 import { selectIsNavMenuExpanded } from '../../redux/app-data/app-data.selectors';
 import { selectIsEditIconModalOpen } from '../../redux/edit-icon/edit-icon.selectors';
@@ -49,7 +50,7 @@ const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen })
                 <UploadIcons />
             </Modal>
             <Modal isModalOpen={isEditIconModalOpen}>
-                <div>Edit Icon Modal</div>
+                <EditIconContainer />
             </Modal>
         </div>
     );
