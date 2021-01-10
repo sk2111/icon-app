@@ -17,6 +17,7 @@ import RouteNotFound from '../../components/containers/route-not-found/route-not
 import Modal from '../../components/reusables/modal/modal.component';
 import UploadIcons from '../../components/upload/upload-icons/upload-icons.component';
 import EditIconContainer from '../../components/edit-icon/edit-icon-container/edit-icon-container.component';
+import RenderView from '../../components/reusables/render-view/render-view.component';
 //reselect
 import { selectIsNavMenuExpanded } from '../../redux/app-data/app-data.selectors';
 import { selectIsEditIconModalOpen } from '../../redux/edit-icon/edit-icon.selectors';
@@ -31,6 +32,7 @@ const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen })
 
     const navigationStyle = isNavMenuExpanded ? styles.navMenuExpanded : styles.navMenuCollapsed;
     const navigationContainerClass = styles.leftContainer + ' ' + navigationStyle;
+
     return (
         <div className={styles.rootContainer}>
             <section className={navigationContainerClass}>
@@ -46,12 +48,16 @@ const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen })
                     <Route component={RouteNotFound} />
                 </Switch>
             </section>
-            <Modal isModalOpen={isUploadModalOpen}>
-                <UploadIcons />
-            </Modal>
-            <Modal contentContainerClass={styles.editContainer} isModalOpen={isEditIconModalOpen}>
-                <EditIconContainer />
-            </Modal>
+            <RenderView renderIfTrue={isUploadModalOpen}>
+                <Modal isModalOpen={isUploadModalOpen}>
+                    <UploadIcons />
+                </Modal>
+            </RenderView>
+            <RenderView renderIfTrue={isEditIconModalOpen}>
+                <Modal contentContainerClass={styles.editContainer} isModalOpen={isEditIconModalOpen}>
+                    <EditIconContainer />
+                </Modal>
+            </RenderView>
         </div>
     );
 };

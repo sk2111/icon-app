@@ -31,14 +31,14 @@ export const USER_PROFILE = {
     USER_EMAIL: 'email',
     USER_CREATED_AT: 'createdAt',
     USER_FAVORITES: 'favoriteIconsDocId',
-    USER_ADMIN:'isAdmin',
-    USER_FAVORITES_FETCH_STATUS:'isFavoriteIconsAvailableToFetch'
+    USER_ADMIN: 'isAdmin',
+    USER_FAVORITES_FETCH_STATUS: 'isFavoriteIconsAvailableToFetch'
 };
 //Favorites Prop constants
 export const FAVORITES_PROP = {
-    FAVORITES_IS_FETCHED:'isFetched',
-    FAVORITES_ID:'id',
-    FAVORITES_PATH:'fetchPath'
+    FAVORITES_IS_FETCHED: 'isFetched',
+    FAVORITES_ID: 'id',
+    FAVORITES_PATH: 'fetchPath'
 };
 // upload label map
 export const UPLOAD_FORM_LABEL = {
@@ -75,3 +75,7 @@ export const ICON_PROP = {
 export const ICON_STY_LENGTH_LIMIT = 12;
 export const NO_ICONS_FOUND_MESSAGE = 'No icons found';
 export const NO_MORE_ICONS_MESSAGE = 'You have reached the end';
+
+
+// edit icon button Image labels
+export const EDIT_ICON_BUTTONS = [{ label: 'PNG', value: 'png' }, { label: 'BMP', value: 'bmp' }, { label: 'SVG', value: 'svg' }];

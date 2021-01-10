@@ -8,6 +8,13 @@ export const editSelectedIcon = (payload) => {
         payload
     }
 };
+// change selected download type
+export const changeDownloadFormat = (payload) => {
+    return {
+        type: editIconActionTypes.CHANGE_ICON_DOWNLOAD_FORMAT,
+        payload
+    }
+}
 
 //close edit icon modal
 export const closeEditModal = () => {
@@ -15,3 +22,4 @@ export const closeEditModal = () => {
         type: editIconActionTypes.CLOSE_EDIT_ICON_MODAL
     }
 };
+
