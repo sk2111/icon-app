@@ -19,6 +19,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType }) => {
             <div className={styles.configurationZone}>
                 <CustomButtonGroup
                     buttons={EDIT_ICON_BUTTONS}
+                    highlightClass={styles.highlightedButton}
                     selectedButton={selectedDownloadType}
                     handleButtonChange={changeDownloadType}
                 />

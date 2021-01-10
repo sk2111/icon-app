@@ -1,12 +1,11 @@
 //libs
 import React from 'react';
-//styles
-import styles from './custom-button-group.module.css';
+
 //component
 import CustomButton from '../custom-button/custom-button.component';
 
 
-const CustomButtonGroup = ({ buttons, buttonClass, selectedButton, handleButtonChange }) => {
+const CustomButtonGroup = ({ buttons, highlightClass, selectedButton, handleButtonChange }) => {
 
     const checkButtonChange = (currentButton) => {
         if (currentButton !== selectedButton) {
@@ -15,9 +14,7 @@ const CustomButtonGroup = ({ buttons, buttonClass, selectedButton, handleButtonC
     };
 
     const getBtnClass = (currentButton) => {
-        const defaultClass = buttonClass ? buttonClass : styles.button;
-        const highlightedButton = defaultClass + ' ' + styles.highlightedButton;
-        return (selectedButton === currentButton) ? highlightedButton : defaultClass;
+        return (selectedButton === currentButton) ? highlightClass : '';
     };
 
     return (
@@ -26,7 +23,6 @@ const CustomButtonGroup = ({ buttons, buttonClass, selectedButton, handleButtonC
                 buttons.map(({ label, value }) => (
                     <CustomButton key={value}
                         className={getBtnClass(value)}
-                        primary
                         onClick={() => checkButtonChange(value)}>{label}</CustomButton>
                 ))
             }
