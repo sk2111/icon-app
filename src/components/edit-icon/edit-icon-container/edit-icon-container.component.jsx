@@ -8,14 +8,26 @@ import styles from './edit-icon-container.module.css';
 import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import { closeEditModal } from '../../../redux/edit-icon/edit-icon.actions';
+//selectors
+import { selectIconToEdit } from '../../../redux/edit-icon/edit-icon.selectors';
 
-const EditIconContainer = ({ iconName, iconSvgData, showClose, closeModal }) => {
+
+const EditIconContainer = ({ iconToEdit, showClose, closeModal }) => {
+    const { iconName, iconData } = iconToEdit;
+    console.log("Test Icon name and svga data", iconName, iconData);
+
     return (
         <div className={styles.container}>
             <div className={styles.svgContainer}>
                 <div className={styles.svgInfo}>{iconName}</div>
-                <div className={styles.svgPreview}></div>
-                <div className={styles.usageInfo}></div>
+                <div className={styles.svgPreview}>
+                    <div className={styles.editSvg} dangerouslySetInnerHTML={{ __html: iconData }}>
+
+                    </div>
+                </div>
+                <div className={styles.usageInfo}>
+                    <div className={styles.recommendText}>RECOMMENDED FOR</div>
+                </div>
             </div>
             <div className={styles.configContainer}>
 
@@ -33,9 +45,13 @@ EditIconContainer.defaultProps = {
 
 
 
+const mapStateToProps = createStructuredSelector({
+    iconToEdit: selectIconToEdit
+});
+
 const mapDispatchToProps = (dispatch) => {
     return {
         closeModal: () => dispatch(closeEditModal())
     }
 }
-export default connect(null, mapDispatchToProps)(EditIconContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EditIconContainer);
