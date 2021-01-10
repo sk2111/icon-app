@@ -141,6 +141,11 @@
 
   /* User display icon card */
   --app-user-display-icon-card-dimension: 130px;
+  /* Edit Icon */
+  --app-black-white-background: #e3e9ed;
+  --app-icon-preview-background: #fff;
+  --app-icon-preview-border: #cfd9e0;
+  --app-icon-preview-shadow: rgba(29, 38, 45, 0.1);
 }
 * {
   box-sizing: border-box;
