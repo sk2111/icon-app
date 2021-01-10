@@ -1,0 +1,13 @@
+.button {
+  background-color: var(--app-button-notselected-background);
+  border-radius: 0px;
+  color: var(--app-button-notselected-text);
+  font-size: 14px;
+  font-weight: 500;
+  height: 38px;
+  width: 90px;
+}
+.highlightedButton {
+  background-color: var(--app-button-primary-background);
+  color: var(--app-button-primary-text);
+}
