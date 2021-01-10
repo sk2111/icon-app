@@ -35,7 +35,7 @@ const CustomButtonGroup = ({ buttons, buttonClass, selectedButton, handleButtonC
 };
 
 CustomButtonGroup.defaultProps = {
-    buttons: [{ label: 'PNG', value: 'png' }, { label: 'BMG', value: 'bmg' }, { label: 'SVG', value: 'svg' }],
+    buttons: [],
     buttonClass: '',
     selectedButton: 'png',
     handleButtonChange: () => { }

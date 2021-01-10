@@ -1,9 +1,12 @@
 import { editIconActionTypes } from './edit-icon.type';
+//constants
+import { DEFAULT_DOWNLOAD_FORMAT } from '../../utilities/app.constants';
+
 
 const INITIAL_STATE = {
     iconToEdit: {},
     isEditIconModalOpen: false,
-    iconDownloadFormat: ''
+    iconDownloadFormat: DEFAULT_DOWNLOAD_FORMAT
 };
 
 const editIconReducer = (state = INITIAL_STATE, action) => {

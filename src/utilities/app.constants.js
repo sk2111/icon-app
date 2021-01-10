@@ -78,4 +78,8 @@ export const NO_MORE_ICONS_MESSAGE = 'You have reached the end';
 
 
 // edit icon button Image labels
-export const EDIT_ICON_BUTTONS = [{ label: 'PNG', value: 'png' }, { label: 'BMP', value: 'bmp' }, { label: 'SVG', value: 'svg' }];
+export const PNG_FORMAT = { label: 'PNG', value: 'png' };
+export const BMP_FORMAT = { label: 'BMP', value: 'bmp' };
+export const SVG_FORMAT = { label: 'SVG', value: 'SVG' };
+export const DEFAULT_DOWNLOAD_FORMAT = SVG_FORMAT.value;
+export const EDIT_ICON_BUTTONS = [PNG_FORMAT, BMP_FORMAT, SVG_FORMAT];

@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import styles from './edit-icon-container.module.css';
 //components
 import RenderView from '../../reusables/render-view/render-view.component';
+import EditIconConfig from '../edit-icon-config/edit-icon-config.component';
 //actions
 import { closeEditModal } from '../../../redux/edit-icon/edit-icon.actions';
 //selectors
@@ -13,15 +14,15 @@ import { selectIconToEdit } from '../../../redux/edit-icon/edit-icon.selectors';
 
 
 const EditIconContainer = ({ iconToEdit, showClose, closeModal }) => {
+
     const { iconName, iconData } = iconToEdit;
-    console.log("Test Icon name and svga data", iconName, iconData);
 
     return (
         <div className={styles.container}>
             <div className={styles.svgContainer}>
                 <div className={styles.svgInfo}>{iconName}</div>
                 <div className={styles.svgPreview}>
-                    <div className={styles.editSvg} dangerouslySetInnerHTML={{ __html: iconData }}>
+                    <div className="re_editSelectedSvgContainer" dangerouslySetInnerHTML={{ __html: iconData }}>
 
                     </div>
                 </div>
@@ -30,7 +31,7 @@ const EditIconContainer = ({ iconToEdit, showClose, closeModal }) => {
                 </div>
             </div>
             <div className={styles.configContainer}>
-
+                <EditIconConfig />
             </div>
             <RenderView renderIfTrue={showClose}>
                 <div className={styles.close} onClick={closeModal}>close</div>
