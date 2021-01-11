@@ -83,3 +83,9 @@ export const BMP_FORMAT = { label: 'BMP', value: 'bmp' };
 export const SVG_FORMAT = { label: 'SVG', value: 'svg' };
 export const DEFAULT_DOWNLOAD_FORMAT = SVG_FORMAT.value;
 export const EDIT_ICON_BUTTONS = [PNG_FORMAT, BMP_FORMAT, SVG_FORMAT];
+export const RECOMMENDATION_INFO = {
+    [PNG_FORMAT.value]: ['Presentations', 'Labview Applications'],
+    [BMP_FORMAT.value]: ['Printing'],
+    [SVG_FORMAT.value]: ['Web Design'],
+};
+

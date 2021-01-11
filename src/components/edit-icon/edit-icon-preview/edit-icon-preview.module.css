@@ -15,8 +15,18 @@
 .usageInfo {
   height: 60px;
 }
-.recommendText {
+.recommendHeader {
   color: #707071;
   font-size: 12px;
   font-weight: 500;
+  margin-bottom: 8px;
+}
+.recommendationText {
+  color: #989899;
+  font-size: 13px;
+  margin: 0px 0px 4px 0px;
+}
+.recommendList {
+  margin-top: 10px;
+  padding-left: 13px;
 }

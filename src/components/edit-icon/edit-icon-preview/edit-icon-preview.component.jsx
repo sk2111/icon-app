@@ -4,16 +4,21 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //css
 import styles from './edit-icon-preview.module.css';
+//components
+import RenderView from '../../reusables/render-view/render-view.component';
 //reselect
-import { selectIconToEdit } from '../../../redux/edit-icon/edit-icon.selectors';
+import { selectIconToEdit, selectIconDownloadFormat } from '../../../redux/edit-icon/edit-icon.selectors';
+//constants
+import { RECOMMENDATION_INFO } from '../../../utilities/app.constants.js';
 //helpers
 import { sanitizeSvg } from '../../../utilities/helper.functions';
 
-
-const EditIconPreview = ({ iconToEdit }) => {
+const EditIconPreview = ({ iconToEdit, iconDownloadFormat }) => {
 
     const { iconName, iconData } = iconToEdit;
 
+    console.log("Recommendation info", RECOMMENDATION_INFO);
+    const recommendationList = RECOMMENDATION_INFO[iconDownloadFormat] ? RECOMMENDATION_INFO[iconDownloadFormat] : [];
 
     return (
         <div className={styles.container}>
@@ -23,7 +28,16 @@ const EditIconPreview = ({ iconToEdit }) => {
                 </div>
             </div>
             <div className={styles.usageInfo}>
-                <div className={styles.recommendText}>RECOMMENDED FOR</div>
+                <RenderView renderIfTrue={recommendationList.length}>
+                    <div className={styles.recommendHeader}>RECOMMENDED FOR</div>
+                    <ul className={styles.recommendList}>
+                        {
+                            recommendationList.map((val) => (
+                                <li className={styles.recommendationText} key={val}>{val}</li>
+                            ))
+                        }
+                    </ul>
+                </RenderView>
             </div>
         </div>
     );
@@ -31,7 +45,8 @@ const EditIconPreview = ({ iconToEdit }) => {
 
 
 const mapStateToProps = createStructuredSelector({
-    iconToEdit: selectIconToEdit
+    iconToEdit: selectIconToEdit,
+    iconDownloadFormat: selectIconDownloadFormat
 });
 
 export default connect(mapStateToProps)(EditIconPreview);
