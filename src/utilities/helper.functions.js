@@ -1,3 +1,5 @@
+//libs
+import DOMPurify from 'dompurify';
 //constants
 import {
     UPLOAD_ICONS_DEFAULT_CLASSIFICATION, ICON_PROP, FAVORITES_PROP,
@@ -14,6 +16,8 @@ export const frameCurrentUserObject = (userObj) => {
         ...userObj, isAdmin: false
     };
 };
+
+export const sanitizeSvg = (svg) => DOMPurify.sanitize(svg, { USE_PROFILES: { svg: true, svgFilters: true } });
 
 export const integerArray = len => Array.from(Array(len ?? NUMBER_OF_LAZY_LOAD_ICONS_TO_DISPLAY), (x, i) => i);
 
@@ -91,7 +95,7 @@ export const readFilesAsync = async (fileList, acceptType, validfileNameCheck = 
             for (let i = 0; i < validFiles.length; i++) {
                 const fileName = String(validFiles[i].name).replace(validfileNameCheck, '');
                 const textData = await readAsTextFile(validFiles[i]);
-                handleFileUpload([{ name: fileName, textData: textData }]);
+                handleFileUpload([{ name: fileName, textData: sanitizeSvg(textData) }]);
             }
         }
     }
