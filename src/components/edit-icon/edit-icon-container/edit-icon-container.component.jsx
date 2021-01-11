@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import styles from './edit-icon-container.module.css';
 //components
 import RenderView from '../../reusables/render-view/render-view.component';
+import EditIconPreview from '../../edit-icon/edit-icon-preview/edit-icon-preview.component';
 import EditIconConfig from '../edit-icon-config/edit-icon-config.component';
 //actions
 import { closeEditModal } from '../../../redux/edit-icon/edit-icon.actions';
@@ -18,17 +19,9 @@ const EditIconContainer = ({ iconToEdit, showClose, closeModal }) => {
     const { iconName, iconData } = iconToEdit;
 
     return (
-        <div className={styles.container}>
-            <div className={styles.svgContainer}>
-                <div className={styles.svgInfo}>{iconName}</div>
-                <div className={styles.svgPreview}>
-                    <div className="re_editSelectedSvgContainer" dangerouslySetInnerHTML={{ __html: iconData }}>
-
-                    </div>
-                </div>
-                <div className={styles.usageInfo}>
-                    <div className={styles.recommendText}>RECOMMENDED FOR</div>
-                </div>
+        <div className={styles.editContainer}>
+            <div className={styles.previewContainer}>
+                <EditIconPreview />
             </div>
             <div className={styles.configContainer}>
                 <EditIconConfig />

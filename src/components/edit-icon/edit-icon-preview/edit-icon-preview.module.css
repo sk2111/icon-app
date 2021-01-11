@@ -1,0 +1,22 @@
+.container {
+  height: 100%;
+  width: 100%;
+}
+.svgInfo {
+  color: #707071;
+  font-size: 20px;
+  font-weight: 500;
+  height: 25px;
+}
+.svgPreview {
+  height: 400px;
+  padding-top: 52px;
+}
+.usageInfo {
+  height: 60px;
+}
+.recommendText {
+  color: #707071;
+  font-size: 12px;
+  font-weight: 500;
+}
