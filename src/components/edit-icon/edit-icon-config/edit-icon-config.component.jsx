@@ -7,13 +7,17 @@ import styles from './edit-icon-config.module.css';
 //components
 import CustomButtonGroup from '../../reusables/custom-buton-group/custom-button-group.component';
 //actions
-import { changeDownloadFormat } from '../../../redux/edit-icon/edit-icon.actions';
+import { changeDownloadFormat, changeStandardDownloadSize } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
-import { selectIconDownloadFormat } from '../../../redux/edit-icon/edit-icon.selectors';
+import { selectIconDownloadFormat, selectDownloadSize } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { EDIT_ICON_BUTTONS, DEFAULT_DOWNLOAD_SIZE_BUTTONS } from '../../../utilities/app.constants';
 
-const EditIconConfig = ({ selectedDownloadType, changeDownloadType }) => {
+const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize, changeStandardDownloadSize }) => {
+
+    const { height, width } = downloadSize;
+    const selectedDefaultSizeGroup = (height === width) ? height : '';
+
     return (
         <div className={styles.container}>
             <div className={styles.configurationZone}>
@@ -28,8 +32,8 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType }) => {
                     <CustomButtonGroup
                         buttons={DEFAULT_DOWNLOAD_SIZE_BUTTONS}
                         highlightClass={styles.highlightedButton}
-                        selectedButton={selectedDownloadType}
-                        handleButtonChange={changeDownloadType}
+                        selectedButton={selectedDefaultSizeGroup}
+                        handleButtonChange={changeStandardDownloadSize}
                     />
                 </div>
             </div>
@@ -43,12 +47,14 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType }) => {
 
 
 const mapStateToProps = createStructuredSelector({
-    selectedDownloadType: selectIconDownloadFormat
+    selectedDownloadType: selectIconDownloadFormat,
+    downloadSize: selectDownloadSize
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         changeDownloadType: (format) => dispatch(changeDownloadFormat(format)),
+        changeStandardDownloadSize: (size) => dispatch(changeStandardDownloadSize(size)),
     }
 };
 

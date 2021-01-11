@@ -88,8 +88,9 @@ export const RECOMMENDATION_INFO = {
     [BMP_FORMAT.value]: ['Printing'],
     [SVG_FORMAT.value]: ['Web Design'],
 };
-
+//edit icon download size
 export const DEFAULT_DOWNLOAD_SIZE_BUTTONS = [
     { label: '16px', value: '16' }, { label: '24px', value: '24' }, { label: '64px', value: '64' },
     { label: '128px', value: '128' }, { label: '256px', value: '256' }
 ];
+export const DEFAULT_DOWNLOAD_SIZE = DEFAULT_DOWNLOAD_SIZE_BUTTONS[0].value;

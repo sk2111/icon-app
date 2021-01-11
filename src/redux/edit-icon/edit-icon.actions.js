@@ -14,7 +14,14 @@ export const changeDownloadFormat = (payload) => {
         type: editIconActionTypes.CHANGE_ICON_DOWNLOAD_FORMAT,
         payload
     }
-}
+};
+//change standard default download size
+export const changeStandardDownloadSize = (payload) => {
+    return {
+        type: editIconActionTypes.CHANGE_STANDARD_DOWNLOAD_SIZE,
+        payload
+    }
+};
 
 //close edit icon modal
 export const closeEditModal = () => {

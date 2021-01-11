@@ -8,3 +8,5 @@ export const selectIconToEdit = createSelector([selectEditIcon], (editIcon) => e
 export const selectIsEditIconModalOpen = createSelector([selectEditIcon], (editIcon) => editIcon.isEditIconModalOpen);
 
 export const selectIconDownloadFormat = createSelector([selectEditIcon], (editIcon) => editIcon.iconDownloadFormat);
+
+export const selectDownloadSize = createSelector([selectEditIcon], (editIcon) => editIcon.downloadSize);
