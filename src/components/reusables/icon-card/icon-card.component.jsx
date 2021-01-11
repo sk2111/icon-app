@@ -18,10 +18,10 @@ const IconCard = ({ iconConfig, iconContainerClass, isCurrentUserAdmin, handleFa
 
     const { [ICON_ID]: iconId, [ICON_DATA]: iconData, [ICON_NAME]: iconName,
         [ICON_BASE_64]: iconBase64, [ICON_FAVORITE]: isFavorite } = iconConfig;
-    const actionContainer = `re-icon-action-container ${iconContainerClass}`;
+    const actionContainer = `${styles.iconActionContainer} ${iconContainerClass}`;
 
     return (
-        <div className="re-icon-dp-card">
+        <div className={styles.iconDisplayCard}>
             <div className={actionContainer}>
                 <RenderView renderIfTrue={isCurrentUserAdmin}>
                     <img className={styles.actionIcon} alt="D" src={DeleteIcon}

@@ -1,6 +1,23 @@
 .editContainer {
   /* cursor: url("../../../assests/png/pencil-cursor.png"), pointer; */
 }
+.iconDisplayCard {
+  background-color: var(--app-user-display-icon-card-background);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  height: var(--app-user-display-icon-card-dimension);
+  position: relative;
+  width: var(--app-user-display-icon-card-dimension);
+}
+.iconActionContainer {
+  display: flex;
+  height: 18px;
+  visibility: hidden;
+}
+.iconDisplayCard:hover .iconActionContainer {
+  visibility: visible;
+}
 .iconImg {
   display: block;
   margin: 20px auto 24px auto;

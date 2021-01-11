@@ -16,15 +16,13 @@ import { sanitizeSvg } from '../../../utilities/helper.functions';
 const EditIconPreview = ({ iconToEdit, iconDownloadFormat }) => {
 
     const { iconName, iconData } = iconToEdit;
-
-    console.log("Recommendation info", RECOMMENDATION_INFO);
     const recommendationList = RECOMMENDATION_INFO[iconDownloadFormat] ? RECOMMENDATION_INFO[iconDownloadFormat] : [];
 
     return (
         <div className={styles.container}>
             <div className={styles.svgInfo}>{iconName}</div>
             <div className={styles.svgPreview}>
-                <div className="re_editSelectedSvgContainer" dangerouslySetInnerHTML={{ __html: sanitizeSvg(iconData) }}>
+                <div className={styles.editPreviewContainer} dangerouslySetInnerHTML={{ __html: sanitizeSvg(iconData) }}>
                 </div>
             </div>
             <div className={styles.usageInfo}>
