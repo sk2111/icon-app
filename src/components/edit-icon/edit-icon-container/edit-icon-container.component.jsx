@@ -1,7 +1,6 @@
 //libs
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 //css
 import styles from './edit-icon-container.module.css';
 //components
@@ -11,12 +10,10 @@ import EditIconConfig from '../edit-icon-config/edit-icon-config.component';
 //actions
 import { closeEditModal } from '../../../redux/edit-icon/edit-icon.actions';
 //selectors
-import { selectIconToEdit } from '../../../redux/edit-icon/edit-icon.selectors';
 
 
-const EditIconContainer = ({ iconToEdit, showClose, closeModal }) => {
 
-    const { iconName, iconData } = iconToEdit;
+const EditIconContainer = ({ showClose, closeModal }) => {
 
     return (
         <div className={styles.editContainer}>
@@ -39,13 +36,11 @@ EditIconContainer.defaultProps = {
 
 
 
-const mapStateToProps = createStructuredSelector({
-    iconToEdit: selectIconToEdit
-});
 
 const mapDispatchToProps = (dispatch) => {
     return {
         closeModal: () => dispatch(closeEditModal())
     }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(EditIconContainer);
+};
+
+export default connect(null, mapDispatchToProps)(EditIconContainer);
