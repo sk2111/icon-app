@@ -18,3 +18,24 @@
   background-color: var(--app-button-primary-background) !important;
   color: var(--app-button-primary-text) !important;
 }
+.sizeHeader {
+  color: var(--app-edit-text-header);
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+.sizeGroup {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sizeGroup button {
+  background-color: var(--app-button-notselected-background);
+  border-radius: 0px;
+  color: var(--app-button-notselected-text);
+  font-size: 14px;
+  font-weight: 400;
+  height: 38px;
+  margin-right: 12px;
+  margin-top: 12px;
+  width: 90px;
+}

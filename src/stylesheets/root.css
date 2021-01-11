@@ -150,7 +150,7 @@
   --app-icon-preview-shadow: rgba(29, 38, 45, 0.1);
   --app-edit-preview-background: #f3f3f4;
   --app-edit-text-header: #707071;
-  --app-edit-text-info: #989899;;
+  --app-edit-text-info: #989899;
 }
 * {
   box-sizing: border-box;

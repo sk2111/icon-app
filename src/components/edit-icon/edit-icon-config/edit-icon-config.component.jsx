@@ -11,7 +11,7 @@ import { changeDownloadFormat } from '../../../redux/edit-icon/edit-icon.actions
 //reselect
 import { selectIconDownloadFormat } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
-import { EDIT_ICON_BUTTONS } from '../../../utilities/app.constants';
+import { EDIT_ICON_BUTTONS, DEFAULT_DOWNLOAD_SIZE_BUTTONS } from '../../../utilities/app.constants';
 
 const EditIconConfig = ({ selectedDownloadType, changeDownloadType }) => {
     return (
@@ -23,6 +23,15 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType }) => {
                     selectedButton={selectedDownloadType}
                     handleButtonChange={changeDownloadType}
                 />
+                <h6 className={styles.sizeHeader}>SIZE</h6>
+                <div className={styles.sizeGroup}>
+                    <CustomButtonGroup
+                        buttons={DEFAULT_DOWNLOAD_SIZE_BUTTONS}
+                        highlightClass={styles.highlightedButton}
+                        selectedButton={selectedDownloadType}
+                        handleButtonChange={changeDownloadType}
+                    />
+                </div>
             </div>
             <div className={styles.downloadZone}>
 

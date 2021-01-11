@@ -89,3 +89,7 @@ export const RECOMMENDATION_INFO = {
     [SVG_FORMAT.value]: ['Web Design'],
 };
 
+export const DEFAULT_DOWNLOAD_SIZE_BUTTONS = [
+    { label: '16px', value: '16' }, { label: '24px', value: '24' }, { label: '64px', value: '64' },
+    { label: '128px', value: '128' }, { label: '256px', value: '256' }
+];
