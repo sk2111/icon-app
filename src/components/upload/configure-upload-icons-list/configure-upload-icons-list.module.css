@@ -1,8 +1,8 @@
 .topContainer {
   position: relative;
 }
-.nameIconPreview{
-  display:flex;
+.nameIconPreview {
+  display: flex;
 }
 .dropdown {
   font-size: 13px;
@@ -29,6 +29,22 @@
 .previewImage {
   height: 30px;
   width: 30px;
+}
+.uploadnameContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 12px;
+}
+.uploadnameContainer:hover .uploadEditPencil {
+  visibility: visible !important;
+}
+.uploadEditPencil {
+  cursor: pointer;
+  height: 10px;
+  margin-left: 7px;
+  visibility: hidden;
+  width: 10px;
 }
 .iconName {
   color: var(--app-upload-modal-text);

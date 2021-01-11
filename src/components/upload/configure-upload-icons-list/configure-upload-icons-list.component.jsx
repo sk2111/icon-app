@@ -70,9 +70,9 @@ const ConfigureUploadIconsList = ({ uploadedIcons, editUploadIconName, classific
                                     <img className={styles.previewImage} src={`data:image/svg+xml;base64,${icon[ICON_BASE_64]}`} alt="Invalid" />
                                 </div>
                                 <div className={styles.selectionZone}>
-                                    <div className="re-uploadname-container">
+                                    <div className={styles.uploadnameContainer}>
                                         <div className={styles.iconName}>{iconName}</div>
-                                        <img className="re-upload-editPencil" src={EditPencilWebp} alt="edit" onClick={() => handleEditName(iconName, iconId)} />
+                                        <img className={styles.uploadEditPencil} src={EditPencilWebp} alt="edit" onClick={() => handleEditName(iconName, iconId)} />
                                     </div>
                                     <CustomSelect
                                         className={styles.dropdown}
