@@ -3,7 +3,7 @@
   width: 100%;
 }
 .svgInfo {
-  color: #707071;
+  color: var(--app-edit-text-header);
   font-size: 20px;
   font-weight: 500;
   height: 25px;
@@ -16,13 +16,13 @@
   height: 60px;
 }
 .recommendHeader {
-  color: #707071;
+  color: var(--app-edit-text-header);
   font-size: 12px;
   font-weight: 500;
   margin-bottom: 8px;
 }
 .recommendationText {
-  color: #989899;
+  color: var(--app-edit-text-info);
   font-size: 13px;
   margin: 0px 0px 4px 0px;
 }

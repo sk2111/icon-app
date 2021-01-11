@@ -6,7 +6,7 @@
   width: 100%;
 }
 .previewContainer {
-  background-color: #f3f3f4;
+  background-color: var(--app-edit-preview-background);
   height: 100%;
   padding: 14px;
   width: 55%;

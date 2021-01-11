@@ -125,7 +125,7 @@
   --app-button-secondary-text: #3254b7;
   --app-button-notselected-background: #f3f3f4;
   --app-button-notselected-text: #989899;
-  
+
   /* Tags component */
   --app-custom-tags-background: #f3f3f4;
   --app-custom-tags-text: #3254b7;
@@ -148,6 +148,9 @@
   --app-icon-preview-background: #fff;
   --app-icon-preview-border: #cfd9e0;
   --app-icon-preview-shadow: rgba(29, 38, 45, 0.1);
+  --app-edit-preview-background: #f3f3f4;
+  --app-edit-text-header: #707071;
+  --app-edit-text-info: #989899;;
 }
 * {
   box-sizing: border-box;
