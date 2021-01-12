@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import styles from './edit-icon-config.module.css';
 //components
 import CustomButtonGroup from '../../reusables/custom-buton-group/custom-button-group.component';
+import CustomNumberBox from '../../reusables/custom-number-box/custom-number-box.component';
 //actions
 import { changeDownloadFormat, changeStandardDownloadSize } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
@@ -27,7 +28,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                     selectedButton={selectedDownloadType}
                     handleButtonChange={changeDownloadType}
                 />
-                <h6 className={styles.sizeHeader}>SIZE</h6>
+                <h6 className={styles.groupHeader}>SIZE</h6>
                 <div className={styles.sizeGroup}>
                     <CustomButtonGroup
                         buttons={DEFAULT_DOWNLOAD_SIZE_BUTTONS}
@@ -35,6 +36,11 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                         selectedButton={selectedDefaultSizeGroup}
                         handleButtonChange={changeStandardDownloadSize}
                     />
+                </div>
+                <h6 className={styles.groupHeader}>CUSTOM SIZE</h6>
+                <div className={styles.configSizeContainer}>
+                    <CustomNumberBox label="H" unit="px" />
+                    <CustomNumberBox label="W" unit="px" />
                 </div>
             </div>
             <div className={styles.downloadZone}>

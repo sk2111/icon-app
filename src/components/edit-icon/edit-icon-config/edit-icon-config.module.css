@@ -18,7 +18,7 @@
   background-color: var(--app-button-primary-background) !important;
   color: var(--app-button-primary-text) !important;
 }
-.sizeHeader {
+.groupHeader {
   color: var(--app-edit-text-header);
   font-size: 12px;
   font-weight: 500;
@@ -38,4 +38,11 @@
   margin-right: 12px;
   margin-top: 12px;
   width: 90px;
+}
+.configSizeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 9px;
+  width: 225px;
 }
