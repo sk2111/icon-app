@@ -39,8 +39,8 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                 </div>
                 <h6 className={styles.groupHeader}>CUSTOM SIZE</h6>
                 <div className={styles.configSizeContainer}>
-                    <CustomNumberBox label="H" unit="px" />
-                    <CustomNumberBox label="W" unit="px" />
+                    <CustomNumberBox label="H" unit="px" value={height} handleValueChange={() => { }} />
+                    <CustomNumberBox label="W" unit="px" value={width} handleValueChange={() => { }} />
                 </div>
             </div>
             <div className={styles.downloadZone}>

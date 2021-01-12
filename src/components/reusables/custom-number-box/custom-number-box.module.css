@@ -1,0 +1,41 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.label {
+  color: var(--app-numberbox-label);
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0px 7px 0px 0px;
+}
+.numberBox {
+  border: 1px solid var(--app-numberbox-border);
+  border-radius: 3px 0px 0px 3px;
+  color: var(--app-numberbox-field);
+  font-size: 14px;
+  height: 31px;
+  outline: none;
+  padding-left: 7px;
+  width: 56px;
+}
+.unit {
+  align-items: center;
+  background-color: var(--app-numberbox-unit-background);
+  border: 1px solid var(--app-numberbox-border);
+  border-radius: 0px 3px 3px 0px;
+  color: var(--app-numberbox-field);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 31px;
+  width: 31px;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
