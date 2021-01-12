@@ -7,6 +7,7 @@ import styles from './edit-icon-config.module.css';
 //components
 import CustomButtonGroup from '../../reusables/custom-buton-group/custom-button-group.component';
 import CustomNumberBox from '../../reusables/custom-number-box/custom-number-box.component';
+import EditIconColorSelector from '../edit-icon-color-selector/edit-icon-color-selector.component';
 //actions
 import { changeDownloadFormat, changeStandardDownloadSize, changeCustomDownloadSize } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
@@ -44,6 +45,9 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                         handleValueChange={(height) => changeCustomDownloadSize({ height, width })} />
                     <CustomNumberBox label="W" unit="px" value={width}
                         handleValueChange={(width) => changeCustomDownloadSize({ height, width })} />
+                </div>
+                <div>
+                    <EditIconColorSelector />
                 </div>
             </div>
             <div className={styles.downloadZone}>
