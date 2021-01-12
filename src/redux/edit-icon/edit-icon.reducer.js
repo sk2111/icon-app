@@ -21,6 +21,9 @@ const editIconReducer = (state = INITIAL_STATE, action) => {
             return { ...state, iconDownloadFormat: action.payload };
         case editIconActionTypes.CHANGE_STANDARD_DOWNLOAD_SIZE:
             return { ...state, downloadSize: { height: action.payload, width: action.payload } };
+        case editIconActionTypes.CHANGE_CUSTOM_DOWNLOAD_SIZE:
+            const { height, width } = action.payload;
+            return { ...state, downloadSize: { height, width } };
         case editIconActionTypes.CLOSE_EDIT_ICON_MODAL:
             return { ...state, isEditIconModalOpen: false, iconToEdit: { ...action.payload } };
         default:

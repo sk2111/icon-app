@@ -8,13 +8,14 @@ import styles from './edit-icon-config.module.css';
 import CustomButtonGroup from '../../reusables/custom-buton-group/custom-button-group.component';
 import CustomNumberBox from '../../reusables/custom-number-box/custom-number-box.component';
 //actions
-import { changeDownloadFormat, changeStandardDownloadSize } from '../../../redux/edit-icon/edit-icon.actions';
+import { changeDownloadFormat, changeStandardDownloadSize, changeCustomDownloadSize } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
 import { selectIconDownloadFormat, selectDownloadSize } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { EDIT_ICON_BUTTONS, DEFAULT_DOWNLOAD_SIZE_BUTTONS } from '../../../utilities/app.constants';
 
-const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize, changeStandardDownloadSize }) => {
+const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize, changeStandardDownloadSize,
+    changeCustomDownloadSize }) => {
 
     const { height, width } = downloadSize;
     const selectedDefaultSizeGroup = (height === width) ? height : '';
@@ -39,8 +40,10 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                 </div>
                 <h6 className={styles.groupHeader}>CUSTOM SIZE</h6>
                 <div className={styles.configSizeContainer}>
-                    <CustomNumberBox label="H" unit="px" value={height} handleValueChange={() => { }} />
-                    <CustomNumberBox label="W" unit="px" value={width} handleValueChange={() => { }} />
+                    <CustomNumberBox label="H" unit="px" value={height}
+                        handleValueChange={(height) => changeCustomDownloadSize({ height, width })} />
+                    <CustomNumberBox label="W" unit="px" value={width}
+                        handleValueChange={(width) => changeCustomDownloadSize({ height, width })} />
                 </div>
             </div>
             <div className={styles.downloadZone}>
@@ -61,6 +64,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeDownloadType: (format) => dispatch(changeDownloadFormat(format)),
         changeStandardDownloadSize: (size) => dispatch(changeStandardDownloadSize(size)),
+        changeCustomDownloadSize: (sizeConfig) => dispatch(changeCustomDownloadSize(sizeConfig))
     }
 };
 

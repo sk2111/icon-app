@@ -22,6 +22,13 @@ export const changeStandardDownloadSize = (payload) => {
         payload
     }
 };
+//change custom height and width
+export const changeCustomDownloadSize = (payload) => {
+    return {
+        type: editIconActionTypes.CHANGE_CUSTOM_DOWNLOAD_SIZE,
+        payload
+    };
+};
 
 //close edit icon modal
 export const closeEditModal = () => {
