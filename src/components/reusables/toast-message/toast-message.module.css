@@ -1,12 +1,12 @@
 .toastbar {
   background-color: var(--app-toastbar-background);
-  bottom: 30px;
+  bottom: 5px;
   border-radius: 4px;
   color: var(--app-toastbar-text);
   left: 50%;
   min-width: 250px;
-  margin-left: -125px;
-  padding: 16px;
+  margin-left: -110px;
+  padding: 8px 12px;
   position: fixed;
   text-align: center;
   user-select: none;
@@ -17,6 +17,9 @@
   align-items: center;
   display: flex;
   flex-direction: row;
+}
+.message {
+  font-size: 15px;
 }
 .showToastbar {
   animation: fadein 0.25s linear;
@@ -38,7 +41,7 @@
     opacity: 0;
   }
   to {
-    bottom: 30px;
+    bottom: 5px;
     opacity: 1;
   }
 }
@@ -49,14 +52,14 @@
     opacity: 0;
   }
   to {
-    bottom: 30px;
+    bottom: 5px;
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fadeout {
   from {
-    bottom: 30px;
+    bottom: 5px;
     opacity: 1;
   }
   to {
@@ -67,7 +70,7 @@
 
 @keyframes fadeout {
   from {
-    bottom: 30px;
+    bottom: 5px;
     opacity: 1;
   }
   to {

@@ -37,7 +37,7 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
                 <div className={styles.round}>
                     <img src={(isSuccess ? successImage : failureImage)} key={successImage} className={styles.icon} alt="toast-img" />
                 </div>
-                <div>{message}</div>
+                <div className={styles.message}>{message}</div>
             </div>
         </div>
     );
