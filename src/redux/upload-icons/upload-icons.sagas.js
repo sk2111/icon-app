@@ -5,6 +5,7 @@ import {
 //actions
 import { fetchCommonIconsUserOptionsStart } from '../common-icons/common-icons.actions';
 import { fetchProjectIconsUserOptionsStart } from '../project-icons/project-icons.actions';
+import { showSuccessToastMessage } from '../toast-message/toast-message.actions';
 import { uploadIconsSuccess, uploadIconsFailure, readyToUploadIcons, addNewClassficationSuccess, addNewClassficationFailed } from '../upload-icons/upload-icons.actions';
 //action type
 import { uploadIconsActionTypes } from './upload-icons.type';
@@ -15,7 +16,8 @@ import { COMMON_ICONS_USER_OPTIONS_DATA_PATH, CLASSIFICATION_SEARCH_KEYWORD_LIST
 import { CreateNewClassfication, updateDocPropInFirestore, performUploadIconsInBatchedMode } from '../../firebase/firebase.utils';
 //constants
 import {
-    COMMON_ICONS_HEADER_LABEL, PROJECT_ICONS_HEADER_LABEL, SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE
+    COMMON_ICONS_HEADER_LABEL, PROJECT_ICONS_HEADER_LABEL, SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE,
+    UPLOAD_SUCCESS_MESSAGE
 } from '../../utilities/app.constants';
 //helpers
 import { capitalizeFirstLetter, prepareIconDataForUpload, } from '../../utilities/helper.functions';
@@ -51,6 +53,7 @@ function* uploadIconsToDb({ payload: { keywordPath, keywordProp, keywordValue, u
         if (isUploadSuccess) {
             yield put(uploadIconsSuccess());
             yield put(successAction());
+            yield put(showSuccessToastMessage({ message: UPLOAD_SUCCESS_MESSAGE }));
         }
     }
     catch (e) {
