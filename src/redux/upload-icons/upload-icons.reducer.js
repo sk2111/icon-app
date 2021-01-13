@@ -44,7 +44,7 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
         case uploadIconsActionTypes.UPLOAD_ICONS_START:
             return { ...state, isUserMessageCardOpen: true, isUploading: true };
         case uploadIconsActionTypes.UPLOAD_ICONS_SUCCESS:
-            return { ...INITIAL_STATE, isUploading: false, isUploadModalOpen: true, isUserMessageCardOpen: true, uploadIconDBPath: state.uploadIconDBPath };
+            return { ...INITIAL_STATE, isUploading: false, isUploadModalOpen: false, isUserMessageCardOpen: false, uploadIconDBPath: state.uploadIconDBPath };
         case uploadIconsActionTypes.UPLOAD_ICONS_FAILURE:
             return { ...state, isUploading: false, errorMessage: action.payload };
         case uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_FAILURE:
