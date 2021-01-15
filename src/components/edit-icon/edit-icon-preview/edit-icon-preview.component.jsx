@@ -17,15 +17,18 @@ import { sanitizeSvg } from '../../../utilities/helper.functions';
 const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor }) => {
 
     const svgContainerRef = useRef(null);
+    const colorNodeRef = useRef(null);
 
     const { iconName, iconData } = iconToEdit;
     const recommendationList = RECOMMENDATION_INFO[iconDownloadFormat] ? RECOMMENDATION_INFO[iconDownloadFormat] : [];
 
     useEffect(() => {
         if (userSelectedColor) {
-            console.log(" I am user selected color", userSelectedColor);
             const htmlNodeList = svgContainerRef.current.children || [];
-            editIconHelpers.applyNewColortoSvg(htmlNodeList, userSelectedColor);
+            if (!colorNodeRef.current) {
+                colorNodeRef.current = editIconHelpers.getSvgColorNodeList(htmlNodeList);
+            }
+            editIconHelpers.changeColorForNodeList(colorNodeRef.current, userSelectedColor.hex);
         }
     }, [userSelectedColor]);
 

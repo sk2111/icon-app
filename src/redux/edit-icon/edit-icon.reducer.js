@@ -30,7 +30,7 @@ const editIconReducer = (state = INITIAL_STATE, action) => {
         case editIconActionTypes.CHANGE_USER_SELECTED_COLOR:
             return { ...state, userSelectedColor: { ...action.payload } };
         case editIconActionTypes.CLOSE_EDIT_ICON_MODAL:
-            return { ...state, isEditIconModalOpen: false, iconToEdit: { ...action.payload } };
+            return { ...state, isEditIconModalOpen: false, iconToEdit: {}, userSelectedColor: null };
         default:
             return state;
     }
