@@ -1,5 +1,5 @@
 //libs
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //css
@@ -11,9 +11,12 @@ import { selectIconToEdit, selectIconDownloadFormat, selectUserSelectedColor } f
 //constants
 import { RECOMMENDATION_INFO } from '../../../utilities/app.constants.js';
 //helpers
+import { editIconHelpers } from './edit-icon.helper';
 import { sanitizeSvg } from '../../../utilities/helper.functions';
 
 const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor }) => {
+
+    const svgContainerRef = useRef(null);
 
     const { iconName, iconData } = iconToEdit;
     const recommendationList = RECOMMENDATION_INFO[iconDownloadFormat] ? RECOMMENDATION_INFO[iconDownloadFormat] : [];
@@ -21,6 +24,8 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor }) 
     useEffect(() => {
         if (userSelectedColor) {
             console.log(" I am user selected color", userSelectedColor);
+            const htmlNodeList = svgContainerRef.current.children || [];
+            editIconHelpers.applyNewColortoSvg(htmlNodeList, userSelectedColor);
         }
     }, [userSelectedColor]);
 
@@ -28,7 +33,7 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor }) 
         <div className={styles.container}>
             <div className={styles.svgInfo}>{iconName}</div>
             <div className={styles.svgPreview}>
-                <div className={styles.editPreviewContainer} dangerouslySetInnerHTML={{ __html: sanitizeSvg(iconData) }}>
+                <div ref={svgContainerRef} className={styles.editPreviewContainer} dangerouslySetInnerHTML={{ __html: sanitizeSvg(iconData) }}>
                 </div>
             </div>
             <div className={styles.usageInfo}>
