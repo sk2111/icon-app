@@ -163,7 +163,7 @@ export const getDocListByPagination = async ({ collectionPath, classificationCon
         docList = await query.get();
         isMoreDocsAvailable = docList.size === listLimit;
         newEndDocRef = isMoreDocsAvailable ? docList.docs[docList.docs.length - 1] : null;
-        console.log("%cdocList testing -----IRONMAN", "color:blue;font-size:18px;", docList.docs, docList.docs.length, isMoreDocsAvailable, newEndDocRef);
+        // console.log("%cdocList testing -----IRONMAN", "color:blue;font-size:18px;", docList.docs, docList.docs.length, isMoreDocsAvailable, newEndDocRef);
         return {
             docList,
             isMoreDocsAvailable,
