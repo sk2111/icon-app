@@ -53,7 +53,7 @@
   border: 1px solid var(--app-icon-preview-border);
   box-shadow: 0 2px 4px var(--app-icon-preview-shadow);
   height: 400px;
-  padding: 1px 0px;
+  padding: 1px;
 }
 .editPreviewContainer svg {
   height: 100%;

@@ -1,7 +1,8 @@
 import { editIconActionTypes } from './edit-icon.type';
 //constants
 import { DEFAULT_DOWNLOAD_FORMAT, DEFAULT_DOWNLOAD_SIZE } from '../../utilities/app.constants';
-
+//helpers
+import { sanitizeSvg } from '../../utilities/helper.functions';
 
 const INITIAL_STATE = {
     iconToEdit: {},
@@ -16,7 +17,8 @@ const INITIAL_STATE = {
 const editIconReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case editIconActionTypes.EDIT_USER_SELECTED_ICON:
-            return { ...state, isEditIconModalOpen: true, iconToEdit: { ...action.payload } };
+            const { id, iconName, iconData } = action.payload;
+            return {...state,isEditIconModalOpen: true,iconToEdit: { id, iconName, iconData: sanitizeSvg(iconData) }};
         case editIconActionTypes.CHANGE_ICON_DOWNLOAD_FORMAT:
             return { ...state, iconDownloadFormat: action.payload };
         case editIconActionTypes.CHANGE_STANDARD_DOWNLOAD_SIZE:
