@@ -15,17 +15,13 @@ import { closeEditModal } from '../../../redux/edit-icon/edit-icon.actions';
 
 const EditIconContainer = ({ showClose, closeModal }) => {
 
-    const renderSvgWithUpdatedColor = (color) => {
-        console.log(" Hai i am color", color)
-    };
-
     return (
         <div className={styles.editContainer}>
             <div className={styles.previewContainer}>
                 <EditIconPreview />
             </div>
             <div className={styles.configContainer}>
-                <EditIconConfig renderSvgWithUpdatedColor={renderSvgWithUpdatedColor} />
+                <EditIconConfig />
             </div>
             <RenderView renderIfTrue={showClose}>
                 <div className={styles.close} onClick={closeModal}>close</div>

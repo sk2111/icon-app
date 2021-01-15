@@ -8,6 +8,7 @@ const INITIAL_STATE = {
     iconToEdit: {},
     isEditIconModalOpen: false,
     iconDownloadFormat: DEFAULT_DOWNLOAD_FORMAT,
+    userSelectedColor: null,
     downloadSize: {
         height: DEFAULT_DOWNLOAD_SIZE,
         width: DEFAULT_DOWNLOAD_SIZE
@@ -18,7 +19,7 @@ const editIconReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case editIconActionTypes.EDIT_USER_SELECTED_ICON:
             const { id, iconName, iconData } = action.payload;
-            return {...state,isEditIconModalOpen: true,iconToEdit: { id, iconName, iconData: sanitizeSvg(iconData) }};
+            return { ...state, isEditIconModalOpen: true, iconToEdit: { id, iconName, iconData: sanitizeSvg(iconData) } };
         case editIconActionTypes.CHANGE_ICON_DOWNLOAD_FORMAT:
             return { ...state, iconDownloadFormat: action.payload };
         case editIconActionTypes.CHANGE_STANDARD_DOWNLOAD_SIZE:
@@ -26,6 +27,8 @@ const editIconReducer = (state = INITIAL_STATE, action) => {
         case editIconActionTypes.CHANGE_CUSTOM_DOWNLOAD_SIZE:
             const { height, width } = action.payload;
             return { ...state, downloadSize: { height, width } };
+        case editIconActionTypes.CHANGE_USER_SELECTED_COLOR:
+            return { ...state, userSelectedColor: { ...action.payload } };
         case editIconActionTypes.CLOSE_EDIT_ICON_MODAL:
             return { ...state, isEditIconModalOpen: false, iconToEdit: { ...action.payload } };
         default:

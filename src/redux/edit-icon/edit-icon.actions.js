@@ -29,7 +29,13 @@ export const changeCustomDownloadSize = (payload) => {
         payload
     };
 };
-
+//change picker color
+export const changeUserSelectedColor = (payload) => {
+    return {
+        type: editIconActionTypes.CHANGE_USER_SELECTED_COLOR,
+        payload
+    }
+};
 //close edit icon modal
 export const closeEditModal = () => {
     return {
