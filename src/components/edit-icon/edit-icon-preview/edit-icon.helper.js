@@ -1,15 +1,15 @@
 class EditIconHelpers {
     constructor() {
         this.SVG_NODE_NAME = 'svg';
-        this.SVG_CHILDREN_TO_EXCLUDE_LIST = ['defs'];
+        this.SVG_CHILDREN_TO_EXCLUDE_LIST = ['defs', 'title'];
     }
 
-    getSvgNodeFromHtmlNodeList(htmlNodeList) {
-        if (!htmlNodeList.length) return null;
-        for (let i = 0; i < htmlNodeList.length; i++) {
-            const nodeName = htmlNodeList[i].nodeName;
+    getSvgNodeFromHtmlNodeList(htmlCollection) {
+        if (!htmlCollection.length) return null;
+        for (let i = 0; i < htmlCollection.length; i++) {
+            const nodeName = htmlCollection[i].nodeName;
             if (nodeName === this.SVG_NODE_NAME) {
-                return htmlNodeList[i];
+                return htmlCollection[i];
             }
         }
     }
@@ -22,9 +22,9 @@ class EditIconHelpers {
 
 
 
-    applyNewColortoSvg(htmlNodeList, colorConfig) {
+    applyNewColortoSvg(htmlCollection, colorConfig) {
         try {
-            const svgNode = this.getSvgNodeFromHtmlNodeList(htmlNodeList);
+            const svgNode = this.getSvgNodeFromHtmlNodeList(htmlCollection);
             if (svgNode) {
                 this.getSvgNodeAndReturnColorNodeList(svgNode);
                 console.log("The applyNewColortoSvg testing is ", svgNode);
