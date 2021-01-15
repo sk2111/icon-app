@@ -12,7 +12,7 @@ import { changeUserSelectedColor } from '../../../redux/edit-icon/edit-icon.acti
 //selectors
 import { selectIconToEdit } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
-import { EDIT_ICON_INPUT_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR } from '../../../utilities/app.constants';
+import { EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR } from '../../../utilities/app.constants';
 
 
 const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
@@ -31,7 +31,6 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
         }
     }, [color, iconData]);
 
-
     const handleColorChangeChange = (color) => {
         setColor(color.hex);
         if (debounceRef.current.timerId) {
@@ -39,7 +38,7 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
         }
         debounceRef.current.timerId = setTimeout(() => {
             changeUserSelectedColor(color);
-        }, EDIT_ICON_INPUT_DEBOUNCE_TIME);
+        }, EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME);
     };
 
     return (

@@ -99,3 +99,4 @@ export const DEFAULT_DOWNLOAD_SIZE = +DEFAULT_DOWNLOAD_SIZE_BUTTONS[0].value;
 export const DEFAULT_BLACK_COLOR = '#000';
 //debounce time 
 export const EDIT_ICON_INPUT_DEBOUNCE_TIME = 500; // 0.5ms
+export const EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME = 150; // 0.15ms
