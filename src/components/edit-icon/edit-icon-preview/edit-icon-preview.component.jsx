@@ -1,5 +1,5 @@
 //libs
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //css
@@ -7,16 +7,22 @@ import styles from './edit-icon-preview.module.css';
 //components
 import RenderView from '../../reusables/render-view/render-view.component';
 //reselect
-import { selectIconToEdit, selectIconDownloadFormat } from '../../../redux/edit-icon/edit-icon.selectors';
+import { selectIconToEdit, selectIconDownloadFormat, selectUserSelectedColor } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { RECOMMENDATION_INFO } from '../../../utilities/app.constants.js';
 //helpers
 import { sanitizeSvg } from '../../../utilities/helper.functions';
 
-const EditIconPreview = ({ iconToEdit, iconDownloadFormat }) => {
+const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor }) => {
 
     const { iconName, iconData } = iconToEdit;
     const recommendationList = RECOMMENDATION_INFO[iconDownloadFormat] ? RECOMMENDATION_INFO[iconDownloadFormat] : [];
+
+    useEffect(() => {
+        if (userSelectedColor) {
+            console.log(" I am user selected color", userSelectedColor);
+        }
+    }, [userSelectedColor]);
 
     return (
         <div className={styles.container}>
@@ -44,7 +50,8 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat }) => {
 
 const mapStateToProps = createStructuredSelector({
     iconToEdit: selectIconToEdit,
-    iconDownloadFormat: selectIconDownloadFormat
+    iconDownloadFormat: selectIconDownloadFormat,
+    userSelectedColor: selectUserSelectedColor,
 });
 
 export default connect(mapStateToProps)(EditIconPreview);

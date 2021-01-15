@@ -12,26 +12,28 @@ import { changeUserSelectedColor } from '../../../redux/edit-icon/edit-icon.acti
 //selectors
 import { selectIconToEdit } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
-import { EDIT_ICON_INPUT_DEBOUNCE_TIME } from '../../../utilities/app.constants';
+import { EDIT_ICON_INPUT_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR } from '../../../utilities/app.constants';
 
 
 const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
 
-    const [color, setColor] = useState({ a: 1, b: 0, g: 0, r: 0 });
+    const [color, setColor] = useState(null);
     const debounceRef = useRef({ timerId: null });
-
 
     const { iconData } = iconToEdit;
 
     useEffect(() => {
-        // getSVGColors(iconData).then((colors) => {
-        //     console.log("testing colors", colors);
-        // });
-    }, []);
+        if (color === null) {
+            getSVGColors(iconData).then((svgColors) => {
+                console.log("Initial preset color set", svgColors)
+                setColor(svgColors.fills[0] ?? DEFAULT_BLACK_COLOR);
+            });
+        }
+    }, [color, iconData]);
 
 
     const handleColorChangeChange = (color) => {
-        setColor(color.rgb);
+        setColor(color.hex);
         if (debounceRef.current.timerId) {
             clearTimeout(debounceRef.current.timerId);
         }
@@ -42,7 +44,7 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
 
     return (
         <div>
-            <SketchPicker color={color} presetColors={[]} disableAlpha onChange={handleColorChangeChange} />
+            <SketchPicker color={color ?? DEFAULT_BLACK_COLOR} presetColors={[]} disableAlpha onChange={handleColorChangeChange} />
         </div>
     );
 };
