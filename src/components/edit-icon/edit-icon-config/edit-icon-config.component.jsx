@@ -8,6 +8,7 @@ import styles from './edit-icon-config.module.css';
 import CustomButtonGroup from '../../reusables/custom-buton-group/custom-button-group.component';
 import CustomNumberBox from '../../reusables/custom-number-box/custom-number-box.component';
 import EditIconColorSelector from '../edit-icon-color-selector/edit-icon-color-selector.component';
+import LoadingButton from '../../reusables/loading-button/loading-button.component';
 //actions
 import { changeDownloadFormat, changeStandardDownloadSize, changeCustomDownloadSize } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
@@ -21,6 +22,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
     const [customSize, setCustomSize] = useState({ height: 0, width: 0 });
     const debounceRef = useRef({ timerId: null });
 
+    const downloadButtontext = `Download ${selectedDownloadType.toUpperCase()}`;
     const selectedDefaultSizeGroup = (downloadSize.height === downloadSize.width) ? downloadSize.height : '';
 
     const handleCustomSizeChange = (newHeight, newWidth) => {
@@ -65,7 +67,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                 </div>
             </div>
             <div className={styles.downloadZone}>
-
+                <LoadingButton className={styles.downloadButton}>{downloadButtontext}</LoadingButton>
             </div>
         </div>
     );
