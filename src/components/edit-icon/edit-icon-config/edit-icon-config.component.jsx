@@ -16,7 +16,7 @@ import { selectIconDownloadFormat, selectDownloadSize } from '../../../redux/edi
 import { EDIT_ICON_BUTTONS, DEFAULT_DOWNLOAD_SIZE_BUTTONS, EDIT_ICON_INPUT_DEBOUNCE_TIME } from '../../../utilities/app.constants';
 
 const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize, changeStandardDownloadSize,
-    changeCustomDownloadSize }) => {
+    changeCustomDownloadSize, renderSvgWithUpdatedColor }) => {
 
     const [customSize, setCustomSize] = useState({ height: 0, width: 0 });
     const debounceRef = useRef({ timerId: null });
@@ -61,7 +61,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                         handleValueChange={(width) => handleCustomSizeChange(customSize.height, width)} />
                 </div>
                 <div>
-                    <EditIconColorSelector />
+                    <EditIconColorSelector renderSvgWithUpdatedColor={renderSvgWithUpdatedColor} />
                 </div>
             </div>
             <div className={styles.downloadZone}>
