@@ -36,6 +36,23 @@ export const changeUserSelectedColor = (payload) => {
         payload
     }
 };
+//icon download actions
+export const iconDownloadStart = () => {
+    return {
+        type: editIconActionTypes.ICON_DOWNLOAD_START
+    }
+};
+export const iconDownloadSuccess = () => {
+    return {
+        type: editIconActionTypes.ICON_DOWNLOAD_SUCCESS
+    }
+};
+export const iconDownloadFailure = (payload) => {
+    return {
+        type: editIconActionTypes.ICON_DOWNLOAD_FAILURE,
+        payload
+    }
+};
 //close edit icon modal
 export const closeEditModal = () => {
     return {

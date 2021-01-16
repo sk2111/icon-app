@@ -10,14 +10,14 @@ import CustomNumberBox from '../../reusables/custom-number-box/custom-number-box
 import EditIconColorSelector from '../edit-icon-color-selector/edit-icon-color-selector.component';
 import LoadingButton from '../../reusables/loading-button/loading-button.component';
 //actions
-import { changeDownloadFormat, changeStandardDownloadSize, changeCustomDownloadSize } from '../../../redux/edit-icon/edit-icon.actions';
+import { changeDownloadFormat, changeStandardDownloadSize, changeCustomDownloadSize, iconDownloadStart } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
 import { selectIconDownloadFormat, selectDownloadSize } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { EDIT_ICON_BUTTONS, DEFAULT_DOWNLOAD_SIZE_BUTTONS, EDIT_ICON_INPUT_DEBOUNCE_TIME } from '../../../utilities/app.constants';
 
 const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize, changeStandardDownloadSize,
-    changeCustomDownloadSize }) => {
+    changeCustomDownloadSize, iconDownloadStart }) => {
 
     const [customSize, setCustomSize] = useState({ height: 0, width: 0 });
     const debounceRef = useRef({ timerId: null });
@@ -67,7 +67,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                 </div>
             </div>
             <div className={styles.downloadZone}>
-                <LoadingButton className={styles.downloadButton}>{downloadButtontext}</LoadingButton>
+                <LoadingButton className={styles.downloadButton} onClick={iconDownloadStart}>{downloadButtontext}</LoadingButton>
             </div>
         </div>
     );
@@ -84,7 +84,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeDownloadType: (format) => dispatch(changeDownloadFormat(format)),
         changeStandardDownloadSize: (size) => dispatch(changeStandardDownloadSize(size)),
-        changeCustomDownloadSize: (sizeConfig) => dispatch(changeCustomDownloadSize(sizeConfig))
+        changeCustomDownloadSize: (sizeConfig) => dispatch(changeCustomDownloadSize(sizeConfig)),
+        iconDownloadStart: () => dispatch(iconDownloadStart()),
     }
 };
 

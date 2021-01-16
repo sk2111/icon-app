@@ -8,6 +8,8 @@ const INITIAL_STATE = {
     iconToEdit: {},
     isEditIconModalOpen: false,
     iconDownloadFormat: DEFAULT_DOWNLOAD_FORMAT,
+    isIconDownloading: false,
+    downloadError: null,
     userSelectedColor: null,
     downloadSize: {
         height: DEFAULT_DOWNLOAD_SIZE,
@@ -29,6 +31,12 @@ const editIconReducer = (state = INITIAL_STATE, action) => {
             return { ...state, downloadSize: { height, width } };
         case editIconActionTypes.CHANGE_USER_SELECTED_COLOR:
             return { ...state, userSelectedColor: { ...action.payload } };
+        case editIconActionTypes.ICON_DOWNLOAD_START:
+            return { ...state, isIconDownloading: true };
+        case editIconActionTypes.ICON_DOWNLOAD_SUCCESS:
+            return { ...state, isIconDownloading: false, downloadError: null };
+        case editIconActionTypes.ICON_DOWNLOAD_FAILURE:
+            return { ...state, isIconDownloading: false, downloadError: action.payload };
         case editIconActionTypes.CLOSE_EDIT_ICON_MODAL:
             return { ...state, isEditIconModalOpen: false, iconToEdit: {}, userSelectedColor: null };
         default:
