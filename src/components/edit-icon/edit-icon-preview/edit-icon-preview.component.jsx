@@ -35,15 +35,17 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
         }
     }, [userSelectedColor]);
 
-    if (isIconDownloading && svgContainerRef.current) {
-        const svgNode = editIconHelpers.getSvgNodeFromHtmlNodeList(svgContainerRef.current.children);
-        if (svgNode) {
-            iconDownloadStart({ svgNode, iconDownloadFormat });
+    useEffect(() => {
+        if (isIconDownloading && svgContainerRef.current) {
+            const svgNode = editIconHelpers.getSvgNodeFromHtmlNodeList(svgContainerRef.current.children);
+            if (svgNode) {
+                iconDownloadStart({ svgNode });
+            }
+            else {
+                iconDownloadFailure('Not a valid svg node');
+            }
         }
-        else {
-            iconDownloadFailure('Not a valid svg node');
-        }
-    }
+    }, [isIconDownloading, iconDownloadFormat, iconDownloadStart, iconDownloadFailure]);
 
     return (
         <div className={styles.container}>
@@ -78,7 +80,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        iconDownloadStart: (dataConfig) => dispatch(iconDownloadStart(dataConfig)),
+        iconDownloadStart: (data) => dispatch(iconDownloadStart(data)),
         iconDownloadFailure: (error) => dispatch(iconDownloadFailure(error)),
     }
 };

@@ -10,24 +10,30 @@ import CustomNumberBox from '../../reusables/custom-number-box/custom-number-box
 import EditIconColorSelector from '../edit-icon-color-selector/edit-icon-color-selector.component';
 import LoadingButton from '../../reusables/loading-button/loading-button.component';
 //actions
-import { changeDownloadFormat, changeStandardDownloadSize, changeCustomDownloadSize, iconDownloadStart } from '../../../redux/edit-icon/edit-icon.actions';
+import { changeDownloadFormat, changeStandardDownloadSize, changeCustomDownloadSize, triggerIconDownload } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
 import { selectIconDownloadFormat, selectDownloadSize } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { EDIT_ICON_BUTTONS, DEFAULT_DOWNLOAD_SIZE_BUTTONS, EDIT_ICON_INPUT_DEBOUNCE_TIME } from '../../../utilities/app.constants';
 
 const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize, changeStandardDownloadSize,
-    changeCustomDownloadSize, iconDownloadStart }) => {
+    changeCustomDownloadSize, triggerIconDownload }) => {
 
-    const [customSize, setCustomSize] = useState({ height: 0, width: 0 });
+    const [customSize, setCustomSize] = useState({ height: downloadSize.height, width: downloadSize.width });
     const debounceRef = useRef({ timerId: null });
 
     const downloadButtontext = `Download ${selectedDownloadType.toUpperCase()}`;
     const selectedDefaultSizeGroup = (downloadSize.height === downloadSize.width) ? downloadSize.height : '';
 
+
+    const handleStandardSizeChange = (size) => {
+        setCustomSize({ height: size, width: size });
+        changeStandardDownloadSize(size);
+    };
+
     const handleCustomSizeChange = (newHeight, newWidth) => {
-        const validHeight = newHeight >= 0 ? Number(newHeight) : 0;
-        const validWidth = newWidth >= 0 ? Number(newWidth) : 0;
+        const validHeight = Number(newHeight) >= 0 ? newHeight : 0;
+        const validWidth = Number(newWidth) >= 0 ? newWidth : 0;
         setCustomSize({ height: validHeight, width: validWidth });
         if (debounceRef.current.timerId) {
             clearTimeout(debounceRef.current.timerId);
@@ -52,7 +58,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                         buttons={DEFAULT_DOWNLOAD_SIZE_BUTTONS}
                         highlightClass={styles.highlightedButton}
                         selectedButton={selectedDefaultSizeGroup}
-                        handleButtonChange={changeStandardDownloadSize}
+                        handleButtonChange={handleStandardSizeChange}
                     />
                 </div>
                 <h6 className={styles.groupHeader}>CUSTOM SIZE</h6>
@@ -67,7 +73,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                 </div>
             </div>
             <div className={styles.downloadZone}>
-                <LoadingButton className={styles.downloadButton} onClick={iconDownloadStart}>{downloadButtontext}</LoadingButton>
+                <LoadingButton className={styles.downloadButton} onClick={triggerIconDownload}>{downloadButtontext}</LoadingButton>
             </div>
         </div>
     );
@@ -85,7 +91,7 @@ const mapDispatchToProps = (dispatch) => {
         changeDownloadType: (format) => dispatch(changeDownloadFormat(format)),
         changeStandardDownloadSize: (size) => dispatch(changeStandardDownloadSize(size)),
         changeCustomDownloadSize: (sizeConfig) => dispatch(changeCustomDownloadSize(sizeConfig)),
-        iconDownloadStart: () => dispatch(iconDownloadStart()),
+        triggerIconDownload: () => dispatch(triggerIconDownload()),
     }
 };
 

@@ -42,9 +42,10 @@ export const triggerIconDownload = () => {
         type: editIconActionTypes.TRIGGER_ICON_DOWNLOAD
     }
 };
-export const iconDownloadStart = () => {
+export const iconDownloadStart = (payload) => {
     return {
-        type: editIconActionTypes.ICON_DOWNLOAD_START
+        type: editIconActionTypes.ICON_DOWNLOAD_START,
+        payload
     }
 };
 export const iconDownloadSuccess = () => {

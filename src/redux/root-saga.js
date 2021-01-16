@@ -5,6 +5,7 @@ import { commonIconsSaga } from './common-icons/common-icons.sagas';
 import { projectIconsSaga } from './project-icons/project-icons.sagas';
 import { favoriteIconsSagas } from './favorite-icons/favorite-icons.sagas';
 import { uploadIconsSaga } from './upload-icons/upload-icons.sagas';
+import { editIconSagas } from './edit-icon/edit-icon.sagas';
 
 export default function* rootSaga() {
     yield all([
@@ -13,6 +14,7 @@ export default function* rootSaga() {
         call(commonIconsSaga),
         call(uploadIconsSaga),
         call(projectIconsSaga),
-        call(favoriteIconsSagas)
+        call(favoriteIconsSagas),
+        call(editIconSagas),
     ]);
 }

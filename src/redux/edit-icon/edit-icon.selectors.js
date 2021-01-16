@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 
-const selectEditIcon = (state) => state.editIcon;
+export const selectEditIcon = (state) => state.editIcon;
 
 export const selectIconToEdit = createSelector([selectEditIcon], (editIcon) => editIcon.iconToEdit);
 
