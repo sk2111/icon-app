@@ -6,15 +6,18 @@ import { createStructuredSelector } from 'reselect';
 import styles from './edit-icon-preview.module.css';
 //components
 import RenderView from '../../reusables/render-view/render-view.component';
+//actions
+import { iconDownloadStart, iconDownloadFailure } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
-import { selectIconToEdit, selectIconDownloadFormat, selectUserSelectedColor } from '../../../redux/edit-icon/edit-icon.selectors';
+import { selectIconToEdit, selectIconDownloadFormat, selectUserSelectedColor, selectIsIconDownloading } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { RECOMMENDATION_INFO } from '../../../utilities/app.constants.js';
 //helpers
 import { editIconHelpers } from './edit-icon.helper';
 import { sanitizeSvg } from '../../../utilities/helper.functions';
 
-const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor }) => {
+const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, isIconDownloading, iconDownloadStart,
+    iconDownloadFailure }) => {
 
     const svgContainerRef = useRef(null);
     const colorNodeRef = useRef(null);
@@ -31,6 +34,16 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor }) 
             editIconHelpers.changeColorForNodeList(colorNodeRef.current, userSelectedColor.hex);
         }
     }, [userSelectedColor]);
+
+    if (isIconDownloading && svgContainerRef.current) {
+        const svgNode = editIconHelpers.getSvgNodeFromHtmlNodeList(svgContainerRef.current.children);
+        if (svgNode) {
+            iconDownloadStart({ svgNode, iconDownloadFormat });
+        }
+        else {
+            iconDownloadFailure('Not a valid svg node');
+        }
+    }
 
     return (
         <div className={styles.container}>
@@ -60,6 +73,14 @@ const mapStateToProps = createStructuredSelector({
     iconToEdit: selectIconToEdit,
     iconDownloadFormat: selectIconDownloadFormat,
     userSelectedColor: selectUserSelectedColor,
+    isIconDownloading: selectIsIconDownloading,
 });
 
-export default connect(mapStateToProps)(EditIconPreview);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        iconDownloadStart: (dataConfig) => dispatch(iconDownloadStart(dataConfig)),
+        iconDownloadFailure: (error) => dispatch(iconDownloadFailure(error)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditIconPreview);

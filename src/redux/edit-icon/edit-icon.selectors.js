@@ -11,4 +11,6 @@ export const selectIconDownloadFormat = createSelector([selectEditIcon], (editIc
 
 export const selectUserSelectedColor = createSelector([selectEditIcon], (editIcon) => editIcon.userSelectedColor);
 
+export const selectIsIconDownloading = createSelector([selectEditIcon], (editIcon) => editIcon.isIconDownloading);
+
 export const selectDownloadSize = createSelector([selectEditIcon], (editIcon) => editIcon.downloadSize);

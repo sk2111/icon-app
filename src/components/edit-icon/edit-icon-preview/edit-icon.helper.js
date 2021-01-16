@@ -24,6 +24,7 @@ class EditIconHelpers {
                 return htmlCollection[i];
             }
         }
+        return null;
     }
 
     insertIntoSvgColorNodeList(type, node, value) {

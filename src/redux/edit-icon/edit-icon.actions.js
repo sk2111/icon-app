@@ -37,6 +37,11 @@ export const changeUserSelectedColor = (payload) => {
     }
 };
 //icon download actions
+export const triggerIconDownload = () => {
+    return {
+        type: editIconActionTypes.TRIGGER_ICON_DOWNLOAD
+    }
+};
 export const iconDownloadStart = () => {
     return {
         type: editIconActionTypes.ICON_DOWNLOAD_START
