@@ -33,8 +33,6 @@ const editIconReducer = (state = INITIAL_STATE, action) => {
             return { ...state, userSelectedColor: { ...action.payload } };
         case editIconActionTypes.TRIGGER_ICON_DOWNLOAD:
             return { ...state, isIconDownloading: true };
-        case editIconActionTypes.ICON_DOWNLOAD_START:
-            return { ...state, isIconDownloading: false };
         case editIconActionTypes.ICON_DOWNLOAD_SUCCESS:
             return { ...state, isIconDownloading: false, downloadError: null };
         case editIconActionTypes.ICON_DOWNLOAD_FAILURE:

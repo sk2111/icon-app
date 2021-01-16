@@ -12,12 +12,12 @@ import LoadingButton from '../../reusables/loading-button/loading-button.compone
 //actions
 import { changeDownloadFormat, changeStandardDownloadSize, changeCustomDownloadSize, triggerIconDownload } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
-import { selectIconDownloadFormat, selectDownloadSize } from '../../../redux/edit-icon/edit-icon.selectors';
+import { selectIconDownloadFormat, selectDownloadSize, selectIsIconDownloading } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { EDIT_ICON_BUTTONS, DEFAULT_DOWNLOAD_SIZE_BUTTONS, EDIT_ICON_INPUT_DEBOUNCE_TIME } from '../../../utilities/app.constants';
 
 const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize, changeStandardDownloadSize,
-    changeCustomDownloadSize, triggerIconDownload }) => {
+    changeCustomDownloadSize, triggerIconDownload, isIconDownloading }) => {
 
     const [customSize, setCustomSize] = useState({ height: downloadSize.height, width: downloadSize.width });
     const debounceRef = useRef({ timerId: null });
@@ -73,7 +73,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                 </div>
             </div>
             <div className={styles.downloadZone}>
-                <LoadingButton className={styles.downloadButton} onClick={triggerIconDownload}>{downloadButtontext}</LoadingButton>
+                <LoadingButton className={styles.downloadButton} loading={isIconDownloading} onClick={triggerIconDownload}>{downloadButtontext}</LoadingButton>
             </div>
         </div>
     );
@@ -83,7 +83,8 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
 
 const mapStateToProps = createStructuredSelector({
     selectedDownloadType: selectIconDownloadFormat,
-    downloadSize: selectDownloadSize
+    downloadSize: selectDownloadSize,
+    isIconDownloading: selectIsIconDownloading,
 });
 
 const mapDispatchToProps = (dispatch) => {
