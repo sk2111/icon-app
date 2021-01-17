@@ -21,6 +21,7 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
 
     const svgContainerRef = useRef(null);
     const colorNodeRef = useRef(null);
+    const canvasRef = useRef(null);
 
     const { iconName, iconData } = iconToEdit;
     const recommendationList = RECOMMENDATION_INFO[iconDownloadFormat] ? RECOMMENDATION_INFO[iconDownloadFormat] : [];
@@ -39,7 +40,7 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
         if (isIconDownloading && svgContainerRef.current) {
             const svgNode = editIconHelpers.getSvgNodeFromHtmlNodeList(svgContainerRef.current.children);
             if (svgNode) {
-                iconDownloadStart({ svgNode });
+                iconDownloadStart({ svgNode, canvasNode: canvasRef.current });
             }
             else {
                 iconDownloadFailure('Not a valid svg node');
@@ -50,6 +51,7 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
     return (
         <div className={styles.container}>
             <div className={styles.svgInfo}>{iconName}</div>
+            <canvas ref={canvasRef}></canvas>
             <div className={styles.svgPreview}>
                 <div ref={svgContainerRef} className={styles.editPreviewContainer} dangerouslySetInnerHTML={{ __html: sanitizeSvg(iconData) }}>
                 </div>
