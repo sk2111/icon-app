@@ -9,7 +9,8 @@ import EditIconPreview from '../../edit-icon/edit-icon-preview/edit-icon-preview
 import EditIconConfig from '../edit-icon-config/edit-icon-config.component';
 //actions
 import { closeEditModal } from '../../../redux/edit-icon/edit-icon.actions';
-//selectors
+//static
+import { ReactComponent as CloseIcon } from '../../../assests/edit-icon-close.svg';
 
 
 
@@ -24,7 +25,7 @@ const EditIconContainer = ({ showClose, closeModal }) => {
                 <EditIconConfig />
             </div>
             <RenderView renderIfTrue={showClose}>
-                <div className={styles.close} onClick={closeModal}>close</div>
+                <CloseIcon className={styles.close} src={CloseIcon} alt="x" onClick={closeModal} />
             </RenderView>
         </div>
     );
