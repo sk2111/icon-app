@@ -25,7 +25,6 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
     useEffect(() => {
         if (color === null) {
             getSVGColors(iconData).then((svgColors) => {
-                console.log("Initial preset color set", svgColors)
                 setColor(svgColors.fills[0] ?? DEFAULT_BLACK_COLOR);
             });
         }
@@ -42,9 +41,7 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
     };
 
     return (
-        <div>
-            <SketchPicker color={color ?? DEFAULT_BLACK_COLOR} presetColors={[]} disableAlpha onChange={handleColorChangeChange} />
-        </div>
+        <SketchPicker color={color ?? DEFAULT_BLACK_COLOR} presetColors={[]} disableAlpha onChange={handleColorChangeChange} />
     );
 };
 

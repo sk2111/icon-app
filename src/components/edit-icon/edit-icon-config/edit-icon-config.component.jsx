@@ -68,7 +68,7 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
                     <CustomNumberBox label="W" unit="px" value={customSize.width}
                         handleValueChange={(width) => handleCustomSizeChange(customSize.height, width)} />
                 </div>
-                <div>
+                <div className={styles.colorPickerContainer}>
                     <EditIconColorSelector />
                 </div>
             </div>
