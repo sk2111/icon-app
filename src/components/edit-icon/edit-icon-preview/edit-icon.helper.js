@@ -15,6 +15,7 @@ class EditIconHelpers {
         2) Possiblity of stroke and fill attribute may be there but its value can be none or it can contain gradient url 
         3) Future : Defs and class name to assign styles we cant do anything here (fallback all Nodes except g take and return to user)
         4) Future:Style attribute can also be there instead of fill and stroke 
+        5) Svg optimizer - takes care of 3 and 4 points since it remove defs and move as inline attribtes
     */
     getSvgNodeFromHtmlNodeList(htmlCollection) {
         if (!htmlCollection.length) return null;
@@ -53,7 +54,7 @@ class EditIconHelpers {
         }
     }
 
-    traverseAllChildrenAndGetValidColorNode(node, fallBackMode = false) {
+    traverseAllChildrenAndGetValidColorNode(node) {
         const children = node.children;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
@@ -61,13 +62,7 @@ class EditIconHelpers {
                 if (child.children.length) {
                     this.traverseAllChildrenAndGetValidColorNode(child);
                 }
-                if (fallBackMode) {
-                    // TODO:fallback 1 to get all nodes with styles
-                    // TODO: fallback 2 to get all nodes except g and which has class(if possible read class values)
-                }
-                else {
-                    this.getChildNodesWithColorAttributes(child);
-                }
+                this.getChildNodesWithColorAttributes(child);
             }
         }
     }
