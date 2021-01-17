@@ -1,5 +1,6 @@
 //libs
 import { all, call, delay, put, select, takeLatest } from "redux-saga/effects";
+import Canvg from 'canvg';
 import FileSaver from 'file-saver';
 //action types
 import { editIconActionTypes } from './edit-icon.type';
@@ -8,7 +9,7 @@ import { iconDownloadSuccess, iconDownloadFailure } from './edit-icon.actions';
 //selectors
 import { selectEditIcon } from './edit-icon.selectors';
 //constants
-import { SVG_FORMAT } from '../../utilities/app.constants';
+import { PNG_FORMAT, SVG_FORMAT } from '../../utilities/app.constants';
 
 
 
@@ -21,21 +22,41 @@ import { SVG_FORMAT } from '../../utilities/app.constants';
 
 // download user icons
 
-function downloadSvg(svgNode, height, width, iconName) {
-    svgNode.setAttribute("height", `${height}px`);
-    svgNode.setAttribute("width", `${width}px`);
-    const serializer = new XMLSerializer();
-    const svgString = serializer.serializeToString(svgNode);
+function* downloadPng(svgString, canvasNode) {
+    if (canvasNode && svgString) {
+        const ctx = canvasNode.getContext('2d');
+        const renderRef = Canvg.fromString(ctx, svgString);
+        renderRef.start();
+        yield delay(1000);
+        console.log("i am prinitng test");
+    }
+    else {
+        throw new Error('Not a valid canvas node or svg string');
+    }
+};
+
+function downloadSvg(svgString, iconName) {
     const blob = new Blob([svgString], { type: "image/svg+xml" });
     FileSaver.saveAs(blob, `${iconName}.svg`);
 };
 
-function* downloadIcon({ payload: { svgNode } }) {
+function getSvgString(svgNode, height, width) {
+    svgNode.setAttribute("height", `${height}px`);
+    svgNode.setAttribute("width", `${width}px`);
+    const serializer = new XMLSerializer();
+    return serializer.serializeToString(svgNode);
+};
+
+function* downloadIcon({ payload: { svgNode, canvasNode } }) {
     try {
-        yield delay(500);
         const { iconDownloadFormat, downloadSize: { height, width }, iconToEdit: { iconName } } = yield select(selectEditIcon);
+        const svgString = yield call(getSvgString, svgNode, height, width);
         if (iconDownloadFormat === SVG_FORMAT.value) {
-            yield call(downloadSvg, svgNode, height, width, iconName);
+            yield delay(500);
+            yield call(downloadSvg, svgString, iconName);
+        }
+        if (iconDownloadFormat === PNG_FORMAT.value) {
+            yield call(downloadPng, svgString, canvasNode);
         }
         yield put(iconDownloadSuccess());
     }
