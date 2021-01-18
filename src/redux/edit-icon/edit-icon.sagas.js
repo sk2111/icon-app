@@ -22,22 +22,26 @@ import { PNG_FORMAT, SVG_FORMAT } from '../../utilities/app.constants';
 
 // download user icons
 
-function* downloadPng(svgString, canvasNode) {
+function* downloadPng(svgString, canvasNode, iconName, iconDownloadSuccessAction) {
     if (canvasNode && svgString) {
         const ctx = canvasNode.getContext('2d');
         const renderRef = Canvg.fromString(ctx, svgString);
         renderRef.start();
         yield delay(1000);
-        console.log("i am prinitng test");
+        canvasNode.toBlob((blob) => {
+            FileSaver.saveAs(blob, `${iconName}.png`);
+        }, "image/png", 1);
+        yield put(iconDownloadSuccessAction());
     }
     else {
         throw new Error('Not a valid canvas node or svg string');
     }
 };
 
-function downloadSvg(svgString, iconName) {
+function* downloadSvg(svgString, iconName, iconDownloadSuccessAction) {
     const blob = new Blob([svgString], { type: "image/svg+xml" });
     FileSaver.saveAs(blob, `${iconName}.svg`);
+    yield put(iconDownloadSuccessAction());
 };
 
 function getSvgString(svgNode, height, width) {
@@ -53,12 +57,12 @@ function* downloadIcon({ payload: { svgNode, canvasNode } }) {
         const svgString = yield call(getSvgString, svgNode, height, width);
         if (iconDownloadFormat === SVG_FORMAT.value) {
             yield delay(500);
-            yield call(downloadSvg, svgString, iconName);
+            yield call(downloadSvg, svgString, iconName, iconDownloadSuccess);
         }
         if (iconDownloadFormat === PNG_FORMAT.value) {
-            yield call(downloadPng, svgString, canvasNode);
+            yield call(downloadPng, svgString, canvasNode, iconName, iconDownloadSuccess);
         }
-        yield put(iconDownloadSuccess());
+
     }
     catch (e) {
         yield put(iconDownloadFailure(e?.message));

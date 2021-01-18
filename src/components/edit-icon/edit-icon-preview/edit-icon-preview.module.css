@@ -2,6 +2,9 @@
   height: 100%;
   width: 100%;
 }
+.canvasContainer {
+  display: none;
+}
 .svgInfo {
   color: var(--app-edit-text-header);
   font-size: 20px;

@@ -50,8 +50,8 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
 
     return (
         <div className={styles.container}>
+            <canvas className={styles.canvasContainer} ref={canvasRef}></canvas>
             <div className={styles.svgInfo}>{iconName}</div>
-            <canvas ref={canvasRef}></canvas>
             <div className={styles.svgPreview}>
                 <div ref={svgContainerRef} className={styles.editPreviewContainer} dangerouslySetInnerHTML={{ __html: sanitizeSvg(iconData) }}>
                 </div>
