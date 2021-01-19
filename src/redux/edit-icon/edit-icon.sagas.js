@@ -28,9 +28,8 @@ function* downloadPng(svgString, canvasNode, iconName, iconDownloadSuccessAction
         const renderRef = Canvg.fromString(ctx, svgString);
         renderRef.start();
         yield delay(1000);
-        canvasNode.toBlob((blob) => {
-            FileSaver.saveAs(blob, `${iconName}.png`);
-        }, "image/png", 1);
+        const image = canvasNode.toDataURL(); // defaults to "image/png"
+        FileSaver.saveAs(image, `${iconName}.png`);
         yield put(iconDownloadSuccessAction());
     }
     else {
