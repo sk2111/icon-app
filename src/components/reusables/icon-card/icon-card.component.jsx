@@ -20,23 +20,34 @@ const IconCard = ({ iconConfig, iconContainerClass, isCurrentUserAdmin, handleFa
         [ICON_BASE_64]: iconBase64, [ICON_FAVORITE]: isFavorite } = iconConfig;
     const actionContainer = `${styles.iconActionContainer} ${iconContainerClass}`;
 
+
+    const handleFavoriteIconClick = (e, isFavorite) => {
+        e.stopPropagation();
+        handleFavoriteSelection({ id: iconId, value: isFavorite });
+    };
+
+    const handleIconDeletion = (e) => {
+        e.stopPropagation();
+        confirmDelete({ iconIdToDelete: iconId, isVisible: true });
+    };
+
     return (
-        <div className={styles.iconDisplayCard}>
+        <div className={styles.iconDisplayCard} onClick={() => editSelectedIcon({ id: iconId, iconName, iconData })}>
             <div className={actionContainer}>
                 <RenderView renderIfTrue={isCurrentUserAdmin}>
                     <img className={styles.actionIcon} alt="D" src={DeleteIcon}
-                        onClick={() => { confirmDelete({ iconIdToDelete: iconId, isVisible: true }) }} />
+                        onClick={handleIconDeletion} />
                 </RenderView>
                 <RenderView renderIfFalse={isFavorite}>
                     <img className={styles.actionIcon} alt="-" src={NotFavoriteIcon}
-                        onClick={() => handleFavoriteSelection({ id: iconId, value: true })} />
+                        onClick={(e) => handleFavoriteIconClick(e, true)} />
                 </RenderView>
             </div>
             <RenderView renderIfTrue={isFavorite}>
                 <img className={styles.actionIconFavorite} alt="-" src={FavoriteIcon}
-                    onClick={() => handleFavoriteSelection({ id: iconId, value: false })} />
+                    onClick={(e) => handleFavoriteIconClick(e, false)} />
             </RenderView>
-            <div className={styles.editContainer} onClick={() => editSelectedIcon({ id: iconId, iconName, iconData })}>
+            <div className={styles.editContainer}>
                 <div className={styles.iconContainer}>
                     <img className={styles.iconImg} src={`data:image/svg+xml;base64,${iconBase64}`} alt="" />
                 </div>
