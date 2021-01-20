@@ -58,11 +58,10 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
                 </RenderView>
                 <RenderView renderIfTrue={isVisible && isCurrentUserAdmin}>
                     <CreateModalCard className={styles.deleteCard}>
-                        <h6 className={styles.confirmHeader}>Warning !</h6>
-                        <p className={styles.confirmDetails}>Icon will be deleted permanently from database...</p>
+                        <h6 className={styles.confirmHeader}>Are you sure you want to delete icon?</h6>
                         <div className={styles.confirmBtnContainer}>
                             <button className={styles.cancelButton} onClick={() => setShowDeleteModal({ ...DEFAULT_MODAL_STATE })}>Cancel</button>
-                            <button className={styles.proceedButton} onClick={() => handleDeleteIconAction(iconIdToDelete)} > Proceed</button>
+                            <button className={styles.proceedButton} onClick={() => handleDeleteIconAction(iconIdToDelete)} >OK</button>
                         </div>
                     </CreateModalCard>
                 </RenderView>

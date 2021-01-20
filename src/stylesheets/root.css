@@ -101,7 +101,9 @@
 
   /* universal padding */
   --app-icons-view-container-padding: 23px 30px 0px 30px;
-
+  /* delet modal */
+  --app-delete-modal-text: #fff;
+  --app-delete-modal-background: #2d2d2e;
   /* upload modal */
   --app-upload-modal-header: #1c1c1d;
   --app-upload-modal-border-line: #dbdbdc;
@@ -152,10 +154,10 @@
   --app-edit-text-header: #707071;
   --app-edit-text-info: #989899;
   /* Number box */
-  --app-numberbox-label:#707071;
-  --app-numberbox-border:#dbdbdc;
-  --app-numberbox-field:#989899;
-  --app-numberbox-unit-background:#f3f3f4;
+  --app-numberbox-label: #707071;
+  --app-numberbox-border: #dbdbdc;
+  --app-numberbox-field: #989899;
+  --app-numberbox-unit-background: #f3f3f4;
 }
 * {
   box-sizing: border-box;

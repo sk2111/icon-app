@@ -54,42 +54,51 @@
   position: fixed;
 }
 .deleteCard {
+  background-color: var(--app-delete-modal-background) !important;
+  border-radius: 3px;
+  box-shadow: 0 5px 11.37px 0 rgba(58, 58, 59, 0.14),
+    0 10px 13.06px 0 rgba(58, 58, 59, 0.2),
+    0 15px 14.16px 0 rgba(58, 58, 59, 0.18),
+    0 20px 15px 0 rgba(58, 58, 59, 0.08);
   right: calc(50% - 200px) !important;
   top: 280px !important;
-  width: 350px !important;
+  width: 358px !important;
 }
 .confirmHeader {
-  color: var(--app-upload-modal-text);
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0px;
+  color: var(--app-delete-modal-text);
+  font-size: 16px;
+  font-weight: 400;
+  margin: 23px 0 0 0;
+  text-align: center;
 }
 .confirmDetails {
-  color: var(--app-upload-modal-text);
+  color: var(--app-delete-modal-text);
   font-size: 14px;
   margin-top: 25px;
 }
 .confirmBtnContainer {
+  align-items: center;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 25px;
+  justify-content: center;
+  margin-top: 40px;
 }
 .proceedButton {
   border: none;
-  background-color: var(--app-upload-modal-button-background);
-  color: var(--app-upload-modal-button-color);
+  background-color: var(--app-delete-modal-background);
+  color: var(--app-delete-modal-text);
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   outline: none;
   width: 70px;
 }
 .cancelButton {
   border: none;
-  background-color: var(--app-upload-modal-button-background);
-  color: var(--app-upload-modal-button-color);
+  background-color: var(--app-delete-modal-background);
+  color: var(--app-delete-modal-text);
   cursor: pointer;
-  font-size: 15px;
+  font-size: 16px;
+  margin-right: 45px;
   outline: none;
   width: 70px;
 }
