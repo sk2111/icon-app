@@ -30,6 +30,7 @@ function* downloadPng(svgString, canvasNode, iconName, iconDownloadSuccessAction
         yield delay(1000);
         const image = canvasNode.toDataURL(); // defaults to "image/png"
         FileSaver.saveAs(image, `${iconName}.png`);
+        yield delay(500);
         yield put(iconDownloadSuccessAction());
     }
     else {
@@ -40,6 +41,7 @@ function* downloadPng(svgString, canvasNode, iconName, iconDownloadSuccessAction
 function* downloadSvg(svgString, iconName, iconDownloadSuccessAction) {
     const blob = new Blob([svgString], { type: "image/svg+xml" });
     FileSaver.saveAs(blob, `${iconName}.svg`);
+    yield delay(500);
     yield put(iconDownloadSuccessAction());
 };
 
@@ -55,7 +57,6 @@ function* downloadIcon({ payload: { svgNode, canvasNode } }) {
         const { iconDownloadFormat, downloadSize: { height, width }, iconToEdit: { iconName } } = yield select(selectEditIcon);
         const svgString = yield call(getSvgString, svgNode, height, width);
         if (iconDownloadFormat === SVG_FORMAT.value) {
-            yield delay(500);
             yield call(downloadSvg, svgString, iconName, iconDownloadSuccess);
         }
         if (iconDownloadFormat === PNG_FORMAT.value) {
