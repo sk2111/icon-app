@@ -46,7 +46,7 @@ export const UPLOAD_FORM_LABEL = {
     [PROJECT_ICONS_HEADER_LABEL]: PROJECT_ICONS_UPLOAD_INP_LABEL
 };
 //upload success toast message
-export const UPLOAD_SUCCESS_MESSAGE = 'Icons successfully uploaded to firestore';
+export const UPLOAD_SUCCESS_MESSAGE = 'Successfully uploaded icons';
 //saga message constants
 export const SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE = 'Failed to fetch user options for common or project icons';
 export const SAGA_UPLOAD_ICONS_INVALID_CLASSIFICATION_ERROR_MESSAGE = 'Upload failed...Invalid Icon classification found';

@@ -3,7 +3,7 @@ import { toastMessageActionTypes } from './toast-message.type';
 
 const DEFAULT_TOAST_TIME = 5;//5sec
 
-const DEFAULT_TOAST_POSITION = { top: '65px' };
+const DEFAULT_TOAST_POSITION = { top: '62px' };
 
 const INITIAL_STATE = {
     showToastMessage: false,

@@ -7,12 +7,12 @@ import styles from './toast-message.module.css';
 import { resetToastMessageState } from '../../../redux/toast-message/toast-message.actions';
 //reselect
 import { createStructuredSelector } from 'reselect';
-import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSeconds } from '../../../redux/toast-message/toast-message.selectors';
+import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSeconds, selectDisplayPosition } from '../../../redux/toast-message/toast-message.selectors';
 //static Image
 import successImage from '../../../assests/flat-tick.png';
 import failureImage from '../../../assests/flat-cross.png';
 
-const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToastMessageState, stylePosition }) => {
+const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToastMessageState, displayPosition }) => {
 
     const toastContainerRef = useRef(null);
     const animProp = showToast ? `fadein 0.5s, fadeout 0.5s ${timeInSeconds - 0.35} s, linear 0.5s` : '';
@@ -20,7 +20,7 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
         visibility: showToast ? 'visible' : 'hidden',
         animation: animProp,
         'WebkitAnimation': animProp,
-        ...stylePosition
+        ...displayPosition
     };
 
     useEffect(() => {
@@ -49,7 +49,8 @@ const mapStateToProps = createStructuredSelector({
     showToast: selectShowToastMessage,
     message: selectMessage,
     isSuccess: selectIsSuccess,
-    timeInSeconds: selectTimeInSeconds
+    timeInSeconds: selectTimeInSeconds,
+    displayPosition: selectDisplayPosition,
 });
 
 const mapDispatchToProps = (dispatch) => {

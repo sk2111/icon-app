@@ -11,5 +11,8 @@ export const selectIsSuccess = createSelector([selectToastMessage],
 export const selectMessage = createSelector([selectToastMessage],
     (toastMessage) => toastMessage.message);
 
+export const selectDisplayPosition = createSelector([selectToastMessage],
+    (toastMessage) => toastMessage.position);
+
 export const selectTimeInSeconds = createSelector([selectToastMessage],
     (toastMessage) => toastMessage.timeInSeconds);
