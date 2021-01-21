@@ -45,10 +45,6 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
 };
 
 
-ToastMessage.defaultProps = {
-    stylePosition: { 'top': '65px' }
-};
-
 const mapStateToProps = createStructuredSelector({
     showToast: selectShowToastMessage,
     message: selectMessage,
