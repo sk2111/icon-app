@@ -1,0 +1,4 @@
+.colorPickerContainer {
+  display: flex;
+  flex-direction: row;
+}

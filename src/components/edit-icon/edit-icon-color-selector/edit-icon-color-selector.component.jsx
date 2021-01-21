@@ -14,6 +14,12 @@ import { selectIconToEdit } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR } from '../../../utilities/app.constants';
 
+const pickerStyles = {
+    picker: {
+        boxShadow: 'none',
+        width: '235px'
+    }
+};
 
 const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
 
@@ -41,7 +47,19 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
     };
 
     return (
-        <SketchPicker color={color ?? DEFAULT_BLACK_COLOR} presetColors={[]} disableAlpha onChange={handleColorChangeChange} />
+        <React.Fragment>
+            <div className={styles.container}>
+                <div className={styles.colorPickerContainer}>
+                    <SketchPicker
+                        styles={pickerStyles}
+                        color={color ?? DEFAULT_BLACK_COLOR}
+                        presetColors={[]}
+                        disableAlpha
+                        onChange={handleColorChangeChange} />
+                    <div>Test check</div>
+                </div>
+            </div>
+        </React.Fragment>
     );
 };
 

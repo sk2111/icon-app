@@ -1,1 +1,34 @@
 /* Global classes  */
+/* color picker style overriding */
+#rc-editable-input-1 {
+  border: 1px solid #dbdbdc !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  color: #707071 !important;
+  font-size: 14px !important;
+  height: 30px !important;
+  margin-right: 12px;
+  padding: 7px 10px 7px 20px !important;
+  width: 86px !important;
+}
+#rc-editable-input-1 + label,
+#rc-editable-input-2 + label,
+#rc-editable-input-3 + label,
+#rc-editable-input-4 + label {
+  color: #707071 !important;
+  font-size: 14px !important;
+  pointer-events: none;
+}
+
+#rc-editable-input-2,
+#rc-editable-input-3,
+#rc-editable-input-4 {
+  border: 1px solid #dbdbdc !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  color: #707071 !important;
+  font-size: 14px !important;
+  height: 30px !important;
+  text-align: center !important;
+  width: 49px !important;
+}
