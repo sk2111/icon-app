@@ -71,7 +71,8 @@
   --app-auth-user-message: #00c578;
 
   /* Toast bar colors */
-  --app-toastbar-background: rgba(0, 0, 0, 0.8);
+  --app-toastbar-background: rgba(28, 28, 29,0.9);
+  --app-toastbar-box-shadow: #7F7F7F;
   --app-toastbar-text: white;
 
   /* user profile */

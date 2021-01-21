@@ -1,12 +1,12 @@
 .toastbar {
   background-color: var(--app-toastbar-background);
-  bottom: 5px;
   border-radius: 4px;
+  box-shadow: 0 0 4px 0 var(--app-toastbar-box-shadow);
   color: var(--app-toastbar-text);
   left: 50%;
   min-width: 250px;
   margin-left: -110px;
-  padding: 8px 12px;
+  padding: 10px 16px;
   position: fixed;
   text-align: center;
   user-select: none;
@@ -19,7 +19,8 @@
   flex-direction: row;
 }
 .message {
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 400;
 }
 .showToastbar {
   animation: fadein 0.25s linear;
@@ -30,8 +31,8 @@
   margin-right: 15px;
 }
 .icon {
-  height: 35px;
-  width: 35px;
+  height: 38px;
+  width: 38px;
 }
 /* animations */
 /* Animations to fade the snackbar in and out */

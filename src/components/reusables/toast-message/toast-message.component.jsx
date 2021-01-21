@@ -12,14 +12,15 @@ import { selectShowToastMessage, selectIsSuccess, selectMessage, selectTimeInSec
 import successImage from '../../../assests/flat-tick.png';
 import failureImage from '../../../assests/flat-cross.png';
 
-const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToastMessageState }) => {
+const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToastMessageState, stylePosition }) => {
 
     const toastContainerRef = useRef(null);
     const animProp = showToast ? `fadein 0.5s, fadeout 0.5s ${timeInSeconds - 0.35} s, linear 0.5s` : '';
     const toastStyle = {
         visibility: showToast ? 'visible' : 'hidden',
         animation: animProp,
-        'WebkitAnimation': animProp
+        'WebkitAnimation': animProp,
+        ...stylePosition
     };
 
     useEffect(() => {
@@ -41,6 +42,11 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
             </div>
         </div>
     );
+};
+
+
+ToastMessage.defaultProps = {
+    stylePosition: { 'top': '65px' }
 };
 
 const mapStateToProps = createStructuredSelector({
