@@ -13,11 +13,11 @@
   border: 1px solid var(--app-numberbox-border);
   border-radius: 3px 0px 0px 3px;
   color: var(--app-numberbox-field);
-  font-size: 14px;
-  height: 31px;
+  font-size: 12px;
+  height: 26px;
   outline: none;
   padding-left: 7px;
-  width: 56px;
+  width: 50px;
 }
 .unit {
   align-items: center;
@@ -27,8 +27,9 @@
   color: var(--app-numberbox-field);
   display: flex;
   flex-direction: row;
+  font-size: 12px;
   justify-content: center;
-  height: 31px;
+  height: 26px;
   width: 31px;
 }
 input[type="number"]::-webkit-outer-spin-button,
