@@ -92,8 +92,9 @@ export const RECOMMENDATION_INFO = {
 };
 //edit icon download size
 export const DEFAULT_DOWNLOAD_SIZE_BUTTONS = [
-    { label: '16px', value: '16' }, { label: '24px', value: '24' }, { label: '64px', value: '64' },
-    { label: '128px', value: '128' }, { label: '256px', value: '256' }
+    { label: '16px', value: '16' }, { label: '25px', value: '25' },  { label: '30px', value: '30' },
+    { label: '40px', value: '40' },{ label: '64px', value: '64' },{ label: '128px', value: '128' }, 
+    { label: '256px', value: '256' },{ label: '512px', value: '512' }
 ];
 export const DEFAULT_DOWNLOAD_SIZE = DEFAULT_DOWNLOAD_SIZE_BUTTONS[0].value;
 export const DEFAULT_BLACK_COLOR = '#000';
