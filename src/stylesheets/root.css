@@ -71,8 +71,8 @@
   --app-auth-user-message: #00c578;
 
   /* Toast bar colors */
-  --app-toastbar-background: rgba(28, 28, 29,0.9);
-  --app-toastbar-box-shadow: #7F7F7F;
+  --app-toastbar-background: rgba(28, 28, 29, 0.9);
+  --app-toastbar-box-shadow: #7f7f7f;
   --app-toastbar-text: white;
 
   /* user profile */
@@ -143,6 +143,7 @@
   --app-user-display-icon-card-lazy-background: #ebebec;
   --app-user-display-icon-name: #989899;
   --app-user-display-text: #989899;
+  --app-user-display-icon-card-shadow: #dbdbdc;
 
   /* User display icon card */
   --app-user-display-icon-card-dimension: 130px;
