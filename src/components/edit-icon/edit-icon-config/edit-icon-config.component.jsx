@@ -46,12 +46,14 @@ const EditIconConfig = ({ selectedDownloadType, changeDownloadType, downloadSize
     return (
         <div className={styles.container}>
             <div className={styles.configurationZone}>
-                <CustomButtonGroup
-                    buttons={EDIT_ICON_BUTTONS}
-                    highlightClass={styles.highlightedButton}
-                    selectedButton={selectedDownloadType}
-                    handleButtonChange={changeDownloadType}
-                />
+                <div className={styles.downloadSelection}>
+                    <CustomButtonGroup
+                        buttons={EDIT_ICON_BUTTONS}
+                        highlightClass={styles.highlightedButton}
+                        selectedButton={selectedDownloadType}
+                        handleButtonChange={changeDownloadType}
+                    />
+                </div>
                 <h6 className={styles.groupHeader}>SIZE</h6>
                 <div className={styles.sizeGroup}>
                     <CustomButtonGroup

@@ -21,6 +21,11 @@
   background-color: var(--app-button-primary-background) !important;
   color: var(--app-button-primary-text) !important;
 }
+.downloadSelection button {
+  font-size: 12px;
+  height: 28px;
+  width: 69px;
+}
 .groupHeader {
   color: var(--app-edit-text-header);
   font-size: 12px;

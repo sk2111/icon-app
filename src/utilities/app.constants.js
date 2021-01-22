@@ -83,18 +83,22 @@ export const NO_MORE_ICONS_MESSAGE = 'You have reached the end';
 export const PNG_FORMAT = { label: 'PNG', value: 'png' };
 export const BMP_FORMAT = { label: 'BMP', value: 'bmp' };
 export const SVG_FORMAT = { label: 'SVG', value: 'svg' };
+export const JPEG_FORMAT = { label: 'JPEG', value: 'jpeg' };
+export const WEBP_FORMAT = { label: 'WEBP', value: 'webp' };
 export const DEFAULT_DOWNLOAD_FORMAT = SVG_FORMAT.value;
-export const EDIT_ICON_BUTTONS = [PNG_FORMAT, BMP_FORMAT, SVG_FORMAT];
+export const EDIT_ICON_BUTTONS = [PNG_FORMAT, BMP_FORMAT, SVG_FORMAT, JPEG_FORMAT, WEBP_FORMAT];
 export const RECOMMENDATION_INFO = {
     [PNG_FORMAT.value]: ['Presentations', 'Labview Applications'],
     [BMP_FORMAT.value]: ['Printing'],
     [SVG_FORMAT.value]: ['Web Design'],
+    [JPEG_FORMAT.value]: ['Lossy Quality'],
+    [WEBP_FORMAT.value]: ['Alternate to Png'],
 };
 //edit icon download size
 export const DEFAULT_DOWNLOAD_SIZE_BUTTONS = [
-    { label: '16px', value: '16' }, { label: '25px', value: '25' },  { label: '30px', value: '30' },
-    { label: '40px', value: '40' },{ label: '64px', value: '64' },{ label: '128px', value: '128' }, 
-    { label: '256px', value: '256' },{ label: '512px', value: '512' }
+    { label: '16px', value: '16' }, { label: '25px', value: '25' }, { label: '30px', value: '30' },
+    { label: '40px', value: '40' }, { label: '64px', value: '64' }, { label: '128px', value: '128' },
+    { label: '256px', value: '256' }, { label: '512px', value: '512' }
 ];
 export const DEFAULT_DOWNLOAD_SIZE = DEFAULT_DOWNLOAD_SIZE_BUTTONS[0].value;
 export const DEFAULT_BLACK_COLOR = '#000';
