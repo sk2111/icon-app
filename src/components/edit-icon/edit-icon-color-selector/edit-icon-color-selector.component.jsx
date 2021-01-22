@@ -29,7 +29,7 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
     const { iconData } = iconToEdit;
 
     useEffect(() => {
-        if (color === null) {
+        if (color === null && iconData) {
             getSVGColors(iconData).then((svgColors) => {
                 setColor(svgColors.fills[0] ?? DEFAULT_BLACK_COLOR);
             });
