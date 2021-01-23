@@ -7,6 +7,7 @@ import getSVGColors from 'get-svg-colors-browser';
 import styles from './edit-icon-color-selector.module.css';
 //compoents
 import { SketchPicker } from 'react-color';
+import ColorSwatch from '../../reusables/color-swatch/color-swatch.component';
 //actions
 import { changeUserSelectedColor } from '../../../redux/edit-icon/edit-icon.actions';
 //selectors
@@ -26,6 +27,8 @@ const EditIconColorSelector = ({ iconToEdit, isEditIconModalOpen, changeUserSele
     const [color, setColor] = useState(null);
     const debounceRef = useRef({ timerId: null });
 
+    const swatches = ["#361faa", "#a02acb", "#d9d2f1", "#9997ba", "#ad5700", "#de0843"];
+
     const { iconData } = iconToEdit;
 
     useEffect(() => {
@@ -36,14 +39,19 @@ const EditIconColorSelector = ({ iconToEdit, isEditIconModalOpen, changeUserSele
         }
     }, [isEditIconModalOpen, iconData]);
 
-    const handleColorChangeChange = (color) => {
-        setColor(color.hex);
+    const handleColorChangeChange = ({ hex: hexColor }) => {
+        setColor(hexColor);
         if (debounceRef.current.timerId) {
             clearTimeout(debounceRef.current.timerId);
         }
         debounceRef.current.timerId = setTimeout(() => {
-            changeUserSelectedColor(color);
+            changeUserSelectedColor(hexColor);
         }, EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME);
+    };
+
+    const handleSwatchClick = (hexColor) => {
+        setColor(hexColor);
+        changeUserSelectedColor(hexColor);
     };
 
     return (
@@ -56,7 +64,16 @@ const EditIconColorSelector = ({ iconToEdit, isEditIconModalOpen, changeUserSele
                         presetColors={[]}
                         disableAlpha
                         onChange={handleColorChangeChange} />
-                    <div>Test check</div>
+                    <div className={styles.swatchContainer}>
+                        {
+                            swatches.map((color) => (
+                                <ColorSwatch
+                                    key={color}
+                                    color={color}
+                                    handleSwatchClick={() => handleSwatchClick(color)} />
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </React.Fragment>

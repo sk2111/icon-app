@@ -30,7 +30,7 @@ const editIconReducer = (state = INITIAL_STATE, action) => {
             const { height, width } = action.payload;
             return { ...state, downloadSize: { height, width } };
         case editIconActionTypes.CHANGE_USER_SELECTED_COLOR:
-            return { ...state, userSelectedColor: { ...action.payload } };
+            return { ...state, userSelectedColor: action.payload };
         case editIconActionTypes.TRIGGER_ICON_DOWNLOAD:
             return { ...state, isIconDownloading: true };
         case editIconActionTypes.ICON_DOWNLOAD_SUCCESS:

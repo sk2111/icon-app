@@ -35,7 +35,7 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
 
     useEffect(() => {
         if (userSelectedColor) {
-            editIconHelpers.changeColorForNodeList(colorNodeRef.current, userSelectedColor.hex);
+            editIconHelpers.changeColorForNodeList(colorNodeRef.current, userSelectedColor);
         }
     }, [userSelectedColor]);
 

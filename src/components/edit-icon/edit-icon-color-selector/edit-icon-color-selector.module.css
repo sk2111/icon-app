@@ -2,3 +2,10 @@
   display: flex;
   flex-direction: row;
 }
+.swatchContainer {
+  display: flex;
+  flex-direction: column;
+  height: 177px;
+  justify-content: space-between;
+  margin-left: 16px;
+}

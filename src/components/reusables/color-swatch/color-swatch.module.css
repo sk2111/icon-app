@@ -1,0 +1,7 @@
+.swatchBox {
+  border: 1px solid #f3f3f4;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
