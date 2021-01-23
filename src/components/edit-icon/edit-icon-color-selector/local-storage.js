@@ -1,6 +1,6 @@
 
 //default swatches
-const DEFAULT_SWATCHES = ["#361faa", "#a02acb", "#d9d2f1", "#9997ba", "#ad5700", "#de0843"];
+const DEFAULT_SWATCHES = [];
 const SWATCH_KEY = "swatchMap";
 
 export const getStoredSwatches = () => {
