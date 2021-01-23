@@ -9,7 +9,7 @@ const ColorSwatch = ({ color, handleSwatchClick }) => {
     const colorSwatchStyle = { 'backgroundColor': color };
     
     return (
-        <div style={colorSwatchStyle} className={styles.swatchBox} onClick={handleSwatchClick}></div>
+        <div style={colorSwatchStyle} className={styles.swatchBox} title={String(color).toUpperCase()} onClick={handleSwatchClick}></div>
     );
 
 };
