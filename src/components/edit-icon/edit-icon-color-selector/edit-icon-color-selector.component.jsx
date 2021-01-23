@@ -10,7 +10,7 @@ import { SketchPicker } from 'react-color';
 //actions
 import { changeUserSelectedColor } from '../../../redux/edit-icon/edit-icon.actions';
 //selectors
-import { selectIconToEdit } from '../../../redux/edit-icon/edit-icon.selectors';
+import { selectIconToEdit, selectIsEditIconModalOpen } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
 import { EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR } from '../../../utilities/app.constants';
 
@@ -21,7 +21,7 @@ const pickerStyles = {
     }
 };
 
-const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
+const EditIconColorSelector = ({ iconToEdit, isEditIconModalOpen, changeUserSelectedColor }) => {
 
     const [color, setColor] = useState(null);
     const debounceRef = useRef({ timerId: null });
@@ -29,12 +29,12 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
     const { iconData } = iconToEdit;
 
     useEffect(() => {
-        if (color === null && iconData) {
+        if (isEditIconModalOpen && iconData) {
             getSVGColors(iconData).then((svgColors) => {
                 setColor(svgColors.fills[0] ?? DEFAULT_BLACK_COLOR);
             });
         }
-    }, [color, iconData]);
+    }, [isEditIconModalOpen, iconData]);
 
     const handleColorChangeChange = (color) => {
         setColor(color.hex);
@@ -64,7 +64,8 @@ const EditIconColorSelector = ({ iconToEdit, changeUserSelectedColor }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    iconToEdit: selectIconToEdit
+    iconToEdit: selectIconToEdit,
+    isEditIconModalOpen: selectIsEditIconModalOpen,
 });
 
 const mapDispatchToProps = (dispatch) => {
