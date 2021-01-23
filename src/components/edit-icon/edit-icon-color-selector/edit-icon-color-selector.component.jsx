@@ -18,7 +18,7 @@ import { getStoredSwatches, setStoredSwatches } from './local-storage';
 import { EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR, PICKER_STYLE } from '../../../utilities/app.constants';
 
 const storedSwatches = JSON.parse(getStoredSwatches());
-const SWATCH_SIZE = 6;
+const SWATCH_SIZE = 18;
 
 const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, changeUserSelectedColor }) => {
 
