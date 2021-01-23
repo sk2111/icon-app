@@ -9,3 +9,11 @@
   justify-content: space-between;
   margin-left: 16px;
 }
+.addFavContainer {
+  position: relative;
+}
+.favButton {
+  bottom: 15px;
+  position: absolute;
+  right: 0px;
+}

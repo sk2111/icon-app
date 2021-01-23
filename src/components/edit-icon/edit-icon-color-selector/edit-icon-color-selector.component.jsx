@@ -12,24 +12,19 @@ import ColorSwatch from '../../reusables/color-swatch/color-swatch.component';
 import { changeUserSelectedColor } from '../../../redux/edit-icon/edit-icon.actions';
 //selectors
 import { selectIconToEdit, selectIsEditIconModalOpen } from '../../../redux/edit-icon/edit-icon.selectors';
+//helpers
+import { getStoredSwatches, setStoredSwatches } from './local-storage';
 //constants
-import { EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR } from '../../../utilities/app.constants';
+import { EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR, PICKER_STYLE } from '../../../utilities/app.constants';
 
-const pickerStyles = {
-    picker: {
-        boxShadow: 'none',
-        width: '235px'
-    }
-};
+const storedSwatches = JSON.parse(getStoredSwatches());
+const SWATCH_SIZE = 6;
 
-const EditIconColorSelector = ({ iconToEdit, isEditIconModalOpen, changeUserSelectedColor }) => {
+const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, changeUserSelectedColor }) => {
 
     const [color, setColor] = useState(null);
+    const [swatches, setSwatches] = useState(storedSwatches);
     const debounceRef = useRef({ timerId: null });
-
-    const swatches = ["#361faa", "#a02acb", "#d9d2f1", "#9997ba", "#ad5700", "#de0843"];
-
-    const { iconData } = iconToEdit;
 
     useEffect(() => {
         if (isEditIconModalOpen && iconData) {
@@ -39,7 +34,14 @@ const EditIconColorSelector = ({ iconToEdit, isEditIconModalOpen, changeUserSele
         }
     }, [isEditIconModalOpen, iconData]);
 
-    const handleColorChangeChange = ({ hex: hexColor }) => {
+    const updateSwatchList = (hexColor) => {
+        const updatedSwatchList = Array.from(new Set([hexColor, ...swatches])).slice(0, SWATCH_SIZE);
+        setStoredSwatches(updatedSwatchList);
+        setSwatches(updatedSwatchList);
+    };
+
+
+    const handleColorChange = ({ hex: hexColor }) => {
         setColor(hexColor);
         if (debounceRef.current.timerId) {
             clearTimeout(debounceRef.current.timerId);
@@ -59,11 +61,11 @@ const EditIconColorSelector = ({ iconToEdit, isEditIconModalOpen, changeUserSele
             <div className={styles.container}>
                 <div className={styles.colorPickerContainer}>
                     <SketchPicker
-                        styles={pickerStyles}
+                        styles={PICKER_STYLE}
                         color={color ?? DEFAULT_BLACK_COLOR}
                         presetColors={[]}
                         disableAlpha
-                        onChange={handleColorChangeChange} />
+                        onChange={handleColorChange} />
                     <div className={styles.swatchContainer}>
                         {
                             swatches.map((color) => (
@@ -74,6 +76,9 @@ const EditIconColorSelector = ({ iconToEdit, isEditIconModalOpen, changeUserSele
                             ))
                         }
                     </div>
+                </div>
+                <div className={styles.addFavContainer}>
+                    <button className={styles.favButton} onClick={() => updateSwatchList(color)}>Add to favorites</button>
                 </div>
             </div>
         </React.Fragment>
