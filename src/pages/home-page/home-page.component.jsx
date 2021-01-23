@@ -16,11 +16,9 @@ import NavigationMenu from '../../components/containers/navigation-menu/navigati
 import RouteNotFound from '../../components/containers/route-not-found/route-not-found.component';
 import Modal from '../../components/reusables/modal/modal.component';
 import UploadIcons from '../../components/upload/upload-icons/upload-icons.component';
-import EditIconContainer from '../../components/edit-icon/edit-icon-container/edit-icon-container.component';
 import RenderView from '../../components/reusables/render-view/render-view.component';
 //reselect
 import { selectIsNavMenuExpanded } from '../../redux/app-data/app-data.selectors';
-import { selectIsEditIconModalOpen } from '../../redux/edit-icon/edit-icon.selectors';
 import { selectIsUploadModalOpen } from '../../redux/upload-icons/upload-icons.selectors';
 //route paths
 import {
@@ -53,11 +51,6 @@ const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen })
                     <UploadIcons />
                 </Modal>
             </RenderView>
-            <RenderView renderIfTrue={isEditIconModalOpen}>
-                <Modal contentContainerClass={styles.editContainer} isModalOpen={isEditIconModalOpen}>
-                    <EditIconContainer />
-                </Modal>
-            </RenderView>
         </div>
     );
 };
@@ -65,7 +58,6 @@ const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen })
 const mapStateToProps = createStructuredSelector({
     isNavMenuExpanded: selectIsNavMenuExpanded,
     isUploadModalOpen: selectIsUploadModalOpen,
-    isEditIconModalOpen: selectIsEditIconModalOpen,
 });
 
 export default connect(mapStateToProps)(ProtectedRoute(HomePage));
