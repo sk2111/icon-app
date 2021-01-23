@@ -16,9 +16,9 @@ import { selectIconToEdit, selectIsEditIconModalOpen } from '../../../redux/edit
 import { getStoredSwatches, setStoredSwatches } from './local-storage';
 //constants
 import { EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME, DEFAULT_BLACK_COLOR, PICKER_STYLE } from '../../../utilities/app.constants';
+import { SWATCH_SIZE } from './local-storage';
 
 const storedSwatches = JSON.parse(getStoredSwatches());
-const SWATCH_SIZE = 18;
 
 const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, changeUserSelectedColor }) => {
 
