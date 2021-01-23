@@ -27,11 +27,14 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
     const recommendationList = RECOMMENDATION_INFO[iconDownloadFormat] ? RECOMMENDATION_INFO[iconDownloadFormat] : [];
 
     useEffect(() => {
+        const htmlNodeList = svgContainerRef.current.children || [];
+        if (htmlNodeList.length) {
+            colorNodeRef.current = editIconHelpers.getSvgColorNodeList(htmlNodeList);
+        }
+    }, [iconData]);
+
+    useEffect(() => {
         if (userSelectedColor) {
-            const htmlNodeList = svgContainerRef.current.children || [];
-            if (!colorNodeRef.current) {
-                colorNodeRef.current = editIconHelpers.getSvgColorNodeList(htmlNodeList);
-            }
             editIconHelpers.changeColorForNodeList(colorNodeRef.current, userSelectedColor.hex);
         }
     }, [userSelectedColor]);
@@ -46,7 +49,7 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
                 iconDownloadFailure('Not a valid svg node');
             }
         }
-    }, [isIconDownloading, iconDownloadFormat, iconDownloadStart, iconDownloadFailure]);
+    }, [isIconDownloading, iconDownloadStart, iconDownloadFailure]);
 
     return (
         <div className={styles.container}>
