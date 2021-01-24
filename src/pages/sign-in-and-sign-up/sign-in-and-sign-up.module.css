@@ -11,11 +11,6 @@
   justify-content: center;
   width: 100vw;
 }
-.appLogo {
-  animation: hideshow 1.5s ease infinite;
-  height: 300px;
-  width: 300px;
-}
 .leftContainer {
   align-items: center;
   background-color: var(--app-illustration-page-background);
@@ -37,13 +32,4 @@
   margin: auto;
   margin-top: 66px;
   width: 80%;
-}
-/* animation */
-@keyframes hideshow {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 0.3;
-  }
 }

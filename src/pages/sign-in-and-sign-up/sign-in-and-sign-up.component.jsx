@@ -27,7 +27,7 @@ const SignInAndSignUpPage = ({ currentUser, history }) => {
         }
     });
 
-    if (currentUser?.uid) return <div className={styles.logoContainer}><AnimAppLogo className={styles.appLogo} /></div>;
+    if (currentUser?.uid) return <div className={styles.logoContainer}><AnimAppLogo className="re-app-logo" /></div>;
 
     return (
         <div className={styles.pageContainer}>

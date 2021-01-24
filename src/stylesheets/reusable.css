@@ -44,3 +44,19 @@
   text-align: center !important;
   width: 37px !important;
 }
+
+/* loading app logo resuable css */
+.re-app-logo {
+  animation: hideshow 1.5s ease infinite;
+  height: 300px;
+  width: 300px;
+}
+/* animation */
+@keyframes hideshow {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.3;
+  }
+}
