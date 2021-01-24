@@ -42,8 +42,8 @@ const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen })
                     <Route exact path={PROJECTS_ROUTE_PATH} render={() => <ProjectIconsPage />} />
                     <Route exact path={FAVORITES_ROUTE_PATH} render={() => <FavoritesIconsPage />} />
                     <Route exact path={EDIT_ROUTE_PATH} render={() => <EditIconPage />} />
-                    <Route exact path={MESSAGES_ROUTE_PATH} render={() => <div>I am messages page</div>} />
                     <Route component={RouteNotFound} />
+                    {/* <Route exact path={MESSAGES_ROUTE_PATH} render={() => <div>I am messages page</div>} /> */}
                 </Switch>
             </section>
             <RenderView renderIfTrue={isUploadModalOpen}>

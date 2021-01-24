@@ -39,9 +39,9 @@ const NavigationMenu = () => {
                     })
                 }
             </div>
-            <div className={styles.messageContainer} onClick={() => history.push(MESSAGE_LINK)}>
+            {/* <div className={styles.messageContainer} onClick={() => history.push(MESSAGE_LINK)}>
 
-            </div>
+            </div> */}
         </div>
     );
 };
