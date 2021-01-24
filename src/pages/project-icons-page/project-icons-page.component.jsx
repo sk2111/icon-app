@@ -10,6 +10,7 @@ import IconsViewHeader from '../../components/containers/icons-view-header/icons
 import IconsDisplayContainer from '../../components/containers/icons-display-container/icons-display-container.component';
 //actions
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
+import { editSelectedIcon } from '../../redux/edit-icon/edit-icon.actions';
 import {
     setProjectIconsTabSearchValue, setProjectIconsTabSelectValue, deleteProjectIconFromDbStart,
     fetchProjectIconsFromDatabaseStart, toggleProjectIconFavoriteModeStart
@@ -25,7 +26,8 @@ import { PROJECT_ICONS_HEADER_LABEL, PROJECT_ICONS_INPUT_PLACEHOLDER, PROJECT_IC
 
 
 const ProjectIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectValue, toggleProjectIconFavoriteMode,
-    selectOptions, setSelectValue, openUploadModal, iconsList, isMoreIconsAvaliableToFetch, fetchMoreProjectIcons, deleteProjectIconFromDb }) => {
+    selectOptions, setSelectValue, openUploadModal, iconsList, isMoreIconsAvaliableToFetch,
+    fetchMoreProjectIcons, deleteProjectIconFromDb, handleEditIcon }) => {
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -51,7 +53,9 @@ const ProjectIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, set
                         fetchMoreIcons={fetchMoreProjectIcons}
                         isCurrentUserAdmin={isCurrentUserAdmin}
                         handleFavoriteSelection={toggleProjectIconFavoriteMode}
-                        handleDeleteIcon={deleteProjectIconFromDb} />
+                        handleDeleteIcon={deleteProjectIconFromDb}
+                        handleEditIcon={handleEditIcon}
+                    />
                 </div>
             </div>
         </div>
@@ -76,7 +80,8 @@ const mapDispatchToProps = (dispatch) => {
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
         fetchMoreProjectIcons: () => dispatch(fetchProjectIconsFromDatabaseStart()),
         deleteProjectIconFromDb: (id) => dispatch(deleteProjectIconFromDbStart(id)),
-        toggleProjectIconFavoriteMode: (config) => dispatch(toggleProjectIconFavoriteModeStart(config))
+        toggleProjectIconFavoriteMode: (config) => dispatch(toggleProjectIconFavoriteModeStart(config)),
+        handleEditIcon: (iconProps) => dispatch(editSelectedIcon(iconProps))
     }
 };
 

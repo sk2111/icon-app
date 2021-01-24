@@ -13,6 +13,7 @@ import {
     fetchCommonIconsFromDatabaseStart, setCommonIconsTabSearchValue, deleteCommonIconFromDbStart,
     setCommonIconsTabSelectValue, toggleCommonIconFavoriteModeStart
 } from '../../redux/common-icons/common-icons.actions';
+import { editSelectedIcon } from '../../redux/edit-icon/edit-icon.actions';
 import { openUploadModal } from '../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../redux/user/user.selectors';
@@ -26,7 +27,7 @@ import { COMMON_ICONS_HEADER_LABEL, COMMON_ICONS_INPUT_PLACEHOLDER, COMMON_ICONS
 
 const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setSearchValue, selectOptions, selectValue,
     setSelectValue, openUploadModal, iconsList, isMoreIconsAvaliableToFetch, deleteCommonIconFromDb,
-    fetchMoreCommonIcons, toggleCommonIconFavoriteMode }) => {
+    fetchMoreCommonIcons, toggleCommonIconFavoriteMode, handleEditIcon }) => {
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -52,7 +53,10 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
                         fetchMoreIcons={fetchMoreCommonIcons}
                         isCurrentUserAdmin={isCurrentUserAdmin}
                         handleFavoriteSelection={toggleCommonIconFavoriteMode}
-                        handleDeleteIcon={deleteCommonIconFromDb} />
+                        handleDeleteIcon={deleteCommonIconFromDb}
+                        handleEditIcon={handleEditIcon}
+                    />
+
                 </div>
             </div>
         </div>
@@ -77,7 +81,8 @@ const mapDispatchToProps = (dispatch) => {
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
         fetchMoreCommonIcons: () => dispatch(fetchCommonIconsFromDatabaseStart()),
         deleteCommonIconFromDb: (id) => dispatch(deleteCommonIconFromDbStart(id)),
-        toggleCommonIconFavoriteMode: (config) => dispatch(toggleCommonIconFavoriteModeStart(config))
+        toggleCommonIconFavoriteMode: (config) => dispatch(toggleCommonIconFavoriteModeStart(config)),
+        handleEditIcon: (iconProps) => dispatch(editSelectedIcon(iconProps))
     }
 };
 

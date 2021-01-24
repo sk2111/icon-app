@@ -13,6 +13,7 @@ import {
     fetchCurrentUserFavoriteIconsStart, setFavoriteTabSearchValue,
     deleteIconFromFavoriteTabStart, toggleIconFavoriteModeStart, syncFavoriteTabIconsWithFetchMap
 } from '../../redux/favorite-icons/favorite-icons.actions';
+import { editSelectedIcon } from '../../redux/edit-icon/edit-icon.actions';
 //selectors
 import { selectCurrentUserAdminRole, selectIsMoreFavoriteIconsAvailableToFetch } from '../../redux/user/user.selectors';
 import { selectFavoriteIconsListToDisplay, selectFavoriteIconsSearchValue } from '../../redux/favorite-icons/favorite-icons.selectors';
@@ -21,7 +22,7 @@ import { FAVORITES_ICONS_HEADER_LABEL, FAVORITES_ICONS_INPUT_PLACEHOLDER } from 
 
 
 const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, iconsList, isMoreIconsAvaliableToFetch,
-    fetchMoreFavoriteIcons, isCurrentUserAdmin, toggleFavoriteMode, deleteIconFromDb, syncFavoriteIcons }) => {
+    fetchMoreFavoriteIcons, isCurrentUserAdmin, toggleFavoriteMode, deleteIconFromDb, syncFavoriteIcons, handleEditIcon }) => {
 
     useEffect(() => {
         syncFavoriteIcons();
@@ -45,7 +46,9 @@ const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, icons
                         fetchMoreIcons={fetchMoreFavoriteIcons}
                         isCurrentUserAdmin={isCurrentUserAdmin}
                         handleFavoriteSelection={toggleFavoriteMode}
-                        handleDeleteIcon={deleteIconFromDb} />
+                        handleDeleteIcon={deleteIconFromDb}
+                        handleEditIcon={handleEditIcon}
+                    />
                 </div>
             </div>
         </div>
@@ -66,7 +69,8 @@ const mapDispatchToProps = (dispatch) => {
         fetchMoreFavoriteIcons: () => dispatch(fetchCurrentUserFavoriteIconsStart()),
         deleteIconFromDb: (id) => dispatch(deleteIconFromFavoriteTabStart(id)),
         toggleFavoriteMode: (config) => dispatch(toggleIconFavoriteModeStart(config)),
-        syncFavoriteIcons: () => dispatch(syncFavoriteTabIconsWithFetchMap())
+        syncFavoriteIcons: () => dispatch(syncFavoriteTabIconsWithFetchMap()),
+        handleEditIcon: (iconProps) => dispatch(editSelectedIcon(iconProps))
     }
 };
 
