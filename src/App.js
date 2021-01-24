@@ -31,7 +31,7 @@ const App = ({ isEditIconModalOpen, currentUser, userPersistCheckDone, checkUser
   }, [checkUserPersistanceStart]);
 
   //until persistance check done show loading logo to avoid UI flicker
-  if (!userPersistCheckDone) return <AnimAppLogo />;
+  if (!userPersistCheckDone) return <div className={styles.logoContainer}><AnimAppLogo className={styles.appLogo} /></div>;
 
   return (
     <React.Fragment>
