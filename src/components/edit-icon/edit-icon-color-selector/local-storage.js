@@ -6,7 +6,7 @@ export const SWATCH_SIZE = 18;
 
 export const getStoredSwatches = () => {
     const storedSwatches = localStorage.getItem(SWATCH_KEY);
-    if (storedSwatches && (JSON.parse(storedSwatches).length === SWATCH_SIZE)) {
+    if (storedSwatches) {
         return storedSwatches;
     }
     else {
