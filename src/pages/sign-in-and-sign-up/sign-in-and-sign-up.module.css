@@ -12,6 +12,7 @@
   width: 100vw;
 }
 .appLogo {
+  animation: hideshow 1.5s ease infinite;
   height: 300px;
   width: 300px;
 }
@@ -36,4 +37,13 @@
   margin: auto;
   margin-top: 66px;
   width: 80%;
+}
+/* animation */
+@keyframes hideshow {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.3;
+  }
 }
