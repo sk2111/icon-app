@@ -28,8 +28,7 @@ const SignOut = ({ userSignOutSuccess }) => {
 
     return (
         <div className={styles.container}>
-            <h1>Sign out </h1>
-            <AnimAppLogo />
+            <AnimAppLogo className="re-app-logo" />
         </div>
     );
 };
