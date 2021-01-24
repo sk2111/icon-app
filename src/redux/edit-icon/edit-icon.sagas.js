@@ -12,12 +12,6 @@ import { selectEditIcon } from './edit-icon.selectors';
 //constants
 import { PNG_FORMAT, SVG_FORMAT, BMP_FORMAT, JPEG_FORMAT, WEBP_FORMAT } from '../../utilities/app.constants';
 
-
-
-
-
-
-
 /*
     var imgData = ctx.getImageData(0, 0, canvasNode.width, canvasNode.height);
     var data = imgData.data;
@@ -41,11 +35,6 @@ import { PNG_FORMAT, SVG_FORMAT, BMP_FORMAT, JPEG_FORMAT, WEBP_FORMAT } from '..
 function* downloadCanvasAsImage(svgString, canvasNode, iconName, dataUrltype, fileExtension, iconDownloadSuccessAction) {
     if (canvasNode && svgString) {
         try {
-
-            const ctx = canvasNode.getContext('2d');
-            const renderRef = Canvg.fromString(ctx, svgString);
-            renderRef.start();
-            yield delay(1000);
             const imageUri = canvasNode.toDataURL(dataUrltype, 1);
             FileSaver.saveAs(imageUri, `${iconName}${fileExtension}`);
             yield delay(500);
@@ -61,12 +50,8 @@ function* downloadCanvasAsImage(svgString, canvasNode, iconName, dataUrltype, fi
 };
 
 //download bmp 
-function* downloadBmp(svgString, canvasNode, iconName, iconDownloadSuccessAction) {
+function* downloadBmp(canvasNode, iconName, iconDownloadSuccessAction) {
     try {
-        const ctx = canvasNode.getContext('2d');
-        const renderRef = Canvg.fromString(ctx, svgString);
-        renderRef.start();
-        yield delay(1000);
         CanvasToBMP.toDataURL(canvasNode, (dataUri) => {
             FileSaver.saveAs(dataUri, `${iconName}.bmp`);
         });
@@ -91,22 +76,41 @@ function* downloadSvg(svgString, iconName, iconDownloadSuccessAction) {
     }
 };
 
+// helpers
 function getSvgString(svgNode, height, width) {
-    svgNode.setAttribute("height", `${height}px`);
-    svgNode.setAttribute("width", `${width}px`);
-    const serializer = new XMLSerializer();
-    return serializer.serializeToString(svgNode);
+    try {
+        svgNode.setAttribute("height", `${height}px`);
+        svgNode.setAttribute("width", `${width}px`);
+        const serializer = new XMLSerializer();
+        return serializer.serializeToString(svgNode);
+    }
+    catch (e) {
+        throw new Error(String(e?.message));
+    }
 };
+
+function* renderCanvas(canvasNode, svgString) {
+    try {
+        const ctx = canvasNode.getContext('2d');
+        const renderRef = Canvg.fromString(ctx, svgString);
+        renderRef.start();
+        yield delay(1000);
+    }
+    catch (e) {
+        throw new Error(String(e?.message));
+    }
+}
 
 function* downloadIcon({ payload: { svgNode, canvasNode } }) {
     try {
         const { iconDownloadFormat, downloadSize: { height, width }, iconToEdit: { iconName } } = yield select(selectEditIcon);
         const svgString = yield call(getSvgString, svgNode, height, width);
+        yield call(renderCanvas, canvasNode, svgString);
         switch (iconDownloadFormat) {
             case SVG_FORMAT.value:
                 return yield call(downloadSvg, svgString, iconName, iconDownloadSuccess);
             case BMP_FORMAT.value:
-                return yield call(downloadBmp, svgString, canvasNode, iconName, iconDownloadSuccess);
+                return yield call(downloadBmp, canvasNode, iconName, iconDownloadSuccess);
             case PNG_FORMAT.value:
                 return yield call(downloadCanvasAsImage, svgString, canvasNode, iconName, "image/png", ".png", iconDownloadSuccess);
             case JPEG_FORMAT.value:
