@@ -2,6 +2,7 @@
 import { all, call, delay, put, select, takeLatest } from "redux-saga/effects";
 import Canvg from 'canvg';
 import FileSaver from 'file-saver';
+import { CanvasToBMP } from '../../utilities/canvas-to-bmp';
 //action types
 import { editIconActionTypes } from './edit-icon.type';
 //actions
@@ -9,8 +10,7 @@ import { iconDownloadSuccess, iconDownloadFailure } from './edit-icon.actions';
 //selectors
 import { selectEditIcon } from './edit-icon.selectors';
 //constants
-import { PNG_FORMAT, SVG_FORMAT, JPEG_FORMAT, WEBP_FORMAT } from '../../utilities/app.constants';
-
+import { PNG_FORMAT, SVG_FORMAT, BMP_FORMAT, JPEG_FORMAT, WEBP_FORMAT } from '../../utilities/app.constants';
 
 
 
@@ -40,26 +40,55 @@ import { PNG_FORMAT, SVG_FORMAT, JPEG_FORMAT, WEBP_FORMAT } from '../../utilitie
 // download png webp jpeg
 function* downloadCanvasAsImage(svgString, canvasNode, iconName, dataUrltype, fileExtension, iconDownloadSuccessAction) {
     if (canvasNode && svgString) {
-        const ctx = canvasNode.getContext('2d');
-        const renderRef = Canvg.fromString(ctx, svgString);
-        renderRef.start();
-        yield delay(1000);
-        const image = canvasNode.toDataURL(dataUrltype, 1);
-        FileSaver.saveAs(image, `${iconName}${fileExtension}`);
-        yield delay(500);
-        yield put(iconDownloadSuccessAction());
+        try {
+
+            const ctx = canvasNode.getContext('2d');
+            const renderRef = Canvg.fromString(ctx, svgString);
+            renderRef.start();
+            yield delay(1000);
+            const imageUri = canvasNode.toDataURL(dataUrltype, 1);
+            FileSaver.saveAs(imageUri, `${iconName}${fileExtension}`);
+            yield delay(500);
+            yield put(iconDownloadSuccessAction());
+        }
+        catch (e) {
+            throw new Error(String(e?.message));
+        }
     }
     else {
         throw new Error('Not a valid canvas node or svg string');
     }
 };
 
+//download bmp 
+function* downloadBmp(svgString, canvasNode, iconName, iconDownloadSuccessAction) {
+    try {
+        const ctx = canvasNode.getContext('2d');
+        const renderRef = Canvg.fromString(ctx, svgString);
+        renderRef.start();
+        yield delay(1000);
+        CanvasToBMP.toDataURL(canvasNode, (dataUri) => {
+            FileSaver.saveAs(dataUri, `${iconName}.bmp`);
+        });
+        yield delay(500);
+        yield put(iconDownloadSuccessAction());
+    }
+    catch (e) {
+        throw new Error(String(e?.message));
+    }
+};
+
 //download svg
 function* downloadSvg(svgString, iconName, iconDownloadSuccessAction) {
-    const blob = new Blob([svgString], { type: "image/svg+xml" });
-    FileSaver.saveAs(blob, `${iconName}.svg`);
-    yield delay(500);
-    yield put(iconDownloadSuccessAction());
+    try {
+        const blob = new Blob([svgString], { type: "image/svg+xml" });
+        FileSaver.saveAs(blob, `${iconName}.svg`);
+        yield delay(500);
+        yield put(iconDownloadSuccessAction());
+    }
+    catch (e) {
+        throw new Error(String(e?.message));
+    }
 };
 
 function getSvgString(svgNode, height, width) {
@@ -76,6 +105,8 @@ function* downloadIcon({ payload: { svgNode, canvasNode } }) {
         switch (iconDownloadFormat) {
             case SVG_FORMAT.value:
                 return yield call(downloadSvg, svgString, iconName, iconDownloadSuccess);
+            case BMP_FORMAT.value:
+                return yield call(downloadBmp, svgString, canvasNode, iconName, iconDownloadSuccess);
             case PNG_FORMAT.value:
                 return yield call(downloadCanvasAsImage, svgString, canvasNode, iconName, "image/png", ".png", iconDownloadSuccess);
             case JPEG_FORMAT.value:
