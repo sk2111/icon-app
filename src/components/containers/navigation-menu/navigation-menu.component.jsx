@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import styles from './navigation-menu.module.css';
 //static
 import AppLogoImg from '../../../assests/webp/applogo.webp';
+import { ReactComponent as MessageSvg } from '../../../assests/message.svg';
 //constants
 import { NAVI_LINKS, MESSAGE_LINK } from './navigation-menu.utilities';
 
@@ -39,9 +40,9 @@ const NavigationMenu = () => {
                     })
                 }
             </div>
-            {/* <div className={styles.messageContainer} onClick={() => history.push(MESSAGE_LINK)}>
-
-            </div> */}
+            <a className={styles.messageContainer} href={MESSAGE_LINK} target="_blank" rel="noopener noreferrer">
+                <MessageSvg />
+            </a>
         </div>
     );
 };

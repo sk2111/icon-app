@@ -10,7 +10,7 @@ export const COMMON_ROUTE_PATH = HOME_ROUTE_PATH + '/common';
 export const PROJECTS_ROUTE_PATH = HOME_ROUTE_PATH + '/projects';
 export const FAVORITES_ROUTE_PATH = HOME_ROUTE_PATH + '/favorites';
 export const EDIT_ROUTE_PATH = HOME_ROUTE_PATH + '/edit';
-export const MESSAGES_ROUTE_PATH = HOME_ROUTE_PATH + '/messages';
+export const MESSAGES_ROUTE_PATH = 'https://www.google.com/';
 
 // Default Landing path after sign in success
 export const LANDING_ROUTE_PATH = COMMON_ROUTE_PATH;
