@@ -34,13 +34,17 @@ const NavigationMenu = () => {
                         return (
                             <div key={name} className={getNaviConClass(pathname, route)} onClick={() => history.push(route)}>
                                 <IconComp className={getIconClass(pathname, route)} />
-                                <p className={styles.navLink}>{name}</p>
+                                <label className={styles.navLink}>{name}</label>
                             </div>
                         );
                     })
                 }
+                <a className={getNaviConClass('otherresources', '')} href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                    <MessageSvg className={getIconClass('otherresources', '')} />
+                    <label className={styles.navLink}>Other Resources</label>
+                </a>
             </div>
-            <a className={styles.messageContainer} href={MESSAGE_LINK} target="_blank" rel="noopener noreferrer">
+            <a className={styles.messageAnchor} href={MESSAGE_LINK} target="_blank" rel="noopener noreferrer">
                 <MessageSvg />
             </a>
         </div>

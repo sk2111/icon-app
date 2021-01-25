@@ -39,6 +39,7 @@
   height: 50px;
   margin-bottom: 18px;
   padding: 11px 0px;
+  text-decoration: none;
   transition: background 0.35s ease;
 }
 .naviLinkCon:hover {
@@ -70,12 +71,13 @@
   color: var(--app-navigation-link-not-highlight);
 }
 .navLink {
+  cursor: pointer;
   font-size: 14px;
   font-weight: 500;
   margin: 0px;
   text-decoration: none;
 }
-.messageContainer {
+.messageAnchor {
   align-items: center;
   background-color: var(--app-navigation-message-background);
   border-radius: 50%;
@@ -85,6 +87,7 @@
   justify-content: center;
   left: 20px;
   height: 30px;
+  outline: none;
   position: absolute;
   width: 30px;
 }
