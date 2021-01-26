@@ -23,8 +23,14 @@ const storedSwatches = JSON.parse(getStoredSwatches());
 const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, changeUserSelectedColor }) => {
 
     const [color, setColor] = useState(null);
+    const [showDeleteSwatch, setShowDeleteSwatch] = useState(false);
     const [swatches, setSwatches] = useState(storedSwatches);
     const debounceRef = useRef({ timerId: null });
+    const deleteZoneRef = useRef(null);
+
+
+    const deleteZone = `${styles.deleteSwatchZone} ${showDeleteSwatch ? styles.visible : styles.hidden}`;
+
 
     useEffect(() => {
         if (isEditIconModalOpen && iconData) {
@@ -49,6 +55,29 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
         debounceRef.current.timerId = setTimeout(() => {
             changeUserSelectedColor(hexColor);
         }, EDIT_ICON_APPLY_COLOR_DEBOUNCE_TIME);
+    };
+
+    const handleSwatchDragStart = () => {
+        setShowDeleteSwatch(true);
+    };
+    const handleSwatchDragEnd = () => {
+        setShowDeleteSwatch(false);
+    };
+
+    const handleDeleteZoneEnter = (event) => {
+        event.dataTransfer.dropEffect = "copy";
+        if (!deleteZoneRef.current) return;
+        deleteZoneRef.current.style.boxShadow = "0px 0px 1px 5px #f34469";
+    };
+
+    const handleDeleteZoneDragOver = (event) => {
+        event.dataTransfer.dropEffect = "copy";
+        event.preventDefault();
+    };
+
+    const handleDeleteZoneLeave = () => {
+        if (!deleteZoneRef.current) return;
+        deleteZoneRef.current.style.boxShadow = "";
     };
 
     const handleSwatchClick = (hexColor) => {
@@ -77,11 +106,20 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
                                     <ColorSwatch
                                         key={color}
                                         color={color}
+                                        handleDragStart={handleSwatchDragStart}
+                                        handleDragEnd={handleSwatchDragEnd}
                                         handleSwatchClick={() => handleSwatchClick(color)} />
                                 ))
                             }
                         </div>
                     </div>
+                </div>
+                <div ref={deleteZoneRef}
+                    className={deleteZone}
+                    onDragEnter={handleDeleteZoneEnter}
+                    onDragOver={handleDeleteZoneDragOver}
+                    onDragLeave={handleDeleteZoneLeave}>
+                    Delete Swatch
                 </div>
             </div>
         </React.Fragment>

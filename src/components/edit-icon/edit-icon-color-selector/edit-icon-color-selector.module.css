@@ -38,3 +38,24 @@
   height: 155px;
   row-gap: 6.5px;
 }
+.deleteSwatchZone {
+  align-items: center;
+  background-color: #fdbcca;
+  border: 1px dashed #f34469;
+  border-radius: 3px;
+  bottom: 91px;
+  color: #f34469;
+  display: flex;
+  font-size: 10px;
+  height: 27px;
+  justify-content: center;
+  position: absolute;
+  right: 32px;
+  width: 85px;
+}
+.visible {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
