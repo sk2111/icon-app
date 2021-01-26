@@ -26,6 +26,14 @@
   height: 28px;
   width: 69px;
 }
+.downloadSelection button:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.downloadSelection button:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
 .groupHeader {
   color: var(--app-edit-text-header);
   font-size: 12px;

@@ -2,7 +2,7 @@
 //default swatches
 const DEFAULT_SWATCHES = [];
 const SWATCH_KEY = "swatchMap";
-export const SWATCH_SIZE = 18;
+export const SWATCH_SIZE = 15;
 
 export const getStoredSwatches = () => {
     const storedSwatches = localStorage.getItem(SWATCH_KEY);

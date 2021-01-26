@@ -18,7 +18,7 @@
 }
 .favButton {
   border: none;
-  color: #7488cc;
+  color: var(--app-swatch-fav-button);
   cursor: pointer;
   display: flex;
   font-size: 14px;
@@ -34,7 +34,7 @@
   display: grid;
   column-gap: 6px;
   grid-template-columns: repeat(3, 25px);
-  grid-template-rows: repeat(6, 25px);
+  grid-template-rows: repeat(5, 25px);
   height: 177px;
-  row-gap: 6px;
+  row-gap: 6.5px;
 }
