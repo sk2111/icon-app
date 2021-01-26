@@ -160,6 +160,9 @@
   --app-numberbox-border: #dbdbdc;
   --app-numberbox-field: #989899;
   --app-numberbox-unit-background: #f3f3f4;
+  /* common */
+  --app-default-user-text: #707071;
+  --app-default-border-box: #dbdbdc;
 }
 * {
   box-sizing: border-box;

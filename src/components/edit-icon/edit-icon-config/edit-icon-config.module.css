@@ -8,7 +8,7 @@
 .configurationZone {
   padding: 16px;
 }
-.configurationZone button {
+.downloadSelection button {
   background-color: var(--app-button-notselected-background);
   border-radius: 0px;
   color: var(--app-button-notselected-text);
@@ -39,7 +39,7 @@
 }
 .sizeGroup button {
   background-color: var(--app-button-notselected-background);
-  border-radius: 0px;
+  border-radius: 3px;
   color: var(--app-button-notselected-text);
   font-size: 12px;
   font-weight: 400;

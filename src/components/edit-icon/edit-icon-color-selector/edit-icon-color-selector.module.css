@@ -3,19 +3,38 @@
   flex-direction: row;
 }
 .swatchContainer {
+  margin-left: 10px;
+}
+.addSwatchesContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 10px 0;
+}
+.addSwatchLabel {
+  color: var(--app-default-user-text);
+  font-size: 12px;
+  margin: 0;
+}
+.favButton {
+  border: none;
+  color: #7488cc;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  height: 16px;
+  justify-content: center;
+  margin-left: 18px;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+  width: 16px;
+}
+.swatchColorContainer {
   display: grid;
   column-gap: 6px;
   grid-template-columns: repeat(3, 25px);
   grid-template-rows: repeat(6, 25px);
   height: 177px;
   row-gap: 6px;
-  margin-left: 16px;
-}
-.addFavContainer {
-  position: relative;
-}
-.favButton {
-  bottom: 15px;
-  position: absolute;
-  right: 0px;
 }

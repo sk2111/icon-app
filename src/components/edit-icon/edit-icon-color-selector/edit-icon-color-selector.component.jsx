@@ -67,18 +67,21 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
                         disableAlpha
                         onChange={handleColorChange} />
                     <div className={styles.swatchContainer}>
-                        {
-                            swatches.map((color) => (
-                                <ColorSwatch
-                                    key={color}
-                                    color={color}
-                                    handleSwatchClick={() => handleSwatchClick(color)} />
-                            ))
-                        }
+                        <div className={styles.addSwatchesContainer}>
+                            <h6 className={styles.addSwatchLabel}>Swatches </h6>
+                            <button title="Add color to swatches" className={styles.favButton} onClick={() => updateSwatchList(color)}>+</button>
+                        </div>
+                        <div className={styles.swatchColorContainer}>
+                            {
+                                swatches.map((color) => (
+                                    <ColorSwatch
+                                        key={color}
+                                        color={color}
+                                        handleSwatchClick={() => handleSwatchClick(color)} />
+                                ))
+                            }
+                        </div>
                     </div>
-                </div>
-                <div className={styles.addFavContainer}>
-                    <button className={styles.favButton} onClick={() => updateSwatchList(color)}>Add to favorites</button>
                 </div>
             </div>
         </React.Fragment>
