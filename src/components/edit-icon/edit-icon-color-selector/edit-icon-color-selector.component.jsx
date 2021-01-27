@@ -38,8 +38,9 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
         }
     }, [isEditIconModalOpen, iconData]);
 
-    const updateSwatchList = (hexColor) => {
-        const updatedSwatchList = Array.from(new Set([hexColor, ...swatches])).slice(0, SWATCH_SIZE);
+    const updateSwatchList = (hexColor, toDelete = false) => {
+        const swatchList = toDelete ? swatches.filter(color => color !== hexColor) : [hexColor, ...swatches];
+        const updatedSwatchList = Array.from(new Set(swatchList)).slice(0, SWATCH_SIZE);
         setStoredSwatches(updatedSwatchList);
         setSwatches(updatedSwatchList);
     };
@@ -72,7 +73,12 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
                     <div className={styles.swatchContainer}>
                         <div className={styles.addSwatchesContainer}>
                             <h6 className={styles.addSwatchLabel}>Swatches </h6>
-                            <button title="Add color to swatches" className={styles.favButton} onClick={() => updateSwatchList(color)}>+</button>
+                            <button
+                                title="Add color to swatches"
+                                className={styles.favButton}
+                                onClick={() => updateSwatchList(color, false)}>
+                                +
+                            </button>
                         </div>
                         <div className={styles.swatchColorContainer}>
                             {
@@ -88,7 +94,10 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
                         </div>
                     </div>
                 </div>
-                <DeleteSwatch showDeleteZone={showDeleteSwatchZone} />
+                <DeleteSwatch
+                    showDeleteZone={showDeleteSwatchZone}
+                    setShowDeleteZone={setShowDeleteSwatchZone}
+                    updateSwatchList={updateSwatchList} />
             </div>
         </React.Fragment>
     );

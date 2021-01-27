@@ -7,7 +7,7 @@ import styles from './delete-swatch.module.css';
 
 
 
-const DeleteSwatch = ({ showDeleteZone }) => {
+const DeleteSwatch = ({ showDeleteZone, setShowDeleteZone, updateSwatchList }) => {
 
     const deleteZoneRef = useRef(null);
 
@@ -30,12 +30,23 @@ const DeleteSwatch = ({ showDeleteZone }) => {
         deleteZoneRef.current.style.boxShadow = "";
     };
 
+    const handleDeleteZoneDrop = (event) => {
+        if (!deleteZoneRef.current) return;
+        deleteZoneRef.current.style.boxShadow = "";
+        const swatchColorToDelete = event.dataTransfer.getData('color');
+        if (swatchColorToDelete) {
+            updateSwatchList(swatchColorToDelete, true);
+        }
+        setShowDeleteZone(false);
+    };
+
     return (
         <div ref={deleteZoneRef}
             className={deleteZone}
             onDragEnter={handleDeleteZoneEnter}
             onDragOver={handleDeleteZoneDragOver}
-            onDragLeave={handleDeleteZoneLeave}>
+            onDragLeave={handleDeleteZoneLeave}
+            onDrop={handleDeleteZoneDrop}>
             Delete Swatch
         </div>
     );
