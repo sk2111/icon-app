@@ -2,7 +2,7 @@ import { uploadIconsActionTypes } from './upload-icons.type';
 //helpers
 import { removeObjectPropertiesImmutably, editObjectPropertiesImmutably, editAllIconsObjectPropertiesImmutably } from '../../utilities/reducer.helperfunctions';
 //constants
-import { MODAL_IN_UPLOAD_VIEW, MODAL_IN_CONFIGURE_VIEW, UPLOAD_ICONS_DEFAULT_CLASSIFICATION } from '../../utilities/app.constants';
+import { MODAL_IN_UPLOAD_VIEW, UPLOAD_ICONS_DEFAULT_CLASSIFICATION } from '../../utilities/app.constants';
 
 const INITIAL_STATE = {
     uploadedIcons: {},

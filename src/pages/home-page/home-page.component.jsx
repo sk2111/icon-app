@@ -23,7 +23,7 @@ import { selectIsUploadModalOpen } from '../../redux/upload-icons/upload-icons.s
 //route paths
 import {
     COMMON_ROUTE_PATH, PROJECTS_ROUTE_PATH, FAVORITES_ROUTE_PATH,
-    EDIT_ROUTE_PATH, MESSAGES_ROUTE_PATH
+    EDIT_ROUTE_PATH
 } from '../../utilities/route.paths';
 
 const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen }) => {
