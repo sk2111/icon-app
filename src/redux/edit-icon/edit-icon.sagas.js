@@ -30,8 +30,37 @@ import { PNG_FORMAT, SVG_FORMAT, BMP_FORMAT, JPEG_FORMAT, WEBP_FORMAT } from '..
 // var data = imgData.data;
 // console.log("canvas node test", imgData, data);
 
-// download user icons
-// download png webp jpeg
+// download jpeg as white color
+function* downloadCanvasAsJpeg(svgString, canvasNode, iconName, dataUrltype, fileExtension, iconDownloadSuccessAction) {
+    if (canvasNode && svgString) {
+        try {
+            const ctx = canvasNode.getContext("2d")
+            const imgData = ctx.getImageData(0, 0, canvasNode.width, canvasNode.height);
+            const data = imgData.data;
+            for (var i = 0; i < data.length; i += 4) {
+                if (data[i + 3] < 255) {
+                    data[i] = 255;
+                    data[i + 1] = 255; // convert non opaque pixels to white
+                    data[i + 2] = 255;
+                    data[i + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+            const imageUri = canvasNode.toDataURL(dataUrltype, 1);
+            FileSaver.saveAs(imageUri, `${iconName}${fileExtension}`);
+            yield delay(500);
+            yield put(iconDownloadSuccessAction());
+        }
+        catch (e) {
+            throw new Error(String(e?.message));
+        }
+    }
+    else {
+        throw new Error('Not a valid canvas node or svg string');
+    }
+};
+
+// download png webp 
 function* downloadCanvasAsImage(svgString, canvasNode, iconName, dataUrltype, fileExtension, iconDownloadSuccessAction) {
     if (canvasNode && svgString) {
         try {
@@ -113,10 +142,10 @@ function* downloadIcon({ payload: { svgNode, canvasNode } }) {
                 return yield call(downloadBmp, canvasNode, iconName, iconDownloadSuccess);
             case PNG_FORMAT.value:
                 return yield call(downloadCanvasAsImage, svgString, canvasNode, iconName, "image/png", ".png", iconDownloadSuccess);
-            case JPEG_FORMAT.value:
-                return yield call(downloadCanvasAsImage, svgString, canvasNode, iconName, "image/jpeg", ".jpeg", iconDownloadSuccess);
             case WEBP_FORMAT.value:
                 return yield call(downloadCanvasAsImage, svgString, canvasNode, iconName, "image/webp", ".webp", iconDownloadSuccess);
+            case JPEG_FORMAT.value:
+                return yield call(downloadCanvasAsJpeg, svgString, canvasNode, iconName, "image/jpeg", ".jpeg", iconDownloadSuccess);
             default:
                 console.log("No match found");
         }
