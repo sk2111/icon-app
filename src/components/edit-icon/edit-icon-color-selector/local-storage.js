@@ -16,7 +16,7 @@ export const getStoredSwatches = () => {
 };
 
 export const setStoredSwatches = (newSwatches) => {
-    if (Object.keys(newSwatches).length) {
+    if (Array.isArray(newSwatches)) {
         localStorage.setItem(SWATCH_KEY, JSON.stringify(newSwatches));
     }
 };
