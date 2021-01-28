@@ -14,6 +14,7 @@ import ToastMessage from './components/reusables/toast-message/toast-message.com
 import Modal from './components/reusables/modal/modal.component';
 import EditIconContainer from './components/edit-icon/edit-icon-container/edit-icon-container.component';
 import RouteNotFound from './components/containers/route-not-found/route-not-found.component';
+import ErrorBoundary from './components/reusables/error-boundary/error-boundary.component';
 //actions
 import { checkUserPersistanceStart } from './redux/user/user.actions';
 //Reselect
@@ -34,7 +35,7 @@ const App = ({ isEditIconModalOpen, currentUser, userPersistCheckDone, checkUser
   if (!userPersistCheckDone) return <div className={styles.logoContainer}><AnimAppLogo className="re-app-logo" /></div>;
 
   return (
-    <React.Fragment>
+    <ErrorBoundary>
       <ToastMessage />
       <Modal contentContainerClass={styles.editIconContainer} isModalOpen={isEditIconModalOpen}>
         <EditIconContainer />
@@ -46,7 +47,7 @@ const App = ({ isEditIconModalOpen, currentUser, userPersistCheckDone, checkUser
         <Route path={HOME_ROUTE_PATH} render={(routeProps) => <ProtectedRouteHomePage {...routeProps} currentUser={currentUser} />} />
         <Route render={(routeProps) => <RouteNotFound {...routeProps} />} />
       </Switch>
-    </React.Fragment>
+    </ErrorBoundary>
   );
 
 };
