@@ -15,13 +15,13 @@ const DeleteSwatch = ({ showDeleteZone, setShowDeleteZone, updateSwatchList }) =
 
 
     const handleDeleteZoneEnter = (event) => {
-        event.dataTransfer.dropEffect = "copy";
+        event.dataTransfer.dropEffect = "move";
         if (!deleteZoneRef.current) return;
         deleteZoneRef.current.style.boxShadow = "0px 0px 1px 5px #f34469";
     };
 
     const handleDeleteZoneDragOver = (event) => {
-        event.dataTransfer.dropEffect = "copy";
+        event.dataTransfer.dropEffect = "move";
         event.preventDefault();
     };
 

@@ -12,7 +12,7 @@ const ColorSwatch = ({ color, handleSwatchClick, handleDragStart, handleDragEnd 
 
     const onDragStart = (event) => {
         event.dataTransfer.setData("color", color);
-        event.dataTransfer.effectAllowed = "copy";
+        event.dataTransfer.effectAllowed = "move";
         handleDragStart();
     };
 
