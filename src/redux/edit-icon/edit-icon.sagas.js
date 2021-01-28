@@ -12,48 +12,25 @@ import { selectEditIcon } from './edit-icon.selectors';
 //constants
 import { PNG_FORMAT, SVG_FORMAT, BMP_FORMAT, JPEG_FORMAT, WEBP_FORMAT } from '../../utilities/app.constants';
 
-/*
-    var imgData = ctx.getImageData(0, 0, canvasNode.width, canvasNode.height);
-    var data = imgData.data;
-    for (var i = 0; i < data.length; i += 4) {
-        if (data[i + 3]< 255) {
-            data[i] = 255;
-            data[i + 1] = 255;
-            data[i + 2] = 255;
-            data[i + 3] = 255;
-        }
-    }
-    ctx.putImageData(imgData, 0, 0);
-
-*/
-// const imgData = ctx.getImageData(0, 0, canvasNode.width, canvasNode.height);
-// var data = imgData.data;
-// console.log("canvas node test", imgData, data);
-
 // download jpeg as white color
 function* downloadCanvasAsJpeg(svgString, canvasNode, iconName, dataUrltype, fileExtension, iconDownloadSuccessAction) {
     if (canvasNode && svgString) {
-        try {
-            const ctx = canvasNode.getContext("2d")
-            const imgData = ctx.getImageData(0, 0, canvasNode.width, canvasNode.height);
-            const data = imgData.data;
-            for (var i = 0; i < data.length; i += 4) {
-                if (data[i + 3] < 255) {
-                    data[i] = 255;
-                    data[i + 1] = 255; // convert non opaque pixels to white
-                    data[i + 2] = 255;
-                    data[i + 3] = 255;
-                }
+        const ctx = canvasNode.getContext("2d")
+        const imgData = ctx.getImageData(0, 0, canvasNode.width, canvasNode.height);
+        const data = imgData.data;
+        for (var i = 0; i < data.length; i += 4) {
+            if (data[i + 3] < 255) {
+                data[i] = 255;
+                data[i + 1] = 255; // convert non opaque pixels to white
+                data[i + 2] = 255;
+                data[i + 3] = 255;
             }
-            ctx.putImageData(imgData, 0, 0);
-            const imageUri = canvasNode.toDataURL(dataUrltype, 1);
-            FileSaver.saveAs(imageUri, `${iconName}${fileExtension}`);
-            yield delay(500);
-            yield put(iconDownloadSuccessAction());
         }
-        catch (e) {
-            throw new Error(String(e?.message));
-        }
+        ctx.putImageData(imgData, 0, 0);
+        const imageUri = canvasNode.toDataURL(dataUrltype, 1);
+        FileSaver.saveAs(imageUri, `${iconName}${fileExtension}`);
+        yield delay(500);
+        yield put(iconDownloadSuccessAction());
     }
     else {
         throw new Error('Not a valid canvas node or svg string');
@@ -63,15 +40,10 @@ function* downloadCanvasAsJpeg(svgString, canvasNode, iconName, dataUrltype, fil
 // download png webp 
 function* downloadCanvasAsImage(svgString, canvasNode, iconName, dataUrltype, fileExtension, iconDownloadSuccessAction) {
     if (canvasNode && svgString) {
-        try {
-            const imageUri = canvasNode.toDataURL(dataUrltype, 1);
-            FileSaver.saveAs(imageUri, `${iconName}${fileExtension}`);
-            yield delay(500);
-            yield put(iconDownloadSuccessAction());
-        }
-        catch (e) {
-            throw new Error(String(e?.message));
-        }
+        const imageUri = canvasNode.toDataURL(dataUrltype, 1);
+        FileSaver.saveAs(imageUri, `${iconName}${fileExtension}`);
+        yield delay(500);
+        yield put(iconDownloadSuccessAction());
     }
     else {
         throw new Error('Not a valid canvas node or svg string');
@@ -80,54 +52,34 @@ function* downloadCanvasAsImage(svgString, canvasNode, iconName, dataUrltype, fi
 
 //download bmp 
 function* downloadBmp(canvasNode, iconName, iconDownloadSuccessAction) {
-    try {
-        CanvasToBMP.toDataURL(canvasNode, (dataUri) => {
-            FileSaver.saveAs(dataUri, `${iconName}.bmp`);
-        });
-        yield delay(500);
-        yield put(iconDownloadSuccessAction());
-    }
-    catch (e) {
-        throw new Error(String(e?.message));
-    }
+    CanvasToBMP.toDataURL(canvasNode, (dataUri) => {
+        FileSaver.saveAs(dataUri, `${iconName}.bmp`);
+    });
+    yield delay(500);
+    yield put(iconDownloadSuccessAction());
 };
 
 //download svg
 function* downloadSvg(svgString, iconName, iconDownloadSuccessAction) {
-    try {
-        const blob = new Blob([svgString], { type: "image/svg+xml" });
-        FileSaver.saveAs(blob, `${iconName}.svg`);
-        yield delay(500);
-        yield put(iconDownloadSuccessAction());
-    }
-    catch (e) {
-        throw new Error(String(e?.message));
-    }
+    const blob = new Blob([svgString], { type: "image/svg+xml" });
+    FileSaver.saveAs(blob, `${iconName}.svg`);
+    yield delay(500);
+    yield put(iconDownloadSuccessAction());
 };
 
 // helpers
 function getSvgString(svgNode, height, width) {
-    try {
-        svgNode.setAttribute("height", `${height}px`);
-        svgNode.setAttribute("width", `${width}px`);
-        const serializer = new XMLSerializer();
-        return serializer.serializeToString(svgNode);
-    }
-    catch (e) {
-        throw new Error(String(e?.message));
-    }
+    svgNode.setAttribute("height", `${height}px`);
+    svgNode.setAttribute("width", `${width}px`);
+    const serializer = new XMLSerializer();
+    return serializer.serializeToString(svgNode);
 };
 
 function* renderCanvas(canvasNode, svgString) {
-    try {
-        const ctx = canvasNode.getContext('2d');
-        const renderRef = Canvg.fromString(ctx, svgString);
-        renderRef.start();
-        yield delay(1000);
-    }
-    catch (e) {
-        throw new Error(String(e?.message));
-    }
+    const ctx = canvasNode.getContext('2d');
+    const renderRef = Canvg.fromString(ctx, svgString);
+    renderRef.start();
+    yield delay(1000);
 }
 
 function* downloadIcon({ payload: { svgNode, canvasNode } }) {
