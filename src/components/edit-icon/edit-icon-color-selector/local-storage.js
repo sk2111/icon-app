@@ -1,7 +1,7 @@
 
 //default swatches
 const DEFAULT_SWATCHES = [];
-const SWATCH_KEY = "swatchMap";
+const SWATCH_KEY = "swatchList";
 export const SWATCH_SIZE = 15;
 
 export const getStoredSwatches = () => {
