@@ -6,7 +6,7 @@ import styles from './navigation-menu.module.css';
 //static
 import AppLogoImg from '../../../assests/webp/applogo.webp';
 import OtherResourcesImg from '../../../assests/webp/other-resources.webp';
-import { ReactComponent as MessageSvg } from '../../../assests/message.svg';
+import MessageImg from '../../../assests/webp/message.webp';
 //constants
 import { NAVI_LINKS, MESSAGE_LINK, OTHER_RESOURCES_LINK } from './navigation-menu.utilities';
 
@@ -46,7 +46,7 @@ const NavigationMenu = () => {
                 </a>
             </div>
             <a className={styles.messageAnchor} href={MESSAGE_LINK} target="_blank" rel="noopener noreferrer">
-                <MessageSvg />
+                <img className={styles.messageLogo} src={MessageImg} alt="-" />
             </a>
         </div>
     );
