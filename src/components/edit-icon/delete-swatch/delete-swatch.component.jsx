@@ -1,23 +1,21 @@
 //libs
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 //styles
 import styles from './delete-swatch.module.css';
-//component
-
-
 
 
 const DeleteSwatch = ({ showDeleteZone, setShowDeleteZone, updateSwatchList }) => {
 
     const deleteZoneRef = useRef(null);
+    const [deleteHover, setDeleteHover] = useState(false);
 
-    const deleteZone = `${styles.deleteSwatchZone} ${showDeleteZone ? styles.visible : styles.hidden}`;
-
+    const deleteZoneVisiblity = `${styles.deleteSwatchZone} ${showDeleteZone ? styles.visible : styles.hidden}`;
+    const deleteZoneStyles = deleteHover ? `${deleteZoneVisiblity} ${styles.deleteZoneHover}` : deleteZoneVisiblity;
 
     const handleDeleteZoneEnter = (event) => {
         event.dataTransfer.dropEffect = "move";
         if (!deleteZoneRef.current) return;
-        deleteZoneRef.current.style.boxShadow = "0px 0px 1px 5px #f34469";
+        setDeleteHover(true);
     };
 
     const handleDeleteZoneDragOver = (event) => {
@@ -27,22 +25,22 @@ const DeleteSwatch = ({ showDeleteZone, setShowDeleteZone, updateSwatchList }) =
 
     const handleDeleteZoneLeave = () => {
         if (!deleteZoneRef.current) return;
-        deleteZoneRef.current.style.boxShadow = "";
+        setDeleteHover(false);
     };
 
     const handleDeleteZoneDrop = (event) => {
         if (!deleteZoneRef.current) return;
-        deleteZoneRef.current.style.boxShadow = "";
         const swatchColorToDelete = event.dataTransfer.getData('color');
         if (swatchColorToDelete) {
             updateSwatchList(swatchColorToDelete, true);
         }
+        setDeleteHover(false);
         setShowDeleteZone(false);
     };
 
     return (
         <div ref={deleteZoneRef}
-            className={deleteZone}
+            className={deleteZoneStyles}
             onDragEnter={handleDeleteZoneEnter}
             onDragOver={handleDeleteZoneDragOver}
             onDragLeave={handleDeleteZoneLeave}

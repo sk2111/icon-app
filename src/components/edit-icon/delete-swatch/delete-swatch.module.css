@@ -1,16 +1,16 @@
 .deleteSwatchZone {
   align-items: center;
-  background-color: #fdbcca;
-  border: 1px dashed #f34469;
+  background-color: var(--app-delete-swatch-default-background);
+  border: 1px dashed var(--app-delete-swatch-primary);
   border-radius: 3px;
   bottom: 91px;
-  color: #f34469;
+  color: var(--app-delete-swatch-primary);
   display: flex;
   font-size: 10px;
   height: 27px;
   justify-content: center;
   position: absolute;
-  right: 32px;
+  right: 31px;
   width: 85px;
 }
 .visible {
@@ -18,4 +18,11 @@
 }
 .hidden {
   visibility: hidden;
+}
+
+.deleteZoneHover {
+  background-color: var(--app-delete-swatch-primary);
+  border: 1px solid var(--app-delete-swatch-primary);
+  border-radius: 3px;
+  color: var(--app-delete-swatch-hover-text);
 }

@@ -161,7 +161,10 @@
   --app-numberbox-field: #989899;
   --app-numberbox-unit-background: #f3f3f4;
   /* Swatches */
-  --app-swatch-fav-button:#7488cc;
+  --app-swatch-fav-button: #7488cc;
+  --app-delete-swatch-primary: #f34469;
+  --app-delete-swatch-default-background: #fdbcca;
+  --app-delete-swatch-hover-text: #fff;
   /* common */
   --app-default-user-text: #707071;
   --app-default-border-box: #dbdbdc;
