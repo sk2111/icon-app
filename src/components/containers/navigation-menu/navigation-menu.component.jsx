@@ -7,7 +7,7 @@ import styles from './navigation-menu.module.css';
 import AppLogoImg from '../../../assests/webp/applogo.webp';
 import { ReactComponent as MessageSvg } from '../../../assests/message.svg';
 //constants
-import { NAVI_LINKS, MESSAGE_LINK } from './navigation-menu.utilities';
+import { NAVI_LINKS, MESSAGE_LINK, OTHER_RESOURCES_LINK } from './navigation-menu.utilities';
 
 const NavigationMenu = () => {
 
@@ -39,7 +39,7 @@ const NavigationMenu = () => {
                         );
                     })
                 }
-                <a className={getNaviConClass('otherresources', '')} href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                <a className={getNaviConClass('otherresources', '')} href={OTHER_RESOURCES_LINK} target="_blank" rel="noopener noreferrer">
                     <MessageSvg className={getIconClass('otherresources', '')} />
                     <label className={styles.navLink}>Other Resources</label>
                 </a>
