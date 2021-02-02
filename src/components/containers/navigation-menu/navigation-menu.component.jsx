@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import styles from './navigation-menu.module.css';
 //static
 import AppLogoImg from '../../../assests/webp/applogo.webp';
+import OtherResourcesImg from '../../../assests/webp/other-resources.webp';
 import { ReactComponent as MessageSvg } from '../../../assests/message.svg';
 //constants
 import { NAVI_LINKS, MESSAGE_LINK, OTHER_RESOURCES_LINK } from './navigation-menu.utilities';
@@ -40,7 +41,7 @@ const NavigationMenu = () => {
                     })
                 }
                 <a className={getNaviConClass('otherresources', '')} href={OTHER_RESOURCES_LINK} target="_blank" rel="noopener noreferrer">
-                    <MessageSvg className={getIconClass('otherresources', '')} />
+                    <img className={styles.navLogo} src={OtherResourcesImg} alt="-" />
                     <label className={styles.navLink}>Other Resources</label>
                 </a>
             </div>
