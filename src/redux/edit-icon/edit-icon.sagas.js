@@ -6,7 +6,7 @@ import { CanvasToBMP } from '../../utilities/canvas-to-bmp';
 //action types
 import { editIconActionTypes } from './edit-icon.type';
 //actions
-import { iconDownloadSuccess, iconDownloadFailure } from './edit-icon.actions';
+import { iconDownloadSuccess, iconPreviewSuccess, iconDownloadFailure, iconPreviewFailure } from './edit-icon.actions';
 //selectors
 import { selectEditIcon } from './edit-icon.selectors';
 //constants
@@ -112,9 +112,34 @@ function* onDownloadIconStart() {
 };
 
 
+// on previw icon size
+function* previewIcon({ payload: { svgNode } }) {
+    try {
+        const { downloadSize: { height, width } } = yield select(selectEditIcon);
+        const svgString = yield call(getSvgString, svgNode, height, width);
+        const image = new Image();
+        image.src = "data:image/svg+xml;base64," + btoa(svgString);
+        const previewContent = `<div style="height:100%;align-items:center;display:flex;justify-content:center">
+        ${image.outerHTML}
+        </div>`;
+        const windowIns = window.open("");
+        windowIns.document.title = 'Preview';
+        windowIns.document.write(previewContent);
+        yield (put(iconPreviewSuccess()));
+    }
+    catch (e) {
+        yield put(iconPreviewFailure(e?.message));
+    }
+};
+
+function* onPreviewIconStart() {
+    yield takeLatest(editIconActionTypes.ICON_PREVIEW_START, previewIcon);
+};
+
 //export all sagas
 export function* editIconSagas() {
     yield all([
-        call(onDownloadIconStart)
+        call(onDownloadIconStart),
+        call(onPreviewIconStart),
     ]);
 }
