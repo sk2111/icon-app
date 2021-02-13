@@ -1,0 +1,43 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355 326" height="512px" width="512px">
+    <defs>
+        <rect rx="1" height="90.625" width="133.836" y="0" x="0" id="a" />
+    </defs>
+    <g fill-rule="evenodd" fill="none">
+        <g transform="translate(1)">
+            <ellipse ry="55.843" rx="55.828" cy="174.349" cx="82.25" fill="#E9E9F0" />
+            <ellipse ry="36.234" rx="36.224" cy="36.234" cx="104.411" fill="#E9E9F0" />
+            <ellipse ry="6.173" rx="6.171" cy="73.321" cx="51.14" stroke-width="3" stroke="#E9E9F0" />
+            <ellipse ry="2.337" rx="2.335" cy="109.554" cx="3.835" stroke-width="3" stroke="#E9E9F0" />
+            <ellipse ry="4.894" rx="4.892" cy="251.08" cx="86.512" stroke-width="3" stroke="#E9E9F0" />
+            <ellipse ry="4.042" rx="4.04" cy="7.247" cx="292.776" stroke-width="3" stroke="#E9E9F0" />
+            <ellipse ry="2.337" rx="2.335" cy="79.715" cx="308.118" stroke-width="3" stroke="#E9E9F0" />
+            <ellipse ry="4.042" rx="4.04" cy="20.035" cx="213.509" stroke-width="3" stroke="#E9E9F0" />
+            <ellipse ry="7.878" rx="7.876" cy="228.487" cx="319.624" stroke-width="3" stroke="#E9E9F0" />
+            <ellipse ry="106.571" rx="106.541" cy="154.314" cx="222.459" fill="#E9E9F0" />
+            <g transform="translate(82.003 21.529)">
+                <rect rx="1" height="212.772" width="157.454" fill="#FFF" />
+                <path d="M11.809 118.207h74.79v7.88h-74.79zM11.809 133.968h74.79v7.88h-74.79zM11.809 149.729h133.836v7.88H11.809zM11.809 165.49h133.836v7.88H11.809zM11.809 181.251h133.836v7.88H11.809z" fill="#DFDFED" />
+                <g transform="translate(11.809 11.82)">
+                    <mask fill="#fff" id="b" />
+                    <path mask="url(#b)" fill="#ACACC2" d="M91.353 24.8l46.419 65.825H43.3L89.719 24.8a1 1 0 011.634 0z" />
+                    <path mask="url(#b)" fill="#C6C6D8" d="M34.25 48.308l32.668 42.317H0l32.667-42.317a1 1 0 011.583 0z" />
+                    <ellipse ry="9.851" rx="9.841" cy="17.731" cx="21.65" mask="url(#b)" fill="#F9F9FA" />
+                </g>
+            </g>
+        </g>
+        <text transform="translate(.5)" fill="#8181A4" font-size="28" font-family="Roboto-Regular, Roboto">
+            <tspan y="319" x="82.477">No Icons found</tspan>
+        </text>
+        <g transform="translate(142 111)">
+            <ellipse ry="55.175" rx="55.045" cy="55.175" cx="55.045" fill="#C6C6D8" />
+            <ellipse ry="48.331" rx="48.217" cy="55.175" cx="55.045" fill="#FFF" />
+            <g fill="#4A4A65" transform="translate(32.43 31.65)">
+                <ellipse ry="9.41" rx="5.12" cy="9.41" cx="5.12" />
+                <ellipse ry="9.41" rx="5.12" cy="9.41" cx="40.11" />
+            </g>
+            <path d="M98.695 85.673l15.676 11.84-4.623 6.149-15.676-11.84z" fill="#C6C6D8" />
+            <path fill="#ACACC2" d="M119.25 95.846l39.963 30.185a4 4 0 01.786 5.595l-4.95 6.586a4 4 0 01-5.609.788l-39.962-30.185a4 4 0 01-.786-5.595l4.95-6.586a4 4 0 015.609-.788z" />
+            <path stroke-linecap="round" stroke-width="7" stroke="#4A4A65" d="M27.843 77.416C36.786 70.572 45.728 67.15 54.67 67.15c8.943 0 17.886 3.421 26.829 10.265" />
+        </g>
+    </g>
+</svg>

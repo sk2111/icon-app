@@ -8,8 +8,10 @@ import IconCard from '../../reusables/icon-card/icon-card.component';
 import CreateModalCard from '../../reusables/create-modal-card/create-modal-card.component';
 import LazyLoadingCardContainer from '../lazy-loading-card-container/lazy-loading-card-container.component';
 import LazyLoadingCardWithEvent from '../../reusables/lazy-loading-card/lazy-loading-card-with-event';
+//assests
+import NotFoundImg from '../../../assests/webp/not-found.webp';
 //constans
-import { ICON_PROP, NO_ICONS_FOUND_MESSAGE, NO_MORE_ICONS_MESSAGE, ICON_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
+import { ICON_PROP, NO_MORE_ICONS_MESSAGE, ICON_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
 
 const { ICON_ID } = ICON_PROP;
 
@@ -20,7 +22,7 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
     const [showDeleteModal, setShowDeleteModal] = useState({ ...DEFAULT_MODAL_STATE });
     const { iconIdToDelete, isVisible } = showDeleteModal;
 
-    const userMessage = iconList.length ? NO_MORE_ICONS_MESSAGE : NO_ICONS_FOUND_MESSAGE;
+    const userMessage = iconList.length ? NO_MORE_ICONS_MESSAGE : '';
     const iconContainerClass = isCurrentUserAdmin ? styles.iconContainerAlignBetween : styles.iconContainerAlignEnd;
     const displayContainer = styles.container + ' ' +
         (iconList.length < ICON_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
@@ -66,6 +68,11 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
                     </CreateModalCard>
                 </RenderView>
             </div>
+            <RenderView renderIfTrue={(iconList.length === 0) && !isMoreIconsAvaliableToFetch}>
+                <div>
+                    <img className={styles.notFoundSvg} src={NotFoundImg} alt=""/>
+                </div>
+            </RenderView>
         </div>
     );
 };

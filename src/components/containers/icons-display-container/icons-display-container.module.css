@@ -102,3 +102,10 @@
   outline: none;
   width: 70px;
 }
+.notFoundSvg {
+  height: 370px;
+  left: 43%;
+  position: absolute;
+  top: 28%;
+  width: 370px;
+}
