@@ -5,8 +5,8 @@ import styles from './form-input-password.module.css';
 //components
 import FormInput from '../form-input/form-input.component';
 //static
-import HideImg from '../../../assests/webp/hide-password.webp';
-import ShowImg from '../../../assests/webp/show-password.webp';
+import closeEyeImg from '../../../assests/webp/hide-password.webp';
+import openEyeImg from '../../../assests/webp/show-password.webp';
 
 const FormInputPassword = ({ label, inpClass, className, name, value, handleValueChange }) => {
 
@@ -36,8 +36,8 @@ const FormInputPassword = ({ label, inpClass, className, name, value, handleValu
                 autoComplete="on"
                 handleInputChange={handleInputChange}
             />
-            {formType === TEXT ? <img className={styles.passwordSvg} src={HideImg} alt="" onClick={handleViewHidePassword} /> :
-                <img className={styles.passwordSvg} src={ShowImg} alt="" onClick={handleViewHidePassword} />}
+            {formType === TEXT ? <img className={styles.passwordSvg} src={openEyeImg} alt="" onClick={handleViewHidePassword} /> :
+                <img className={styles.passwordSvg} src={closeEyeImg} alt="" onClick={handleViewHidePassword} />}
         </div>
     )
 };
