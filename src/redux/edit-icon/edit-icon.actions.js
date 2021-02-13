@@ -59,6 +59,24 @@ export const iconDownloadFailure = (payload) => {
         payload
     }
 };
+//preview Icon actions
+export const iconPreviewStart = (payload) => {
+    return {
+        type: editIconActionTypes.ICON_PREVIEW_START,
+        payload
+    }
+};
+export const iconPreviewSuccess = () => {
+    return {
+        type: editIconActionTypes.ICON_PREVIEW_SUCCESS
+    }
+};
+export const iconPreviewFailure = (payload) => {
+    return {
+        type: editIconActionTypes.ICON_PREVIEW_FAILURE,
+        payload
+    }
+};
 //close edit icon modal
 export const closeEditModal = () => {
     return {

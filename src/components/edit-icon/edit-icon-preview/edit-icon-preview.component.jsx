@@ -7,7 +7,7 @@ import styles from './edit-icon-preview.module.css';
 //components
 import RenderView from '../../reusables/render-view/render-view.component';
 //actions
-import { iconDownloadStart, iconDownloadFailure } from '../../../redux/edit-icon/edit-icon.actions';
+import { iconDownloadStart, iconDownloadFailure, iconPreviewStart, iconPreviewFailure } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
 import { selectIconToEdit, selectIconDownloadFormat, selectUserSelectedColor, selectIsIconDownloading } from '../../../redux/edit-icon/edit-icon.selectors';
 //constants
@@ -16,8 +16,8 @@ import { RECOMMENDATION_INFO } from '../../../utilities/app.constants.js';
 import { editIconHelpers } from './edit-icon.helper';
 import { sanitizeSvg } from '../../../utilities/helper.functions';
 
-const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, isIconDownloading, iconDownloadStart,
-    iconDownloadFailure }) => {
+const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, isIconDownloading, iconDownloadStart, iconPreviewStart,
+    iconDownloadFailure, iconPreviewFailure }) => {
 
     const svgContainerRef = useRef(null);
     const colorNodeRef = useRef(null);
@@ -51,10 +51,22 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
         }
     }, [isIconDownloading, iconDownloadStart, iconDownloadFailure]);
 
+    const handlePreviewIcon = () => {
+        const svgNode = editIconHelpers.getSvgNodeFromHtmlNodeList(svgContainerRef.current.children);
+        if (svgNode) {
+            iconPreviewStart({ svgNode });
+        }
+        else {
+            iconPreviewFailure('Not a valid svg node');
+        }
+    };
+
     return (
         <div className={styles.container}>
             <canvas className={styles.canvasContainer} ref={canvasRef}></canvas>
-            <div className={styles.svgInfo}>{iconName}</div>
+            <div className={styles.svgInfo}>{iconName}
+                <div onClick={handlePreviewIcon}>Show preview</div>
+            </div>
             <div className={styles.svgPreview}>
                 <div ref={svgContainerRef} className={styles.editPreviewContainer} dangerouslySetInnerHTML={{ __html: sanitizeSvg(iconData) }}>
                 </div>
@@ -86,7 +98,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => {
     return {
         iconDownloadStart: (data) => dispatch(iconDownloadStart(data)),
+        iconPreviewStart: (data) => dispatch(iconPreviewStart(data)),
         iconDownloadFailure: (error) => dispatch(iconDownloadFailure(error)),
+        iconPreviewFailure: (error) => dispatch(iconPreviewFailure(error)),
     }
 };
 
