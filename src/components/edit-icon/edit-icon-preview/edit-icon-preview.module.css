@@ -5,9 +5,9 @@
 .canvasContainer {
   display: none;
 }
-.svgPreviewHeader{
+.svgPreviewHeader {
   align-items: center;
-  display:flex;
+  display: flex;
   justify-content: space-between;
 }
 .svgInfo {
@@ -66,4 +66,15 @@
 .editPreviewContainer svg {
   height: 100%;
   width: 100%;
+}
+.previewButton {
+  background-color: var(--app-user-button-background);
+  border: none;
+  border-radius: 3px;
+  color: var(--app-user-display-text);
+  cursor: pointer;
+  font-size: 14px;
+  height: 24px;
+  outline: none;
+  width: 70px;
 }

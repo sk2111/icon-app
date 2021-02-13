@@ -66,7 +66,7 @@ const EditIconPreview = ({ iconToEdit, iconDownloadFormat, userSelectedColor, is
             <canvas className={styles.canvasContainer} ref={canvasRef}></canvas>
             <div className={styles.svgPreviewHeader}>
                 <div className={styles.svgInfo}>{iconName}</div>
-                <button onClick={handlePreviewIcon}>Size preview</button>
+                <button className={styles.previewButton} onClick={handlePreviewIcon}>Preview</button>
             </div>
             <div className={styles.svgPreview}>
                 <div ref={svgContainerRef} className={styles.editPreviewContainer} dangerouslySetInnerHTML={{ __html: sanitizeSvg(iconData) }}>
