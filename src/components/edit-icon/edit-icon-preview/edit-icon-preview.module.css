@@ -5,6 +5,11 @@
 .canvasContainer {
   display: none;
 }
+.svgPreviewHeader{
+  align-items: center;
+  display:flex;
+  justify-content: space-between;
+}
 .svgInfo {
   color: var(--app-edit-text-header);
   font-size: 20px;
