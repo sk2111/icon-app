@@ -5,6 +5,7 @@ class EditIconHelpers {
         this.COLOR_ATTRIBUTE_NODE_EXCLUDE_VALUE_LIST = ['none', 'transparent'];
         this.COLOR_VALUES_EXCLUDE_LIST = ['none', 'transparent', '#url', 'url', "#"];
         this.SVG_NODE_NAME = 'svg';
+        this.FALLBACK_COLOR = '#000000';
         this.SVG_CHILDREN_TO_EXCLUDE_LIST = ['defs', 'title', 'style'];
         this.svgColorNodeList = [];
     }
@@ -54,7 +55,14 @@ class EditIconHelpers {
         }
     }
 
-    traverseAllChildrenAndGetValidColorNode(node) {
+    getAllSvgNodes(child) {
+        const fillValue = child.getAttribute(this.FILL_ATTRIBUTE_NAME);
+        if (!this.COLOR_ATTRIBUTE_NODE_EXCLUDE_VALUE_LIST.includes(fillValue)) {
+            this.insertIntoSvgColorNodeList([this.FILL_ATTRIBUTE_NAME], child, [this.FALLBACK_COLOR]);
+        }
+    }
+
+    traverseAllChildrenAndGetValidColorNode(node, fallback) {
         const children = node.children;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
@@ -62,13 +70,18 @@ class EditIconHelpers {
                 if (child.children.length) {
                     this.traverseAllChildrenAndGetValidColorNode(child);
                 }
-                this.getChildNodesWithColorAttributes(child);
+                if (fallback) {
+                    this.getAllSvgNodes(child);
+                }
+                else {
+                    this.getChildNodesWithColorAttributes(child);
+                }
             }
         }
     }
 
-    getSvgNodeAndReturnColorNodeList(svgNode) {
-        this.traverseAllChildrenAndGetValidColorNode(svgNode);
+    getSvgNodeAndReturnColorNodeList(svgNode, fallback) {
+        this.traverseAllChildrenAndGetValidColorNode(svgNode, fallback);
         return this.svgColorNodeList;
     }
 
@@ -77,8 +90,16 @@ class EditIconHelpers {
             const svgNode = this.getSvgNodeFromHtmlNodeList(htmlCollection);
             this.svgColorNodeList = [];
             if (svgNode) {
-                const colorNodeList = this.getSvgNodeAndReturnColorNodeList(svgNode);
-                return [...colorNodeList];
+                let colorNodeList = this.getSvgNodeAndReturnColorNodeList(svgNode);
+                if (colorNodeList.length) {
+                    return [...colorNodeList];
+                }
+                else {
+                    //fallback logic to fetch all the svg paths 
+                    colorNodeList = this.getSvgNodeAndReturnColorNodeList(svgNode, true);
+                    return [...colorNodeList];
+                }
+
             }
             throw new Error("Not a valid svg Node found");
         }
