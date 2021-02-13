@@ -99,7 +99,7 @@ export const DEFAULT_DOWNLOAD_SIZE_BUTTONS = [
     { label: '40px', value: '40' }, { label: '64px', value: '64' }, { label: '128px', value: '128' },
     { label: '256px', value: '256' }, { label: '512px', value: '512' }
 ];
-export const DEFAULT_DOWNLOAD_SIZE = DEFAULT_DOWNLOAD_SIZE_BUTTONS[0].value;
+export const DEFAULT_DOWNLOAD_SIZE = DEFAULT_DOWNLOAD_SIZE_BUTTONS[2].value;
 export const DEFAULT_BLACK_COLOR = '#000';
 //debounce time 
 export const EDIT_ICON_INPUT_DEBOUNCE_TIME = 500; // 0.5ms
