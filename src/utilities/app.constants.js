@@ -1,7 +1,7 @@
 //auth setimeouts
-export const LOADING_ANIM_LOGO_TIME = 1000; // 1 second
-export const SIGNOUT_ANIMATION_LOADING_TIME = 1500; // 1.5 second
-export const LOADING_PERSISTANT_CHECK_TIME = 1000; // 1 sec
+export const LOADING_ANIM_LOGO_TIME = 500; // 0.5 second
+export const SIGNOUT_ANIMATION_LOADING_TIME = 750; // 0.75 second
+export const LOADING_PERSISTANT_CHECK_TIME = 500; // 0.5 sec
 
 //placeholder text to show in home header inputs
 export const COMMON_ICONS_INPUT_PLACEHOLDER = 'Search for common icons';
