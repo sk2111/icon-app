@@ -1,6 +1,6 @@
 import { projectIconsActionTypes } from './project-icons.type';
 //constants
-import { PROJECT_ICON_DEFAULT_PROJECT_VALUE, ICON_PROP } from '../../utilities/app.constants';
+import { ICON_PROP } from '../../utilities/app.constants';
 //helpers
 import { editObjectPropertiesImmutably } from '../../utilities/reducer.helperfunctions';
 
