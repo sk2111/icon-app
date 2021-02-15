@@ -32,6 +32,9 @@
   padding-right: 5px;
   width: 100%;
 }
+.container a {
+  text-decoration: none;
+}
 /* scroll bar width */
 .overflowContainer::-webkit-scrollbar {
   width: 3px;
