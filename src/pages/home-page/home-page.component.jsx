@@ -39,7 +39,7 @@ const HomePage = ({ isNavMenuExpanded, isUploadModalOpen, isEditIconModalOpen })
             <section className={styles.rightContainer}>
                 <Switch>
                     <Route path={COMMON_ROUTE_PATH} render={() => <CommonIconsPage />} />
-                    <Route exact path={PROJECTS_ROUTE_PATH} render={() => <ProjectIconsPage />} />
+                    <Route path={PROJECTS_ROUTE_PATH} render={() => <ProjectIconsPage />} />
                     <Route exact path={FAVORITES_ROUTE_PATH} render={() => <FavoritesIconsPage />} />
                     <Route exact path={EDIT_ROUTE_PATH} render={() => <EditIconPage />} />
                     <Route component={RouteNotFound} />

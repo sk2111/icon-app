@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Link } from 'react-router-dom';
 //styles
 import styles from './projects-display.module.css';
 //component
@@ -46,10 +47,12 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
                         {
                             projectList.map((projectName) => {
                                 return (
-                                    <div key={projectName} className={styles.projectTileContainer}>
-                                        <img className={styles.projectTile} src={ProjectTileImg} alt="" />
-                                        <p className={styles.projectName} title={projectName}>{projectName}</p>
-                                    </div>
+                                    <Link key={projectName} to={`/home/projects/${projectName}`}>
+                                        <div className={styles.projectTileContainer}>
+                                            <img className={styles.projectTile} src={ProjectTileImg} alt="" />
+                                            <p className={styles.projectName} title={projectName}>{projectName}</p>
+                                        </div>
+                                    </Link>
                                 );
                             })
                         }
