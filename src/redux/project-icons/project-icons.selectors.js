@@ -27,15 +27,15 @@ export const selectProjectSearchValue = createSelector([selectProjectIcons],
 export const selectProjectIconsSearchValue = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.projectIconsSearchValue);
 
-export const selectProjectIconsSelectValue = createSelector([selectProjectIcons],
-    (projectIcons) => projectIcons.selectValue);
+export const selectUserSelectedProject = createSelector([selectProjectIcons],
+    (projectIcons) => projectIcons.userSelectedProject);
 
 const selectProjectIconsMap = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.iconsMap);
 
-export const selectIsMoreIconsAvailableToFetch = createSelector([selectProjectIconsSelectValue, selectProjectIconsSearchValue, selectProjectIconsPagination],
-    (selectValue, projectIconsSearchValue, paginationMap) => {
-        const { existingPaginationMap, isMoreIconsAvailableToFetch } = getPaginateConfig(selectValue, projectIconsSearchValue, paginationMap);
+export const selectIsMoreIconsAvailableToFetch = createSelector([selectUserSelectedProject, selectProjectIconsSearchValue, selectProjectIconsPagination],
+    (userSelectedProject, projectIconsSearchValue, paginationMap) => {
+        const { existingPaginationMap, isMoreIconsAvailableToFetch } = getPaginateConfig(userSelectedProject, projectIconsSearchValue, paginationMap);
         return existingPaginationMap ? isMoreIconsAvailableToFetch : true;
     }
 );
@@ -50,7 +50,7 @@ export const selectProjectsList = createSelector(
 );
 
 export const selectProjectIconsListToDisplay = createSelector(
-    [selectProjectIconsSearchValue, selectProjectIconsSelectValue, selectProjectIconsMap],
+    [selectProjectIconsSearchValue, selectUserSelectedProject, selectProjectIconsMap],
     (projectIconsSearchValue, classificationValue, iconsMap) => {
         const searchTagValue = getSpaceCombinationValue(getAlphaOnly(projectIconsSearchValue, '', true, true));
         const iconsArray = Object.values(iconsMap);
