@@ -43,8 +43,9 @@ export const selectIsMoreIconsAvailableToFetch = createSelector([selectProjectIc
 export const selectProjectsList = createSelector(
     [selectProjectIconsSelectOptions, selectProjectSearchValue],
     (projectList, searchValue) => {
-        console.log("selectore testing", projectList, searchValue);
-        return projectList;
+        return projectList.filter((name) => {
+            return String(name).toLowerCase().includes(searchValue.toLowerCase());
+        });
     }
 );
 

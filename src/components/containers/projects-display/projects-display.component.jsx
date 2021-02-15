@@ -12,14 +12,14 @@ import { setProjectIconsTabProjectSearchValue } from '../../../redux/project-ico
 import { openUploadModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../../redux/user/user.selectors';
-import { selectProjectSearchValue, selectProjectsList } from '../../../redux/project-icons/project-icons.selectors';
+import { selectProjectSearchValue, selectProjectsList, selectProjectIconsSelectOptions } from '../../../redux/project-icons/project-icons.selectors';
 //constants
 import { PROJECT_DISPLAY_HEADER_LABEL, PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER, PROJECT_TILE_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
 //assests
 import ProjectTileImg from '../../../assests/webp/project-tile.webp';
 
-const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal,
-    projectList }) => {
+const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal,
+    projectList, projectKeywords }) => {
 
     const displayContainer = styles.container + ' ' +
         (projectList.length < PROJECT_TILE_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
@@ -28,7 +28,7 @@ const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurren
         <div className={styles.pageContainer}>
             <HomeHeader
                 searchPlaceHolder={PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER}
-                searchKeywords={searchKeywords}
+                searchKeywords={projectKeywords}
                 searchValue={searchValue}
                 handleSearchValueChange={setSearchValue}
                 hideSelect
@@ -43,7 +43,6 @@ const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurren
                     <div className={displayContainer}>
                         {
                             projectList.map((projectName) => {
-                                console.log(projectName);
                                 return (
                                     <div key={projectName} className={styles.projectTileContainer}>
                                         <img className={styles.projectTile} src={ProjectTileImg} alt="" />
@@ -65,6 +64,7 @@ const mapStateToProps = createStructuredSelector({
     isCurrentUserAdmin: selectCurrentUserAdminRole,
     searchValue: selectProjectSearchValue,
     projectList: selectProjectsList,
+    projectKeywords: selectProjectIconsSelectOptions,
 });
 
 const mapDispatchToProps = (dispatch) => {
