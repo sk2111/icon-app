@@ -21,8 +21,11 @@ export const selectProjectIconsSelectOptions = createSelector([selectProjectIcon
 export const selectProjectIconsClassification = createSelector([selectProjectIconsSelectOptions],
     (projectIconsSelectOptions) => projectIconsSelectOptions.filter(option => option !== PROJECT_ICON_DEFAULT_PROJECT_VALUE));
 
+export const selectProjectSearchValue = createSelector([selectProjectIcons],
+    (projectIcons) => projectIcons.projectSearchValue);
+
 export const selectProjectIconsSearchValue = createSelector([selectProjectIcons],
-    (projectIcons) => projectIcons.searchValue);
+    (projectIcons) => projectIcons.projectIconsSearchValue);
 
 export const selectProjectIconsSelectValue = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.selectValue);
@@ -31,16 +34,16 @@ const selectProjectIconsMap = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.iconsMap);
 
 export const selectIsMoreIconsAvailableToFetch = createSelector([selectProjectIconsSelectValue, selectProjectIconsSearchValue, selectProjectIconsPagination],
-    (selectValue, searchValue, paginationMap) => {
-        const { existingPaginationMap, isMoreIconsAvailableToFetch } = getPaginateConfig(selectValue, searchValue, paginationMap);
+    (selectValue, projectIconsSearchValue, paginationMap) => {
+        const { existingPaginationMap, isMoreIconsAvailableToFetch } = getPaginateConfig(selectValue, projectIconsSearchValue, paginationMap);
         return existingPaginationMap ? isMoreIconsAvailableToFetch : true;
     }
 );
 
 export const selectProjectIconsListToDisplay = createSelector(
     [selectProjectIconsSearchValue, selectProjectIconsSelectValue, selectProjectIconsMap],
-    (searchValue, classificationValue, iconsMap) => {
-        const searchTagValue = getSpaceCombinationValue(getAlphaOnly(searchValue, '', true, true));
+    (projectIconsSearchValue, classificationValue, iconsMap) => {
+        const searchTagValue = getSpaceCombinationValue(getAlphaOnly(projectIconsSearchValue, '', true, true));
         const iconsArray = Object.values(iconsMap);
         return iconsArray.filter((icon) => {
             const iconTagAsStr = icon[ICON_TAGS].join(' ');

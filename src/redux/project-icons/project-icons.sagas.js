@@ -34,12 +34,12 @@ const { USER_FAVORITES, USER_FAVORITES_FETCH_STATUS } = USER_PROFILE;
 // get project icons from database 
 function* fetchProjectIconsFromDatabase() {
     try {
-        const { paginationMap, searchValue, selectValue } = yield select(selectProjectIcons);
+        const { paginationMap, projectIconsSearchValue, selectValue } = yield select(selectProjectIcons);
         const { currentUser: { [USER_FAVORITES]: favoriteIconsDocId } } = yield select(selectUser);
-        const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, searchValue, paginationMap);
+        const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, projectIconsSearchValue, paginationMap);
         if ((!existingPaginationMap) || (existingPaginationMap && isMoreIconsAvailableToFetch)) {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
-                framePaginationQueryParams(selectValue, searchValue, existingPaginationMap, PROJECT_ICON_DEFAULT_PROJECT_VALUE,
+                framePaginationQueryParams(selectValue, projectIconsSearchValue, existingPaginationMap, PROJECT_ICON_DEFAULT_PROJECT_VALUE,
                     PROJECT_ICONS_LIST_PATH, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD));
             const { iconsMap } = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchProjectIconsFromDatabaseSuccess(iconsMap));

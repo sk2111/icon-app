@@ -18,19 +18,20 @@ export const fetchProjectIconsUserOptionsFailure = (payload) => {
         payload
     }
 };
+
 //set project search value 
-export const setProjectIconsTabProjectsSearchValue = (payload) => {
+export const setProjectIconsTabProjectSearchValue = (payload) => {
     return {
-        type: projectIconsActionTypes.SET_PROJECT_ICONS_TAB_PROJECTS_SEARCH_VALUE,
+        type: projectIconsActionTypes.SET_PROJECT_ICONS_TAB_PROJECT_SEARCH_VALUE,
         payload
     }
 };
 
 // set search and select project icons value action
 
-export const setProjectIconsTabSearchValue = (payload) => {
+export const setProjectIconsTabIconsSearchValue = (payload) => {
     return {
-        type: projectIconsActionTypes.SET_PROJECT_ICONS_TAB_SEARCH_VALUE,
+        type: projectIconsActionTypes.SET_PROJECT_ICONS_TAB_ICONS_SEARCH_VALUE,
         payload
     }
 };
