@@ -15,7 +15,7 @@ const INITIAL_STATE = {
     selectOptionsList: [],
     projectSearchValue: CLEAR_VALUE,
     projectIconsSearchValue: CLEAR_VALUE,
-    selectValue: PROJECT_ICON_DEFAULT_PROJECT_VALUE
+    selectValue: null
 };
 
 const projectIconsReducer = (state = INITIAL_STATE, action) => {
@@ -39,7 +39,7 @@ const projectIconsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, projectSearchValue: action.payload };
         case projectIconsActionTypes.SET_PROJECT_ICONS_TAB_ICONS_SEARCH_VALUE:
             return { ...state, projectIconsSearchValue: action.payload };
-        case projectIconsActionTypes.SET_PROJECT_ICONS_TAB_SELECT_VALUE:
+        case projectIconsActionTypes.SET_PROJECT_ICONS_TAB_PROJECT_VALUE:
             return { ...state, selectValue: action.payload };
         case projectIconsActionTypes.SET_PROJECT_ICONS_PAGINATION:
             const { key, isMoreIconsAvailableToFetch, lastQueryEndRef } = action.payload;

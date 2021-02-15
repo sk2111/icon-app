@@ -1,0 +1,8 @@
+.pageContainer {
+  height: 100%;
+}
+.viewContainer {
+  background-color: var(--app-icon-page-background);
+  height: calc(100% - 54px);
+  padding: var(--app-icons-view-container-padding);
+}

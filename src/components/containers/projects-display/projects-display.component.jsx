@@ -10,7 +10,7 @@ import HomeHeader from '../home-header/home-header.component';
 import IconsViewHeader from '../icons-view-header/icons-view-header.component';
 import RenderView from '../../reusables/render-view/render-view.component';
 //actions
-import { setProjectIconsTabProjectSearchValue } from '../../../redux/project-icons/project-icons.actions';
+import { setProjectIconsTabProjectSearchValue, setUserSelectedProjectValue } from '../../../redux/project-icons/project-icons.actions';
 import { openUploadModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../../redux/user/user.selectors';
@@ -23,7 +23,7 @@ import ProjectTileImg from '../../../assests/webp/project-tile.webp';
 import ProjectsNotFoundImg from '../../../assests/webp/not-found-projects.webp';
 
 const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal,
-    projectList, projectKeywords }) => {
+    projectList, projectKeywords, setProjectValue }) => {
 
     const displayContainer = styles.container + ' ' +
         (projectList.length < PROJECT_TILE_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
@@ -48,7 +48,9 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
                         {
                             projectList.map((projectName) => {
                                 return (
-                                    <Link key={projectName} to={`${PROJECTS_ROUTE_PATH}/${projectName.toLowerCase()}`}>
+                                    <Link key={projectName}
+                                        to={`${PROJECTS_ROUTE_PATH}/${projectName.toLowerCase()}`}
+                                        onClick={() => { setProjectValue(projectName) }}>
                                         <div className={styles.projectTileContainer}>
                                             <img className={styles.projectTile} src={ProjectTileImg} alt="" />
                                             <p className={styles.projectName} title={projectName}>{projectName}</p>
@@ -80,6 +82,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => {
     return {
         setSearchValue: (searchValue) => dispatch(setProjectIconsTabProjectSearchValue(searchValue)),
+        setProjectValue: (projectValue) => dispatch(setUserSelectedProjectValue(projectValue)),
         openUploadModal: (tabName) => dispatch(openUploadModal(tabName)),
     };
 };

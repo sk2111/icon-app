@@ -36,9 +36,9 @@ export const setProjectIconsTabIconsSearchValue = (payload) => {
     }
 };
 
-export const setProjectIconsTabSelectValue = (payload) => {
+export const setUserSelectedProjectValue = (payload) => {
     return {
-        type: projectIconsActionTypes.SET_PROJECT_ICONS_TAB_SELECT_VALUE,
+        type: projectIconsActionTypes.SET_PROJECT_ICONS_TAB_PROJECT_VALUE,
         payload
     }
 };
