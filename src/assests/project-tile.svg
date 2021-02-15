@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="129px" height="97px" viewBox="0 0 129 97" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>9AC7737E-4923-48C9-B605-9D908902F05F</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#8AB5EC" offset="0%"></stop>
+            <stop stop-color="#4D84CB" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Home-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HighLevel---Projects" transform="translate(-228.000000, -129.000000)" fill="url(#linearGradient-1)">
+            <g id="Group" transform="translate(228.000000, 129.000000)">
+                <path d="M56.2178536,-9.09494702e-13 C56.5565102,-9.06262434e-13 56.8721557,0.171400553 57.0565749,0.455438974 L63.254,10 L125.5,10 C127.156854,10 128.5,11.3431458 128.5,13 L128.5,94 C128.5,95.6568542 127.156854,97 125.5,97 L3.5,97 C1.84314575,97 0.5,95.6568542 0.5,94 L0.5,13 C0.5,11.3431458 1.84314575,10 3.5,10 L13.745,10 L19.9434251,0.455438974 C20.1278443,0.171400553 20.4434898,-9.08544313e-13 20.7821464,-9.09494702e-13 L56.2178536,-9.09494702e-13 Z" id="Project-File"></path>
+            </g>
+        </g>
+    </g>
+</svg>

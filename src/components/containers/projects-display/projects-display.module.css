@@ -7,25 +7,25 @@
   padding: var(--app-icons-view-container-padding);
 }
 .overflowContainer {
-  height: 100%;
+  height: calc(100% - 30px);
   overflow: scroll;
   overflow-x: hidden;
 }
 .container {
-  column-gap: 16px;
+  column-gap: 40px;
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
     minmax(
-      var(--app-user-display-icon-card-dimension),
-      var(--app-user-display-icon-card-dimension)
+      var(--app-user-display-project-tile-width-dimension),
+      var(--app-user-display-project-tile-width-dimension)
     )
   );
   grid-template-rows: repeat(
     auto-fit,
     minmax(
-      var(--app-user-display-icon-card-dimension),
-      var(--app-user-display-icon-card-dimension)
+      var(--app-user-display-project-tile-height-dimension),
+      var(--app-user-display-project-tile-height-dimension)
     )
   );
   height: 100%;
@@ -46,4 +46,23 @@
 }
 .largeList {
   justify-content: space-between;
+}
+.projectTile {
+  height: 140px;
+  width: 140px;
+}
+.projectName {
+  bottom: 10px;
+  color: var(--app-default-user-text);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.projectTileContainer {
+  cursor: pointer;
 }

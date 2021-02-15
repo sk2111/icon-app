@@ -15,7 +15,8 @@ import { selectCurrentUserAdminRole } from '../../../redux/user/user.selectors';
 import { selectProjectSearchValue, selectProjectsList } from '../../../redux/project-icons/project-icons.selectors';
 //constants
 import { PROJECT_DISPLAY_HEADER_LABEL, PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER, PROJECT_TILE_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
-
+//assests
+import ProjectTileImg from '../../../assests/webp/project-tile.webp';
 
 const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal,
     projectList }) => {
@@ -44,7 +45,10 @@ const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurren
                             projectList.map((projectName) => {
                                 console.log(projectName);
                                 return (
-                                    <div key={projectName}>{projectName}</div>
+                                    <div key={projectName} className={styles.projectTileContainer}>
+                                        <img className={styles.projectTile} src={ProjectTileImg} alt="" />
+                                        <p className={styles.projectName} title={projectName}>{projectName}</p>
+                                    </div>
                                 );
                             })
                         }
