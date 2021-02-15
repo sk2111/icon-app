@@ -57,7 +57,7 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
                 </div>
                 <RenderView renderIfTrue={(projectList.length === 0)}>
                     <div>
-                        <img className={styles.notFoundSvg} src={ProjectsNotFoundImg} alt="" />
+                        <img className={styles.notFoundImg} src={ProjectsNotFoundImg} alt="" />
                     </div>
                 </RenderView>
             </div>
