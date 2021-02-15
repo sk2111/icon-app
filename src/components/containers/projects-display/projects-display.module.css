@@ -6,3 +6,44 @@
   height: calc(100% - 54px);
   padding: var(--app-icons-view-container-padding);
 }
+.overflowContainer {
+  height: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.container {
+  column-gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      var(--app-user-display-icon-card-dimension),
+      var(--app-user-display-icon-card-dimension)
+    )
+  );
+  grid-template-rows: repeat(
+    auto-fit,
+    minmax(
+      var(--app-user-display-icon-card-dimension),
+      var(--app-user-display-icon-card-dimension)
+    )
+  );
+  height: 100%;
+  row-gap: 22px;
+  padding-right: 5px;
+  width: 100%;
+}
+/* scroll bar width */
+.overflowContainer::-webkit-scrollbar {
+  width: 3px;
+}
+/* Handle */
+.overflowContainer::-webkit-scrollbar-thumb {
+  border: 3px solid var(--app-scroll-thumb-light);
+}
+.smallList {
+  justify-content: flex-start;
+}
+.largeList {
+  justify-content: space-between;
+}

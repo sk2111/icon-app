@@ -40,6 +40,14 @@ export const selectIsMoreIconsAvailableToFetch = createSelector([selectProjectIc
     }
 );
 
+export const selectProjectsList = createSelector(
+    [selectProjectIconsSelectOptions, selectProjectSearchValue],
+    (projectList, searchValue) => {
+        console.log("selectore testing", projectList, searchValue);
+        return projectList;
+    }
+);
+
 export const selectProjectIconsListToDisplay = createSelector(
     [selectProjectIconsSearchValue, selectProjectIconsSelectValue, selectProjectIconsMap],
     (projectIconsSearchValue, classificationValue, iconsMap) => {

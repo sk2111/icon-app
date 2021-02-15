@@ -35,7 +35,7 @@ const projectIconsReducer = (state = INITIAL_STATE, action) => {
         case projectIconsActionTypes.DELETE_PROJECT_ICON_FROM_DB_SUCCESS:
             const { [action.payload]: deletedIcon, ...iconsMapAfterDelete } = state.iconsMap;
             return { ...state, iconsMap: { ...iconsMapAfterDelete } };
-        case projectIconsActionTypes.SET_PROJECT_ICONS_TAB_PROJECTS_SEARCH_VALUE:
+        case projectIconsActionTypes.SET_PROJECT_ICONS_TAB_PROJECT_SEARCH_VALUE:
             return { ...state, projectSearchValue: action.payload };
         case projectIconsActionTypes.SET_PROJECT_ICONS_TAB_ICONS_SEARCH_VALUE:
             return { ...state, projectIconsSearchValue: action.payload };

@@ -74,9 +74,10 @@ export const ICON_PROP = {
     ICON_DATA: 'iconData',
     ICON_FAVORITE: 'isIconFavorite'
 };
-
-// user display Icon card messages
+//user display project tile limit styles
+export const PROJECT_TILE_STY_LENGTH_LIMIT = 12;
 export const ICON_STY_LENGTH_LIMIT = 12;
+// user display Icon card messages
 export const NO_MORE_ICONS_MESSAGE = 'You have reached the end';
 
 

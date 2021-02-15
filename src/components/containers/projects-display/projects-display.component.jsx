@@ -12,12 +12,17 @@ import { setProjectIconsTabProjectSearchValue } from '../../../redux/project-ico
 import { openUploadModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../../redux/user/user.selectors';
-import { selectProjectSearchValue } from '../../../redux/project-icons/project-icons.selectors';
+import { selectProjectSearchValue, selectProjectsList } from '../../../redux/project-icons/project-icons.selectors';
 //constants
-import { PROJECT_DISPLAY_HEADER_LABEL, PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER } from '../../../utilities/app.constants';
+import { PROJECT_DISPLAY_HEADER_LABEL, PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER, PROJECT_TILE_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
 
 
-const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal }) => {
+const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal,
+    projectList }) => {
+
+    const displayContainer = styles.container + ' ' +
+        (projectList.length < PROJECT_TILE_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
+
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -33,7 +38,20 @@ const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurren
                     showUploadButton={isCurrentUserAdmin}
                     handleUploadIcon={openUploadModal}
                 />
+                <div className={styles.overflowContainer}>
+                    <div className={displayContainer}>
+                        {
+                            projectList.map((projectName) => {
+                                console.log(projectName);
+                                return (
+                                    <div key={projectName}>{projectName}</div>
+                                );
+                            })
+                        }
+                    </div>
+                </div>
             </div>
+
         </div>
     );
 };
@@ -41,7 +59,8 @@ const ProjectsDisplay = ({ searchKeywords, searchValue, setSearchValue, isCurren
 
 const mapStateToProps = createStructuredSelector({
     isCurrentUserAdmin: selectCurrentUserAdminRole,
-    searchValue: selectProjectSearchValue
+    searchValue: selectProjectSearchValue,
+    projectList: selectProjectsList,
 });
 
 const mapDispatchToProps = (dispatch) => {
