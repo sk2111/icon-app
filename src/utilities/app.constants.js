@@ -5,7 +5,8 @@ export const LOADING_PERSISTANT_CHECK_TIME = 500; // 0.5 sec
 
 //placeholder text to show in home header inputs
 export const COMMON_ICONS_INPUT_PLACEHOLDER = 'Search for common icons';
-export const PROJECT_ICONS_INPUT_PLACEHOLDER = 'Search for your project icons';
+export const PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER = 'Search for your project';
+export const PROJECT_ICONS_INPUT_ICONS_PLACEHOLDER = 'Search for your project icons';
 export const FAVORITES_ICONS_INPUT_PLACEHOLDER = 'Search for your favorites icons';
 //select label text
 export const COMMON_ICONS_SELECT_LABEL = 'Categories';
@@ -21,6 +22,7 @@ export const UPLOAD_ICONS_DEFAULT_CLASSIFICATION = 'Not Selected';
 
 // Page Names to display in Icon view header
 export const COMMON_ICONS_HEADER_LABEL = "Common Icons";
+export const PROJECT_DISPLAY_HEADER_LABEL = "Projects";
 export const PROJECT_ICONS_HEADER_LABEL = "Project Icons";
 export const FAVORITES_ICONS_HEADER_LABEL = "Favorites Icons";
 export const EDIT_ICON_HEADER_LABEL = "Edit Icon";

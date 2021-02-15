@@ -18,8 +18,15 @@ export const fetchProjectIconsUserOptionsFailure = (payload) => {
         payload
     }
 };
+//set project search value 
+export const setProjectIconsTabProjectsSearchValue = (payload) => {
+    return {
+        type: projectIconsActionTypes.SET_PROJECT_ICONS_TAB_PROJECTS_SEARCH_VALUE,
+        payload
+    }
+};
 
-// set search and select value action
+// set search and select project icons value action
 
 export const setProjectIconsTabSearchValue = (payload) => {
     return {
