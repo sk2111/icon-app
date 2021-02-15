@@ -7,6 +7,7 @@ import styles from './projects-display.module.css';
 //component
 import HomeHeader from '../home-header/home-header.component';
 import IconsViewHeader from '../icons-view-header/icons-view-header.component';
+import RenderView from '../../reusables/render-view/render-view.component';
 //actions
 import { setProjectIconsTabProjectSearchValue } from '../../../redux/project-icons/project-icons.actions';
 import { openUploadModal } from '../../../redux/upload-icons/upload-icons.actions';
@@ -17,6 +18,7 @@ import { selectProjectSearchValue, selectProjectsList, selectProjectIconsSelectO
 import { PROJECT_DISPLAY_HEADER_LABEL, PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER, PROJECT_TILE_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
 //assests
 import ProjectTileImg from '../../../assests/webp/project-tile.webp';
+import ProjectsNotFoundImg from '../../../assests/webp/not-found-projects.webp';
 
 const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal,
     projectList, projectKeywords }) => {
@@ -53,8 +55,12 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
                         }
                     </div>
                 </div>
+                <RenderView renderIfTrue={(projectList.length === 0)}>
+                    <div>
+                        <img className={styles.notFoundSvg} src={ProjectsNotFoundImg} alt="" />
+                    </div>
+                </RenderView>
             </div>
-
         </div>
     );
 };

@@ -70,7 +70,7 @@ const IconDisplayContainer = ({ iconList, isMoreIconsAvaliableToFetch, fetchMore
             </div>
             <RenderView renderIfTrue={(iconList.length === 0) && !isMoreIconsAvaliableToFetch}>
                 <div>
-                    <img className={styles.notFoundSvg} src={NotFoundImg} alt=""/>
+                    <img className={styles.notFoundImg} src={NotFoundImg} alt="" />
                 </div>
             </RenderView>
         </div>
