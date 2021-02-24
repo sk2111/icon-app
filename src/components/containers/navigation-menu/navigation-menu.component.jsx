@@ -16,11 +16,11 @@ const NavigationMenu = () => {
     const { pathname } = useLocation();
 
     const getNaviConClass = (pathname, route) => {
-        return `${styles.naviLinkCon} ${pathname === route ? styles.highlightNaviCon : styles.notHighlightNaviCon}`;
+        return `${styles.naviLinkCon} ${pathname.includes(route) ? styles.highlightNaviCon : styles.notHighlightNaviCon}`;
     };
 
     const getIconClass = (pathname, route) => {
-        return `${styles.navLogo} ${pathname === route ? styles.logoHighlight : styles.logoNotHighlight}`;
+        return `${styles.navLogo} ${pathname.includes(route) ? styles.logoHighlight : styles.logoNotHighlight}`;
     };
 
     return (
@@ -40,7 +40,7 @@ const NavigationMenu = () => {
                         );
                     })
                 }
-                <a className={getNaviConClass('otherresources', '')} href={OTHER_RESOURCES_LINK} target="_blank" rel="noopener noreferrer">
+                <a className={getNaviConClass('otherresources', '-')} href={OTHER_RESOURCES_LINK} target="_blank" rel="noopener noreferrer">
                     <img className={styles.navLogo} src={OtherResourcesImg} alt="-" />
                     <label className={styles.navLink}>Other Resources</label>
                 </a>
