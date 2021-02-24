@@ -21,7 +21,7 @@ import { selectProjectIcons } from './project-icons.selectors';
 import { selectUser } from '../user/user.selectors';
 //constants
 import {
-    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, PROJECT_ICON_DEFAULT_PROJECT_VALUE, USER_PROFILE,
+    SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE, USER_PROFILE,
     MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD, FETCHING_ICONS_THROTTLE_TIME, PROJECT_ICONS_HEADER_LABEL
 } from '../../utilities/app.constants';
 //helpers
@@ -40,7 +40,7 @@ function* fetchProjectIconsFromDatabase() {
         const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, userSelectedProject, projectIconsSearchValue, paginationMap);
         if ((!existingPaginationMap) || (existingPaginationMap && isMoreIconsAvailableToFetch)) {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
-                framePaginationQueryParams(false, userSelectedProject, projectIconsSearchValue, existingPaginationMap, PROJECT_ICON_DEFAULT_PROJECT_VALUE,
+                framePaginationQueryParams(false, userSelectedProject, projectIconsSearchValue, existingPaginationMap, '',
                     PROJECT_ICONS_LIST_PATH, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD));
             const { iconsMap } = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchProjectIconsFromDatabaseSuccess(iconsMap));

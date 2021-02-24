@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 //constants
-import { PROJECT_ICON_DEFAULT_PROJECT_VALUE, ICON_PROP } from '../../utilities/app.constants';
+import { ICON_PROP } from '../../utilities/app.constants';
 //helpers
 import { getSpaceCombinationValue, getAlphaOnly, getPaginateConfig } from '../../utilities/helper.functions';
 
@@ -17,7 +17,7 @@ export const selectAllProjectsList = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.projectsList);
 
 export const selectProjectIconsClassification = createSelector([selectAllProjectsList],
-    (projectIconsSelectOptions) => projectIconsSelectOptions.filter(option => option !== PROJECT_ICON_DEFAULT_PROJECT_VALUE));
+    (projectIconsSelectOptions) => projectIconsSelectOptions);
 
 export const selectProjectSearchValue = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.projectSearchValue);
@@ -57,8 +57,7 @@ export const selectProjectIconsListToDisplay = createSelector(
             const keyWordMatchResult = searchTagValue.length ?
                 searchTagValue.some((subStr) => iconTagAsStr.includes(subStr)) : true;
             const classficationMatchResult = icon[ICON_CLASSIFICATION] === classificationValue;
-            return (classificationValue === PROJECT_ICON_DEFAULT_PROJECT_VALUE) ?
-                keyWordMatchResult : (classficationMatchResult && keyWordMatchResult);
+            return (classficationMatchResult && keyWordMatchResult);
         });
     }
 );
