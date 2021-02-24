@@ -58,7 +58,7 @@ export const selectProjectIconsListToDisplay = createSelector(
             const iconTagAsStr = icon[ICON_TAGS].join(' ');
             const keyWordMatchResult = searchTagValue.length ?
                 searchTagValue.some((subStr) => iconTagAsStr.includes(subStr)) : true;
-            const classficationMatchResult = icon[ICON_CLASSIFICATION].includes(classificationValue);
+            const classficationMatchResult = icon[ICON_CLASSIFICATION] === classificationValue;
             return (classificationValue === PROJECT_ICON_DEFAULT_PROJECT_VALUE) ?
                 keyWordMatchResult : (classficationMatchResult && keyWordMatchResult);
         });
