@@ -101,11 +101,11 @@ export const deleteDocById = async (docPath, id) => {
     }
 };
 
-export const CreateNewClassfication = async ({ classification, dbDocPath }) => {
+export const CreateNewClassfication = async ({ classification, dbDocPath, property }) => {
     const docRef = firestore.doc(dbDocPath);
     try {
         docRef.update({
-            [CLASSIFICATION_SELECT_OPTIONS_LIST]: firebase.firestore.FieldValue.arrayUnion(classification)
+            [property]: firebase.firestore.FieldValue.arrayUnion(classification)
         });
         return true;
     }

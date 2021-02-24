@@ -110,7 +110,7 @@ function* onDeleteProjectIconFromDB() {
 }
 
 //Get project icons search keyword and category options
-function* fetchKeywordAndSelectOptions() {
+function* fetchProjectTabData() {
     const userOptions = yield call(getDocDataFromFireStore, PROJECT_ICONS_USER_OPTIONS_DATA_PATH);
     if (userOptions) {
         const { projects } = userOptions;
@@ -122,8 +122,8 @@ function* fetchKeywordAndSelectOptions() {
     yield put(fetchProjectIconsUserOptionsFailure({ message: SAGA_FETCH_USER_OPTIONS_ERROR_MESSAGE }));
 };
 
-function* onFetchKeywordAndSelectOptions() {
-    yield takeLatest(projectIconsActionTypes.FETCH_PROJECT_ICONS_USER_OPTIONS_START, fetchKeywordAndSelectOptions);
+function* onFetchProjectTabData() {
+    yield takeLatest(projectIconsActionTypes.FETCH_PROJECT_ICONS_USER_OPTIONS_START, fetchProjectTabData);
 };
 
 // on user auth completion success trigger fetch actions for project icons
@@ -157,7 +157,7 @@ export function* onRouteBasedProjectSelection() {
 //Group all sagas
 export function* projectIconsSaga() {
     yield all([
-        call(onFetchKeywordAndSelectOptions),
+        call(onFetchProjectTabData),
         call(onCurrentUserInfoFetchSuccess),
         call(onFetchProjectIconsFromDatabase),
         call(onFavoriteProjectIconSelection),

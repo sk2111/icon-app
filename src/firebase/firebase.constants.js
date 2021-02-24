@@ -19,5 +19,6 @@ export const PROJECT_ICONS_LIST_PATH = 'projectIcons';
 
 //Db Propertie name consatnts
 export const CLASSIFICATION_SELECT_OPTIONS_LIST = 'selectOptionsList';
+export const CLASSIFICATION_PROJECTS_LIST = 'projects';
 export const CLASSIFICATION_SEARCH_KEYWORD_LIST = 'searchKeywordsList';
 
