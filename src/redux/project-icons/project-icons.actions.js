@@ -43,6 +43,13 @@ export const setUserSelectedProjectValue = (payload) => {
     }
 };
 
+export const setRouteBasedProjectValue = (payload) => {
+    return {
+        type: projectIconsActionTypes.SET_ROUTE_BASED_PROJECT_VALUE,
+        payload
+    }
+};
+
 // fetch icons from db
 export const fetchProjectIconsFromDatabaseStart = () => {
     return {

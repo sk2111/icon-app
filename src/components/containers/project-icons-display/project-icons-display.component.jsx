@@ -1,5 +1,5 @@
 //libs
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //styles
@@ -11,21 +11,31 @@ import IconsDisplayContainer from '../icons-display-container/icons-display-cont
 //actions
 import {
     setProjectIconsTabIconsSearchValue, toggleProjectIconFavoriteModeStart,
-    fetchProjectIconsFromDatabaseStart, deleteProjectIconFromDbStart
+    fetchProjectIconsFromDatabaseStart, deleteProjectIconFromDbStart,
+    setRouteBasedProjectValue
 } from '../../../redux/project-icons/project-icons.actions';
 import { editSelectedIcon } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../../redux/user/user.selectors';
 import {
     selectProjectIconsSearchKeywords, selectProjectIconsSearchValue,
-    selectProjectIconsListToDisplay, selectIsMoreIconsAvailableToFetch,
+    selectProjectIconsListToDisplay, selectIsMoreIconsAvailableToFetch, selectUserSelectedProject,
 } from '../../../redux/project-icons/project-icons.selectors';
 //constants
 import { PROJECT_ICONS_INPUT_ICONS_PLACEHOLDER, PROJECT_ICONS_HEADER_LABEL } from '../../../utilities/app.constants.js';
 
 
 const ProjectIconsDisplay = ({ iconSearchKeywords, iconSearchValue, setIconSearchValue, iconsList, isMoreIconsAvaliableToFetch,
-    fetchMoreProjectIcons, isCurrentUserAdmin, toggleProjectIconFavoriteMode, deleteProjectIconFromDb, handleEditIcon }) => {
+    fetchMoreProjectIcons, isCurrentUserAdmin, toggleProjectIconFavoriteMode, deleteProjectIconFromDb, handleEditIcon,
+    match, userSelectedProject, setRouteBasedProjectValue }) => {
+
+    useEffect(() => {
+        const { projectId } = match.params;
+        if (!userSelectedProject && projectId) {
+            setRouteBasedProjectValue(projectId);
+        }
+    }, [match, userSelectedProject, setRouteBasedProjectValue]);
+
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
@@ -63,11 +73,13 @@ const mapStateToProps = createStructuredSelector({
     iconSearchValue: selectProjectIconsSearchValue,
     iconsList: selectProjectIconsListToDisplay,
     isMoreIconsAvaliableToFetch: selectIsMoreIconsAvailableToFetch,
+    userSelectedProject: selectUserSelectedProject,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         setIconSearchValue: (searchValue) => dispatch(setProjectIconsTabIconsSearchValue(searchValue)),
+        setRouteBasedProjectValue: (projectValue) => dispatch(setRouteBasedProjectValue(projectValue)),
         fetchMoreProjectIcons: () => dispatch(fetchProjectIconsFromDatabaseStart()),
         toggleProjectIconFavoriteMode: (config) => dispatch(toggleProjectIconFavoriteModeStart(config)),
         deleteProjectIconFromDb: (id) => dispatch(deleteProjectIconFromDbStart(id)),

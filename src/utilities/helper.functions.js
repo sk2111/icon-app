@@ -39,8 +39,8 @@ export const getSpaceCombinationValue = (strValue) => {
     return [];
 };
 
-export const capitalizeFirstLetter = (stringVal) => {
-    return stringVal.charAt(0).toUpperCase() + stringVal.slice(1);
+export const capitalizeFirstLetter = (stringVal = '') => {
+    return stringVal.charAt(0).toUpperCase() + stringVal.slice(1).toLowerCase();
 };
 
 export const getRandomInteger = (min, max) => {

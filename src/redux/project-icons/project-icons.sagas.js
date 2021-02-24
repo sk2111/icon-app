@@ -12,7 +12,8 @@ import {
     fetchProjectIconsUserOptionsStart, fetchProjectIconsUserOptionsSuccess, fetchProjectIconsUserOptionsFailure,
     fetchProjectIconsFromDatabaseFailure, fetchProjectIconsFromDatabaseSuccess, setProjectIconsPaginationMap,
     deleteProjectIconFromDbSuccess, deleteProjectIconFromDbFailure, toggleProjectIconFavoriteModeFailure,
-    toggleProjectIconFavoriteModeSuccess
+    toggleProjectIconFavoriteModeSuccess,
+    setUserSelectedProjectValue
 } from './project-icons.actions';
 import { updateCurrentUserFavoriteIcons } from '../user/user.actions';
 //selectors
@@ -26,7 +27,7 @@ import {
 //helpers
 import {
     getPaginateConfig, frameIconObjFromDocObj, framePaginationQueryParams,
-    extractSimplifiedMapFromFavoritesMap, frameFavoriteIconsMap, checkIsAllIconsFetched
+    extractSimplifiedMapFromFavoritesMap, frameFavoriteIconsMap, checkIsAllIconsFetched, capitalizeFirstLetter
 } from '../../utilities/helper.functions';
 
 const { USER_FAVORITES, USER_FAVORITES_FETCH_STATUS } = USER_PROFILE;
@@ -145,6 +146,15 @@ export function* onTriggerUserOptionsFetch() {
     yield takeLatest(uploadIconsActionTypes.CLOSE_ADD_NEW_CLASSIFICATION_MODAL, triggerUserOptionsFetchAction);
 };
 
+//set route based project value
+export function* setRouteBasedProjectValue({ payload }) {
+    const projectName = yield call(capitalizeFirstLetter, payload);
+    yield put(setUserSelectedProjectValue(projectName));
+};
+
+export function* onRouteBasedProjectSelection() {
+    yield takeLatest(projectIconsActionTypes.SET_ROUTE_BASED_PROJECT_VALUE, setRouteBasedProjectValue);
+};
 //Group all sagas
 export function* projectIconsSaga() {
     yield all([
@@ -154,5 +164,6 @@ export function* projectIconsSaga() {
         call(onFavoriteProjectIconSelection),
         call(onDeleteProjectIconFromDB),
         call(onTriggerUserOptionsFetch),
+        call(onRouteBasedProjectSelection),
     ]);
 };
