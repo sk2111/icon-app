@@ -192,10 +192,10 @@ export const getPaginateConfig = (classficationValue, searchKeywordValue, pagina
     };
 };
 // Fetch config query param frame
-export const framePaginationQueryParams = (selectValue, searchValue, existingPaginationMap,
+export const framePaginationQueryParams = (depthSearch, selectValue, searchValue, existingPaginationMap,
     defaultClassification, listPath, maxFiles) => {
-    const searchCombination = getSpaceCombinationValue(searchValue);
-    const isDefaultClassification = selectValue === defaultClassification
+    const searchCombination = depthSearch ? getSpaceCombinationValue(searchValue) : searchValue;
+    const isDefaultClassification = selectValue === defaultClassification;
     const queryOperator = isDefaultClassification ? '!=' : '==';
     const queryOrderByConfig = isDefaultClassification ? [ICON_CLASSIFICATION] : [CREATED_AT, "desc"];
     return {

@@ -40,7 +40,7 @@ function* fetchProjectIconsFromDatabase() {
         const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, userSelectedProject, projectIconsSearchValue, paginationMap);
         if ((!existingPaginationMap) || (existingPaginationMap && isMoreIconsAvailableToFetch)) {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
-                framePaginationQueryParams(userSelectedProject, projectIconsSearchValue, existingPaginationMap, PROJECT_ICON_DEFAULT_PROJECT_VALUE,
+                framePaginationQueryParams(false, userSelectedProject, projectIconsSearchValue, existingPaginationMap, PROJECT_ICON_DEFAULT_PROJECT_VALUE,
                     PROJECT_ICONS_LIST_PATH, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD));
             const { iconsMap } = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchProjectIconsFromDatabaseSuccess(iconsMap));

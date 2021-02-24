@@ -39,7 +39,7 @@ function* fetchCommonIconsFromDatabase() {
         const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, searchValue, paginationMap);
         if ((!existingPaginationMap) || (existingPaginationMap && isMoreIconsAvailableToFetch)) {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
-                framePaginationQueryParams(selectValue, searchValue, existingPaginationMap, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
+                framePaginationQueryParams(true,selectValue, searchValue, existingPaginationMap, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
                     COMMON_ICONS_LIST_PATH, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD));
             const { iconsMap } = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
