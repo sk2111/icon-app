@@ -14,7 +14,7 @@ import { setProjectIconsTabProjectSearchValue, setUserSelectedProjectValue } fro
 import { openUploadModal } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../../redux/user/user.selectors';
-import { selectProjectSearchValue, selectProjectsList, selectProjectIconsSelectOptions } from '../../../redux/project-icons/project-icons.selectors';
+import { selectProjectSearchValue, selectFilteredProjectsList, selectAllProjectsList } from '../../../redux/project-icons/project-icons.selectors';
 //constants
 import { PROJECT_ICONS_HEADER_LABEL, PROJECT_DISPLAY_HEADER_LABEL, PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER, PROJECT_TILE_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
 import { PROJECTS_ROUTE_PATH } from '../../../utilities/route.paths';
@@ -23,16 +23,16 @@ import ProjectTileImg from '../../../assests/webp/project-tile.webp';
 import ProjectsNotFoundImg from '../../../assests/webp/not-found-projects.webp';
 
 const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal,
-    projectList, projectKeywords, setProjectValue }) => {
+    filteredProjectsList, allProjectsList, setProjectValue }) => {
 
     const displayContainer = styles.container + ' ' +
-        (projectList.length < PROJECT_TILE_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
+        (filteredProjectsList.length < PROJECT_TILE_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
 
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
                 searchPlaceHolder={PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER}
-                searchKeywords={projectKeywords}
+                searchKeywords={allProjectsList}
                 searchValue={searchValue}
                 handleSearchValueChange={setSearchValue}
                 hideSelect
@@ -47,7 +47,7 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
                 <div className={styles.overflowContainer}>
                     <div className={displayContainer}>
                         {
-                            projectList.map((projectName) => {
+                            filteredProjectsList.map((projectName) => {
                                 return (
                                     <Link key={projectName}
                                         to={`${PROJECTS_ROUTE_PATH}/${projectName.toLowerCase()}`}
@@ -62,7 +62,7 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
                         }
                     </div>
                 </div>
-                <RenderView renderIfTrue={(projectList.length === 0)}>
+                <RenderView renderIfTrue={(filteredProjectsList.length === 0)}>
                     <div>
                         <img className={styles.notFoundImg} src={ProjectsNotFoundImg} alt="" />
                     </div>
@@ -76,8 +76,8 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
 const mapStateToProps = createStructuredSelector({
     isCurrentUserAdmin: selectCurrentUserAdminRole,
     searchValue: selectProjectSearchValue,
-    projectList: selectProjectsList,
-    projectKeywords: selectProjectIconsSelectOptions,
+    filteredProjectsList: selectFilteredProjectsList,
+    allProjectsList: selectAllProjectsList,
 });
 
 const mapDispatchToProps = (dispatch) => {

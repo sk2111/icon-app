@@ -11,8 +11,7 @@ const CLEAR_VALUE = '';
 const INITIAL_STATE = {
     iconsMap: {},
     paginationMap: {},
-    searchKeywordsList: [],
-    selectOptionsList: [],
+    projectsList: [],
     projectSearchValue: CLEAR_VALUE,
     projectIconsSearchValue: CLEAR_VALUE,
     userSelectedProject: null
@@ -22,8 +21,8 @@ const projectIconsReducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
         case projectIconsActionTypes.FETCH_PROJECT_ICONS_USER_OPTIONS_SUCCESS:
-            const { searchKeywordsList, selectOptionsList } = action.payload;
-            return { ...state, searchKeywordsList: [...searchKeywordsList], selectOptionsList: [...selectOptionsList] };
+            const { projects } = action.payload;
+            return { ...state, projectsList: projects };
         case projectIconsActionTypes.FETCH_PROJECT_ICONS_FROM_DB_SUCCESS:
             return { ...state, iconsMap: { ...state.iconsMap, ...action.payload } };
         case projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_START:

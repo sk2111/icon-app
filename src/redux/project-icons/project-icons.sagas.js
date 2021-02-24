@@ -113,10 +113,9 @@ function* onDeleteProjectIconFromDB() {
 function* fetchKeywordAndSelectOptions() {
     const userOptions = yield call(getDocDataFromFireStore, PROJECT_ICONS_USER_OPTIONS_DATA_PATH);
     if (userOptions) {
-        const { searchKeywordsList, selectOptionsList } = userOptions;
+        const { projects } = userOptions;
         yield put(fetchProjectIconsUserOptionsSuccess({
-            searchKeywordsList: searchKeywordsList.sort(),
-            selectOptionsList: selectOptionsList.sort()
+            projects: projects.sort(),
         }));
         return;
     }

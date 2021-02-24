@@ -12,13 +12,11 @@ export const selectProjectIcons = state => state.projectIcons;
 export const selectProjectIconsPagination = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.paginationMap);
 
-export const selectProjectIconsSearchKeywords = createSelector([selectProjectIcons],
-    (projectIcons) => projectIcons.searchKeywordsList);
 
-export const selectProjectIconsSelectOptions = createSelector([selectProjectIcons],
-    (projectIcons) => projectIcons.selectOptionsList);
+export const selectAllProjectsList = createSelector([selectProjectIcons],
+    (projectIcons) => projectIcons.projectsList);
 
-export const selectProjectIconsClassification = createSelector([selectProjectIconsSelectOptions],
+export const selectProjectIconsClassification = createSelector([selectAllProjectsList],
     (projectIconsSelectOptions) => projectIconsSelectOptions.filter(option => option !== PROJECT_ICON_DEFAULT_PROJECT_VALUE));
 
 export const selectProjectSearchValue = createSelector([selectProjectIcons],
@@ -40,8 +38,8 @@ export const selectIsMoreIconsAvailableToFetch = createSelector([selectUserSelec
     }
 );
 
-export const selectProjectsList = createSelector(
-    [selectProjectIconsSelectOptions, selectProjectSearchValue],
+export const selectFilteredProjectsList = createSelector(
+    [selectAllProjectsList, selectProjectSearchValue],
     (projectList, searchValue) => {
         return projectList.filter((name) => {
             return String(name).toLowerCase().includes(searchValue.toLowerCase());

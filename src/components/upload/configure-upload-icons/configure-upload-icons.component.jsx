@@ -14,17 +14,17 @@ import ConfigureUploadIconsClassificationAndTags from '../configure-upload-icons
 import { uploadIconsStart } from '../../../redux/upload-icons/upload-icons.actions';
 //reselect 
 import { selectCommonIconsClassification, selectCommonIconsSearchKeywords } from '../../../redux/common-icons/common-icons.selectors';
-import { selectProjectIconsClassification, selectProjectIconsSearchKeywords } from '../../../redux/project-icons/project-icons.selectors';
+import { selectProjectIconsClassification } from '../../../redux/project-icons/project-icons.selectors';
 import { selectIsUploading, selectUploadIconDBPath } from '../../../redux/upload-icons/upload-icons.selectors';
 //constants
 import { COMMON_ICONS_HEADER_LABEL } from '../../../utilities/app.constants';
 
 const ConfigureUploadIcons = ({ uploadIconDBPath, closeUploadModalView, commonIconsSelectOptions, commonIconsSearchKeywords,
-    projectIconsSelectOptions, projectIconsSearchKeywords, uploadIconsStart, isUploading }) => {
+    projectIconsSelectOptions, uploadIconsStart, isUploading }) => {
 
     const isCommonIconType = uploadIconDBPath === COMMON_ICONS_HEADER_LABEL;
     const classificationOptions = isCommonIconType ? commonIconsSelectOptions : projectIconsSelectOptions;
-    const tagSuggestionOptions = isCommonIconType ? commonIconsSearchKeywords : projectIconsSearchKeywords;
+    const tagSuggestionOptions = isCommonIconType ? commonIconsSearchKeywords : [];
 
     return (
         <React.Fragment>
@@ -54,7 +54,6 @@ const mapStateToProps = createStructuredSelector({
     commonIconsSelectOptions: selectCommonIconsClassification,
     commonIconsSearchKeywords: selectCommonIconsSearchKeywords,
     projectIconsSelectOptions: selectProjectIconsClassification,
-    projectIconsSearchKeywords: selectProjectIconsSearchKeywords,
     isUploading: selectIsUploading,
 });
 

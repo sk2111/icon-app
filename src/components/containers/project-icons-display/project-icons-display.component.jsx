@@ -18,14 +18,14 @@ import { editSelectedIcon } from '../../../redux/edit-icon/edit-icon.actions';
 //reselect
 import { selectCurrentUserAdminRole } from '../../../redux/user/user.selectors';
 import {
-    selectProjectIconsSearchKeywords, selectProjectIconsSearchValue,
-    selectProjectIconsListToDisplay, selectIsMoreIconsAvailableToFetch, selectUserSelectedProject,
+    selectProjectIconsSearchValue, selectProjectIconsListToDisplay,
+    selectIsMoreIconsAvailableToFetch, selectUserSelectedProject,
 } from '../../../redux/project-icons/project-icons.selectors';
 //constants
 import { PROJECT_ICONS_INPUT_ICONS_PLACEHOLDER, PROJECT_ICONS_HEADER_LABEL } from '../../../utilities/app.constants.js';
 
 
-const ProjectIconsDisplay = ({ iconSearchKeywords, iconSearchValue, setIconSearchValue, iconsList, isMoreIconsAvaliableToFetch,
+const ProjectIconsDisplay = ({ iconSearchValue, setIconSearchValue, iconsList, isMoreIconsAvaliableToFetch,
     fetchMoreProjectIcons, isCurrentUserAdmin, toggleProjectIconFavoriteMode, deleteProjectIconFromDb, handleEditIcon,
     match, userSelectedProject, setRouteBasedProjectValue }) => {
 
@@ -40,7 +40,7 @@ const ProjectIconsDisplay = ({ iconSearchKeywords, iconSearchValue, setIconSearc
         <div className={styles.pageContainer}>
             <HomeHeader
                 searchPlaceHolder={PROJECT_ICONS_INPUT_ICONS_PLACEHOLDER}
-                searchKeywords={iconSearchKeywords}
+                searchKeywords={[]}
                 searchValue={iconSearchValue}
                 handleSearchValueChange={setIconSearchValue}
                 hideSelect
@@ -69,7 +69,6 @@ const ProjectIconsDisplay = ({ iconSearchKeywords, iconSearchValue, setIconSearc
 
 const mapStateToProps = createStructuredSelector({
     isCurrentUserAdmin: selectCurrentUserAdminRole,
-    iconSearchKeywords: selectProjectIconsSearchKeywords,
     iconSearchValue: selectProjectIconsSearchValue,
     iconsList: selectProjectIconsListToDisplay,
     isMoreIconsAvaliableToFetch: selectIsMoreIconsAvailableToFetch,
