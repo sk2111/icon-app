@@ -10,3 +10,27 @@
   height: calc(100% - 30px - 18px - 38px);
   margin-top: 18px;
 }
+.titleContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  justify-content: space-between;
+}
+.title{
+  color: var(--app-icon-header-text);
+  font-size: 18px;
+  font-weight: 500;
+}
+.backBtnTitle{
+  color: var(--app-icon-header-text);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0px;
+}
+.titleSplitter{
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+}
