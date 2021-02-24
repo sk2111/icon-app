@@ -33,9 +33,9 @@ export const selectUserSelectedProject = createSelector([selectProjectIcons],
 const selectProjectIconsMap = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.iconsMap);
 
-export const selectIsMoreIconsAvailableToFetch = createSelector([selectUserSelectedProject, selectProjectIconsSearchValue, selectProjectIconsPagination],
-    (userSelectedProject, projectIconsSearchValue, paginationMap) => {
-        const { existingPaginationMap, isMoreIconsAvailableToFetch } = getPaginateConfig(userSelectedProject, projectIconsSearchValue, paginationMap);
+export const selectIsMoreIconsAvailableToFetch = createSelector([selectUserSelectedProject, selectProjectIconsPagination],
+    (userSelectedProject, paginationMap) => {
+        const { existingPaginationMap, isMoreIconsAvailableToFetch } = getPaginateConfig(userSelectedProject, '', paginationMap);
         return existingPaginationMap ? isMoreIconsAvailableToFetch : true;
     }
 );
