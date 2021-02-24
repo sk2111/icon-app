@@ -43,6 +43,7 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
             <div className={styles.viewContainer}>
                 <IconsViewHeader
                     label={COMMON_ICONS_HEADER_LABEL}
+                    uploadMode={COMMON_ICONS_HEADER_LABEL}
                     showUploadButton={isCurrentUserAdmin}
                     handleUploadIcon={openUploadModal}
                 />

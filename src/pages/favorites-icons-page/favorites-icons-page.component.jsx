@@ -38,7 +38,7 @@ const FavoritesIconsPage = ({ searchKeywords, searchValue, setSearchValue, icons
                 hideSelect={true}
             />
             <div className={styles.viewContainer}>
-                <IconsViewHeader label={FAVORITES_ICONS_HEADER_LABEL} />
+                <IconsViewHeader label={FAVORITES_ICONS_HEADER_LABEL} showUploadButton={false} />
                 <div className={styles.iconsContainer}>
                     <IconsDisplayContainer
                         iconList={iconsList}

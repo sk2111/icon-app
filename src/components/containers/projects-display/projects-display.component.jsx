@@ -16,7 +16,7 @@ import { openUploadModal } from '../../../redux/upload-icons/upload-icons.action
 import { selectCurrentUserAdminRole } from '../../../redux/user/user.selectors';
 import { selectProjectSearchValue, selectProjectsList, selectProjectIconsSelectOptions } from '../../../redux/project-icons/project-icons.selectors';
 //constants
-import { PROJECT_DISPLAY_HEADER_LABEL, PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER, PROJECT_TILE_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
+import { PROJECT_ICONS_HEADER_LABEL, PROJECT_DISPLAY_HEADER_LABEL, PROJECT_ICONS_INPUT_PROJECTS_PLACEHOLDER, PROJECT_TILE_STY_LENGTH_LIMIT } from '../../../utilities/app.constants';
 import { PROJECTS_ROUTE_PATH } from '../../../utilities/route.paths';
 //assests
 import ProjectTileImg from '../../../assests/webp/project-tile.webp';
@@ -40,6 +40,7 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
             <div className={styles.viewContainer}>
                 <IconsViewHeader
                     label={PROJECT_DISPLAY_HEADER_LABEL}
+                    uploadMode={PROJECT_ICONS_HEADER_LABEL}
                     showUploadButton={isCurrentUserAdmin}
                     handleUploadIcon={openUploadModal}
                 />

@@ -6,13 +6,13 @@ import styles from './icons-view-header.module.css';
 import RenderView from '../../reusables/render-view/render-view.component';
 import LoadingButton from '../../reusables/loading-button/loading-button.component';
 
-const IconsViewHeader = ({ label, showUploadButton, handleUploadIcon }) => {
+const IconsViewHeader = ({ label, uploadMode, showUploadButton, handleUploadIcon }) => {
 
     return (
         <div className={styles.headerContainer}>
             <h4 className={styles.header}>{label}</h4>
             <RenderView renderIfTrue={showUploadButton}>
-                <LoadingButton className={styles.uploadBtn} onClick={() => handleUploadIcon(label)}>Upload icon</LoadingButton>
+                <LoadingButton className={styles.uploadBtn} onClick={() => handleUploadIcon(uploadMode)}>Upload icon</LoadingButton>
             </RenderView>
         </div>
     );
