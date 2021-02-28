@@ -14,7 +14,7 @@ import { toggleNavigationMenuView } from '../../../redux/app-data/app-data.actio
 import HamMenu from '../../../assests/webp/ham-menu.webp';
 
 
-const HomeHeader = ({ toggleNavigationMenuView, hideSelect,
+const HomeHeader = ({ toggleNavigationMenuView, hideSelect, hideSearch,
     searchPlaceHolder, searchValue, searchKeywords, handleSearchValueChange,
     selectLabelText, selectOptions, handleSelectValueChange, selectValue }) => {
 
@@ -22,13 +22,15 @@ const HomeHeader = ({ toggleNavigationMenuView, hideSelect,
         <div className={styles.headerContainer}>
             <div className={styles.headerLeftSec}>
                 <img className={styles.hamsvg} src={HamMenu} alt="-" onClick={toggleNavigationMenuView} />
-                <SearchSelectDropdown
-                    className={styles.searchAlign}
-                    placeholder={searchPlaceHolder}
-                    defaultSearchValue={searchValue}
-                    searchList={searchKeywords}
-                    handleSearchValueChange={handleSearchValueChange}
-                />
+                <RenderView renderIfFalse={!!hideSearch}>
+                    <SearchSelectDropdown
+                        className={styles.searchAlign}
+                        placeholder={searchPlaceHolder}
+                        defaultSearchValue={searchValue}
+                        searchList={searchKeywords}
+                        handleSearchValueChange={handleSearchValueChange}
+                    />
+                </RenderView>
                 <RenderView renderIfFalse={!!hideSelect}>
                     <CustomSelect
                         label={selectLabelText}

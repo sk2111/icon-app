@@ -1,3 +1,19 @@
+.pageContainer {
+  height: 100%;
+}
 .viewContainer {
+  background-color: var(--app-icon-page-background);
+  height: calc(100% - 54px);
   padding: var(--app-icons-view-container-padding);
+}
+.placeholder {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  justify-content: center;
+}
+.placeholderText {
+  color: #989899;
+  font-size: 48px;
 }
