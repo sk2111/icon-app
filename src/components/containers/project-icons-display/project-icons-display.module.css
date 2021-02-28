@@ -17,20 +17,26 @@
   height: 30px;
   justify-content: space-between;
 }
-.title{
+.title {
+  align-items: center;
   color: var(--app-icon-header-text);
+  display: flex;
   font-size: 18px;
-  font-weight: 500;
 }
-.backBtnTitle{
+.backBtnTitle {
   color: var(--app-icon-header-text);
   cursor: pointer;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   margin: 0px;
 }
-.titleSplitter{
-  display: inline-block;
+.titleProjectName {
+  font-weight: 500;
+}
+.titleSplitter {
+  height: 14px;
   margin-left: 5px;
   margin-right: 5px;
+  transform: rotate(-90deg);
+  width: 14px;
 }

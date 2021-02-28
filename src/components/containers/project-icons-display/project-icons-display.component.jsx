@@ -24,6 +24,8 @@ import {
 //constants
 import { PROJECT_ICONS_INPUT_ICONS_PLACEHOLDER, PROJECT_DISPLAY_HEADER_LABEL } from '../../../utilities/app.constants.js';
 import { PROJECTS_ROUTE_PATH } from '../../../utilities/route.paths';
+// static assests
+import CheveronImg from '../../../assests/webp/cheveron.webp';
 
 const ProjectIconsDisplay = ({ iconSearchValue, setIconSearchValue, iconsList, isMoreIconsAvaliableToFetch,
     fetchMoreProjectIcons, isCurrentUserAdmin, toggleProjectIconFavoriteMode, deleteProjectIconFromDb, handleEditIcon,
@@ -56,8 +58,8 @@ const ProjectIconsDisplay = ({ iconSearchValue, setIconSearchValue, iconsList, i
                 <div className={styles.titleContainer}>
                     <div className={styles.title}>
                         <span className={styles.backBtnTitle} onClick={goBackToProjects}>{PROJECT_DISPLAY_HEADER_LABEL}</span>
-                        <span className={styles.titleSplitter}>{'>'}</span>
-                        <span>{userSelectedProject}</span>
+                        <img className={styles.titleSplitter} src={CheveronImg} alt=">"/>
+                        <span className={styles.titleProjectName}>{userSelectedProject}</span>
                     </div>
                 </div>
                 <div className={styles.iconsContainer}>
