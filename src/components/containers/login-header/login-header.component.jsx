@@ -9,7 +9,7 @@ const LoginHeader = () => {
     return (
         <div className={styles.loginContainer}>
             <img className={styles.logo} alt="icon" src={appLogo} />
-            <h1 className={styles.heading}>Soliton Icons</h1>
+            <h1 className={styles.heading}>Soliton Icons β version</h1>
             <div className={styles.lineBreak}></div>
         </div>
     );
