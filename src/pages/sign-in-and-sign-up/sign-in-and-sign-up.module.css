@@ -22,6 +22,10 @@
 .illustration {
   width: 80%;
 }
+.tempIllustration{
+  height:50%;
+  width:50%;
+}
 .rightContainer {
   height: 100vh;
   padding: 20px;

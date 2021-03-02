@@ -11,6 +11,7 @@ import SignUp from '../../components/containers/sign-up/sign-up.component';
 import RouteNotFound from '../../components/containers/route-not-found/route-not-found.component';
 //constants
 import { ReactComponent as AnimAppLogo } from '../../assests/anim-applogo.svg';
+import { ReactComponent as AppLogo } from '../../assests/applogo.svg';
 import { LOADING_ANIM_LOGO_TIME } from '../../utilities/app.constants';
 //route constants
 import {
@@ -32,7 +33,8 @@ const SignInAndSignUpPage = ({ currentUser, history }) => {
     return (
         <div className={styles.pageContainer}>
             <section className={styles.leftContainer}>
-                <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" />
+                {/* <img className={styles.illustration} alt="illustration" src="../../loginpage-placeholder.jpg" /> */}
+                <AppLogo className={styles.tempIllustration}/>
             </section>
             <section className={styles.rightContainer}>
                 <div className={styles.rightContent}>
