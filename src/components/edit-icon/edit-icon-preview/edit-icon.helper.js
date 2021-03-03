@@ -34,20 +34,24 @@ class EditIconHelpers {
     }
 
     getChildNodesWithColorAttributes(child) {
+        let isPushed = false;
         if (child.hasAttribute(this.FILL_ATTRIBUTE_NAME) && (child.hasAttribute(this.STROKE_ATTRIBUTE_NAME))) {
             const fillValue = child.getAttribute(this.FILL_ATTRIBUTE_NAME);
             const strokeValue = child.getAttribute(this.FILL_ATTRIBUTE_NAME);
             if (!this.COLOR_ATTRIBUTE_NODE_EXCLUDE_VALUE_LIST.includes(fillValue) && !this.COLOR_ATTRIBUTE_NODE_EXCLUDE_VALUE_LIST.includes(strokeValue)) {
+                isPushed = true;
                 this.insertIntoSvgColorNodeList([this.FILL_ATTRIBUTE_NAME, this.STROKE_ATTRIBUTE_NAME], child, [fillValue, strokeValue]);
             }
         }
-        else if (child.hasAttribute(this.FILL_ATTRIBUTE_NAME)) {
+        if (child.hasAttribute(this.FILL_ATTRIBUTE_NAME) && !isPushed) {
             const fillValue = child.getAttribute(this.FILL_ATTRIBUTE_NAME);
             if (!this.COLOR_ATTRIBUTE_NODE_EXCLUDE_VALUE_LIST.includes(fillValue)) {
+                isPushed = true;
                 this.insertIntoSvgColorNodeList([this.FILL_ATTRIBUTE_NAME], child, [fillValue]);
             }
         }
-        else if (child.hasAttribute(this.STROKE_ATTRIBUTE_NAME)) {
+
+        if (child.hasAttribute(this.STROKE_ATTRIBUTE_NAME) && !isPushed) {
             const strokeValue = child.getAttribute(this.STROKE_ATTRIBUTE_NAME);
             if (!this.COLOR_ATTRIBUTE_NODE_EXCLUDE_VALUE_LIST.includes(strokeValue)) {
                 this.insertIntoSvgColorNodeList([this.STROKE_ATTRIBUTE_NAME], child, [strokeValue]);
