@@ -7,8 +7,6 @@ import styles from './edit-icon-page.module.css';
 //components
 import HomeHeader from '../../components/containers/home-header/home-header.component';
 import IconsViewHeader from '../../components/containers/icons-view-header/icons-view-header.component';
-//constants
-import { EDIT_ICON_HEADER_LABEL } from '../../utilities/app.constants';
 //static
 import { ReactComponent as UnderConstructuction } from '../../assests/under-construction.svg';
 

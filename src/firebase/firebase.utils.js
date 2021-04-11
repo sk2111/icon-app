@@ -6,7 +6,6 @@ import { createUserProileDocObj } from './firebase.helpers';
 // constants
 import {
     FIREBASE_CONFIG, USERS_COLLECTION_PATH, GET_ACCESS_ROLE_PATH,
-    CLASSIFICATION_SELECT_OPTIONS_LIST
 } from './firebase.constants';
 
 //init
