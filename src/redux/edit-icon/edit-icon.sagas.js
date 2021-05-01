@@ -119,12 +119,13 @@ function* previewIcon({ payload: { svgNode } }) {
         const svgString = yield call(getSvgString, svgNode, height, width);
         const image = new Image();
         image.src = "data:image/svg+xml;base64," + btoa(svgString);
-        const previewContent = `<div style="height:100%;align-items:center;display:flex;justify-content:center">
+        const previewContent = `<div style="height:100%;">
         ${image.outerHTML}
         </div>`;
         const windowIns = window.open("");
         windowIns.document.title = 'Preview';
         windowIns.document.write(previewContent);
+        windowIns.document.close();
         yield (put(iconPreviewSuccess()));
     }
     catch (e) {
