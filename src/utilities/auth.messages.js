@@ -1,4 +1,4 @@
-export const SIGN_UP_SUCCESS_MESSAGE = 'Signup success, A verification mail sent to your soliton mail address.';
+export const SIGN_UP_SUCCESS_MESSAGE = 'Successfully Signed up. A verification mail has been sent. Please verify. Check your Inbox & Junk folder.';
 export const SIGN_UP_INVALID_ERROR_MAIL_MESSAGE = 'Please enter a valid Soliton mail address';
 export const SIGN_UP_PASSWORD_NOT_MATCH_MESSAGE = 'Password & Confirm password don\'t match';
 //user login message
