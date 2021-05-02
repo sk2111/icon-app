@@ -96,6 +96,7 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
                                 ))
                             }
                         </div>
+                        <div className={styles.deleteMessage}>click & drag to delete swatch</div>
                     </div>
                 </div>
                 <DeleteSwatch
