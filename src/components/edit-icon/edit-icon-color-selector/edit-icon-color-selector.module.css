@@ -4,6 +4,7 @@
 }
 .swatchContainer {
   margin-left: 10px;
+  width: 88px;
 }
 .addSwatchesContainer {
   align-items: center;
@@ -39,8 +40,8 @@
   row-gap: 6.5px;
 }
 .deleteMessage {
-  color:var(--app-user-display-text);
-  font-size: 10px;
+  color: var(--app-user-display-text);
+  font-size: 9px;
   letter-spacing: 0;
   position: relative;
   bottom: 5px;

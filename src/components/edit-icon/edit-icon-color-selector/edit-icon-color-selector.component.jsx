@@ -31,6 +31,8 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
     const [swatches, setSwatches] = useState(storedSwatches);
     const debounceRef = useRef({ timerId: null });
 
+    const deleteSwatchMsg = swatches.length ? 'click & drag to delete swatch' : '';
+
     useEffect(() => {
         if (isEditIconModalOpen && iconData) {
             getSVGColors(iconData).then((svgColors) => {
@@ -96,7 +98,7 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
                                 ))
                             }
                         </div>
-                        <div className={styles.deleteMessage}>click & drag to delete swatch</div>
+                        <div className={styles.deleteMessage}>{deleteSwatchMsg}</div>
                     </div>
                 </div>
                 <DeleteSwatch
