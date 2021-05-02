@@ -1,0 +1,23 @@
+.tooltipBox {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.tooltip {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  color: var(--app-pure-white);
+  display: block;
+  font-size: 11px;
+  height: 22px;
+  padding: 4px 12px;
+  position: absolute;
+  top: 15px;
+  visibility: hidden;
+  width: max-content;
+}
+
+.tooltipBox:hover .tooltip {
+  visibility: visible;
+}

@@ -8,6 +8,7 @@
 
   /* illustration background */
   --app-illustration-page-background: #f3f3f4;
+  --app-pure-white: #ffffff;
 
   /* select input colors*/
   --app-select-label: #707071;
@@ -69,7 +70,7 @@
   /* Auth colors */
   --app-auth-error-message: #f34469;
   --app-auth-user-message: #00c578;
-  --app-auth-signup-user-message: #3254B7;
+  --app-auth-signup-user-message: #3254b7;
 
   /* Toast bar colors */
   --app-toastbar-background: rgba(28, 28, 29, 0.9);

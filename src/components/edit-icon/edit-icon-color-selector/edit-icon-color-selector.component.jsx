@@ -5,10 +5,11 @@ import { createStructuredSelector } from 'reselect';
 import getSVGColors from 'get-svg-colors-browser';
 //css
 import styles from './edit-icon-color-selector.module.css';
-//compoents
+//components
 import { SketchPicker } from 'react-color';
 import ColorSwatch from '../../reusables/color-swatch/color-swatch.component';
 import DeleteSwatch from '../delete-swatch/delete-swatch.component';
+import Tooltip from '../../reusables/Tooltip/Tooltip.component';
 //actions
 import { changeUserSelectedColor } from '../../../redux/edit-icon/edit-icon.actions';
 //selectors
@@ -72,9 +73,12 @@ const EditIconColorSelector = ({ iconToEdit: { iconData }, isEditIconModalOpen, 
                         onChange={handleColorChange} />
                     <div className={styles.swatchContainer}>
                         <div className={styles.addSwatchesContainer}>
-                            <h6 className={styles.addSwatchLabel}>Swatches </h6>
+                            <Tooltip title={'Click + to add selected color to swatches'}>
+                                <h6 className={styles.addSwatchLabel}>
+                                    Swatches
+                                </h6>
+                            </Tooltip>
                             <button
-                                title="Add color to swatches"
                                 className={styles.favButton}
                                 onClick={() => updateSwatchList(color, false)}>
                                 +
