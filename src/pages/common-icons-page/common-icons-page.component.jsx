@@ -31,6 +31,7 @@ const CommonIconsPage = ({ isCurrentUserAdmin, searchKeywords, searchValue, setS
     return (
         <div className={styles.pageContainer}>
             <HomeHeader
+                hideSelect
                 searchPlaceHolder={COMMON_ICONS_INPUT_PLACEHOLDER}
                 searchKeywords={searchKeywords}
                 searchValue={searchValue}
