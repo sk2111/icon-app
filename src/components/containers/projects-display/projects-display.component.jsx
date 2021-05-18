@@ -21,12 +21,17 @@ import { PROJECTS_ROUTE_PATH } from '../../../utilities/route.paths';
 //assests
 import ProjectTileImg from '../../../assests/webp/project-tile.webp';
 import ProjectsNotFoundImg from '../../../assests/webp/not-found-projects.webp';
+import DeleteIcon from '../../../assests/png/delete-icon-white.png';
 
 const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, openUploadModal,
     filteredProjectsList, allProjectsList, setProjectValue }) => {
 
     const displayContainer = styles.container + ' ' +
         (filteredProjectsList.length < PROJECT_TILE_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
+
+    const handleProjectDelete = ()=>{
+
+    };
 
     return (
         <div className={styles.pageContainer}>
@@ -53,6 +58,12 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
                                         to={`${PROJECTS_ROUTE_PATH}/${projectName.toLowerCase()}`}
                                         onClick={() => { setProjectValue(projectName) }}>
                                         <div className={styles.projectTileContainer}>
+                                            <div className={styles.deleteZone} onClick={(e)=>{
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                }}>
+                                                <img className={styles.deleteIcon} alt="D" src={DeleteIcon} onClick={handleProjectDelete} />
+                                            </div>
                                             <img className={styles.projectTile} src={ProjectTileImg} alt="" />
                                             <p className={styles.projectName} title={projectName}>{projectName}</p>
                                         </div>

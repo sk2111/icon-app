@@ -67,6 +67,7 @@
 }
 .projectTileContainer {
   cursor: pointer;
+  position: relative;
 }
 .notFoundImg {
   height: 370px;
@@ -74,4 +75,19 @@
   position: absolute;
   top: 28%;
   width: 370px;
+}
+.deleteZone{
+  bottom:40px;
+  height:40px;
+  position: absolute;
+  right:0px;
+  width:40px;
+  z-index:1000;
+}
+.deleteIcon {
+  cursor: pointer;
+  height: 20px;
+  margin-left: 12px;
+  margin-top: 12px;
+  width: 20px;
 }
