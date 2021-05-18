@@ -9,8 +9,8 @@ import { ReactComponent as FavoritesLogo } from '../../../assests/navigation/fav
 import { ReactComponent as EditLogo } from '../../../assests/navigation/edit-menu.svg';
 
 export const NAVI_LINKS = [
-    { name: 'Common', route: COMMON_ROUTE_PATH, IconComp: CommonIconsLogo },
     { name: 'Projects', route: PROJECTS_ROUTE_PATH, IconComp: ProjectsLogo },
+    { name: 'Common', route: COMMON_ROUTE_PATH, IconComp: CommonIconsLogo },
     { name: 'Favorites', route: FAVORITES_ROUTE_PATH, IconComp: FavoritesLogo },
     { name: 'Edit', route: EDIT_ROUTE_PATH, IconComp: EditLogo },
 ];
