@@ -24,7 +24,14 @@ const uploadIconsReducer = (state = INITIAL_STATE, action) => {
         case uploadIconsActionTypes.OPEN_UPLOAD_MODAL:
             return { ...state, isUploadModalOpen: true, uploadIconDBPath: action.payload };
         case uploadIconsActionTypes.ADD_NEW_CLASSIFICATION_SUCCESS:
-            return { ...state, isAddNewClassificationSuccess: true, isUserMessageCardOpen: true }
+            return {
+                ...state,
+                isAddNewClassificationSuccess: true,
+                isUserMessageCardOpen: true,
+                rootClassification: action.payload.newValue,
+                isUserEditedUploadedIcons: true,
+                uploadedIcons: { ...editAllIconsObjectPropertiesImmutably(state.uploadedIcons, action.payload) }
+            }
         case uploadIconsActionTypes.SET_UPLOADED_ICONS:
             return { ...state, uploadedIcons: { ...state.uploadedIcons, ...action.payload } };
         case uploadIconsActionTypes.DELETE_UPLOADED_ICON:
