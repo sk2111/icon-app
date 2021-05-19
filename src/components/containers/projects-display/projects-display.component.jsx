@@ -29,8 +29,9 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
     const displayContainer = styles.container + ' ' +
         (filteredProjectsList.length < PROJECT_TILE_STY_LENGTH_LIMIT ? styles.smallList : styles.largeList);
 
-    const handleProjectDelete = ()=>{
-
+    const handleProjectDelete = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
     };
 
     return (
@@ -58,12 +59,11 @@ const ProjectsDisplay = ({ searchValue, setSearchValue, isCurrentUserAdmin, open
                                         to={`${PROJECTS_ROUTE_PATH}/${projectName.toLowerCase()}`}
                                         onClick={() => { setProjectValue(projectName) }}>
                                         <div className={styles.projectTileContainer}>
-                                            <div className={styles.deleteZone} onClick={(e)=>{
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                                }}>
-                                                <img className={styles.deleteIcon} alt="D" src={DeleteIcon} onClick={handleProjectDelete} />
-                                            </div>
+                                            <RenderView renderIfTrue={isCurrentUserAdmin}>
+                                                <div className={styles.deleteZone} onClick={handleProjectDelete}>
+                                                    <img className={styles.deleteIcon} alt="D" src={DeleteIcon} onClick={handleProjectDelete} />
+                                                </div>
+                                            </RenderView>
                                             <img className={styles.projectTile} src={ProjectTileImg} alt="" />
                                             <p className={styles.projectName} title={projectName}>{projectName}</p>
                                         </div>

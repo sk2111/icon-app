@@ -69,6 +69,9 @@
   cursor: pointer;
   position: relative;
 }
+.projectTileContainer:hover .deleteZone {
+  visibility: visible;
+}
 .notFoundImg {
   height: 370px;
   left: 43%;
@@ -76,13 +79,13 @@
   top: 28%;
   width: 370px;
 }
-.deleteZone{
-  bottom:40px;
-  height:40px;
+.deleteZone {
+  bottom: 40px;
+  height: 40px;
   position: absolute;
-  right:0px;
-  width:40px;
-  z-index:1000;
+  right: 0px;
+  visibility: hidden;
+  width: 40px;
 }
 .deleteIcon {
   cursor: pointer;
