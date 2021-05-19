@@ -1,5 +1,5 @@
 //libs
-import { takeLatest, put, call, all, select, throttle } from 'redux-saga/effects';
+import { takeLatest, put, call, all, select, throttle, delay } from 'redux-saga/effects';
 //firesbase
 import {
     getDocDataFromFireStore, getDocListByPagination, deleteDocById,
@@ -135,6 +135,7 @@ function* deleteProjectFromDB({ payload: { projectName } }) {
         const dbDocPath = PROJECT_ICONS_USER_OPTIONS_DATA_PATH;
         yield call(deleteProjectNameFromFireStore, { dbDocPath, projectName, key: CLASSIFICATION_PROJECTS_LIST })
         yield put(deleteProjectSuccess());
+        yield delay(1000);
         yield put(fetchProjectIconsUserOptionsStart())
     }
     catch (e) {
