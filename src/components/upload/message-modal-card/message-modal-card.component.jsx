@@ -29,7 +29,7 @@ const MessageModalCard = ({ uploadIconDBPath, closeConfirmation, isUserMesssageC
         if (isAddNewClassificationSuccess) {
             setTimeout(() => {
                 closeAddNewClassificationModal(uploadIconDBPath);
-            }, 2000);
+            }, 1000);
         }
     }, [isAddNewClassificationSuccess, closeAddNewClassificationModal, uploadIconDBPath]);
 

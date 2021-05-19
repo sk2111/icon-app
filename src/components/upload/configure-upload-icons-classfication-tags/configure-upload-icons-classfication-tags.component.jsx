@@ -40,7 +40,15 @@ const ConfigureAllIconsClassificationAndTags = ({ changeModalView, changeRootCla
 
     const handleAddNewClassification = (classification) => {
         if (classification) {
-            addNewClassfication({ classification, uploadIconDBPath });
+            addNewClassfication({
+                classification,
+                uploadIconDBPath,
+                newClassification: {
+                    key: ICON_CLASSIFICATION,
+                    newValue: classification,
+                    value: classification
+                }
+            });
             setShowCreateNewCategory(false);
         }
     };

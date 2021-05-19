@@ -28,12 +28,13 @@ import { capitalizeFirstLetter, prepareIconDataForUpload, } from '../../utilitie
 
 
 //create new category or classfication in firebase
-function* addNewClassficationInFirebase({ payload: { classification, uploadIconDBPath } }) {
+function* addNewClassficationInFirebase({ payload: { classification, uploadIconDBPath, newClassification } }) {
     try {
         const capitalizedValue = yield call(capitalizeFirstLetter, classification);
+        const trimmedValue = capitalizedValue.trim();
         if ((uploadIconDBPath === COMMON_ICONS_HEADER_LABEL) && capitalizedValue) {
             yield call(CreateNewClassfication, {
-                classification: capitalizedValue.trim(),
+                classification: trimmedValue,
                 dbDocPath: COMMON_ICONS_USER_OPTIONS_DATA_PATH,
                 property: CLASSIFICATION_SELECT_OPTIONS_LIST
             });
@@ -41,12 +42,16 @@ function* addNewClassficationInFirebase({ payload: { classification, uploadIconD
         }
         if ((uploadIconDBPath === PROJECT_ICONS_HEADER_LABEL) && capitalizedValue) {
             yield call(CreateNewClassfication, {
-                classification: capitalizedValue.trim(),
+                classification: trimmedValue,
                 dbDocPath: PROJECT_ICONS_USER_OPTIONS_DATA_PATH,
                 property: CLASSIFICATION_PROJECTS_LIST
             });
         }
-        yield put(addNewClassficationSuccess());
+        yield put(addNewClassficationSuccess({
+            key: newClassification.key,
+            newValue: trimmedValue,
+            value: trimmedValue
+        }));
     }
     catch (e) {
         yield put(addNewClassficationFailed(e?.message));
