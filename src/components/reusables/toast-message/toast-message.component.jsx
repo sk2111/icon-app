@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 //css
 import styles from './toast-message.module.css';
+//components
+import RenderView from '../render-view/render-view.component';
 //actions
 import { resetToastMessageState } from '../../../redux/toast-message/toast-message.actions';
 //reselect
@@ -36,7 +38,12 @@ const ToastMessage = ({ showToast, message, isSuccess, timeInSeconds, resetToast
         <div ref={toastContainerRef} style={toastStyle} className={styles.toastbar}>
             <div className={styles.toastView}>
                 <div className={styles.round}>
-                    <img src={(isSuccess ? successImage : failureImage)} key={successImage} className={styles.icon} alt="toast-img" />
+                    <RenderView renderIfTrue={isSuccess}>
+                        <img src={successImage} className={styles.icon} alt="toast-img" />
+                    </RenderView>
+                    <RenderView renderIfFalse={isSuccess}>
+                        <img src={failureImage} className={styles.icon} alt="toast-img" />
+                    </RenderView>
                 </div>
                 <div className={styles.message}>{message}</div>
             </div>
