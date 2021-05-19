@@ -28,6 +28,9 @@ export const selectProjectIconsSearchValue = createSelector([selectProjectIcons]
 export const selectUserSelectedProject = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.userSelectedProject);
 
+export const selectShowDeleteProjectModal = createSelector([selectProjectIcons],
+    (projectIcons) => projectIcons.showDeleteProjectModal);
+
 const selectProjectIconsMap = createSelector([selectProjectIcons],
     (projectIcons) => projectIcons.iconsMap);
 

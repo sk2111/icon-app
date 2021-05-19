@@ -14,7 +14,8 @@ const INITIAL_STATE = {
     projectsList: [],
     projectSearchValue: CLEAR_VALUE,
     projectIconsSearchValue: CLEAR_VALUE,
-    userSelectedProject: null
+    userSelectedProject: null,
+    showDeleteProjectModal: false,
 };
 
 const projectIconsReducer = (state = INITIAL_STATE, action) => {
@@ -43,6 +44,10 @@ const projectIconsReducer = (state = INITIAL_STATE, action) => {
         case projectIconsActionTypes.SET_PROJECT_ICONS_PAGINATION:
             const { key, isMoreIconsAvailableToFetch, lastQueryEndRef } = action.payload;
             return { ...state, paginationMap: { ...state.paginationMap, [key]: { isMoreIconsAvailableToFetch, lastQueryEndRef } } };
+        case projectIconsActionTypes.SHOW_DELETE_PROJECT_MODAL:
+            return { ...state, showDeleteProjectModal: true };
+        case projectIconsActionTypes.CLOSE_DELETE_PROJECT_MODAL:
+            return { ...state, showDeleteProjectModal: false };
         default:
             return state;
     }

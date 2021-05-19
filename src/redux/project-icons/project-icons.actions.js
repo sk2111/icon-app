@@ -118,3 +118,36 @@ export const toggleProjectIconFavoriteModeFailure = (payload) => {
         payload
     }
 };
+
+//Delete Project Modal
+export const openDeleteProjectModal = (payload) => {
+    return {
+        type: projectIconsActionTypes.SHOW_DELETE_PROJECT_MODAL,
+        payload
+    }
+};
+export const closeDeleteProjectModal = (payload) => {
+    return {
+        type: projectIconsActionTypes.CLOSE_DELETE_PROJECT_MODAL,
+        payload
+    }
+};
+
+export const deleteProjectStart = (payload) => {
+    return {
+        type: projectIconsActionTypes.DELETE_PROJECT_FROM_DB_START,
+        payload
+    };
+};
+export const deleteProjectSuccess = (payload) => {
+    return {
+        type: projectIconsActionTypes.DELETE_PROJECT_FROM_DB_SUCCESS,
+        payload
+    };
+};
+export const deleteProjectFailure = (payload) => {
+    return {
+        type: projectIconsActionTypes.DELETE_PROJECT_FROM_DB_FAILURE,
+        payload
+    };
+};
