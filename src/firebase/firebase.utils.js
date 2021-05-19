@@ -114,6 +114,20 @@ export const CreateNewClassfication = async ({ classification, dbDocPath, proper
     }
 };
 
+export const deleteProjectNameFromFireStore = async ({ dbDocPath, projectName, key }) => {
+    const docRef = firestore.doc(dbDocPath);
+    try {
+        docRef.update({
+            [key]: firebase.firestore.FieldValue.arrayRemove(projectName)
+        });
+        return true;
+    }
+    catch (e) {
+        console.log("Delete project failed", e);
+        throw e;
+    }
+};
+
 export const updateDocPropInFirestore = async (dbDocPath, { property, value }) => {
     const docRef = firestore.doc(dbDocPath);
     try {

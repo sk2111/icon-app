@@ -1,8 +1,11 @@
 //libs
 import { takeLatest, put, call, all, select, throttle } from 'redux-saga/effects';
 //firesbase
-import { getDocDataFromFireStore, getDocListByPagination, deleteDocById, updateDocPropInFirestore } from '../../firebase/firebase.utils';
-import { USERS_COLLECTION_PATH, PROJECT_ICONS_USER_OPTIONS_DATA_PATH, PROJECT_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
+import {
+    getDocDataFromFireStore, getDocListByPagination, deleteDocById,
+    updateDocPropInFirestore, deleteProjectNameFromFireStore
+} from '../../firebase/firebase.utils';
+import { USERS_COLLECTION_PATH, PROJECT_ICONS_USER_OPTIONS_DATA_PATH, PROJECT_ICONS_LIST_PATH, CLASSIFICATION_PROJECTS_LIST } from '../../firebase/firebase.constants';
 //action types
 import { projectIconsActionTypes } from './project-icons.type';
 import { userActionTypes } from '../user/user.type';
@@ -12,7 +15,7 @@ import {
     fetchProjectIconsUserOptionsStart, fetchProjectIconsUserOptionsSuccess, fetchProjectIconsUserOptionsFailure,
     fetchProjectIconsFromDatabaseFailure, fetchProjectIconsFromDatabaseSuccess, setProjectIconsPaginationMap,
     deleteProjectIconFromDbSuccess, deleteProjectIconFromDbFailure, toggleProjectIconFavoriteModeFailure,
-    toggleProjectIconFavoriteModeSuccess,
+    toggleProjectIconFavoriteModeSuccess, deleteProjectSuccess, deleteProjectFailure,
     setUserSelectedProjectValue
 } from './project-icons.actions';
 import { updateCurrentUserFavoriteIcons } from '../user/user.actions';
@@ -126,6 +129,24 @@ function* onFetchProjectTabData() {
     yield takeLatest(projectIconsActionTypes.FETCH_PROJECT_ICONS_USER_OPTIONS_START, fetchProjectTabData);
 };
 
+//Delete project list
+function* deleteProjectFromDB({ payload: { projectName } }) {
+    try {
+        const dbDocPath = PROJECT_ICONS_USER_OPTIONS_DATA_PATH;
+        yield call(deleteProjectNameFromFireStore, { dbDocPath, projectName, key: CLASSIFICATION_PROJECTS_LIST })
+        yield put(deleteProjectSuccess());
+        yield put(fetchProjectIconsUserOptionsStart())
+    }
+    catch (e) {
+        console.log(e);
+        yield put(deleteProjectFailure(e.message));
+    }
+}
+
+function* onDeleteProjectFromDB() {
+    yield takeLatest(projectIconsActionTypes.DELETE_PROJECT_FROM_DB_START, deleteProjectFromDB);
+}
+
 // on user auth completion success trigger fetch actions for project icons
 export function* fetchUserOptions() {
     yield put(fetchProjectIconsUserOptionsStart());
@@ -164,5 +185,6 @@ export function* projectIconsSaga() {
         call(onDeleteProjectIconFromDB),
         call(onTriggerUserOptionsFetch),
         call(onRouteBasedProjectSelection),
+        call(onDeleteProjectFromDB),
     ]);
 };
