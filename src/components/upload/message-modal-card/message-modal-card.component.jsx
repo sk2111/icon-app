@@ -1,5 +1,5 @@
 //libs
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 //css
@@ -23,6 +23,15 @@ import SuccessImg from '../../../assests/webp/success-tick.webp';
 const MessageModalCard = ({ uploadIconDBPath, closeConfirmation, isUserMesssageCardOpen, isUploading, uploadErrorMessage,
     closeAddNewClassificationModal, showHideCloseConfirmationModal, closeUploadModal, closeUploadStatusModal,
     isAddNewClassificationSuccess }) => {
+
+
+    useEffect(() => {
+        if (isAddNewClassificationSuccess) {
+            setTimeout(() => {
+                closeAddNewClassificationModal(uploadIconDBPath);
+            }, 2000);
+        }
+    }, [isAddNewClassificationSuccess, closeAddNewClassificationModal, uploadIconDBPath]);
 
     return (
         <React.Fragment>
