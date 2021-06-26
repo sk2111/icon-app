@@ -21,7 +21,11 @@ export const selectFavoriteIconsListToDisplay = createSelector(
     [selectFavoriteIconsSearchValue, selectFavoriteIconsMap],
     (searchValue, iconsMap) => {
         const searchTagValue = getSpaceCombinationValue(getAlphaOnly(searchValue, '', true, true));
-        const iconsArray = Object.values(iconsMap);
+        const iconsArray = Object.values(iconsMap).sort((a, b) => {
+            if (a?.iconName.toLowerCase() < b?.iconName.toLowerCase()) return -1;
+            if (a?.iconName.toLowerCase() > b?.iconName.toLowerCase()) return 1;
+            return 0;
+        });
         return iconsArray.filter((icon) => {
             const iconTagAsStr = icon[ICON_TAGS].join(' ');
             const searchMatchResult = searchTagValue.length ?
