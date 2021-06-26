@@ -77,7 +77,7 @@ export const ICON_PROP = {
 export const PROJECT_TILE_STY_LENGTH_LIMIT = 12;
 export const ICON_STY_LENGTH_LIMIT = 12;
 // user display Icon card messages
-export const NO_MORE_ICONS_MESSAGE = 'You have reached the end';
+export const NO_MORE_ICONS_MESSAGE = 'All Icons collected';
 
 
 // edit icon button Image labels
