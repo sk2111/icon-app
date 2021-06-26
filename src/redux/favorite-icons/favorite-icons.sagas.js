@@ -1,4 +1,4 @@
-import { takeLatest, all, call, put, select } from 'redux-saga/effects';
+import { takeLatest, takeEvery, all, call, put, select } from 'redux-saga/effects';
 //firebase
 import { readDocListFromFirestore } from '../../firebase/firebase.utils';
 import { COMMON_ICONS_LIST_PATH, PROJECT_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
@@ -48,7 +48,7 @@ function* removeIconFromUserFavorite({ payload: { id, value } }) {
 };
 
 function* onRemovingIconFromFavorite() {
-    yield takeLatest(favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_START, removeIconFromUserFavorite);
+    yield takeEvery(favoriteIconsActionTypes.TOGGLE_FAVORITE_ICON_FAVORITE_MODE_START, removeIconFromUserFavorite);
 };
 
 //sync favorite icons tab with other values
@@ -100,7 +100,7 @@ function* onFetchUserFavoriteIcons() {
 //delete icon from favorite tab after success in db
 function* deleteIconFromFavoriteTab({ payload: iconId }) {
     const { iconsMap } = yield select(selectFavoriteIcons);
-    if(iconsMap[iconId]){
+    if (iconsMap[iconId]) {
         yield put(deleteIconFromFavoriteTabSuccess(iconId));
     }
 };

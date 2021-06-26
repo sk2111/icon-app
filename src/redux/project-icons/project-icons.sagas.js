@@ -1,5 +1,5 @@
 //libs
-import { takeLatest, put, call, all, select, throttle, delay } from 'redux-saga/effects';
+import { takeLatest, takeEvery, put, call, all, select, throttle, delay } from 'redux-saga/effects';
 //firesbase
 import {
     getDocDataFromFireStore, getDocListByPagination, deleteDocById,
@@ -85,7 +85,7 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
 };
 
 function* onFavoriteProjectIconSelection() {
-    yield takeLatest(projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_START, addOrRemoveFavoritesFromUserMap);
+    yield takeEvery(projectIconsActionTypes.TOGGLE_PROJECT_ICON_FAVORITE_MODE_START, addOrRemoveFavoritesFromUserMap);
 }
 
 // delete particular icon from db

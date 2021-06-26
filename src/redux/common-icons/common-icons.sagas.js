@@ -1,5 +1,5 @@
 //libs
-import { takeLatest, put, call, all, select, throttle } from 'redux-saga/effects';
+import { takeLatest, takeEvery, put, call, all, select, throttle } from 'redux-saga/effects';
 //firesbase
 import { getDocDataFromFireStore, getDocListByPagination, deleteDocById, updateDocPropInFirestore } from '../../firebase/firebase.utils';
 import { USERS_COLLECTION_PATH, COMMON_ICONS_USER_OPTIONS_DATA_PATH, COMMON_ICONS_LIST_PATH } from '../../firebase/firebase.constants';
@@ -39,7 +39,7 @@ function* fetchCommonIconsFromDatabase() {
         const { paginateKey, existingPaginationMap, isMoreIconsAvailableToFetch } = yield call(getPaginateConfig, selectValue, searchValue, paginationMap);
         if ((!existingPaginationMap) || (existingPaginationMap && isMoreIconsAvailableToFetch)) {
             const { docList, isMoreDocsAvailable, newEndDocRef } = yield call(getDocListByPagination,
-                framePaginationQueryParams(true,selectValue, searchValue, existingPaginationMap, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
+                framePaginationQueryParams(true, selectValue, searchValue, existingPaginationMap, COMMON_ICON_DEFAULT_CATEGORY_VALUE,
                     COMMON_ICONS_LIST_PATH, MAXIMUM_NUMBER_OF_FILES_FOR_DOWNLOAD));
             const { iconsMap } = yield call(frameIconObjFromDocObj, docList, favoriteIconsDocId);
             yield put(fetchCommonIconsFromDatabaseSuccess(iconsMap));
@@ -80,7 +80,7 @@ function* addOrRemoveFavoritesFromUserMap({ payload: { id, value } }) {
 };
 
 function* onFavoriteCommonIconSelection() {
-    yield takeLatest(commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_START, addOrRemoveFavoritesFromUserMap);
+    yield takeEvery(commonIconsActionsTypes.TOGGLE_COMMON_ICON_FAVORITE_MODE_START, addOrRemoveFavoritesFromUserMap);
 }
 
 
