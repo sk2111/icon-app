@@ -30,6 +30,7 @@
   height: 15px;
   margin-left: 8px;
   overflow: hidden;
+  text-transform: capitalize;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 117px;
