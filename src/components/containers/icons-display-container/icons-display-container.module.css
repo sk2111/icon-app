@@ -114,4 +114,8 @@
   .largeList {
     justify-content: space-around;
   }
+  .notFoundImg{
+    height: 250px;
+    width: 250px;
+  }
 }
