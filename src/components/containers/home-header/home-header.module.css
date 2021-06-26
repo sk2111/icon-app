@@ -30,3 +30,10 @@
   justify-content: flex-end;
   width: 32%;
 }
+
+@media screen and (max-width: 800px) {
+  .hamsvg {
+    cursor: normal;
+    pointer-events: none;
+  }
+}

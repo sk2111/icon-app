@@ -109,3 +109,9 @@
   top: 28%;
   width: 370px;
 }
+
+@media screen and (max-width: 800px) {
+  .largeList {
+    justify-content: space-around;
+  }
+}

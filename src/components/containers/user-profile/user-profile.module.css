@@ -115,3 +115,9 @@
 .signOutLabel {
   margin: 15px 0px 0px 0px;
 }
+
+@media screen and (max-width: 800px) {
+  .username,.verticalLine {
+      display: none;
+  }
+}
