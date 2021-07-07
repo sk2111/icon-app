@@ -125,6 +125,7 @@ function* previewIcon({ payload: { svgNode } }) {
         const windowIns = window.open("");
         windowIns.document.title = 'Preview';
         windowIns.document.write(previewContent);
+        windowIns.document.body.style.margin ='1px';
         windowIns.document.close();
         yield (put(iconPreviewSuccess()));
     }
