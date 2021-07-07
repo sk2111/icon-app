@@ -59,6 +59,7 @@
   flex-direction: row;
   height: 27px;
   margin: 0px;
+  text-transform: capitalize;
   padding-left: 16px;
 }
 .searchItem:hover {
