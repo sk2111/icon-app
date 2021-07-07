@@ -15,19 +15,12 @@ import { PNG_FORMAT, SVG_FORMAT, BMP_FORMAT, JPEG_FORMAT, WEBP_FORMAT } from '..
 // download jpeg as white color
 function* downloadCanvasAsJpeg(svgString, canvasNode, iconName, dataUrltype, fileExtension, iconDownloadSuccessAction) {
     if (canvasNode && svgString) {
-        const ctx = canvasNode.getContext("2d")
-        const imgData = ctx.getImageData(0, 0, canvasNode.width, canvasNode.height);
-        const data = imgData.data;
-        for (var i = 0; i < data.length; i += 4) {
-            if (data[i + 3] < 255) {
-                data[i] = 255;
-                data[i + 1] = 255; // convert non opaque pixels to white
-                data[i + 2] = 255;
-                data[i + 3] = 255;
-            }
-        }
-        ctx.putImageData(imgData, 0, 0);
-        const imageUri = canvasNode.toDataURL(dataUrltype, 1);
+        const newCanvas = canvasNode.cloneNode(true);
+        const ctx = newCanvas.getContext('2d');
+        ctx.fillStyle = "#FFF";
+        ctx.fillRect(0, 0, newCanvas.width, newCanvas.height);
+        ctx.drawImage(canvasNode, 0, 0);
+        const imageUri = newCanvas.toDataURL(dataUrltype,1);
         FileSaver.saveAs(imageUri, `${iconName}${fileExtension}`);
         yield delay(500);
         yield put(iconDownloadSuccessAction());
@@ -125,7 +118,7 @@ function* previewIcon({ payload: { svgNode } }) {
         const windowIns = window.open("");
         windowIns.document.title = 'Preview';
         windowIns.document.write(previewContent);
-        windowIns.document.body.style.margin ='1px';
+        windowIns.document.body.style.margin = '1px';
         windowIns.document.close();
         yield (put(iconPreviewSuccess()));
     }
